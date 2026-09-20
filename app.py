@@ -106,7 +106,7 @@ elif page == "回测实验":
     st.caption("参数提交后统一计算。研究结果与成交明细会保存到本地 runs 目录。")
     with st.form("experiment"):
         a,b,c=st.columns(3)
-        factor=a.selectbox("因子",list(REGISTRY),format_func=lambda x:{"momentum":"动量","reversal":"反转","low_volatility":"低波动"}[x])
+        factor=a.selectbox("因子",list(REGISTRY),format_func=lambda x:{"momentum":"动量","reversal":"反转","low_volatility":"低波动"}.get(x,REGISTRY[x].label))
         window=b.number_input("因子窗口（0 使用各因子默认值）",0,120,0,
                               help="默认：动量20日、反转5日、低波动20日；自定义窗口至少2日。")
         freq=c.selectbox("调仓间隔（交易日）",[5,20,1,10])
