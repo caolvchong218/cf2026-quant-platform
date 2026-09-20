@@ -129,6 +129,8 @@ def download_project(root: Path, token_file: str | None, size: int = 60) -> dict
         adj = provider.query("adj_factor", params, "ts_code,trade_date,adj_factor")
         limits = provider.query("stk_limit", params, "ts_code,trade_date,up_limit,down_limit")
         before = len(daily)
+        source_sorted = bool(daily.trade_date.is_monotonic_increasing)
+        source_missing = {col:int(daily[col].isna().sum()) for col in daily.columns}
         duplicates = int(daily.duplicated(["ts_code", "trade_date"]).sum())
         if duplicates or adj.duplicated(["ts_code", "trade_date"]).any() or limits.duplicated(["ts_code", "trade_date"]).any():
             raise ValueError(f"Ambiguous duplicate source keys for {code}")
@@ -160,6 +162,10 @@ def download_project(root: Path, token_file: str | None, size: int = 60) -> dict
                           "adjustment_reference", "up_limit", "down_limit"]])
         asset_reports.append({"asset": code, "raw_rows": before, "valid_rows": len(df),
                               "duplicate_keys": duplicates, "invalid_rows_excluded": bad_count,
+                              "source_date_ascending": source_sorted,
+                              "clean_date_ascending": bool(df.date.is_monotonic_increasing),
+                              "source_missing_by_field": source_missing,
+                              "calendar_coverage": len(df)/len(calendar),
                               "missing_limit_rows": int(df.up_limit.isna().sum()),
                               "calendar_missing_rows": len(calendar) - len(df),
                               "first": str(df.date.min().date()), "last": str(df.date.max().date())})
@@ -186,4 +192,3 @@ def download_project(root: Path, token_file: str | None, size: int = 60) -> dict
                 "files": {str(p.relative_to(root)).replace("\\", "/"): digest(p) for p in files}}
     write_json(processed / "manifest.json", manifest)
     return manifest
-

@@ -38,7 +38,11 @@ def execute(root: Path, config: Config, output: Path | None = None):
     checks = reconcile(result, config.initial_cash, config.buy_cost, config.sell_cost)
     if not checks["passed"]:
         raise AssertionError(f"Accounting verification failed: {checks}")
-    signature = hashlib.sha256((json.dumps(config.to_dict(), sort_keys=True)+digest(root/config.data_path)).encode()).hexdigest()[:12]
+    code_files = sorted((root/"src").rglob("*.py"))
+    code_hashes = {str(p.relative_to(root)).replace("\\", "/"): digest(p) for p in code_files}
+    identity = {"config":config.to_dict(), "data":digest(root/config.data_path),
+                "calendar":digest(root/config.calendar_path), "code":code_hashes}
+    signature = hashlib.sha256(json.dumps(identity,sort_keys=True).encode()).hexdigest()[:12]
     output = output or root / "runs" / f"{config.name}_{signature}"
     output.mkdir(parents=True, exist_ok=True)
     for name in ["daily", "trades", "positions", "orders"]:
@@ -49,14 +53,15 @@ def execute(root: Path, config: Config, output: Path | None = None):
     write_json(output/"checks.json", checks)
     try:
         revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
-        dirty = bool(subprocess.check_output(["git", "status", "--porcelain"], cwd=root, text=True).strip())
+        dirty = bool(subprocess.check_output(["git", "status", "--porcelain", "--",
+                     "src", "configs", "app.py", "scripts", "pyproject.toml"], cwd=root, text=True).strip())
     except (subprocess.CalledProcessError, FileNotFoundError):
         revision, dirty = "unavailable", True
-    code_files = sorted((root/"src").rglob("*.py"))
     write_json(output/"provenance.json", {"created_utc": datetime.now(timezone.utc).isoformat(),
                "duration_seconds": time.monotonic()-begin, "git_revision": revision, "git_dirty": dirty,
+               "git_dirty_scope": "research source, configs, app, scripts and pyproject; excludes generated reports/evidence",
                "data_sha256": digest(root/config.data_path), "calendar_sha256": digest(root/config.calendar_path),
-               "code_sha256": {str(p.relative_to(root)).replace("\\", "/"): digest(p) for p in code_files},
+               "code_sha256": code_hashes,
                "config_signature": signature,
                "gross_convention": "Same actual fills; cumulative costs restored into idle cash; not a separately reinvested frictionless portfolio."})
     return result, metrics, output
@@ -73,9 +78,11 @@ def study(root: Path, base: Config):
     analysis_market = market[market.date <= base.end]
     labels = forward_returns(analysis_market, analysis_calendar, base.diagnostic_horizon)
     summaries, checks, rows = [], [], []
+    run_index = {}
     for name, spec in REGISTRY.items():
         config = replace(base, name=f"{name}_weekly", factor=name, factor_params={"window": spec.default_window})
         result, metrics, folder = execute(root, config)
+        run_index[config.name] = folder.relative_to(root).as_posix()
         rows.append({"experiment": config.name, "factor": name, "rebalance_every": config.rebalance_every, **metrics})
         scores = compute(analysis_market, analysis_calendar, name)
         scores = scores.loc[(scores.index >= base.start) & (scores.index <= base.end)]
@@ -86,7 +93,8 @@ def study(root: Path, base: Config):
         checks.append(causal_check(market, calendar, name))
     # One primary factor changed: 5-session versus 20-session rebalance.
     monthly = replace(base, name="momentum_monthly", rebalance_every=20)
-    _, metrics, _ = execute(root, monthly)
+    _, metrics, monthly_folder = execute(root, monthly)
+    run_index[monthly.name] = monthly_folder.relative_to(root).as_posix()
     rows.append({"experiment": monthly.name, "factor": monthly.factor, "rebalance_every": 20, **metrics})
     # Repeat the primary baseline numerically, with the same data/config.
     first, _, _ = execute(root, base, output/"repeat_a")
@@ -96,5 +104,5 @@ def study(root: Path, base: Config):
     pd.DataFrame(rows).to_csv(output/"comparison.csv", index=False, float_format="%.12g")
     pd.DataFrame(summaries).to_csv(output/"factor_summary.csv", index=False, float_format="%.12g")
     write_json(output/"validation.json", {"passed": all(x["passed"] for x in checks), "checks": checks})
+    write_json(output/"run_index.json",run_index)
     return output
-

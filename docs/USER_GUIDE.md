@@ -44,7 +44,7 @@ study运行三因子和仅将动量5日调仓改20日的主对照，同时输出
 
 每个目录有config.yaml、daily.csv、trades.csv、orders.csv、positions.csv、factors.csv、metrics.json、checks.json、provenance.json。分别保存配置、账本、成交、订单、持仓、长表、绩效、复核与版本哈希。
 
-同样数据配置刷新同一参数签名目录；不同参数生成新目录。长期保留实验可复制目录或用新配置名称。主要数值应一致，时间戳和耗时可变。
+同样数据、日历、源码与配置刷新同一签名目录；任一改变会生成新目录。study/run_index.json明确指向当前研究各实验版本。长期保留实验可复制目录或用新配置名称。主要数值应一致，时间戳和耗时可变。
 
 ## 八分钟演示顺序
 
@@ -62,4 +62,3 @@ study运行三因子和仅将动量5日调仓改20日的主对照，同时输出
 - 克隆后是合成样本：真实数据不入Git，需自行下载或导入获准快照。
 - 订单未成交：查看missing_open、missing_limit、upper_limit、lower_limit、cash_scaled。
 - 亏损不是代码错误：核对账本后分析信号和成本，不为了曲线好看改变区间。
-

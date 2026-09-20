@@ -18,4 +18,5 @@ tmp/
 *.toc
 *.synctex.gz
 dist/
-
+reports/build/
+.ruff_cache/

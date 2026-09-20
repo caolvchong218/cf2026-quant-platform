@@ -73,14 +73,25 @@ if page == "研究总览":
     if real and comparison.exists():
         comp=pd.read_csv(comparison)
         curves=[]
+        index_path=ROOT/"runs/study/run_index.json"
+        run_index=json.loads(index_path.read_text(encoding="utf-8")) if index_path.exists() else {}
+        display_names={"momentum_weekly":"动量 · 5日","reversal_weekly":"反转 · 5日",
+                       "low_volatility_weekly":"低波动 · 5日","momentum_monthly":"动量 · 20日"}
         for name in comp.experiment:
-            matches=sorted((ROOT/"runs").glob(f"{name}_*/daily.csv"))
+            matches=[ROOT/run_index[name]/"daily.csv"] if name in run_index else sorted((ROOT/"runs").glob(f"{name}_*/daily.csv"))
             if matches:
                 d=pd.read_csv(matches[-1],parse_dates=["date"])
-                curves.append(pd.DataFrame({"日期":d.date,"净值":d.nav/base.initial_cash,"实验":name}))
+                curves.append(pd.DataFrame({"日期":d.date,"净值":d.nav/base.initial_cash,"实验":display_names.get(name,name)}))
         if curves:line_chart(pd.concat(curves), "日期","净值",color="实验",title="固定研究方案 · 扣费后历史净值")
         st.caption("以上为固定股票池上的描述性历史实验。负收益结果原样保留，不代表未来表现。")
-        st.dataframe(comp[["experiment","total_return","sharpe","max_drawdown","total_cost"]],hide_index=True,width="stretch")
+        table=comp[["experiment","total_return","sharpe","max_drawdown","total_cost"]].copy()
+        table["experiment"]=table.experiment.map(display_names)
+        table["total_return"]=table.total_return.map(lambda x:f"{x:.2%}")
+        table["max_drawdown"]=table.max_drawdown.map(lambda x:f"{x:.2%}")
+        table["sharpe"]=table.sharpe.map(lambda x:f"{x:.3f}")
+        table["total_cost"]=table.total_cost.map(lambda x:f"{x:,.2f}")
+        table.columns=["实验","累计净收益","Sharpe","最大回撤","费用（元）"]
+        st.table(table.set_index("实验"))
     else:
         st.info("进入「回测实验」运行一次完整研究；无 Token 的新环境也可使用仓库内的合成样本。")
     st.markdown("### 先理解三个研究假设")
@@ -95,8 +106,9 @@ elif page == "回测实验":
     st.caption("参数提交后统一计算。研究结果与成交明细会保存到本地 runs 目录。")
     with st.form("experiment"):
         a,b,c=st.columns(3)
-        factor=a.selectbox("因子",list(REGISTRY),format_func=lambda x:REGISTRY[x].label)
-        window=b.number_input("因子窗口（交易日）",2,120,20)
+        factor=a.selectbox("因子",list(REGISTRY),format_func=lambda x:{"momentum":"动量","reversal":"反转","low_volatility":"低波动"}[x])
+        window=b.number_input("因子窗口（0 使用各因子默认值）",0,120,0,
+                              help="默认：动量20日、反转5日、低波动20日；自定义窗口至少2日。")
         freq=c.selectbox("调仓间隔（交易日）",[5,20,1,10])
         a,b,c=st.columns(3)
         start=a.date_input("开始日期",pd.Timestamp(base.start).date(),min_value=calendar[1].date(),max_value=calendar[-1].date())
@@ -109,7 +121,7 @@ elif page == "回测实验":
         submitted=st.form_submit_button("运行并核对账本",type="primary",width="stretch")
     if submitted:
         try:
-            cfg=replace(base,name="interactive",factor=factor,factor_params={"window":int(window)},
+            cfg=replace(base,name="interactive",factor=factor,factor_params={"window":int(window) if window else REGISTRY[factor].default_window},
                         start=str(start),end=str(end),rebalance_every=freq,holdings=int(holdings),
                         buy_cost=buy/10000,sell_cost=sell/10000,initial_cash=initial)
             with st.spinner("计算交易、费用、净值并独立核对账本…"):
