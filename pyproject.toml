@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cf2026-quant-platform"
+version = "0.1.0"
+description = "Reproducible daily equity research for Computational Finance Project 1"
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.26,<3", "pandas>=2.2,<3", "scipy>=1.12,<2", "matplotlib>=3.8,<4", "PyYAML>=6,<7", "streamlit>=1.40,<2", "plotly>=5,<7"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "backtrader==1.9.78.123"]
+
+[project.scripts]
+cfquant = "cfquant.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
