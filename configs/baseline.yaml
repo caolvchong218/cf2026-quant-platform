@@ -17,4 +17,4 @@ diagnostic_horizon: 5
 groups: 5
 min_assets: 10
 respect_price_limits: true
-
+max_stale_sessions: 20
