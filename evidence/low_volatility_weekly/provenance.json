@@ -1,0 +1,22 @@
+{
+  "created_utc": "2026-09-20T18:02:19.540187+00:00",
+  "duration_seconds": 2.0075509999878705,
+  "git_revision": "9dd8c3fb6f1b1f23342180ec87be8025c4e652e4",
+  "git_dirty": false,
+  "git_dirty_scope": "research source, configs, app, scripts and pyproject; excludes generated reports/evidence",
+  "data_sha256": "1490ae85e156920d930c81e482f2a8a2ba8353e150d58fc224d92d49d35b6ddc",
+  "calendar_sha256": "fd7917fadb19ef7daa1b6cafefc02eb7d6046c887b92c1820eb43508e6a04114",
+  "code_sha256": {
+    "src/cfquant/__init__.py": "8d1749d587cb6e71c71f1a35967786ae9b0901566307733faf471bc90fb39e7e",
+    "src/cfquant/analytics.py": "1d651a37b4d33bb6215a2bc3a400b91ffdfe7ddcea8b4e9c5e07839992d1bb1d",
+    "src/cfquant/cli.py": "0491dc0ada5bceae570c6585e7c985541d41264ce88b179ac5824b80b474b2ea",
+    "src/cfquant/config.py": "d5af09edcc7cc3cecfdabd1e265e9a6299f3ed6015cf115b19e74975d5e59b43",
+    "src/cfquant/data.py": "e5f3697009dcecb66ba0d814df0c95b254009134ebd772ab438bc16696c6fca8",
+    "src/cfquant/engine.py": "0e07a86822cf1862160187731fa4bab5252e5e7b6c7544d4cc4290494f5c0be8",
+    "src/cfquant/experiment.py": "bb30b6f64c74b82d70b1eb32394e54c6a5167c9d1f3b30e04096cd7008638fe8",
+    "src/cfquant/factors.py": "f5beec6788d5d1492c7634dda48a4c6c0f34af06e9c9b78d36ebacea5e086b9d",
+    "src/cfquant/portfolio.py": "063aa3019eae1c49ac25ea64b2f6d58dd4db18e780ef4bf4a0e21b35ec225103"
+  },
+  "config_signature": "d82aea41afb6",
+  "gross_convention": "Same actual fills; cumulative costs restored into idle cash; not a separately reinvested frictionless portfolio."
+}

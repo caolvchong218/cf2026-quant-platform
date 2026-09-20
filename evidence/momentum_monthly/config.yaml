@@ -1,0 +1,20 @@
+name: momentum_monthly
+data_path: data/processed/market.csv
+calendar_path: data/processed/calendar.csv
+start: '2023-01-03'
+end: '2025-12-31'
+factor: momentum
+factor_params:
+  window: 20
+rebalance_every: 20
+holdings: 10
+initial_cash: 1000000.0
+buy_cost: 0.001
+sell_cost: 0.0015
+annualization: 252
+risk_free_annual: 0.0
+diagnostic_horizon: 5
+groups: 5
+min_assets: 10
+respect_price_limits: true
+max_stale_sessions: 20

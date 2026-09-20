@@ -1,0 +1,17 @@
+{
+  "sessions": 727,
+  "total_return": -0.41310323927277837,
+  "annualized_return": -0.16866407257967753,
+  "annualized_volatility": 0.2629523872078189,
+  "sharpe": -0.5707537803731912,
+  "max_drawdown": 0.5740890930584172,
+  "total_cost": 45170.42653894546,
+  "mean_turnover": 0.08129586924073105,
+  "total_turnover": 59.10209693801147,
+  "max_asset_weight": 0.17309454795778428,
+  "mean_holdings": 9.83493810178817,
+  "trade_count": 655,
+  "blocked_orders": 8,
+  "stale_holding_days": 11,
+  "gross_attribution_total_return": -0.36793281273383294
+}

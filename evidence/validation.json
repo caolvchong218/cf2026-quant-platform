@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "factor": "momentum",
+      "passed": true,
+      "errors": [],
+      "scope": "Empirical checks at selected cutoffs, not a proof for arbitrary plugins."
+    },
+    {
+      "factor": "reversal",
+      "passed": true,
+      "errors": [],
+      "scope": "Empirical checks at selected cutoffs, not a proof for arbitrary plugins."
+    },
+    {
+      "factor": "low_volatility",
+      "passed": true,
+      "errors": [],
+      "scope": "Empirical checks at selected cutoffs, not a proof for arbitrary plugins."
+    },
+    {
+      "factor": "reproducibility",
+      "passed": true,
+      "errors": []
+    }
+  ]
+}

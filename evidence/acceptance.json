@@ -1,0 +1,58 @@
+{
+  "data_manifest_verified": true,
+  "data_file_count": 186,
+  "real_market_rows": 46759,
+  "real_assets": 60,
+  "study_sessions": 727,
+  "research_validation_passed": true,
+  "runs": {
+    "momentum_weekly": {
+      "path": "runs/momentum_weekly_36b81fb2d7a6",
+      "accounting_passed": true,
+      "source_hashes_match": true,
+      "source_commit": "9dd8c3fb6f1b1f23342180ec87be8025c4e652e4",
+      "source_was_clean": true
+    },
+    "reversal_weekly": {
+      "path": "runs/reversal_weekly_5aed6d6091de",
+      "accounting_passed": true,
+      "source_hashes_match": true,
+      "source_commit": "9dd8c3fb6f1b1f23342180ec87be8025c4e652e4",
+      "source_was_clean": true
+    },
+    "low_volatility_weekly": {
+      "path": "runs/low_volatility_weekly_d82aea41afb6",
+      "accounting_passed": true,
+      "source_hashes_match": true,
+      "source_commit": "9dd8c3fb6f1b1f23342180ec87be8025c4e652e4",
+      "source_was_clean": true
+    },
+    "momentum_monthly": {
+      "path": "runs/momentum_monthly_ef33da09cc3b",
+      "accounting_passed": true,
+      "source_hashes_match": true,
+      "source_commit": "9dd8c3fb6f1b1f23342180ec87be8025c4e652e4",
+      "source_was_clean": true
+    }
+  },
+  "tracked_secret_scan_passed": true,
+  "ui_validation": "Five pages + form submit + CSV download checked; screenshots saved.",
+  "report": "8 pages; latest build inspected, no LaTeX overfull/underfull warnings.",
+  "dependencies": {
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "scipy": "1.16.3",
+    "matplotlib": "3.10.6",
+    "PyYAML": "6.0.3",
+    "streamlit": "1.51.0",
+    "plotly": "6.3.0",
+    "pytest": "8.4.2",
+    "backtrader": "1.9.78.123"
+  },
+  "limitations": [
+    "Research total-return units, not real share settlement.",
+    "Fixed pre-period liquidity universe; historical vendor snapshot can be revised.",
+    "Idealized next-open notional execution; no queue, lot, minimum fee or capacity model.",
+    "Long missing holdings marked zero after 20 sessions as conservative assumption."
+  ]
+}
