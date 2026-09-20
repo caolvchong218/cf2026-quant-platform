@@ -224,11 +224,12 @@ def test_long_missing_holding_written_down_without_fake_sale():
     m,c=fixture_data(55)
     m=m[~((m.asset=="A")&(m.date>=c[24]))]
     scores=pd.DataFrame({"A":2.,"B":0.,"C":0.},index=c)
-    cfg=replace(config(c,rebalance_every=100,buy_cost=0,sell_cost=0),holdings=1,max_stale_sessions=20)
+    cfg=replace(config(c,rebalance_every=100,buy_cost=0,sell_cost=0),holdings=2,max_stale_sessions=20)
     out=run_backtest(m,c,scores,cfg)
     assert out.daily.iloc[-1].written_down_holdings==1
-    assert out.daily.iloc[-1].market_value==0
-    assert len(out.trades)==1
+    last_a=out.positions[(out.positions.date==c[-1])&(out.positions.asset=="A")]
+    assert last_a.iloc[0].value==0
+    assert len(out.trades)==2
     assert reconcile(out,1000,0,0)["passed"]
 
 

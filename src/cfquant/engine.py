@@ -128,6 +128,8 @@ def run_backtest(market: pd.DataFrame, calendar: pd.DatetimeIndex,
         marks = np.where(previous_stale, 0, last_close)
         values = units * marks
         nav = cash + np.nansum(values)
+        if nav <= 0:
+            raise ValueError("Nonpositive portfolio NAV after valuation; stop rather than emit undefined returns.")
         cumulative_cost += fee
         daily.append({"date": date, "nav": nav, "return": nav / prior_nav - 1,
                       "cash": cash, "market_value": np.nansum(values), "opening_nav": opening_nav,

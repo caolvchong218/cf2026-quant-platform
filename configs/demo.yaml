@@ -1,0 +1,14 @@
+name: synthetic_demo
+data_path: data/sample/market.csv
+calendar_path: data/sample/calendar.csv
+start: '2024-02-01'
+end: '2024-06-14'
+factor: momentum
+factor_params: {window: 20}
+rebalance_every: 5
+holdings: 5
+initial_cash: 1000000.0
+buy_cost: 0.001
+sell_cost: 0.0015
+groups: 5
+min_assets: 10
