@@ -19,7 +19,9 @@ def fetch(code):
     base={'ts_code':code,'start_date':'20191001','end_date':'20260918'}
     daily=p.query('daily_basic',base,'ts_code,trade_date,total_mv,circ_mv,pe_ttm,pb,dv_ttm,turnover_rate')
     fina=p.query('fina_indicator',{**base,'start_date':'20180101'},'ts_code,ann_date,end_date,roe,roa,debt_to_assets,ocf_to_or')
-    if len(daily)>=6000 or len(fina)>=1000:raise ValueError('Possible truncation: '+code)
+    # Official fina_indicator limit is 100 rows, not the daily endpoint limit.
+    # Fail closed: split the report-period range before accepting a capped reply.
+    if len(daily)>=6000 or len(fina)>=100:raise ValueError('Possible truncation; split report-date range: '+code)
     return daily,fina
 
 daily_frames,fina_frames=[],[]

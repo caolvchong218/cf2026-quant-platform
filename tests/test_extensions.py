@@ -91,3 +91,29 @@ def test_incremental_matches_full_adjustment_and_repeated_import_is_idempotent()
     pd.testing.assert_frame_equal(again,merged)
     assert audit['overlapping_rows']==18
     assert repeat['revised_raw_rows']==0
+
+
+def test_cpi_compares_identical_complete_months_only():
+    from cfquant.research import cpi_comparison
+    dates=pd.bdate_range('2025-01-02','2025-04-28')
+    daily=pd.DataFrame({'date':dates,'nav':np.linspace(100,120,len(dates))})
+    cpi=pd.DataFrame({'month':[202501,202502,202503,202504],'nt_mom':[1,1,1,99]})
+    result=cpi_comparison(daily,cpi)
+    assert result['start_month']=='202502'
+    assert result['end_month']=='202503'
+    assert result['months']==2
+    assert result['inflation']==pytest.approx(1.01**2-1)
+
+
+def test_risk_targets_are_invariant_to_future_price_changes():
+    dates=pd.bdate_range('2020-01-01',periods=160)
+    assets=['A','B']; rng=np.random.default_rng(7)
+    close=pd.DataFrame(100*np.exp(np.cumsum(rng.normal(0,.01,(160,2)),axis=0)),index=dates,columns=assets)
+    scores=pd.DataFrame([[2.,1.]]*160,index=dates,columns=assets)
+    frame=pd.MultiIndex.from_product([dates,assets],names=['date','asset']).to_frame(index=False)
+    frame['volatility']=.01;frame['industry']='A'
+    benchmark=close.mean(axis=1)
+    original,_=build_targets(scores,frame,close,benchmark,dates[125])
+    altered=close.copy();altered.loc[dates[146]:]*=100
+    changed,_=build_targets(scores,frame,altered,benchmark.where(benchmark.index<dates[146],benchmark*100),dates[125])
+    pd.testing.assert_frame_equal(original.loc[:dates[145]],changed.loc[:dates[145]])

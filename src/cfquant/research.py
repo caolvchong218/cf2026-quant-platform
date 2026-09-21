@@ -4,6 +4,7 @@ from pathlib import Path
 import json
 import subprocess
 import time
+from datetime import datetime,timezone
 import numpy as np
 import pandas as pd
 from .features import FEATURES,build_features
@@ -55,7 +56,10 @@ def cpi_comparison(daily,cpi):
     # Exclude the currently incomplete final calendar month even if vendor CPI
     # unexpectedly contains it; no partial-month comparison.
     final=nav.index.max()
-    if final.day<28:merged=merged[merged.index<final.strftime('%Y%m')]
+    # Require the final business day of the month; missing a holiday month-end
+    # may conservatively omit a complete trading month, never include a partial one.
+    if final < (final + pd.offsets.BMonthEnd(0)):
+        merged=merged[merged.index<final.strftime('%Y%m')]
     if merged.empty:return {'months':0}
     a=float((1+merged.strategy).prod()-1);b=float((1+merged.cpi).prod()-1)
     return {'months':len(merged),'start_month':merged.index.min(),'end_month':merged.index.max(),
@@ -65,8 +69,25 @@ def cpi_comparison(daily,cpi):
 def run_research(root):
     start_time=time.monotonic()
     extra=root/'data/private/research_v2'
-    out=root/'runs/research_v2';out.mkdir(parents=True,exist_ok=True)
-    frame=pd.read_parquet(extra/'features.parquet') if (extra/'features.parquet').exists() else build_features(root)
+    out=root/'runs/research_v2'
+    # Preserve a completed or interrupted run before a repeat. No prior candidate
+    # or failure is silently overwritten by a subsequent research command.
+    if out.exists() and any(out.iterdir()):
+        archive=root/'runs'/('research_v2_archive_'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'))
+        out.rename(archive)
+    out.mkdir(parents=True,exist_ok=True)
+    sources={p.name:digest(p) for p in sorted((root/'src/cfquant').glob('*.py'))}
+    cache_inputs=[extra/n for n in ['daily_basic.parquet','financials.parquet','industries.parquet']]
+    cache_inputs += [root/'src/cfquant/features.py',root/'src/cfquant/data.py',
+                     root/'data/private/mainboard1000_20260918/data/processed/market.csv',
+                     root/'data/private/mainboard1000_20260918/data/processed/calendar.csv']
+    identity={p.relative_to(root).as_posix():digest(p) for p in cache_inputs}
+    cache_meta=extra/'features_cache.json'
+    cached=json.loads(cache_meta.read_text()) if cache_meta.exists() else {}
+    cache_valid=(cached.get('inputs')==identity and (extra/'features.parquet').exists()
+                 and cached.get('output')==digest(extra/'features.parquet'))
+    frame=pd.read_parquet(extra/'features.parquet') if cache_valid else build_features(root)
+    if not cache_valid:write_json(cache_meta,{'inputs':identity,'output':digest(extra/'features.parquet')})
     market_path=root/'data/private/mainboard1000_20260918/data/processed/market.csv'
     market=load_market(market_path);calendar=load_calendar(market_path.parent/'calendar.csv')
     assets=pd.Index(sorted(market.asset.unique()),name='asset')
@@ -137,7 +158,7 @@ def run_research(root):
     write_json(out/'provenance.json',{'git_revision':subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip(),
              'data_sha256':digest(market_path),'features_sha256':digest(extra/'features.parquet'),
              'protocol_sha256':digest(root/'docs/RESEARCH_PROTOCOL_V2.md'),
-             'source_hashes':{p.name:digest(p) for p in sorted((root/'src/cfquant').glob('*.py'))},
+             'source_hashes':sources,
              'seconds':time.monotonic()-start_time})
     write_json(out/'complete.json',{'selected':chosen,'status':'complete'})
     print('Research completed: '+chosen,flush=True)

@@ -35,7 +35,12 @@ if expanded_config.exists():
     status_path = (ROOT/expanded.data_path).parent/"progress.json"
     if status_path.exists() and json.loads(status_path.read_text(encoding="utf-8")).get("status") == "complete":
         datasets["扩展快照 · 1000只 · 2020–2026"] = "configs/expanded.yaml"
-selected = st.sidebar.selectbox("数据集", list(datasets), key="dataset")
+page = st.sidebar.radio("研究空间", ["策略研究", "研究总览", "回测实验", "因子诊断", "数据与复现", "扩展指南"])
+if page == "策略研究":
+    selected = list(datasets)[-1]
+    st.sidebar.caption("策略研究使用固定的1000只历史股票池；其他页面可切换数据集。")
+else:
+    selected = st.sidebar.selectbox("数据集", list(datasets), key="dataset")
 base = Config.load(ROOT/datasets[selected])
 real = base.data_path != "data/sample/market.csv"
 original_study = datasets[selected] == "configs/baseline.yaml"
@@ -59,7 +64,6 @@ market, calendar = read_data(ROOT/base.data_path, ROOT/base.calendar_path,
 with st.sidebar:
     st.markdown("## 青序 QUANT")
     st.caption("COMPUTATIONAL FINANCE · 2026")
-    page = st.radio("研究空间", ["研究总览", "回测实验", "因子诊断", "数据与复现", "扩展指南"])
     st.divider()
     st.caption("真实 Tushare 快照" if real else "合成演示数据 · 非实证结果")
     st.caption(f"{market.asset.nunique()} 个资产 · {len(market):,} 条日频记录")
@@ -75,7 +79,10 @@ def line_chart(frame, x, y, **kwargs):
     st.plotly_chart(fig, width="stretch")
 
 
-if page == "研究总览":
+if page == "策略研究":
+    from cfquant.ui_research import render
+    render(ROOT)
+elif page == "研究总览":
     st.title("让每一次研究，都能被复现")
     st.markdown('<div class="hero-copy">从行情质量到成交账本，把研究结论建立在可检查的计算上。</div>', unsafe_allow_html=True)
     cols=st.columns(4)
