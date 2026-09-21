@@ -27,11 +27,25 @@ h1,h2,h3 {color:#12243a;letter-spacing:-.025em;}
 </style>""", unsafe_allow_html=True)
 
 real = (ROOT/"data/processed/market.csv").exists()
-base = Config.load(ROOT/("configs/baseline.yaml" if real else "configs/demo.yaml"))
+datasets = {"课程原始快照 · 60只 · 2023–2025": "configs/baseline.yaml"} if real else {
+    "合成演示样本": "configs/demo.yaml"}
+expanded_config = ROOT/"configs/expanded.yaml"
+if expanded_config.exists():
+    expanded = Config.load(expanded_config)
+    status_path = (ROOT/expanded.data_path).parent/"progress.json"
+    if status_path.exists() and json.loads(status_path.read_text(encoding="utf-8")).get("status") == "complete":
+        datasets["扩展快照 · 1000只 · 2020–2026"] = "configs/expanded.yaml"
+selected = st.sidebar.selectbox("数据集", list(datasets), key="dataset")
+base = Config.load(ROOT/datasets[selected])
+real = base.data_path != "data/sample/market.csv"
+original_study = datasets[selected] == "configs/baseline.yaml"
+if st.session_state.get("active_dataset") != selected:
+    st.session_state.pop("run", None)
+    st.session_state["active_dataset"] = selected
 
 
 @st.cache_data
-def read_data(path, calendar_path, file_hash):
+def read_data(path, calendar_path, file_hash, calendar_hash):
     return load_market(path), load_calendar(calendar_path)
 
 
@@ -40,7 +54,8 @@ def calculate(config_dict, file_hash, calendar_hash):
     return execute(ROOT, Config(**config_dict))
 
 
-market, calendar = read_data(ROOT/base.data_path, ROOT/base.calendar_path, digest(ROOT/base.data_path))
+market, calendar = read_data(ROOT/base.data_path, ROOT/base.calendar_path,
+                             digest(ROOT/base.data_path), digest(ROOT/base.calendar_path))
 with st.sidebar:
     st.markdown("## 青序 QUANT")
     st.caption("COMPUTATIONAL FINANCE · 2026")
@@ -70,7 +85,7 @@ if page == "研究总览":
     st.markdown("### 一条完整的研究链路")
     st.info("数据快照  →  因子与诊断  →  目标组合  →  成交与费用  →  净值与解释")
     comparison=ROOT/"runs/study/comparison.csv"
-    if real and comparison.exists():
+    if original_study and comparison.exists():
         comp=pd.read_csv(comparison)
         curves=[]
         index_path=ROOT/"runs/study/run_index.json"
@@ -106,12 +121,12 @@ elif page == "回测实验":
     st.caption("参数提交后统一计算。研究结果与成交明细会保存到本地 runs 目录。")
     with st.form("experiment"):
         a,b,c=st.columns(3)
-        factor=a.selectbox("因子",list(REGISTRY),format_func=lambda x:{"momentum":"动量","reversal":"反转","low_volatility":"低波动"}.get(x,REGISTRY[x].label))
+        factor=a.selectbox("因子",list(REGISTRY),key="backtest_factor",format_func=lambda x:{"momentum":"动量","reversal":"反转","low_volatility":"低波动"}.get(x,REGISTRY[x].label))
         window=b.number_input("因子窗口（0 使用各因子默认值）",0,120,0,
                               help="默认：动量20日、反转5日、低波动20日；自定义窗口至少2日。")
         freq=c.selectbox("调仓间隔（交易日）",[5,20,1,10])
         a,b,c=st.columns(3)
-        start=a.date_input("开始日期",pd.Timestamp(base.start).date(),min_value=calendar[1].date(),max_value=calendar[-1].date())
+        start=a.date_input("开始日期",pd.Timestamp(base.start).date(),min_value=pd.Timestamp(base.start).date(),max_value=calendar[-1].date())
         end=b.date_input("结束日期",pd.Timestamp(base.end).date(),min_value=calendar[1].date(),max_value=calendar[-1].date())
         holdings=c.number_input("目标持仓数",1,market.asset.nunique(),min(base.holdings,market.asset.nunique()))
         a,b,c=st.columns(3)
@@ -188,13 +203,17 @@ elif page == "数据与复现":
     st.code(digest(ROOT/base.data_path),language=None)
     st.caption("当前 market.csv 的 SHA-256 校验值")
     if real:
-        quality=json.loads((ROOT/"data/processed/quality.json").read_text(encoding="utf-8"))
+        dataset_dir=(ROOT/base.data_path).parent
+        quality=json.loads((dataset_dir/"quality.json").read_text(encoding="utf-8"))
+        manifest=json.loads((dataset_dir/"manifest.json").read_text(encoding="utf-8"))
+        st.write(f"行情覆盖：{market.date.min().date()} 至 {market.date.max().date()}；{len(calendar):,} 个交易日。")
+        st.caption(f"股票池选取日：{manifest['selection_date']}。固定历史股票池，不是全市场或动态指数成分。")
         st.dataframe(pd.DataFrame(quality["assets"]),hide_index=True,width="stretch")
         st.json({k:v for k,v in quality.items() if k!="assets"},expanded=False)
     else:
         st.info("要复现实证报告，请使用自己的数据权限执行下载命令；样本演示的收益不能替代真实数据实验。")
     st.markdown("**命令行入口**")
-    st.code('python -m cfquant.cli run --config configs/baseline.yaml\npython -m cfquant.cli study\npython -m pytest -q',language="bash")
+    st.code(f'python -m cfquant.cli run --config {datasets[selected]}\npython -m pytest -q',language="bash")
     st.write("报告和使用指南位于 reports 与 docs。真实行情、凭据、缓存和运行目录默认不进入 Git；本机保留完整离线快照。")
     st.dataframe(market.head(100),hide_index=True,width="stretch")
 
