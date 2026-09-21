@@ -1,6 +1,7 @@
 """Append research inputs without changing the accepted price snapshot."""
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
+import argparse
 import json
 import pandas as pd
 from cfquant.data import TushareProvider, write_json, digest
@@ -8,7 +9,10 @@ from cfquant.data import TushareProvider, write_json, digest
 ROOT=Path(__file__).resolve().parents[1]
 DEST=ROOT/'data/private/research_v2'
 DEST.mkdir(parents=True,exist_ok=True)
-p=TushareProvider(DEST/'raw','D:/Desktop/tushare_token.txt',delay=.4)
+parser=argparse.ArgumentParser()
+parser.add_argument('--token-file',help='Token file, otherwise use TUSHARE_TOKEN')
+args=parser.parse_args()
+p=TushareProvider(DEST/'raw',args.token_file,delay=.4)
 codes=pd.read_csv(ROOT/'data/private/mainboard1000_20260918/data/processed/universe.csv').ts_code.tolist()
 
 def fetch(code):

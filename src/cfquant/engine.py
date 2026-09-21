@@ -21,12 +21,27 @@ class BacktestResult:
 
 
 def run_backtest(market: pd.DataFrame, calendar: pd.DatetimeIndex,
-                 scores: pd.DataFrame, config: Config) -> BacktestResult:
+                 scores: pd.DataFrame, config: Config,
+                 target_weights: pd.DataFrame | None = None,
+                 participation_limit: float | None = None) -> BacktestResult:
     assets = scores.columns
     if len(assets) == 0 or not scores.index.equals(calendar):
         raise ValueError("Scores must use the complete supplied calendar")
+    if target_weights is not None:
+        if not target_weights.index.equals(calendar) or not target_weights.columns.equals(assets):
+            raise ValueError("Target weights must preserve the date/asset axes")
+        weights_array=target_weights.to_numpy(dtype=float)
+        if not np.isfinite(weights_array).all() or (weights_array<0).any() or (weights_array.sum(axis=1)>1+1e-10).any():
+            raise ValueError("Weights must be finite, long-only, and sum to at most one")
+    if participation_limit is not None and not 0<participation_limit<=1:
+        raise ValueError("Participation limit must lie in (0,1]")
     fields = ["open", "close", "raw_open", "up_limit", "down_limit"]
     matrices = {f: panel(market, calendar, f).reindex(columns=assets).to_numpy() for f in fields}
+    # Budget based on prior-session rolling turnover, available before execution.
+    liquidity = None
+    if participation_limit is not None:
+        raw_turnover=panel(market,calendar,'raw_close')*panel(market,calendar,'volume')
+        liquidity=raw_turnover.rolling(20,min_periods=20).mean().shift(1).reindex(columns=assets).to_numpy()*participation_limit
     signals = scores.to_numpy()
     dates = calendar[(calendar >= config.start) & (calendar <= config.end)]
     if dates.empty:
@@ -65,7 +80,8 @@ def run_backtest(market: pd.DataFrame, calendar: pd.DatetimeIndex,
         blocked = 0
         rebalance = trade_session % config.rebalance_every == 0
         if rebalance:
-            weights = top_equal_weights(pd.Series(signals[j-1], index=assets), config.holdings).to_numpy()
+            weights = (weights_array[j-1] if target_weights is not None else
+                       top_equal_weights(pd.Series(signals[j-1], index=assets), config.holdings).to_numpy())
             # Reserve an explicit cost buffer. No implicit borrowing when all weights sum to one.
             budget = opening_nav / (1 + config.buy_cost + config.sell_cost)
             target_value = budget * weights
@@ -99,7 +115,13 @@ def run_backtest(market: pd.DataFrame, calendar: pd.DatetimeIndex,
                 requested = sum(delta[k] * opens[k] * (1 + config.buy_cost) for k in allowed) if side == "buy" else 0
                 scale = min(1.0, max(0.0, cash) / requested) if requested > 0 else 1.0
                 for k in allowed:
-                    quantity = abs(delta[k]) * (scale if side == "buy" else 1)
+                    requested_quantity = abs(delta[k]) * (scale if side == "buy" else 1)
+                    quantity = requested_quantity
+                    liquidity_limited = False
+                    if liquidity is not None:
+                        max_notional=liquidity[j,k] if np.isfinite(liquidity[j,k]) else 0.
+                        quantity=min(quantity,max_notional/opens[k])
+                        liquidity_limited=quantity<requested_quantity-1e-12
                     notional = quantity * opens[k]
                     cost = notional * (config.buy_cost if side == "buy" else config.sell_cost)
                     if notional > 1e-8:
@@ -116,7 +138,7 @@ def run_backtest(market: pd.DataFrame, calendar: pd.DatetimeIndex,
                                        "side": side, "units": quantity, "adjusted_price": opens[k],
                                        "raw_price": raw_open[k], "notional": notional, "cost": cost})
                     orders.append({"date": date, "signal_date": calendar[j-1], "asset": assets[k],
-                                   "side": side, "status": "filled" if scale == 1 or side == "sell" else "cash_scaled",
+                                   "side": side, "status": "liquidity_limited" if liquidity_limited else ("filled" if scale == 1 or side == "sell" else "cash_scaled"),
                                    "reason": "", "requested_units": float(abs(delta[k])), "filled_units": quantity})
         if cash < -1e-6 or np.min(units) < -1e-8:
             raise AssertionError("Cash / long-only invariant violated")
