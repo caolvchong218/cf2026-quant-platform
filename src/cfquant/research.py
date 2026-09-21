@@ -78,7 +78,7 @@ def run_research(root):
     out.mkdir(parents=True,exist_ok=True)
     sources={p.name:digest(p) for p in sorted((root/'src/cfquant').glob('*.py'))}
     cache_inputs=[extra/n for n in ['daily_basic.parquet','financials.parquet','industries.parquet']]
-    cache_inputs += [root/'src/cfquant/features.py',root/'src/cfquant/data.py',
+    cache_inputs += [root/'src/cfquant/features.py',root/'src/cfquant/data.py',root/'src/cfquant/__init__.py',
                      root/'data/private/mainboard1000_20260918/data/processed/market.csv',
                      root/'data/private/mainboard1000_20260918/data/processed/calendar.csv']
     identity={p.relative_to(root).as_posix():digest(p) for p in cache_inputs}
