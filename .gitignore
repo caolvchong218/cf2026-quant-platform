@@ -21,3 +21,4 @@ tmp/
 dist/
 reports/build/
 .ruff_cache/
+.chart-data-*/

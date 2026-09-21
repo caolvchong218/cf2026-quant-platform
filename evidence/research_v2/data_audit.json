@@ -1,0 +1,20 @@
+{
+  "price_assets": 1000,
+  "price_rows": 1656599,
+  "calendar_sessions": 1690,
+  "price_start": "2019-10-08",
+  "price_end": "2026-09-18",
+  "daily_basic_rows": 1656599,
+  "daily_basic_duplicate_keys": 0,
+  "financial_rows": 57389,
+  "max_financial_rows_per_request": 67,
+  "financial_endpoint_cap": 100,
+  "industry_interval_rows": 1432,
+  "feature_rows": 1690000,
+  "features": 12,
+  "research_input_hashes_checked": 2073,
+  "eligible_mean": 900.7668639053254,
+  "unknown_industry_fraction": 0.005217776306316249,
+  "annual_roe_coverage_mean": 0.9890162329680158,
+  "research_storage_bytes": 846997244
+}

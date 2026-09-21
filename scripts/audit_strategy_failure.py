@@ -14,7 +14,7 @@ cfg=Config.load(ROOT/'configs/expanded.yaml')
 market=load_market(ROOT/cfg.data_path);dates=load_calendar(ROOT/cfg.calendar_path)
 scores=compute(market,dates,cfg.factor,cfg.factor_params)
 out=ROOT/'evidence/research_v2';rows=[]
-for name,c in [('legacy_zero_cost',replace(cfg,buy_cost=0.,sell_cost=0.)),
+for name,c in [('legacy_recomputed',cfg),('legacy_zero_cost',replace(cfg,buy_cost=0.,sell_cost=0.)),
                ('legacy_same_period',replace(cfg,start='2025-01-02'))]:
     print('Audit '+name,flush=True)
     r=run_backtest(market,dates,scores,c)

@@ -1,75 +1,59 @@
-# CF2026 量化研究平台
+# 青序 · CF2026量化研究平台
 
-计算金融 Project 1：从真实日频行情到因子诊断、组合回测和可复现实验。
+计算金融Project 1最终版：可复现的真实数据研究、12因子、模型比较、含费用成交账本及中文交互平台。
 
-验收版本。Python计算包、中文交互界面和命令行共享同一核心。真实研究使用用户自己的Tushare权限；凭据和原始行情不进入Git。仓库附带可分享合成样本，新电脑无Token也能演示。
+**提交策略：验证期选出的标准化多因子＋风险约束。** 2025-01-02至2026-09-18累计净收益6.12%，年化3.65%，最大回撤7.01%。共同完整月份内跑赢CPI，收益仍低于同期沪深300价格指数；这段历史不保证未来收益。LightGBM最终期更强，但没有据此替换验证期预选策略。
 
-![平台界面](evidence/ui-overview.png)
+![策略研究页面](evidence/ui-research-final.png)
 
-## 快速开始
+## 先运行，再看材料
 
-本机：双击launch.cmd，打开 http://127.0.0.1:8501 。新电脑先安装Python3.12/3.13，再执行：
+本机双击`launch.cmd`，浏览器打开 http://127.0.0.1:8501 。新电脑用Python3.12/3.13：
 
-~~~powershell
+```powershell
 py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements-lock.txt
-.\.venv\Scripts\python.exe -m pip install -e ".[dev]"
-.\.venv\Scripts\python.exe -m pytest -q
-.\.venv\Scripts\python.exe -m cfquant.cli run --config configs/demo.yaml
-.\.venv\Scripts\python.exe -m streamlit run app.py
-~~~
+.venv/Scripts/python.exe -m pip install -r requirements-research-lock.txt
+.venv/Scripts/python.exe -m pip install -e ".[dev,research]"
+.venv/Scripts/python.exe -m pytest -q
+.venv/Scripts/python.exe -m cfquant.cli run --config configs/demo.yaml
+.venv/Scripts/python.exe -m streamlit run app.py
+```
 
-真实数据和完整实验：
+无Token可以查看已发布真实研究证据、运行合成样本并演示完整界面。原始Tushare数据与凭据仅在本地，重新下载需自己的权限。新旧股票池及样本身份明确分开。
 
-~~~powershell
-.\.venv\Scripts\python.exe -m cfquant.cli download --token-file D:\Desktop\tushare_token.txt
-.\.venv\Scripts\python.exe -m cfquant.cli study
-~~~
+## 最终交付
 
-原始缓存、标准行情、研究结果分别保存在data/raw、data/processed、runs。改变源码、数据或参数会产生新实验签名，研究索引明确指定报告所用版本。
+- [10页最终报告](reports/final/CF2026_Final_Report.pdf)及[LaTeX源码](reports/final/final_report.tex)。
+- [20页Beamer演示PDF](reports/final/CF2026_Beamer.pdf)、[Beamer源码](reports/final/beamer.tex)和[可编辑PowerPoint](reports/final/CF2026_Presentation_Final.pptx)。
+- [约20分钟讲稿与演示步骤](docs/PRESENTATION_SCRIPT.md)。正文18页，2页答辩备份。
+- [完整复现指南](docs/REPRODUCE_V2.md)、[课程逐项验收](docs/ACCEPTANCE_V2.md)、[12因子卡](docs/FACTOR_CARDS_V2.md)。
+- [事前实验协议](docs/RESEARCH_PROTOCOL_V2.md)、[数值重复性修复说明](docs/NUMERICAL_AUDIT.md)、[派生证据](evidence/research_v2)。
+- 原始60股项目与失败案例仍保留在[历史说明](docs/README_V1_ARCHIVE.md)，不冒充最终报告。
 
-## 交付内容
+## 数据与研究设计
 
-- [使用与验收指南](docs/USER_GUIDE.md)：安装、运行、界面和演示顺序。
-- [架构与扩展](docs/ARCHITECTURE.md)：模块职责、插件和后续项目接口。
-- [数据与计算口径](docs/CONVENTIONS.md)：字段、因子、成交、缺失和指标。
-- [固定对照方案](docs/EXPERIMENT_PLAN.md)：事前问题和控制变量。
-- [研究报告](reports/CF2026_Project1_Report.pdf)与[LaTeX源码](reports/report.tex)：8页真实研究。
-- [两页工作进展报告](reports/WORK_PROGRESS_20260921.pdf)与[文字版](docs/WORK_PROGRESS_20260921.md)：已完成工作、扩展数据和验收状态。
-- evidence：测试、汇总结果、源数据校验清单和UI截图；tests：独立计算与集成检查。
+固定2019-12-31的1,000只主板股票，行情2019-10-08至2026-09-18，共1,656,599条日线、1,690个交易日。追加同规模每日估值、57,389条财务指标和1,432个历史行业区间。行情和研究缓存约1.63GB。
 
-## 真实实验概览
+训练2020–2022、验证2023–2024、最终评估2025–2026-09-18。对照包括标准化多因子、中性化多因子、Ridge、LightGBM、小型MLP。严格按公告日滞后，清除跨训练边界的未来标签。原动量全期已被观察，最终区间不称完全未知的盲测。
 
-2023–2025年，60只样本，727个交易日。固定因子方向及成本，保留亏损结果：
+| 最终期候选 | 年化净收益 | 最大回撤 | 选择依据 |
+|---|---:|---:|---|
+| 标准化多因子 | 3.65% | 7.01% | 验证期预选 |
+| 中性化多因子 | 5.36% | 10.26% | 保留对照 |
+| Ridge | 7.12% | 10.66% | 保留对照 |
+| LightGBM | 13.09% | 11.69% | 保留对照 |
+| 小型MLP | 5.76% | 10.31% | 保留对照 |
 
-| 策略 | 累计净收益 | 最大回撤 |
-|---|---:|---:|
-| 动量 / 每5交易日调仓 | -64.60% | 72.88% |
-| 反转 / 每5交易日调仓 | -49.71% | 62.12% |
-| 低波动 / 每5交易日调仓 | +24.84% | 18.66% |
-| 动量 / 每20交易日调仓 | -41.31% | 57.41% |
+## 平台能力与边界
 
-这是固定样本上的描述性历史比较，不是预测收益或全市场结论。降低动量调仓频率减少了换手和成本，但没有使其盈利；正IC也没有使反转策略获得正净收益。
+数据、因子/模型、目标组合、成交账本、统计及界面相互独立。组合可持现金；支持持仓缓冲、单股/行业目标上限、波动预算、趋势仓位、事前流动性预算与部分成交。增量合并输出新的标准行情及修订审计，测试覆盖分段等于全量和重复幂等。
 
-## 设计边界
+本机发现可选NumExpr加速在大面板除法中偶发错误，已统一禁用并加入实际失败复现的回归测试。重新生成全部研究，独立环境复算结果见repeatability.json。
 
-- 研究级日频模拟，使用一致复权价格和连续可分的总收益单位；不声称是实盘执行系统。
-- 当日收盘生成信号，下一个交易日开盘执行。
-- 三个基准因子：20 日动量、5 日反转、20 日低波动。
-- 成交成本按实际买卖金额计提；缺失开盘价格和涨跌停会阻止相应成交。
-- 数据、因子、目标组合、成交账本、诊断、实验和界面职责独立。
-- 不以盈利与否判断软件正确性；不隐去不支持研究假设的结果。
+研究用连续可分的复权单位，未实现完整整手、分红现金、税费历史、结算和盘口；固定历史池、厂商财报修订、行业重构和长期缺失估值仍限制外推。风险权重是形成时目标，实际权重会漂移。原始动量累计−83.57%、零费用重跑−75.16%均保留。
 
-新增因子可通过注册表进入相同的诊断和回测，无需改动成交核心。自动测试覆盖手算公式、下一开盘时点、费用、涨跌停、缺失估值、拆股连续性、故意泄漏插件、独立Backtrader对照与UI提交。
+参考Qlib工作流与因子表达，复用sklearn/LightGBM；未声称完整复制Alpha158或集成Qlib成交引擎。参考CogAlpha的代码式因子表示，未运行LLM演化挖掘。
 
-## 报告重建
+## Git与许可证
 
-安装XeLaTeX后，完成真实数据study，再运行python scripts/build_report.py。脚本生成图和report.tex，编译为PDF。当前报告模板针对默认课程研究方案；更换研究股票池或日期后，应同步修订研究描述。
-
-GitHub 仓库现已公开；真实行情和凭据仍仅保存在本地。公开可见不等同于授予开源许可，当前未附加项目开源许可证。第三方依赖保留各自许可证，Backtrader仅作为开发验证依赖使用。
-
-## 扩展日频快照
-
-支持股票池规模、日期范围、下载线程和容量上限配置。新增的 1000 只股票快照与课程原始 60 只快照独立保存，完成后可在侧栏切换。下载指令、容量统计与样本边界见 [扩展数据说明](docs/EXPANDED_DATA.md)。课程报告仍对应原始 60 只股票实验。
-
-2026-09-21 本地扩展快照已完成：1,000 只股票，1,656,599 条日频行情，覆盖 2019-10-08 至 2026-09-18，原始缓存及标准数据合计约 0.78 GB。3,006 个文件哈希核验通过；全区间回测 1,629 个交易日账本核对通过。真实数据未上传，其他电脑需凭自己的数据权限下载。
+公开仓库只包含代码、合成样本、报告和派生汇总，真实行情、财报、Token及虚拟环境不进入Git。提交历史保留原始平台、数据扩展、研究协议、模型与风险模块、数值修复及最终材料。当前未附加项目开源许可证；公开可见不等于授予任意再分发许可，第三方依赖保留各自许可证。

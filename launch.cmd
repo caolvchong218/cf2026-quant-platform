@@ -1,6 +1,8 @@
 @echo off
 cd /d "%~dp0"
-if not exist ".venv\Scripts\python.exe" (
+set "CF_PYTHON=.venv\Scripts\python.exe"
+if exist ".venv-clean\Scripts\python.exe" set "CF_PYTHON=.venv-clean\Scripts\python.exe"
+if not exist "%CF_PYTHON%" (
   echo Please run setup.cmd first.
   pause
   exit /b 1
@@ -11,5 +13,5 @@ if not errorlevel 1 (
   exit /b 0
 )
 start "" "http://127.0.0.1:8501"
-".venv\Scripts\python.exe" -m streamlit run app.py --server.address 127.0.0.1 --server.port 8501
+"%CF_PYTHON%" -m streamlit run app.py --server.address 127.0.0.1 --server.port 8501
 pause

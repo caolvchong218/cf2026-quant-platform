@@ -1,5 +1,7 @@
 # 数据、时点与会计口径
 
+本文保留V1原60股基准方案。V2最终研究以[复现指南](REPRODUCE_V2.md)、[12因子卡](FACTOR_CARDS_V2.md)及最终报告为准；会计公式和缺失原则继续沿用。
+
 ## 数据
 
 Tushare daily 为未复权日线，成交量源单位为手，导入转换为股。adj_factor 统一复权，stk_limit 提供上下限，trade_cal 提供上交所开市日作为大陆股票研究日历。
@@ -63,4 +65,3 @@ https://tushare.pro/document/2?doc_id=27
 https://tushare.pro/document/2?doc_id=28
 https://tushare.pro/document/2?doc_id=183
 https://tushare.pro/document/2?doc_id=26
-

@@ -1,0 +1,131 @@
+{
+  "status": "research accounting and source hashes passed",
+  "research_runs": {
+    "control_double_cost": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "control_no_risk": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "control_zero_cost": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "test_lightgbm": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "test_mlp": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "test_multifactor_neutral": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "test_multifactor_raw": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "test_ridge": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "validation_lightgbm": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "validation_mlp": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "validation_multifactor_neutral": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "validation_multifactor_raw": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "validation_ridge": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    }
+  },
+  "data": {
+    "price_assets": 1000,
+    "price_rows": 1656599,
+    "calendar_sessions": 1690,
+    "price_start": "2019-10-08",
+    "price_end": "2026-09-18",
+    "daily_basic_rows": 1656599,
+    "daily_basic_duplicate_keys": 0,
+    "financial_rows": 57389,
+    "max_financial_rows_per_request": 67,
+    "financial_endpoint_cap": 100,
+    "industry_interval_rows": 1432,
+    "feature_rows": 1690000,
+    "features": 12,
+    "research_input_hashes_checked": 2073,
+    "eligible_mean": 900.7668639053254,
+    "unknown_industry_fraction": 0.005217776306316249,
+    "annual_roe_coverage_mean": 0.9890162329680158,
+    "research_storage_bytes": 846997244
+  },
+  "selection_rule": "validation positive return and MDD<=20%, then highest CAGR/MDD; fallback same ratio",
+  "implemented_extensions": [
+    "dated fundamentals and historical industry neutralization",
+    "risk-aware target weights and cash",
+    "prior-volume participation caps and partial fills",
+    "idempotent snapshot merge and revision audit"
+  ],
+  "limitations": [
+    "fixed 2019 pool is not the whole market",
+    "vendor revisions are not a full vintage database",
+    "fractional adjusted units, no exchange lots or detailed dividend cash ledger",
+    "targets may drift after formation",
+    "MLP fixed 8 epochs did not claim convergence",
+    "original full-period momentum outcomes were observed before the protocol"
+  ]
+}

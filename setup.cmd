@@ -4,9 +4,9 @@ if not exist ".venv\Scripts\python.exe" (
   py -3 -m venv .venv
   if errorlevel 1 exit /b 1
 )
-".venv\Scripts\python.exe" -m pip install -r requirements-lock.txt
+".venv\Scripts\python.exe" -m pip install -r requirements-research-lock.txt
 if errorlevel 1 exit /b 1
-".venv\Scripts\python.exe" -m pip install -e ".[dev]"
+".venv\Scripts\python.exe" -m pip install -e ".[dev,research]"
 if errorlevel 1 exit /b 1
 ".venv\Scripts\python.exe" -m pytest -q
 pause

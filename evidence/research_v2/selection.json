@@ -1,0 +1,12 @@
+{
+  "selected": "multifactor_raw",
+  "rule": "validation positive return and MDD<=20%, then highest CAGR/MDD; fallback same ratio",
+  "validation": [
+    "2023-01-03",
+    "2024-12-31"
+  ],
+  "training_rows": 653622,
+  "purged_training_rows": 20402,
+  "test_touched_before_selection": false,
+  "caveat": "Original single-factor full-period outcomes were already observed before this protocol."
+}

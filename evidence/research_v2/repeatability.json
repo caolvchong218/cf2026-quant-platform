@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "selected": "multifactor_raw",
+  "independent_environment": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "versions": {
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "scipy": "1.16.3",
+    "scikit-learn": "1.7.2",
+    "lightgbm": "4.7.0"
+  },
+  "matched_first_valid_run_all_5_models": true,
+  "repeated_selected_tables": {
+    "daily": {
+      "rows": 417,
+      "matched": true
+    },
+    "trades": {
+      "rows": 1134,
+      "matched": true
+    },
+    "positions": {
+      "rows": 20890,
+      "matched": true
+    },
+    "orders": {
+      "rows": 1136,
+      "matched": true
+    }
+  },
+  "rtol": 1e-09,
+  "atol_currency_and_units": 5e-06,
+  "data_sha256": "7feecc242fe6450c3aeb0a4024621c6b6fa3f230540eacb5dc9b4c006af7adf4",
+  "checks": {
+    "passed": true,
+    "errors": [],
+    "checked_sessions": 417,
+    "cash_tolerance": 1e-06,
+    "relative_tolerance": 1e-10
+  }
+}

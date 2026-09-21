@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "tests": 48,
+  "failed": 0,
+  "skipped": 0,
+  "independent_selected_strategy_repeat": true,
+  "research_accounting_runs": 13,
+  "research_input_hashes_checked": 2073,
+  "report_pages": 10,
+  "beamer_pages": 20,
+  "pptx_slides": 20,
+  "native_charts": 6,
+  "native_tables": 2,
+  "visual_review": "All 10 report pages and 20 Beamer/PPTX slides reviewed; changed pages re-rendered and reviewed.",
+  "ui": "Five research tabs viewed; two PDF downloads match final artifact hashes.",
+  "pptx_execution_boundary": "Artifact Tool final re-import/render and structural validators; native desktop PowerPoint not run.",
+  "artifacts_sha256": {
+    "CF2026_Final_Report.pdf": "360952a745b4104d04ab1a5d7d7b3f324a1996b0067b00e520a70807caaf5ad5",
+    "CF2026_Beamer.pdf": "20bbd2b6e7b27d6e53e3b6e25efad0222ce08c827b4e5307a8fc2f3831599227",
+    "CF2026_Presentation_Final.pptx": "fa3fcdc900a3aebd047c7bf5bb9f4c80622eb2aa84a058e05900d773ad2f747f"
+  },
+  "warnings": "Matplotlib/Pyparsing deprecation warnings and local pytest cache permission warning; tests passed."
+}

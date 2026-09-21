@@ -1,0 +1,11 @@
+{
+  "method": "circular moving-block bootstrap of realized daily net returns",
+  "block_sessions": 20,
+  "replicates": 2000,
+  "seed": 20260921,
+  "cagr_95_percentile_interval": [
+    -0.047275404907129163,
+    0.1413109088733617
+  ],
+  "caveat": "Descriptive conditional interval only: fixed realized strategy, no model-selection or regime-change uncertainty."
+}

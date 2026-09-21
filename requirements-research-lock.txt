@@ -1,0 +1,4 @@
+-r requirements-lock.txt
+scikit-learn==1.7.2
+lightgbm==4.7.0
+pyarrow==21.0.0
