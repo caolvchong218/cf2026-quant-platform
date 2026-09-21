@@ -1,0 +1,20 @@
+name: expanded_momentum
+data_path: data/private/mainboard1000_20260918/data/processed/market.csv
+calendar_path: data/private/mainboard1000_20260918/data/processed/calendar.csv
+start: '2020-01-02'
+end: '2026-09-18'
+factor: momentum
+factor_params:
+  window: 20
+rebalance_every: 5
+holdings: 30
+initial_cash: 1000000.0
+buy_cost: 0.001
+sell_cost: 0.0015
+annualization: 252
+risk_free_annual: 0.0
+diagnostic_horizon: 5
+groups: 5
+min_assets: 10
+respect_price_limits: true
+max_stale_sessions: 20

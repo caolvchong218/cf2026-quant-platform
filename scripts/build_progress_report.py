@@ -31,6 +31,9 @@ new_status = (f"已完成：{summary.get('assets', 1000):,} 只，{progress['row
               f"正在下载：{progress['completed_assets']:,} / 1,000 只，已整理 {progress['rows']:,} 条；尚未完成全量验收。")
 new_volume = (f"{summary['snapshot_bytes']/1024**3:.3f} GiB（原始缓存及标准文件合计）"
               if summary.get("snapshot_bytes") else "容量上限 3 GiB，完成后统计实际占用")
+new_quality = (f"共 {summary['calendar_sessions']:,} 个交易日；最新交易日有 {summary['assets_with_latest_bar']} 只股票返回日线。"
+               f"股票×交易日网格缺 {summary['missing_calendar_asset_cells']:,} 条，另有 {summary['missing_limit_rows']} 条缺涨跌停价格；均保留缺失状态，交易引擎据此限制成交。"
+               if summary else "")
 sections = [
     ("1. 这次完成的是什么", [
         "已经搭建一个可以运行的计算金融研究平台：读取行情，计算因子，生成持仓，模拟交易，再检查收益与账本。采用 Python，便于组员阅读，并复用 pandas、NumPy、SciPy、Plotly 和 Streamlit。",
@@ -58,7 +61,7 @@ sections = [
 ]
 rows = [
     ["项目", "原始课程快照", "扩展快照"],
-    ["股票规模", "60 只", "目标 1,000 只"],
+    ["股票规模", "60 只", "1,000 只" if complete else "目标 1,000 只"],
     ["有效记录", "46,759 条", f"{progress['rows']:,} 条" + ("（已完成）" if complete else "（下载中）")],
     ["行情时间", "2022-10-10 至 2025-12-31", (f"{summary['first_date']} 至 {summary['last_date']}" if summary else "请求 2019-10-01 至 2026-09-18")],
     ["研究起点", "2023-01-03", "2020-01-02"],
@@ -96,9 +99,13 @@ for number, (heading, paragraphs) in enumerate(sections):
             ("TOPPADDING", (0,0), (-1,-1), 7), ("BOTTOMPADDING", (0,0), (-1,-1), 7)]))
         story += [table, Spacer(1,9), Paragraph(escape(new_status), styles["p"]),
                   Paragraph(escape(new_volume), styles["meta"])]
+        if new_quality:
+            story.append(Paragraph(escape(new_quality), styles["meta"]))
         markdown += ["| " + " | ".join(rows[0]) + " |", "|---|---|---|"]
         markdown += ["| " + " | ".join(r) + " |" for r in rows[1:]]
         markdown += ["", new_status, "", new_volume, ""]
+        if new_quality:
+            markdown += [new_quality, ""]
 story += [Spacer(1,8), Paragraph(f'<link href="{repo}" color="#168579">GitHub：caolvchong218/cf2026-quant-platform</link>', styles["p"]),
           Paragraph("本机项目：D:/Desktop/cf2026-quant-platform；启动：双击 launch.cmd。", styles["meta"])]
 markdown += [f"仓库：{repo}", "", "本机项目：D:/Desktop/cf2026-quant-platform；双击 launch.cmd 启动。", ""]

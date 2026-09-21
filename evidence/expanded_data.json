@@ -1,0 +1,20 @@
+{
+  "assets": 1000,
+  "rows": 1656599,
+  "calendar_sessions": 1690,
+  "first_date": "2019-10-08",
+  "last_date": "2026-09-18",
+  "study_sessions": 1629,
+  "assets_with_latest_bar": 956,
+  "missing_calendar_asset_cells": 33401,
+  "excluded_invalid_rows": 0,
+  "missing_limit_rows": 48,
+  "duplicate_keys": 0,
+  "snapshot_bytes": 784479241,
+  "hashes_verified": 3006,
+  "market_sha256": "7feecc242fe6450c3aeb0a4024621c6b6fa3f230540eacb5dc9b4c006af7adf4",
+  "manifest_sha256": "14dd4adf2404b0e6e9cead9b6f7b77a36187867043fee51a82773b7d0f7186c4",
+  "backtest_folder": "runs/expanded_momentum_5cd361c1844e",
+  "backtest_daily_rows": 1629,
+  "backtest_trades": 14473
+}
