@@ -1,0 +1,18 @@
+{
+  "release": "v2.2.0",
+  "slides": 20,
+  "main_talk_seconds": 1145,
+  "spoken_chinese_characters": 4464,
+  "qlib_evidence_passed": true,
+  "main_tests": {
+    "passed": 102,
+    "skipped": 1
+  },
+  "qlib_tests": {
+    "passed": 5,
+    "skipped": 0
+  },
+  "source_strategy": "V3 rolling_lightgbm__managed",
+  "first_day_return_included": true,
+  "net_return": 0.25128793922000003
+}

@@ -20,6 +20,9 @@ def render(root):
                 if p.exists():st.download_button('下载'+label,p.read_bytes(),p.name,mime,key='materials_'+suffix,width='stretch')
                 else:st.caption('文件准备中')
         version='V4' if ready else 'V3'
+        printable=folder/(prefix+'_Speaker_Script.pdf')
+        if printable.exists():
+            st.download_button('下载可打印演讲稿 PDF',printable.read_bytes(),printable.name,'application/pdf')
         script=root/f'docs/PRESENTATION_SCRIPT_{version}.md'
         if script.exists():
             st.download_button('下载逐页演讲稿',script.read_bytes(),script.name,'text/markdown')

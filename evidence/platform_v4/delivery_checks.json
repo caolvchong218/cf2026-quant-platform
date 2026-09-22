@@ -1,0 +1,118 @@
+{
+  "passed": true,
+  "release": "v2.2.0",
+  "sealed_utc": "2026-09-22T05:43:04.812807+00:00",
+  "main_tests": {
+    "passed": 102,
+    "skipped": 1,
+    "failures": 0,
+    "errors": 0,
+    "sha256": "a82bad2ed2821ffe938923654b367d75d09e597fa5d9b2a1d442264602688287"
+  },
+  "qlib_tests": {
+    "passed": 5,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "sha256": "e2d16c07b98e0aa9ea59c31a8eea45e2a8f2daab448f92ffda484f53463cb644"
+  },
+  "qlib": {
+    "passed": true,
+    "run_id": "20260922T052747820498Z",
+    "assets": 20,
+    "source_rows": 33754,
+    "factor_count": 8,
+    "compared_values": 269554,
+    "max_absolute_error": 2.531636766889278e-07,
+    "alpha158": {
+      "configured": 158,
+      "with_finite_values": 158,
+      "rows": 32580,
+      "source": "qlib.contrib.data.loader.Alpha158DL.get_feature_config",
+      "vwap_coverage": 1.0,
+      "trained_strategy": false
+    },
+    "source_sha256": "57866e6d02a79cecf2285ae7818af99de312d27efff7eafe710d41030895e5a9",
+    "manifest_sha256": "9042bdaee08c09f66ef38a90e20a03f2757c455a745fd07c45c85ecbe1305ab1",
+    "browser_receipt_sha256": "c639520a3e12a01844e1cca7207f221541d94aff2bbecadac9cb07b19cd54d9d"
+  },
+  "materials": {
+    "pdfs": {
+      "CF2026_V4_Final_Report.pdf": {
+        "pages": 10,
+        "sha256": "923f09a33567df13ac56cba07325c07b6fb2145641566e160cc958bdd750a3f0"
+      },
+      "CF2026_V4_Beamer.pdf": {
+        "pages": 20,
+        "sha256": "31ec99959de5eff4154a6c106fa5273508cf43fa1e72e8431df570333e26b31c"
+      },
+      "CF2026_V4_Speaker_Script.pdf": {
+        "pages": 10,
+        "sha256": "e457cc0d10a3651c3ffc7910d105252a4ab1aaba8820a793c526efdfb9cd391b"
+      }
+    },
+    "slides": 20,
+    "main_slides": 18,
+    "backup_slides": 2,
+    "talk_seconds": 1145,
+    "spoken_chinese_characters": 4464,
+    "deck_script_mapping_passed": true,
+    "material_validation_sha256": "0dcb5edad53844ad808949507d3b89551ebc4f1dc105e6889e116a4021a88e0e"
+  },
+  "pptx": {
+    "sha256": "30ce8bf7cc26d22ee9d5f66354532cc2334b2c4ff0b08f607cd5876380ab563c",
+    "slides": 20,
+    "native_charts": 2,
+    "native_tables": 3,
+    "crc_passed": true,
+    "title_and_notes_mapping_passed": true,
+    "validation_sha256": "9fdb2dfaad77170c16574437578cec6b24e6de7099971e8ae8f895c2f26aad08",
+    "boundary": "Package/layout/embedded-chart/re-import checks and separate visual review; native desktop PowerPoint execution not claimed."
+  },
+  "browser_downloads": {
+    "passed": true,
+    "files": [
+      "CF2026_V4_Beamer.pdf",
+      "CF2026_V4_Final_Report.pdf",
+      "CF2026_V4_Presentation.pptx",
+      "CF2026_V4_Speaker_Script.pdf"
+    ],
+    "receipt_sha256": "914befee4245b38d933c48fee9a000245634690a7a00becd9513158e5f36ace1"
+  },
+  "ui": {
+    "views": 14,
+    "additional_checks": [
+      "material downloads",
+      "actual Qlib rerun"
+    ],
+    "errors": [],
+    "exceptions": [],
+    "screenshot_sha256": {
+      "ui-v4-overview.png": "678281d8a5e63229d4b26c22704e4cd00f19874846d5a5061b32db363ea5d5d6",
+      "ui-v4-compare.png": "7d3571e18b5209fbff9b48abd7a4f2e901c9d799253b2fdecd6fbde649f4ed44",
+      "ui-v4-risk.png": "386a34359130c338ca733e08acb2ba77c16fdb3d471175b27b5c9d8476c99088",
+      "ui-v4-drawdown.png": "deab034800477dde6790bdb83a0ad5c594a127046875c2ef9b9138d2063936fa",
+      "ui-v4-relative.png": "2194cd9f62f3c871febbb290f56db889225aae9b1bec2f22ebba1df04c8a24ec",
+      "ui-v4-cash.png": "1fa01d7fff1c1f784595235e45969135a95ef8d59c76903481f1c5f35a790e1c",
+      "ui-v4-factors.png": "90a3af83f63c9563feea3e6d71ecd87b9e428f48ab5116f211874b7a3e4c184a",
+      "ui-v4-factor-comparison.png": "76423f0c9e067b180ab57d21d2175dd5d6480f6ff6b1da94e2efd5b7bb8f1f7f",
+      "ui-v4-market.png": "fb595744f40ca661ba725401e78656dea8deb29c639bba27212f71e31e804744",
+      "ui-v4-experiments.png": "aa61f6bd892360d0b4e959e923730ec149f265eca6f90abf36a93098e73f1d6a",
+      "ui-v4-qlib.png": "c1925ed80df3559661fa1ae9d438c2615425bbb2daf15d2d982946559190c40b",
+      "ui-v4-alpha158.png": "1ef2132330c3e84292a336d7f863b160b9c47ef0f45c7139f3774513240242ac",
+      "ui-v4-connections.png": "6550611c680e44c67d09a54de65a7e5fe8933c9ac45fd540be4a1e678e1bbbbf",
+      "ui-v4-simulation-import.png": "3cfa61e1b964c80a1e603105ab32f42f7ab5f6cf261487ef5159cddd8717d223",
+      "ui-v4-materials.png": "cbaf330ed8ec89a8f7f4ed07d2bb6c07e5d12035e4cd4f7b5bc0967c6a38c601",
+      "ui-v4-qlib-rerun.png": "8fffc72cdffe551a119b6f49a9e693051de8a29b43a5d06e2a4a1a40a64a8fd1"
+    }
+  },
+  "artifacts_sha256": {
+    "CF2026_V4_Final_Report.pdf": "923f09a33567df13ac56cba07325c07b6fb2145641566e160cc958bdd750a3f0",
+    "CF2026_V4_Beamer.pdf": "31ec99959de5eff4154a6c106fa5273508cf43fa1e72e8431df570333e26b31c",
+    "CF2026_V4_Speaker_Script.pdf": "e457cc0d10a3651c3ffc7910d105252a4ab1aaba8820a793c526efdfb9cd391b",
+    "CF2026_V4_Presentation.pptx": "30ce8bf7cc26d22ee9d5f66354532cc2334b2c4ff0b08f607cd5876380ab563c"
+  },
+  "normalization_performed": false,
+  "sealing_script_sha256": "ae9aa14b559145c791bc93c369987a752aaa356284c10d739c4b202828098040",
+  "scope": "Local deliverable acceptance; course submission and GitHub CI are separate actions."
+}

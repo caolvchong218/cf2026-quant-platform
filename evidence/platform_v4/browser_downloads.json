@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "items": [
+    {
+      "expectedFile": "CF2026_V4_Final_Report.pdf",
+      "downloadedSha256": "923f09a33567df13ac56cba07325c07b6fb2145641566e160cc958bdd750a3f0",
+      "expectedSha256": "923f09a33567df13ac56cba07325c07b6fb2145641566e160cc958bdd750a3f0",
+      "passed": true
+    },
+    {
+      "expectedFile": "CF2026_V4_Beamer.pdf",
+      "downloadedSha256": "31ec99959de5eff4154a6c106fa5273508cf43fa1e72e8431df570333e26b31c",
+      "expectedSha256": "31ec99959de5eff4154a6c106fa5273508cf43fa1e72e8431df570333e26b31c",
+      "passed": true
+    },
+    {
+      "expectedFile": "CF2026_V4_Presentation.pptx",
+      "downloadedSha256": "30ce8bf7cc26d22ee9d5f66354532cc2334b2c4ff0b08f607cd5876380ab563c",
+      "expectedSha256": "30ce8bf7cc26d22ee9d5f66354532cc2334b2c4ff0b08f607cd5876380ab563c",
+      "passed": true
+    },
+    {
+      "expectedFile": "CF2026_V4_Speaker_Script.pdf",
+      "downloadedSha256": "e457cc0d10a3651c3ffc7910d105252a4ab1aaba8820a793c526efdfb9cd391b",
+      "expectedSha256": "e457cc0d10a3651c3ffc7910d105252a4ab1aaba8820a793c526efdfb9cd391b",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "exceptions": [],
+  "verified_at": "2026-09-22T05:41:07.959Z"
+}

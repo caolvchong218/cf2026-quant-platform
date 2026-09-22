@@ -1,0 +1,11 @@
+{
+  "release": "v2.2.0",
+  "files": {
+    "browser_downloads.json": "914befee4245b38d933c48fee9a000245634690a7a00becd9513158e5f36ace1",
+    "delivery_checks.json": "08e4857f3f12f761df22bdac83e27043a5870caab91851a21d384fcf43d9e793",
+    "presentation_validation.json": "9fdb2dfaad77170c16574437578cec6b24e6de7099971e8ae8f895c2f26aad08",
+    "qlib_browser_rerun.json": "c639520a3e12a01844e1cca7207f221541d94aff2bbecadac9cb07b19cd54d9d",
+    "tests-final.xml": "a82bad2ed2821ffe938923654b367d75d09e597fa5d9b2a1d442264602688287",
+    "ui_check.json": "b1ad5572e64793d24f62d4054e7dde7a4a5e9251dbcc2b4c30c22427dbf9cee3"
+  }
+}

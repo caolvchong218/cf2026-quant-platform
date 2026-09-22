@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "pdfs": {
+    "CF2026_V4_Final_Report.pdf": {
+      "pages": 10,
+      "sha256": "923f09a33567df13ac56cba07325c07b6fb2145641566e160cc958bdd750a3f0",
+      "all_pages_rendered": true,
+      "all_pages_visually_reviewed": true
+    },
+    "CF2026_V4_Beamer.pdf": {
+      "pages": 20,
+      "sha256": "31ec99959de5eff4154a6c106fa5273508cf43fa1e72e8431df570333e26b31c",
+      "all_pages_rendered": true,
+      "all_pages_visually_reviewed": true
+    },
+    "CF2026_V4_Speaker_Script.pdf": {
+      "pages": 10,
+      "sha256": "e457cc0d10a3651c3ffc7910d105252a4ab1aaba8820a793c526efdfb9cd391b",
+      "all_pages_rendered": true,
+      "all_pages_visually_reviewed": true
+    }
+  },
+  "slides": 20,
+  "main_slides": 18,
+  "backup_slides": 2,
+  "talk_seconds": 1145,
+  "spoken_chinese_characters": 4464,
+  "title_mapping_passed": true,
+  "notes_in_markdown_match_deck": true,
+  "report_and_slides_match_current_test_evidence": true,
+  "latex_overflow_or_missing_glyph_warnings": 0,
+  "v3_reports_preserved": true,
+  "deck_sha256": "7d93def7618111fb50ace2003986aa24c34f21963548a3b5178e485c0d523492",
+  "markdown_script_sha256": "ffe69f33b0e325f44763427f0312cf258e7f0cb79136d4bf7d768972759ba54f",
+  "source_builder_sha256": "cd78b4c7129c5dbbbaa558e56b35a2ba2952532eeff7372f2b32de8bda4e48de",
+  "visual_review": "Every report page and every Beamer/script page inspected; all final changed pages re-rendered and re-inspected.",
+  "text_line_endings": "LF for identical archive and working-tree hashes; content unchanged"
+}

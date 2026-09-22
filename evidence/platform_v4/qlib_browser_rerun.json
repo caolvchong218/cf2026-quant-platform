@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "browser_errors": [],
+  "previous_run": "20260922T052535140005Z",
+  "new_run": "20260922T052747820498Z",
+  "assets": 20,
+  "alpha158": {
+    "configured": 158,
+    "with_finite_values": 158,
+    "rows": 32580,
+    "source": "qlib.contrib.data.loader.Alpha158DL.get_feature_config",
+    "vwap_coverage": 1,
+    "trained_strategy": false
+  },
+  "verified_at": "2026-09-22T05:29:36.122Z"
+}
