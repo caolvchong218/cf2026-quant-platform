@@ -1,0 +1,25 @@
+{
+  "git_revision": "569561da59359767f31f48765f67c4ebea87306f",
+  "source_hashes": {
+    "__init__.py": "e964eb0d9e5a1f15ea8ae6873732cb822bf26965ddbaec4fa63ef8cc9e3a5ace",
+    "analytics.py": "1d651a37b4d33bb6215a2bc3a400b91ffdfe7ddcea8b4e9c5e07839992d1bb1d",
+    "benchmark_research.py": "baa9755d22e69412b71b629a288901ef1273ce7f7b6667997339d99f8b3f6477",
+    "cli.py": "cdd0b10ee36da860204dcff97f6fb3cfa09725d8e6e327184f5ff0612f5a2745",
+    "config.py": "d5af09edcc7cc3cecfdabd1e265e9a6299f3ed6015cf115b19e74975d5e59b43",
+    "data.py": "1793c38b3e26558215cd3f5ce6b8eb20c46f9041c3f123f79678a16facdc5f10",
+    "engine.py": "ee75375599e3129e0c7d0f63218724f1f232876c94bf3376ff401f5b13ba907c",
+    "experiment.py": "bb30b6f64c74b82d70b1eb32394e54c6a5167c9d1f3b30e04096cd7008638fe8",
+    "factors.py": "f5beec6788d5d1492c7634dda48a4c6c0f34af06e9c9b78d36ebacea5e086b9d",
+    "features.py": "70cd5ce2a3dbb28706711de3bc2f9f4a0a3d1e49aa1237380dbfc585a8422e06",
+    "incremental.py": "75839f91a69101b0429525b3b690c520746a5d09800dcbc25dbf7be06fb10ff6",
+    "models.py": "4e586e386a79a95c0ea59c3f0ee4297326cf7ec843b42cc0a715228643bd375f",
+    "portfolio.py": "063aa3019eae1c49ac25ea64b2f6d58dd4db18e780ef4bf4a0e21b35ec225103",
+    "research.py": "3aeb9a3d4b41c6b1b6c051b837e1542959495efa25249b5e9fe18367f23b1212",
+    "risk.py": "c9ea1f887d33ac38bab2492c89d97a2d4a76181691bea74005d8de542f6e7671",
+    "ui_research.py": "0aa8b0fef569cb3c4384ad1b39d7dc34feefae7163566294d0a4b51075be17c8"
+  },
+  "protocol_sha256": "929edc87152c527a9c5f1789add331822bad0708baf9af6d257344c8786c8a1c",
+  "features_sha256": "d33617783704255209e0fc6dd667cba5f53bcf68c3b950bc68bcabdfd4604514",
+  "scores_sha256": "e972bc6df4366e3cf520c7f4172ae411ff2eb27f014ec126d21fe6fe942023cf",
+  "seconds": 142.375
+}

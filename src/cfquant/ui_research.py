@@ -11,6 +11,13 @@ NAMES={'multifactor_raw':'标准化多因子','multifactor_neutral':'中性化�
 def render(root:Path):
     folder=root/'evidence/research_v2'
     st.title('策略研究与验证')
+    current=root/'evidence/research_v3/decision.json'
+    if current.exists() and json.loads(current.read_text(encoding='utf-8')).get('historical_acceptance_passed'):
+        view=st.radio('研究版本',['V3 · 最新指数目标研究','V2 · 原CPI目标研究'],horizontal=True,key='research_version')
+        if view.startswith('V3'):
+            from .ui_benchmark_research import render as render_latest
+            render_latest(root)
+            return
     st.caption('固定历史股票池 · 先验证选择，再评估结果 · 所有收益均明确费用与区间')
     if not (folder/'selection.json').exists():
         st.info('升级研究正在运行，已有单因子实验可在其他页面查看。')

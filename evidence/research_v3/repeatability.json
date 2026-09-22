@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "independent_environment": "Python 3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:09:58) [MSC v.1929 64 bit (AMD64)]",
+  "strategy": "v3/rolling_lightgbm__managed",
+  "tables": {
+    "daily": {
+      "rows": 417,
+      "matched": true
+    },
+    "trades": {
+      "rows": 1461,
+      "matched": true
+    },
+    "positions": {
+      "rows": 20990,
+      "matched": true
+    },
+    "orders": {
+      "rows": 1470,
+      "matched": true
+    }
+  },
+  "replay_path": "D:\\Desktop\\cf2026-quant-platform\\runs\\interactive_versions\\20260922T021432886190Z",
+  "rtol": 1e-09,
+  "atol": 5e-06
+}

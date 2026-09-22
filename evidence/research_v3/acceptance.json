@@ -1,0 +1,164 @@
+{
+  "historical_acceptance_passed": true,
+  "accounting_runs": 21,
+  "checks": {
+    "promoted_continuous": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 901,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "promoted_delay_one_day": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "promoted_double_cost": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "stress_delay_one_day": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "stress_double_cost": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "test_economic__managed": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "test_economic__steady": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "test_ensemble__managed": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "test_ensemble__steady": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "test_rolling_lightgbm__managed": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "test_rolling_lightgbm__steady": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "test_rolling_ridge__managed": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "test_rolling_ridge__steady": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "validation_economic__managed": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "validation_economic__steady": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "validation_ensemble__managed": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "validation_ensemble__steady": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "validation_rolling_lightgbm__managed": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "validation_rolling_lightgbm__steady": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "validation_rolling_ridge__managed": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    "validation_rolling_ridge__steady": {
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    }
+  },
+  "benchmark_source_hashes": {
+    "directory_CSI.csv": "439801a34a4f5678e29c425bace02e1277ee04a4bb9c5ca7d6b789bab1d1e051",
+    "directory_SSE.csv": "89d6c8139595e223e03a1eebca0afab6b995eb1ad3391f076ae6abb9d31e0397",
+    "etf.csv": "ae50f959c40f60e35cf2f0a7984bd1b641b277e58b5dfc48471d53cea64ed65e",
+    "total_return.csv": "96827c8245d26ac51ea38e8da028dc5963937c1fc32c9e0c20feb577fb46561c"
+  },
+  "limitations": [
+    "post-final-period candidate selection; no independent blind validation",
+    "fixed historical universe and vendor revisions",
+    "risk thresholds are historical acceptance, not loss guarantees"
+  ]
+}

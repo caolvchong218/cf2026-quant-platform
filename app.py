@@ -40,7 +40,7 @@ if page == "策略研究":
     selected = list(datasets)[-1]
     st.sidebar.caption("策略研究使用固定的1000只历史股票池；其他页面可切换数据集。")
 else:
-    selected = st.sidebar.selectbox("数据集", list(datasets), key="dataset")
+    selected = st.sidebar.selectbox("数据集（模型策略使用其固定快照）", list(datasets), index=len(datasets)-1, key="dataset")
 base = Config.load(ROOT/datasets[selected])
 real = base.data_path != "data/sample/market.csv"
 original_study = datasets[selected] == "configs/baseline.yaml"
@@ -124,7 +124,22 @@ elif page == "研究总览":
             st.code(spec.formula,language=None)
 
 elif page == "回测实验":
-    st.title("配置一次可核验的回测")
+    st.title("策略版本与回测")
+    from cfquant.strategies import catalogue, outcome_status
+    versions=catalogue(ROOT)
+    ids=[v.id for v in versions]+['legacy_single_factor']
+    labels={v.id:v.label+' · '+v.status for v in versions}
+    labels['legacy_single_factor']='V1 · 单因子自由实验 · 历史失败对照'
+    version=st.selectbox('选择策略版本',ids,format_func=labels.get,key='strategy_version')
+    if st.session_state.get('active_strategy_version') != version:
+        st.session_state.pop('run',None)
+        st.session_state.pop('version_run',None)
+        st.session_state['active_strategy_version']=version
+    if version!='legacy_single_factor':
+        from cfquant.ui_strategy_backtest import render as render_version
+        render_version(ROOT,next(v for v in versions if v.id==version))
+        st.stop()
+    st.warning('历史失败实验：原始动量在1000股长区间亏损83.57%，不满足当前策略目标。此入口供课程对照与研究，不是推荐默认策略。')
     st.caption("参数提交后统一计算。研究结果与成交明细会保存到本地 runs 目录。")
     with st.form("experiment"):
         a,b,c=st.columns(3)
@@ -152,7 +167,10 @@ elif page == "回测实验":
         except (ValueError,AssertionError) as exc:st.error(str(exc))
     if "run" in st.session_state:
         result,metrics,folder,used=st.session_state["run"]
-        st.success(f"账本核对通过 · {used['factor']} · {used['start']} 至 {used['end']} · 每 {used['rebalance_every']} 个交易日调仓")
+        st.info(f"账本检查通过（仅核对资金与交易） · {used['factor']} · {used['start']} 至 {used['end']} · 每 {used['rebalance_every']} 个交易日调仓")
+        passed,reasons=outcome_status(metrics)
+        if not passed:st.error('策略验收未通过：'+'；'.join(reasons)+'。')
+        else:st.warning('单因子实验完成；尚未核验同期指数超额，不作为合格推荐。')
         cols=st.columns(4)
         cols[0].metric("累计净收益",f"{metrics['total_return']:.2%}")
         cols[1].metric("最大回撤",f"{metrics['max_drawdown']:.2%}")

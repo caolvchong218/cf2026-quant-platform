@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "tests": 52,
+  "accounting_runs": 21,
+  "independent_replay_tables": 4,
+  "browser": "default V3, switch V2/V1, return V3 and run; PDF downloads verified",
+  "visual_review": "10 report pages; all 20 Beamer and native PPTX slides; revisions re-rendered and inspected",
+  "native_pptx": "6 charts, 2 tables, structural checks and final re-import/render; not desktop PowerPoint execution",
+  "artifacts_sha256": {
+    "CF2026_V3_Final_Report.pdf": "96767d9b1efe68750cad0ec8fcd2b0f32cf9e054a01766a9d435460e0d0a9008",
+    "CF2026_V3_Beamer.pdf": "a12a22d4180fc0e603493ddd28b7c65c033573199f8060580760bfe3345467b0",
+    "CF2026_V3_Presentation.pptx": "faeafe336b965c118ba7254a1b522c51266a6caa68c2142f1bffda1747f54a65"
+  }
+}

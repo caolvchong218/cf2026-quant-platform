@@ -1,0 +1,9 @@
+{
+  "months": 19,
+  "start_month": "202502",
+  "end_month": "202608",
+  "strategy_return": 0.27539474128136043,
+  "inflation": 0.006903458764142112,
+  "real_return": 0.2666504719794691,
+  "beats_cpi": true
+}

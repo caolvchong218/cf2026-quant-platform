@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "errors": [],
+  "checked_sessions": 417,
+  "cash_tolerance": 1e-06,
+  "relative_tolerance": 1e-10
+}

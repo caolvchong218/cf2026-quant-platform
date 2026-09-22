@@ -1,0 +1,8 @@
+{
+  "selected": "economic__steady",
+  "validation_gate_passed": true,
+  "rule": "positive net and active return, MDD<=25%; worst-year active return then total active return",
+  "final_results_evaluated_after_this_selection": true,
+  "prior_v2_final_results_already_observed": true,
+  "candidate_count": 8
+}

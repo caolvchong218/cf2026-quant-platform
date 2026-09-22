@@ -1,0 +1,10 @@
+{
+  "errors": [],
+  "default": "v3/rolling_lightgbm__managed",
+  "switched": [
+    "v2/multifactor_raw",
+    "legacy_single_factor",
+    "v3/rolling_lightgbm__managed"
+  ],
+  "fullReplayClicked": true
+}

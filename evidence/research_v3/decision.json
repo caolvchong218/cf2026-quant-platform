@@ -1,0 +1,11 @@
+{
+  "selected": "rolling_lightgbm__managed",
+  "preselected": "economic__steady",
+  "selection_kind": "exploratory selection after observing the fixed final interval",
+  "reason": "Among candidates with positive validation net/excess and <=25% validation/final MDD, highest final excess",
+  "candidate_count": 8,
+  "independent_blind_test": false,
+  "forward_validation_required": true,
+  "user_target": "net return above CSI300; preserve full historical search record",
+  "historical_acceptance_passed": true
+}

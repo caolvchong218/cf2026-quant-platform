@@ -8,9 +8,10 @@ const skill='D:/CodexData/.codex/plugins/cache/openai-primary-runtime/presentati
 const python='C:/Users/14108/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe';
 process.env.RUNTIME_NODE_MODULES='C:/Users/14108/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules';
 const build=path.join(root,'tmp/ppt-build');
-const final=path.join(root,'reports/final',process.env.PPTX_NAME ?? 'CF2026_Presentation.pptx');
+const materials=process.env.MATERIALS_DIR ?? 'reports/final';
+const final=path.join(root,materials,process.env.PPTX_NAME ?? 'CF2026_Presentation.pptx');
 const {finalizePresentation,applyPresentationChartFont}=await import(pathToFileURL(path.join(skill,'container_tools/artifact_tool_utils.mjs')).href);
-const data=JSON.parse(await fs.readFile(path.join(root,'reports/final/deck_content.json'),'utf8'));
+const data=JSON.parse(await fs.readFile(path.join(root,materials,'deck_content.json'),'utf8'));
 const p=Presentation.create({slideSize:{width:1280,height:720}});
 const family='Microsoft YaHei',navy='#142B43',teal='#168579',gray='#627285';
 const palette=[teal,'#4265A6','#8C99A6','#BB7957'];
@@ -32,7 +33,7 @@ for(let j=0;j<data.length;j++){
  if(d.kind==='cover'){
    text(s,'可复现的多因子研究\n与风险控制',73,247,1110,175,58,navy,true);
    text(s,d.items.join('\n'),78,459,1120,135,27,gray);
-   text(s,'2026年9月21日   /   20分钟课程展示',78,623,1100,36,24,teal);
+   text(s,(d.date??'2026年9月21日')+'   /   20分钟课程展示',78,623,1100,36,24,teal);
  }else if(d.chart){
    const c=d.figure==='factor_ic'?{...d.chart,horizontal:false,categories:['Mom','Rev','Low vol','Range','Trend','Volume','Illiq','Turnover','E/P','B/P','Div','ROE']}:d.chart;const hasItems=d.items.length>0;
    const height=c.horizontal?398:(c.type==='line'?320:(hasItems?338:414));
@@ -43,7 +44,7 @@ for(let j=0;j<data.length;j++){
     lineOptions:{smooth:false},chartFill:'#FFFFFF',plotAreaFill:'#FFFFFF',
     xAxis:{textStyle:{fontSize:c.type==='line'||d.figure==='factor_ic'?17:23},tickLabelPosition:c.type==='line'?'none':'low',line:{fill:'#BCC9D3',width:1}},
     yAxis:{textStyle:{fontSize:20},tickLabelPosition:'low',min:c.type==='line'?.85:undefined,max:c.type==='line'?1.35:undefined,majorUnit:c.type==='line'?.1:undefined,numberFormatCode:c.percent_points?'0.0"%"':'0.00',majorGridlines:{fill:'#DFE6EC',width:1}},
-    dataLabels:{showValue:c.type==='bar'&&!c.horizontal&&d.figure!=='factor_ic',position:'outEnd',textStyle:{fontSize:20},showSeriesName:false}});
+    dataLabels:{showValue:c.type==='bar'&&!c.horizontal&&d.figure!=='factor_ic'&&c.categories.length<=7,position:'outEnd',textStyle:{fontSize:20},showSeriesName:false}});
    applyPresentationChartFont(chart,{fontFamily:family});chartOwners.push(j+1);
    if(c.type==='line'){
      text(s,'2025-01-02',115,532,150,27,18,gray);
@@ -67,7 +68,7 @@ for(let j=0;j<data.length;j++){
    text(s,'同一核心服务命令行、交互页面与提交报告',70,518,1130,70,32,navy,true);
    text(s,'每个实验记录数据、配置与源码身份，失败结果保留',70,591,1130,45,25,gray);
  }else if(d.kind==='timeline'){
-   const stages=[['2020–2022','训练模型'],['2023–2024','验证并选择'],['2025–2026/9','冻结选择后评估']];
+   const stages=d.title.startsWith('年度')?[['此前三年','标签实现后训练'],['2023–2024','验证并保留选择'],['2025–2026/9','开发后历史复核']]:[['2020–2022','训练模型'],['2023–2024','验证并选择'],['2025–2026/9','冻结选择后评估']];
    stages.forEach(([a,b],k)=>{box(s,66+k*391,232,363,106,k===1?teal:navy);text(s,a,88+k*391,248,325,38,30,'#FFFFFF',true);text(s,b,88+k*391,289,325,34,24,'#FFFFFF');});
    items(s,d.items,381,26,61);
  }else if(d.formula_plain){
