@@ -1,5 +1,6 @@
 """Every strategy version can be inspected and replayed from the backtest page."""
 import json
+import math
 from dataclasses import asdict
 from pathlib import Path
 import pandas as pd
@@ -21,7 +22,8 @@ def _stored(root, spec):
     metrics=table[table[key]==spec.signal].iloc[0].to_dict()
     daily_path=public/'daily'/f'{spec.signal}.csv'
     daily=pd.read_csv(daily_path,parse_dates=['date']) if daily_path.exists() else pd.DataFrame()
-    return daily,metrics,None,{'initial_cash':1e6,'start':'2025-01-02','end':'2026-09-18'}
+    return daily,metrics,None,{'initial_cash':1e6,'start':'2025-01-02','end':'2026-09-18',
+                               'annualization':252,'risk_free_annual':0.0}
 
 
 def render(root:Path,spec):
@@ -67,11 +69,14 @@ def render(root:Path,spec):
     passed,reasons=outcome_status(metrics)
     if passed:st.success('历史区间目标：扣费正收益、超过沪深300价格指数、最大回撤不高于25%。')
     else:st.error('历史区间未达标：'+'；'.join(reasons)+'。')
-    cols=st.columns(5)
-    for col,label,value in zip(cols,['累计净收益','沪深300同期收益','超额收益（百分点）','最大回撤','费用（元）'],
-        [f"{metrics['total_return']:.2%}",f"{metrics['benchmark_return']:.2%}",
+    sharpe=metrics.get('sharpe')
+    sharpe_text=f'{sharpe:.3f}' if sharpe is not None and math.isfinite(sharpe) else '—'
+    cols=st.columns(6)
+    for col,label,value in zip(cols,['累计净收益','年化夏普比率','沪深300同期收益','超额收益（百分点）','最大回撤','费用（元）'],
+        [f"{metrics['total_return']:.2%}",sharpe_text,f"{metrics['benchmark_return']:.2%}",
          f"{metrics['excess_return_pp']*100:+.2f}",f"{metrics['max_drawdown']:.2%}",f"{metrics['total_cost']:,.0f}"]):
         col.metric(label,value)
+    st.caption(f"本次结果的夏普口径：扣费日收益 · 年化无风险利率 {used.get('risk_free_annual',0.):.2%} · 每年 {used.get('annualization',252)} 个交易日 · 样本标准差。样本不足或波动接近零时显示“—”。")
     if not daily.empty:
         plots=daily[['date']].assign(nav=daily.nav/used['initial_cash'],series=spec.label+' · 扣费')
         bp=root/'data/private/research_v2/benchmark.csv'

@@ -1,0 +1,8 @@
+{
+  "release": "v2.2.2",
+  "files": {
+    "backtest.png": "2a9d1a8d1a402866b3a538db008d0f97c3c3596ad89ca49df53cbfd0650c2368",
+    "browser.json": "309e5a9b5806bda6a7c2f3cddcc90b70c734fa093c3af998315f882029a8cd70",
+    "tests.xml": "70c8e328d301752cc18f83e0675160473c9ca7057c9189278d88f5bfa12b9474"
+  }
+}

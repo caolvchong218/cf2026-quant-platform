@@ -2,6 +2,7 @@
 from dataclasses import replace
 from pathlib import Path
 import json
+import math
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
@@ -32,7 +33,7 @@ page = st.sidebar.radio("研究空间", ["研究总览", "策略对比", "风险
 # Aggregate research pages do not load 1.65 million price rows on every cold start.
 fast_pages = {"研究总览", "策略对比", "风险透镜", "实验档案", "Qlib 接入", "模拟交易连接", "材料与答辩"}
 if page in fast_pages:
-    st.sidebar.caption("平台 v2.2.1 · 策略研究 V3")
+    st.sidebar.caption("平台 v2.2.2 · 策略研究 V3")
     st.sidebar.caption("历史数据截至 2026-09-18")
     st.sidebar.caption("聚合研究可离线查看；逐股明细需本地快照。")
     if page in {"研究总览", "策略对比", "风险透镜"}:
@@ -154,8 +155,10 @@ elif page == "回测实验":
         cols=st.columns(4)
         cols[0].metric("累计净收益",f"{metrics['total_return']:.2%}")
         cols[1].metric("最大回撤",f"{metrics['max_drawdown']:.2%}")
-        cols[2].metric("年化 Sharpe",f"{metrics['sharpe']:.3f}")
+        sharpe=metrics.get('sharpe')
+        cols[2].metric("年化夏普比率",f'{sharpe:.3f}' if sharpe is not None and math.isfinite(sharpe) else '—')
         cols[3].metric("累计成本（元）",f"{metrics['total_cost']:,.2f}")
+        st.caption(f"本次结果的夏普口径：扣费日收益 · 年化无风险利率 {used['risk_free_annual']:.2%} · 每年 {used['annualization']} 个交易日 · 样本标准差。样本不足或波动接近零时显示“—”。")
         d=result.daily.copy();d["扣费净值"]=d.nav/used["initial_cash"];d["同成交路径毛归因"]=d.gross_attribution_nav/used["initial_cash"]
         line_chart(d,"date",["扣费净值","同成交路径毛归因"])
         st.caption("毛归因仅把已付费用放回不计息现金，不重新投资，也不是无成本策略的独立回测。")
