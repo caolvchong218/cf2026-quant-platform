@@ -14,17 +14,10 @@ from cfquant.experiment import execute
 
 ROOT = Path(__file__).resolve().parent
 st.set_page_config(page_title="青序 · 量化研究工作台", page_icon="📈", layout="wide")
-st.markdown("""<style>
-.stApp {background:#f5f7fb;}
-[data-testid="stSidebar"] {background:#12243a;}
-[data-testid="stSidebar"] * {color:#e8eef6;}
-[data-testid="stSidebar"] input {color:#172b45;}
-[data-testid="stSidebar"] [data-baseweb="select"] * {color:#172b45;}
-h1,h2,h3 {color:#12243a;letter-spacing:-.025em;}
-[data-testid="stMetric"] {background:white;border:1px solid #e0e7ef;border-radius:10px;padding:16px;}
-.hero-label {color:#168579;font-size:13px;letter-spacing:3px;font-weight:700;}
-.hero-copy {color:#62748a;font-size:16px;margin-bottom:22px;}
-</style>""", unsafe_allow_html=True)
+from cfquant.ui_design import install
+install()
+with st.sidebar:
+    st.markdown('<div class="qx-brand">青序 QUANT</div><div class="qx-subbrand">RESEARCH WORKBENCH · 2026</div>',unsafe_allow_html=True)
 
 real = (ROOT/"data/processed/market.csv").exists()
 datasets = {"课程原始快照 · 60只 · 2023–2025": "configs/baseline.yaml"} if real else {
@@ -35,7 +28,35 @@ if expanded_config.exists():
     status_path = (ROOT/expanded.data_path).parent/"progress.json"
     if status_path.exists() and json.loads(status_path.read_text(encoding="utf-8")).get("status") == "complete":
         datasets["扩展快照 · 1000只 · 2020–2026"] = "configs/expanded.yaml"
-page = st.sidebar.radio("研究空间", ["策略研究", "研究总览", "回测实验", "因子诊断", "数据与复现", "扩展指南"])
+page = st.sidebar.radio("研究空间", ["研究总览", "策略对比", "风险透镜", "回测实验", "因子诊断", "实验档案", "行情探索", "Qlib 接入", "模拟交易连接", "策略研究", "材料与答辩", "数据与复现", "扩展指南"], key="workspace_page")
+# Aggregate research pages do not load 1.65 million price rows on every cold start.
+fast_pages = {"研究总览", "策略对比", "风险透镜", "实验档案", "Qlib 接入", "模拟交易连接", "材料与答辩"}
+if page in fast_pages:
+    st.sidebar.caption("平台 v2.2.0 · 策略研究 V3")
+    st.sidebar.caption("历史数据截至 2026-09-18")
+    st.sidebar.caption("聚合研究可离线查看；逐股明细需本地快照。")
+    if page in {"研究总览", "策略对比", "风险透镜"}:
+        from cfquant.ui_workspace import overview, comparison, risk
+        {"研究总览":overview,"策略对比":comparison,"风险透镜":risk}[page](ROOT)
+    elif page == "实验档案":
+        from cfquant.ui_experiments import render
+        render(ROOT)
+    elif page == "Qlib 接入":
+        from cfquant.ui_qlib import render
+        render(ROOT)
+    elif page == "模拟交易连接":
+        from cfquant.ui_connections import render
+        render(ROOT)
+    else:
+        from cfquant.ui_materials import render
+        render(ROOT)
+    st.stop()
+if page == "因子诊断":
+    from cfquant.ui_explorers import factors
+    mode=st.radio("诊断模式",["12因子研究","基础因子自由诊断"],horizontal=True,key="factor_mode")
+    if mode=="12因子研究":
+        factors(ROOT)
+        st.stop()
 if page == "策略研究":
     selected = list(datasets)[-1]
     st.sidebar.caption("策略研究使用固定的1000只历史股票池；其他页面可切换数据集。")
@@ -62,14 +83,11 @@ def calculate(config_dict, file_hash, calendar_hash):
 market, calendar = read_data(ROOT/base.data_path, ROOT/base.calendar_path,
                              digest(ROOT/base.data_path), digest(ROOT/base.calendar_path))
 with st.sidebar:
-    st.markdown("## 青序 QUANT")
-    st.caption("COMPUTATIONAL FINANCE · 2026")
-    st.divider()
     st.caption("真实 Tushare 快照" if real else "合成演示数据 · 非实证结果")
     st.caption(f"{market.asset.nunique()} 个资产 · {len(market):,} 条日频记录")
     st.caption("本地运行 · 不连接交易账户")
 
-st.markdown('<div class="hero-label">QINGXU RESEARCH / PROJECT 01</div>', unsafe_allow_html=True)
+
 
 
 def line_chart(frame, x, y, **kwargs):
@@ -79,50 +97,12 @@ def line_chart(frame, x, y, **kwargs):
     st.plotly_chart(fig, width="stretch")
 
 
-if page == "策略研究":
+if page == "行情探索":
+    from cfquant.ui_explorers import market_explorer
+    market_explorer(market,calendar,real)
+elif page == "策略研究":
     from cfquant.ui_research import render
     render(ROOT)
-elif page == "研究总览":
-    st.title("让每一次研究，都能被复现")
-    st.markdown('<div class="hero-copy">从行情质量到成交账本，把研究结论建立在可检查的计算上。</div>', unsafe_allow_html=True)
-    cols=st.columns(4)
-    for col,label,value in zip(cols,["数据来源","研究资产","基础因子","执行时点"],
-                               ["Tushare Pro" if real else "合成演示",str(market.asset.nunique()),"3","次日开盘"]):
-        col.metric(label,value)
-    st.markdown("### 一条完整的研究链路")
-    st.info("数据快照  →  因子与诊断  →  目标组合  →  成交与费用  →  净值与解释")
-    comparison=ROOT/"runs/study/comparison.csv"
-    if original_study and comparison.exists():
-        comp=pd.read_csv(comparison)
-        curves=[]
-        index_path=ROOT/"runs/study/run_index.json"
-        run_index=json.loads(index_path.read_text(encoding="utf-8")) if index_path.exists() else {}
-        display_names={"momentum_weekly":"动量 · 5日","reversal_weekly":"反转 · 5日",
-                       "low_volatility_weekly":"低波动 · 5日","momentum_monthly":"动量 · 20日"}
-        for name in comp.experiment:
-            matches=[ROOT/run_index[name]/"daily.csv"] if name in run_index else sorted((ROOT/"runs").glob(f"{name}_*/daily.csv"))
-            if matches:
-                d=pd.read_csv(matches[-1],parse_dates=["date"])
-                curves.append(pd.DataFrame({"日期":d.date,"净值":d.nav/base.initial_cash,"实验":display_names.get(name,name)}))
-        if curves:line_chart(pd.concat(curves), "日期","净值",color="实验",title="固定研究方案 · 扣费后历史净值")
-        st.caption("以上为固定股票池上的描述性历史实验。负收益结果原样保留，不代表未来表现。")
-        table=comp[["experiment","total_return","sharpe","max_drawdown","total_cost"]].copy()
-        table["experiment"]=table.experiment.map(display_names)
-        table["total_return"]=table.total_return.map(lambda x:f"{x:.2%}")
-        table["max_drawdown"]=table.max_drawdown.map(lambda x:f"{x:.2%}")
-        table["sharpe"]=table.sharpe.map(lambda x:f"{x:.3f}")
-        table["total_cost"]=table.total_cost.map(lambda x:f"{x:,.2f}")
-        table.columns=["实验","累计净收益","Sharpe","最大回撤","费用（元）"]
-        st.table(table.set_index("实验"))
-    else:
-        st.info("进入「回测实验」运行一次完整研究；无 Token 的新环境也可使用仓库内的合成样本。")
-    st.markdown("### 先理解三个研究假设")
-    for col,spec in zip(st.columns(3),REGISTRY.values()):
-        with col:
-            st.markdown(f"**{spec.label}**")
-            st.write(spec.hypothesis)
-            st.code(spec.formula,language=None)
-
 elif page == "回测实验":
     st.title("策略版本与回测")
     from cfquant.strategies import catalogue, outcome_status

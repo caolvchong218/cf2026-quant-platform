@@ -22,3 +22,4 @@ dist/
 reports/build/
 .ruff_cache/
 .chart-data-*/
+evidence/qlib_bridge/history/

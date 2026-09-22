@@ -1,0 +1,143 @@
+{
+  "status": "verified",
+  "passed": true,
+  "run_id": "20260922T052747820498Z",
+  "created_utc": "2026-09-22T05:29:31.080213+00:00",
+  "packages": {
+    "pyqlib": "0.9.7",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "scipy": "1.16.3",
+    "pyarrow": "21.0.0"
+  },
+  "python": "3.12.14",
+  "assets": 20,
+  "source_rows": 33754,
+  "provider_calendar_sessions": 1690,
+  "provider_start": "2019-10-08",
+  "provider_end": "2026-09-18",
+  "start": "2020-01-02",
+  "end": "2026-09-18",
+  "diagnostic_sessions": 1629,
+  "factor_count": 8,
+  "selection": "Equal SH/SZ counts, lexicographically first symbols within the fixed 2019 historical pool; engineering sample, not a strategy universe.",
+  "label": "Next open to open 20 sessions later: open[t+21]/open[t+1]-1",
+  "native_windows": "Qlib Rolling uses min_periods=1; Std uses ddof=1. Numeric checks match these semantics; displayed diagnostics additionally require complete lookback windows.",
+  "adjustment": "Existing fixed-reference adjusted OHLC; factor=adj_factor/adjustment_reference; adjusted volume=raw shares/factor; adjusted VWAP=Tushare amount*1000/raw shares*factor.",
+  "unit_checks": {
+    "price_scale_matches_close_over_raw_close": true,
+    "max_price_scale_absolute_error": 7.043032823617068e-12,
+    "tushare_volume": "vol in 100-share lots; checked vol*100 against normalized raw shares",
+    "tushare_amount": "amount in thousand CNY; amount*1000 is CNY",
+    "provider_volume": "raw shares divided by the same fixed-reference price adjustment ratio",
+    "provider_vwap": "amount*1000/raw shares multiplied by the same fixed-reference price adjustment ratio",
+    "amount_checked_rows": 33754,
+    "max_price_volume_amount_error": 1.9073486328125e-06,
+    "vwap_times_adjusted_volume_equals_amount": true
+  },
+  "source_market_sha256": "7feecc242fe6450c3aeb0a4024621c6b6fa3f230540eacb5dc9b4c006af7adf4",
+  "source_calendar_sha256": "1ddc14096f590c7ce62071f077e547a3ce0eab2f659de0a13e06c75ca65048ec",
+  "amount_source_files": {
+    "daily_00544bb1f72e0561dc12.json": "1392041a76b0dd4f08bb858067ff78f05f70892e08a911198c40f5f87958fe5b",
+    "daily_0831218b8b3ec6670277.json": "d64f13bd88bdbb51d4182c0ab3fff5b64f454c4c96501b2741d7e3cc5459cba0",
+    "daily_0831b4c911682c07fd41.json": "bb96e6ee58d57c5b56d3d3628ea9a069b36699b9bbbe48183bff886e9732126f",
+    "daily_0e788fb4e524d83aaaa1.json": "fda3154ad307c7eebc2a31c024c86518fe8a002e1c24e8a5213b98fb2b89cbf4",
+    "daily_107f6372183a4492311a.json": "7ca232968cac74b059d93c8a4e8bd0c6eb1d5243a6613b2fb945c10848645514",
+    "daily_328c7ef4e8e39161c7de.json": "d7a9b3307be9bb63e4a1fea5beda8584df68dbfef9a1d85dcabde3971c4a618a",
+    "daily_333b56f9f0369670f895.json": "0ffc9b75a2006989468241bf21d9148d14a99e25fe21e001364a95520af9b2f7",
+    "daily_35c75ea12bfda2bb124a.json": "d7e360beca86b46c63e3848c6954d5d7a0be36a39278930eb4ee2fd85c7e4a11",
+    "daily_5021db44f1cefbb112b9.json": "f681f65fe3bb321046b45971b87fa7334dc2508ac72c43862cf88a9a0d8aa869",
+    "daily_58d4a2e784c834a6fa21.json": "42c76771990740c14586408d7ed60d15dc54c6c96fac1af060c95e2073f09726",
+    "daily_5f055e06ede3dd8c0943.json": "facc98d5e46311233a9c3447050f5c54d6773c3d8d06b838fda95bff63d3d9ab",
+    "daily_78b784ac41e587ce4ad8.json": "a4d7f68a342fc756ac772c1f0502f93bcddd33e8ac8106a68cd4527459ddad16",
+    "daily_7e0c359875c84e62cde7.json": "718f45b062077ecec6f8cbbea2ed6c7ea818f1ab5658467c829440cc2548dabc",
+    "daily_805c05ee8931be5e3d82.json": "96c34cc837162d0377823758059616ee21c824c2e639691f34bbcfed322e9661",
+    "daily_871a2f3b30359584663a.json": "3d4c22deb4f0af8fe2d0bb743fa612174eedb34b19e94156eda8b1dc9698f584",
+    "daily_c18cd695e1c1c4758974.json": "71d6dd5c13e821bec9e5d855944897f13da23e2980ef32ffe99e7f011552186f",
+    "daily_da7bb71df2f89b08df8d.json": "0c25500e1e6e5f4f1a8f7906c15c801d0546507fde79d561adaf8400884eed3b",
+    "daily_dbd627f65e450541e4a8.json": "2f7237f846a12bad15981aaae431f40d8ba8f86aa274775f431e8310dbae83bf",
+    "daily_e2ae1dab39d8759a9332.json": "94fbe26f6fc2647ec0110f50257584483a583447147eff1b7361309eea98dc54",
+    "daily_fc3e9d041cf77a5c89f7.json": "6840ef875e4f8dc29eba1f6725ade60c202203202d202b872c544d185acdedc9"
+  },
+  "checks": {
+    "momentum_20": {
+      "passed": true,
+      "compared_values": 33323,
+      "availability_mismatches": 0,
+      "max_absolute_error": 0.0,
+      "atol": 2e-06,
+      "rtol": 2e-05
+    },
+    "reversal_5": {
+      "passed": true,
+      "compared_values": 33633,
+      "availability_mismatches": 0,
+      "max_absolute_error": 0.0,
+      "atol": 2e-06,
+      "rtol": 2e-05
+    },
+    "low_volatility_20": {
+      "passed": true,
+      "compared_values": 33760,
+      "availability_mismatches": 0,
+      "max_absolute_error": 3.6990086410559897e-09,
+      "atol": 2e-06,
+      "rtol": 2e-05
+    },
+    "trend_20": {
+      "passed": true,
+      "compared_values": 33754,
+      "availability_mismatches": 0,
+      "max_absolute_error": 2.9330234241342623e-08,
+      "atol": 2e-06,
+      "rtol": 2e-05
+    },
+    "range_20": {
+      "passed": true,
+      "compared_values": 33800,
+      "availability_mismatches": 0,
+      "max_absolute_error": 3.725290298461914e-09,
+      "atol": 2e-06,
+      "rtol": 2e-05
+    },
+    "volume_trend": {
+      "passed": true,
+      "compared_values": 33776,
+      "availability_mismatches": 0,
+      "max_absolute_error": 2.531636766889278e-07,
+      "atol": 2e-06,
+      "rtol": 2e-05
+    },
+    "intraday_return": {
+      "passed": true,
+      "compared_values": 33754,
+      "availability_mismatches": 0,
+      "max_absolute_error": 0.0,
+      "atol": 2e-06,
+      "rtol": 2e-05
+    },
+    "close_location": {
+      "passed": true,
+      "compared_values": 33754,
+      "availability_mismatches": 0,
+      "max_absolute_error": 0.0,
+      "atol": 2e-06,
+      "rtol": 2e-05
+    }
+  },
+  "alpha158": {
+    "configured": 158,
+    "with_finite_values": 158,
+    "rows": 32580,
+    "source": "qlib.contrib.data.loader.Alpha158DL.get_feature_config",
+    "vwap_coverage": 1.0,
+    "trained_strategy": false
+  },
+  "module_sha256": "57866e6d02a79cecf2285ae7818af99de312d27efff7eafe710d41030895e5a9",
+  "limitations": [
+    "Small deterministic integration sample; factor IC is descriptive, not a net strategy return.",
+    "Overlapping 20-day labels and reused historical dates; no independent blind validation.",
+    "Alpha158 expressions were generated and executed; the 8 bridge factors have independent pandas checks, not all 158 formulas.",
+    "No replacement, retraining or winner selection of the existing V3 strategy."
+  ]
+}

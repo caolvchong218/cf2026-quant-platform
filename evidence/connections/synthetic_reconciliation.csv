@@ -1,0 +1,3 @@
+﻿asset,code,name,buy_quantity,sell_quantity,net_quantity_change,buy_amount,sell_amount,gross_cash_flow,record_count,duplicate_rows
+000001.SZ,000001,合成示例甲,100,100,0,1000.0,1020.0,20.0,2,0
+600000.SH,600000,合成示例乙,200,0,200,1600.0,0.0,-1600.0,1,0

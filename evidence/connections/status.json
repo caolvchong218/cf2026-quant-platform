@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "product": "同花顺 / SuperMind 模拟交易文件桥",
+  "account_connected": false,
+  "automated_trade_api_connected": false,
+  "ordinary_simulation_public_trade_api_verified": false,
+  "official_documentation_checked": true,
+  "file_bridge_available": true,
+  "login_performed": false,
+  "orders_submitted": 0,
+  "live_trading_supported": false,
+  "sources": {
+    "同花顺模拟炒股": "https://moni.10jqka.com.cn/index.shtml",
+    "SuperMind 模拟交易与明细导出": "https://quant.10jqka.com.cn/view/help/10",
+    "SuperMind 常见问题": "https://quant.10jqka.com.cn/view/help/16",
+    "SuperMind 研究环境": "https://quant.10jqka.com.cn/view/help/14"
+  },
+  "modes": [
+    {
+      "capability": "历史观察组合与代码清单",
+      "status": "可用",
+      "detail": "导出历史权重，不含委托股数。"
+    },
+    {
+      "capability": "模拟成交 CSV 导入与金额核对",
+      "status": "可用",
+      "detail": "文件校验、重复提示、规范化导出和本地回执。"
+    },
+    {
+      "capability": "同花顺普通模拟炒股账号",
+      "status": "未连接",
+      "detail": "官方入口已核查，未登录，未核实公开交易 API。"
+    },
+    {
+      "capability": "SuperMind Python 模拟策略",
+      "status": "官方支持 / 本项目未连接",
+      "detail": "需用户账号与环境；当前仅衔接官方成交明细导出。"
+    },
+    {
+      "capability": "自动下单 / 实盘交易",
+      "status": "未提供",
+      "detail": "本模块仅处理文件，不登录、不发送订单。"
+    }
+  ],
+  "verified_at_utc": "2026-09-22T05:20:19.140815+00:00",
+  "local_tests": {
+    "test_file": "tests/test_simulation_bridge.py",
+    "passed": 17,
+    "ui_exceptions": 0,
+    "synthetic_rows": 3,
+    "historical_as_of": "2026-09-18",
+    "historical_securities": 50
+  },
+  "account_file_received": false
+}

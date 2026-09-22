@@ -1,0 +1,13 @@
+{
+  "run_id": "20260922T052747820498Z",
+  "files": {
+    "alpha158_summary.csv": "0a4828b4070b4bcd99c8736cc2c227cf8063e92924b9e24800c1791ee426a2e6",
+    "daily.csv": "e0aa345daee0ea6ab017afe2f77a102a97a7877961036dc8fd9aa5f35b6c5ee1",
+    "environment.txt": "378795b10b88605dd12c1bab583a9f349fd6861ca3ce75d34ba956621a3e6149",
+    "factor_summary.csv": "edb3f352a78aa3a54a31b770096d2e10c47c04546c78967d24cb1daf08a35b59",
+    "groups.csv": "b84735b09855c721fc4a27a6b6c0096cf1113a529e4424ad360d0c7c9b58760e",
+    "result.json": "89de55e7e53083856a037668fe6dffb4e144c172cb5ca8e84da9aa015fc6a05a",
+    "test-results.xml": "e2d16c07b98e0aa9ea59c31a8eea45e2a8f2daab448f92ffda484f53463cb644"
+  },
+  "private_payloads_published": false
+}

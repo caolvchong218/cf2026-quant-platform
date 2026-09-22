@@ -1,0 +1,14 @@
+{
+  "as_of": "2026-09-18",
+  "experiment_id": "91f427a7f7b80c9701a471ae",
+  "strategy": "rolling_lightgbm__managed",
+  "source": "runs/research_v3/test_rolling_lightgbm__managed",
+  "securities": 50,
+  "stock_weight": 0.7108095484674701,
+  "cash_weight": 0.28919045153313677,
+  "historical_only": true,
+  "order_file": false,
+  "share_quantity_exported": false,
+  "weight_semantics": "当日收盘实际持仓占总净值的权重，不是今日信号或调仓指令。",
+  "adjusted_units_warning": "回测 units 是复权单位，不能作为同花顺真实股数，因此本文件不导出 units。"
+}

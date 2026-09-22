@@ -1,0 +1,4 @@
+﻿source_row,timestamp,code,exchange,asset,name,side,price,quantity,amount,expected_amount,amount_difference,trade_id,time_precision,fingerprint,duplicate_flag
+1,2026-09-18 09:35:00,000001,SZ,000001.SZ,合成示例甲,buy,10.0,100,1000.0,1000.0,0.0,,datetime,10d7d9de3d0d9524880abadc,False
+2,2026-09-18 10:15:00,600000,SH,600000.SH,合成示例乙,buy,8.0,200,1600.0,1600.0,0.0,,datetime,c75d2797662a2e5c2bcbf79f,False
+3,2026-09-18 14:10:00,000001,SZ,000001.SZ,合成示例甲,sell,10.2,100,1020.0,1020.0,0.0,,datetime,aa5e869ec81520bb7b1a36e4,False

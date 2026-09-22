@@ -1,0 +1,25 @@
+{
+  "valid": true,
+  "source_kind": "synthetic_demo",
+  "encoding": "utf-8-sig",
+  "source_sha256": "d912cf9ed1bc8b974e4237ae22801a417488774bcc9ca8fb9bf4e75d2042c5c4",
+  "rows": 3,
+  "error_count": 0,
+  "warning_count": 0,
+  "duplicate_rows": 0,
+  "duplicates_removed": false,
+  "column_mapping": {
+    "timestamp": "交易时间",
+    "code": "证券代码",
+    "name": "证券名称",
+    "side": "操作",
+    "price": "交易价格",
+    "quantity": "交易数量",
+    "amount": "交易金额"
+  },
+  "amount_tolerance_cny": 0.05,
+  "account_connected": false,
+  "orders_submitted": 0,
+  "profit_or_return_computed": false,
+  "interpretation": "仅核对已导入成交的买卖金额与数量变化；缺少初始资金、初始持仓、费用和市值，不计算账户收益。"
+}

@@ -51,6 +51,9 @@ def render(root:Path):
     with tabs[4]:
         st.code('python scripts/run_benchmark_research.py\npython scripts/qualify_benchmark_strategy.py\npython -m pytest -q',language='bash')
         st.json(load('acceptance.json'),expanded=False)
-        for file,label in [('CF2026_V3_Final_Report.pdf','下载最新报告'),('CF2026_V3_Beamer.pdf','下载最新演示')]:
-            p=root/'reports/benchmark_v3'/file
+        enhanced=(root/'reports/platform_v4/CF2026_V4_Final_Report.pdf').exists()
+        for suffix,label in [('Final_Report.pdf','下载最新报告'),('Beamer.pdf','下载最新演示')]:
+            file=('CF2026_V4_' if enhanced else 'CF2026_V3_')+suffix
+            p=root/('reports/platform_v4' if enhanced else 'reports/benchmark_v3')/file
             if p.exists():st.download_button(label,p.read_bytes(),file,'application/pdf')
+        st.caption('材料与答辩页面另有可编辑 PowerPoint、逐页讲稿和现场演示步骤。策略研究仍为V3，平台增强版材料为V4。')
