@@ -1,0 +1,112 @@
+{
+  "passed": true,
+  "method": "Python statistics mean/stdev, independently from daily NAV; initial-day return included",
+  "start": "2025-01-02",
+  "end": "2026-09-18",
+  "annualization": 252,
+  "std_ddof": 1,
+  "results": [
+    {
+      "series": "V3 net",
+      "risk_free_annual": 0.0,
+      "sessions": 417,
+      "sharpe": 1.2546076323170914
+    },
+    {
+      "series": "V3 net",
+      "risk_free_annual": 0.02,
+      "sessions": 417,
+      "sharpe": 1.0795549085701905
+    },
+    {
+      "series": "沪深300 · 全收益指数",
+      "risk_free_annual": 0.0,
+      "sessions": 417,
+      "sharpe": 0.7361109171033566
+    },
+    {
+      "series": "沪深300 · 全收益指数",
+      "risk_free_annual": 0.02,
+      "sessions": 417,
+      "sharpe": 0.6187198164439994
+    },
+    {
+      "series": "沪深300 · 价格指数",
+      "risk_free_annual": 0.0,
+      "sessions": 417,
+      "sharpe": 0.5707211646447823
+    },
+    {
+      "series": "沪深300 · 价格指数",
+      "risk_free_annual": 0.02,
+      "sessions": 417,
+      "sharpe": 0.4535124487175832
+    }
+  ],
+  "browser_exports": [
+    {
+      "file": "risk",
+      "assumptions": {
+        "annualization": 252,
+        "risk_free_annual": 0.02,
+        "start": "2025-01-02",
+        "end": "2026-09-18",
+        "sessions": 417,
+        "window": 60,
+        "baseline_date": null,
+        "first_day_return_included": true,
+        "internal_gaps_interpolated": false,
+        "period_is_existing_path_slice": true,
+        "benchmark_initial_values": {
+          "沪深300 · 全收益指数": 1.0
+        },
+        "notes": [
+          "同一交易日交集；内部缺日拒绝计算，不插值。",
+          "区间起点使用前收盘或显式初始净值，包含首日损益。",
+          "日期筛选是现有持仓路径的区间切片，不是从现金重新回测。",
+          "年化按交易日252天（或指定参数）；不足一年亦机械年化。",
+          "波动率为样本标准差；下行偏差以全部观察数为分母。",
+          "历史VaR/ES为日频95%损失度量，正值表示损失，不能预测极端损失上限。",
+          "月度表包含首尾不完整月份；缺失月份不填零。",
+          "换手为买卖名义金额之和除以当日开盘权益，即双边换手。",
+          "基准曲线没有交易费或持仓明细时保留缺失；现金不假定利息。",
+          "费用占比为观察期费用/区间期初净值，非无费用策略的收益差。"
+        ]
+      },
+      "matched_independent_recalculation": true,
+      "sha256": "ba6123ed62e4de313b80a4a6f01c5bb24fa1ad3000840c449ed568f0cad4e10d"
+    },
+    {
+      "file": "comparison",
+      "assumptions": {
+        "annualization": 252,
+        "risk_free_annual": 0.02,
+        "start": "2025-01-02",
+        "end": "2026-09-18",
+        "sessions": 417,
+        "window": 60,
+        "baseline_date": null,
+        "first_day_return_included": true,
+        "internal_gaps_interpolated": false,
+        "period_is_existing_path_slice": true,
+        "benchmark_initial_values": {
+          "沪深300 · 全收益指数": 1.0
+        },
+        "notes": [
+          "同一交易日交集；内部缺日拒绝计算，不插值。",
+          "区间起点使用前收盘或显式初始净值，包含首日损益。",
+          "日期筛选是现有持仓路径的区间切片，不是从现金重新回测。",
+          "年化按交易日252天（或指定参数）；不足一年亦机械年化。",
+          "波动率为样本标准差；下行偏差以全部观察数为分母。",
+          "历史VaR/ES为日频95%损失度量，正值表示损失，不能预测极端损失上限。",
+          "月度表包含首尾不完整月份；缺失月份不填零。",
+          "换手为买卖名义金额之和除以当日开盘权益，即双边换手。",
+          "基准曲线没有交易费或持仓明细时保留缺失；现金不假定利息。",
+          "费用占比为观察期费用/区间期初净值，非无费用策略的收益差。"
+        ]
+      },
+      "matched_independent_recalculation": true,
+      "sha256": "9e879835521e97392db7b3d1c9fc61e26ad95fcbabc8e504658e17742ee3d57f"
+    }
+  ]
+}

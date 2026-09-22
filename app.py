@@ -32,7 +32,7 @@ page = st.sidebar.radio("研究空间", ["研究总览", "策略对比", "风险
 # Aggregate research pages do not load 1.65 million price rows on every cold start.
 fast_pages = {"研究总览", "策略对比", "风险透镜", "实验档案", "Qlib 接入", "模拟交易连接", "材料与答辩"}
 if page in fast_pages:
-    st.sidebar.caption("平台 v2.2.0 · 策略研究 V3")
+    st.sidebar.caption("平台 v2.2.1 · 策略研究 V3")
     st.sidebar.caption("历史数据截至 2026-09-18")
     st.sidebar.caption("聚合研究可离线查看；逐股明细需本地快照。")
     if page in {"研究总览", "策略对比", "风险透镜"}:

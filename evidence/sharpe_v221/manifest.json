@@ -1,0 +1,10 @@
+{
+  "release": "v2.2.1",
+  "files": {
+    "browser.json": "dfaee0213c565503d51a668ee6e4695f0112474875b3274d227231a3bb6a2eef",
+    "overview.png": "b99c0923fc00e89f2a6e9bed521a476bb655affe99e59fe61eb0753fd8fe4afd",
+    "rolling.png": "d38b620d503f2153223cefb8cae20dda2c5f1e83c7e9a99d76e961525cf5637f",
+    "tests.xml": "458f646717018af964e4d0446c7bcf17d70c0495f789d0a0d285d90d00c98ba5",
+    "verification.json": "1ef5b3975302ee4d1feb5210ca6a3855b904bc02d4ee06f6622fa59c13311a60"
+  }
+}

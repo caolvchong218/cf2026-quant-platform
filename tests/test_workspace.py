@@ -1,5 +1,6 @@
 """User journeys for the enhanced workbench, including public-data operation."""
 from pathlib import Path
+import json
 from streamlit.testing.v1 import AppTest
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -45,3 +46,20 @@ def test_experiment_archive_and_materials_pages_are_available():
     app.sidebar.radio[0].set_value('材料与答辩').run()
     assert not app.exception
     assert len(app.get('download_button'))>=3
+
+
+def test_sharpe_is_visible_and_rate_changes_risk_metrics_without_changing_nav():
+    app=app_at('研究总览')
+    assert {x.label:x.value for x in app.metric}['年化夏普比率']=='1.255'
+    app.sidebar.radio[0].set_value('风险透镜').run()
+    before={x.label:x.value for x in app.metric}
+    assert before['年化夏普比率']=='1.255'
+    app.number_input(key='risk_risk_free').set_value(2.).run()
+    assert not app.exception
+    after={x.label:x.value for x in app.metric}
+    assert after['年化夏普比率']=='1.080'
+    assert after['区间最大回撤']==before['区间最大回撤']=='9.88%'
+    assert after['组合累计收益']==before['组合累计收益']
+    assert any('0.619' in x.value for x in app.caption)
+    assert any(json.loads(x.proto.spec)['layout'].get('yaxis',{}).get('title',{}).get('text')=='60日滚动年化夏普'
+               for x in app.get('plotly_chart'))

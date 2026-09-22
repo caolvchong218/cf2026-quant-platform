@@ -1,9 +1,11 @@
 """Package current committed source and V4 materials; do not overwrite earlier history."""
 from pathlib import Path
-import argparse,hashlib,json,shutil,subprocess,zipfile
+import argparse,hashlib,json,re,shutil,subprocess,zipfile
 
 root=Path(__file__).resolve().parents[1]
-p=argparse.ArgumentParser();p.add_argument('--destination',type=Path,required=True);args=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--destination',type=Path,required=True)
+p.add_argument('--release',default='v2.2.0');args=p.parse_args()
+if not re.fullmatch(r'v\d+\.\d+\.\d+',args.release):p.error('--release must be a semantic version such as v2.2.1')
 dest=args.destination.resolve();dest.mkdir(parents=True,exist_ok=True)
 revision=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()
 sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
@@ -14,22 +16,24 @@ for name in ['final_report.tex','beamer.tex','speaker_script.tex']:shutil.copy2(
 shutil.copytree(root/'reports/platform_v4/figures',latex/'figures',dirs_exist_ok=True)
 for name in ['PRESENTATION_SCRIPT_V4.md','REPRODUCE_V4.md','RESEARCH_PROTOCOL_V3.md','BENCHMARK_METHOD_SOURCES_V3.md','FACTOR_CARDS_V2.md','ACCEPTANCE_V4.md','QLIB_INTEGRATION.md','THS_CONNECTION.md']:
     shutil.copy2(root/'docs'/name,dest/name)
-code=dest/'CF2026_Source_v2.2.0.zip'
+if (root/'docs/SHARPE_RATIO.md').exists():shutil.copy2(root/'docs/SHARPE_RATIO.md',dest/'SHARPE_RATIO.md')
+code=dest/f'CF2026_Source_{args.release}.zip'
 subprocess.run(['git','archive','--format=zip',f'--output={code}','HEAD'],cwd=root,check=True)
 with zipfile.ZipFile(code) as z:
     assert z.testzip() is None
     assert not any(n.startswith(('data/private/','runs/','.venv','tmp/')) for n in z.namelist())
-    for section in ['research_v2','research_v3','qlib_bridge','platform_v4']:
+    for section in ['research_v2','research_v3','qlib_bridge','platform_v4','sharpe_v221']:
         prefix=f'evidence/{section}/'
         manifest=json.loads(z.read(prefix+'manifest.json'))
         for name,h in manifest['files'].items():assert hashlib.sha256(z.read(prefix+name)).hexdigest()==h,name
     unpack=root/'tmp'/('submission-v4-'+revision[:10]);unpack.mkdir(parents=True,exist_ok=True);z.extractall(unpack)
-readme=f'''# 最新提交包：平台增强版 V4 / release v2.2.0
+readme=f'''# 最新提交包：平台增强版 V4 / release {args.release}
 
 代码提交：{revision}
 GitHub：https://github.com/caolvchong218/cf2026-quant-platform
 
 本次提供10页报告、20页LaTeX Beamer、可编辑PPTX、逐页完整演讲稿(PDF/Markdown)、LaTeX源码、源代码ZIP和复现指南。
+夏普比率的公式、可调无风险利率与答辩说明见 SHARPE_RATIO.md（若本版本提供）。V4的PDF及演示保留v2.2.0发布时验收记录。
 
 运行：本机双击 D:/Desktop/cf2026-quant-platform/launch.cmd。
 新功能：策略同区间对比、风险月历与回撤、12因子诊断、行情K线、实验档案与笔记、真实Qlib因子桥、同花顺模拟交易文件桥。
@@ -43,7 +47,7 @@ Qlib实际状态与范围以 QLIB_INTEGRATION.md 和平台页面证据为准。�
 材料已经准备，尚未代交课程系统。提交前请填写组员信息并核对老师要求的文件命名。
 '''
 (dest/'先读我.md').write_text(readme,encoding='utf-8')
-receipt={'git_revision':revision,'tag':'v2.2.0','archive_crc_passed':True,'public_evidence_hashes_passed':True,
+receipt={'git_revision':revision,'tag':args.release,'archive_crc_passed':True,'public_evidence_hashes_passed':True,
          'files':{p.relative_to(dest).as_posix():sha(p) for p in sorted(dest.rglob('*'))
                   if p.is_file() and '历史版本' not in p.parts and p.name!='SHA256.json'}}
 (dest/'SHA256.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2),encoding='utf-8')

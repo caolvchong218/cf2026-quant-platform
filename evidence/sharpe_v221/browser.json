@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "errors": [],
+  "exceptions": [],
+  "overview_sharpe": "1.255",
+  "risk_sharpe_at_2_percent": "1.080",
+  "downloads": [
+    "risk_analysis.zip",
+    "strategy_comparison.zip"
+  ],
+  "verified_at": "2026-09-22T11:06:53.127Z"
+}

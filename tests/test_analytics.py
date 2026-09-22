@@ -133,6 +133,24 @@ def test_constant_paths_have_undefined_risk_ratios_and_absent_metadata():
     assert result["relative"].empty
 
 
+def test_sharpe_nonzero_risk_free_matches_hand_calculation_and_keeps_nav():
+    dates = pd.bdate_range('2025-01-02', periods=3)
+    returns = pd.Series([.01, -.02, .03], index=dates)
+    daily = ledger(dates, 100 * (1 + returns).cumprod().to_numpy())
+    # Two periods per year: 4.04% annual risk-free return becomes 2% per period.
+    # Mean excess = -1/75; sample variance = 19/30000.
+    expected = -0.7492686492653554
+    result = compare_strategies({'strategy': daily}, initial_cash=100.,
+                               annualization=2, risk_free_annual=.0404, window=3)
+    base = compare_strategies({'strategy': daily}, initial_cash=100., annualization=2, window=3)
+    assert result['summary'].loc['strategy', 'sharpe'] == pytest.approx(expected)
+    assert result['rolling'].iloc[-1].sharpe == pytest.approx(expected)
+    assert rolling_risk(returns, 3, 2, .0404).iloc[-1].sharpe == pytest.approx(expected)
+    assert result['assumptions']['risk_free_annual'] == .0404
+    pd.testing.assert_frame_equal(result['wealth'], base['wealth'])
+    pd.testing.assert_frame_equal(result['returns'], base['returns'])
+
+
 def test_var_expected_shortfall_and_relative_risk_match_hand_calculation():
     dates = pd.bdate_range("2025-01-02", periods=20)
     daily_returns = np.r_[-.2, np.repeat(.01, 19)]

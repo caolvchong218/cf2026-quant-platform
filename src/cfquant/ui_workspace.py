@@ -30,6 +30,21 @@ def navigate(page):
     st.session_state['workspace_page'] = page
 
 
+def _ratio(value):
+    return f'{value:.3f}' if np.isfinite(value) else '—'
+
+
+def _sharpe_method(risk_free_annual=0.0):
+    st.caption(f'夏普口径：年化无风险利率假设 {risk_free_annual:.2%} · 252 个交易日 · 日收益样本标准差。')
+    with st.expander('夏普比率是什么？查看公式与假设'):
+        st.write('夏普比率（Sharpe ratio）衡量每单位收益波动对应的平均超额收益。同口径下，正夏普越高，历史风险调整收益越高；它不是收益率，也不保证未来盈利。')
+        st.latex(r'r_{f,d}=(1+r_{f,a})^{1/252}-1,\qquad S_{\mathrm{ann}}=\sqrt{252}\,\frac{\overline{r_t-r_{f,d}}}{s(r_t-r_{f,d})}')
+        st.write('策略使用扣费后的日收益，包含区间首日损益；s 为样本标准差（ddof=1）。分子使用日超额收益的算术均值，不能直接用复合年化收益率替代。少于两个观测或波动接近零时显示“—”。')
+        st.write('默认 0% 是研究假设，不是已获取的国债利率；改为 2% 等数值只改变评估门槛，不给回测现金补记利息。策略与所选指数使用相同日期、无风险利率和年化规则；指数曲线未扣模拟交易成本。')
+        st.write('平方根年化是常用近似，收益自相关会影响其解释。60 日滚动估计更容易波动，应结合回撤与样本长度阅读。')
+        st.markdown('[定义与年化讨论：William F. Sharpe（1994）](https://web.stanford.edu/~wfsharpe/art/sr/sr.htm)')
+
+
 def _export(result):
     stream = io.BytesIO()
     with zipfile.ZipFile(stream, 'w', zipfile.ZIP_DEFLATED) as z:
@@ -45,11 +60,12 @@ def overview(root):
     heading('青序 · 量化研究工作台', '从一个信号，到一笔成交，再到一项可核验的研究结论。', 'COMPUTATIONAL FINANCE 2026 / PROJECT 01')
     m = json.loads((root/'evidence/research_v3/metrics.json').read_text(encoding='utf-8'))
     st.caption('当前默认：V3 年度滚动 LightGBM + 波动预算　｜　历史区间 2025-01-02 — 2026-09-18')
-    for c,label,value,delta in zip(st.columns(4),
-            ['扣费累计收益','超过全收益指数','最大回撤','平均现金比例'],
-            [f"{m['total_return']:.2%}",f"{m['excess_vs_total_return']*100:.2f} 个百分点",f"{m['max_drawdown']:.2%}",f"{m['mean_cash_weight']:.2%}"],
-            ['年化 '+f"{m['annualized_return']:.2%}",'含红利再投资的基准','研究门槛 25%','允许现金 · 无杠杆']):
+    for c,label,value,delta in zip(st.columns(5),
+            ['扣费累计收益','超过全收益指数','年化夏普比率','最大回撤','平均现金比例'],
+            [f"{m['total_return']:.2%}",f"{m['excess_vs_total_return']*100:.2f} 个百分点",_ratio(m['sharpe']),f"{m['max_drawdown']:.2%}",f"{m['mean_cash_weight']:.2%}"],
+            ['年化 '+f"{m['annualized_return']:.2%}",'含红利再投资的基准','扣费日收益；无风险利率0%；252日年化','研究门槛 25%','允许现金 · 无杠杆']):
         c.metric(label,value,help=delta)
+    _sharpe_method()
     left,right=st.columns([2.35,1])
     with left:
         st.subheader('净值轨迹')
@@ -96,12 +112,14 @@ def _choose(root, multiple=False):
     start=a.date_input('分析开始日期',lo,min_value=lo,max_value=hi,key=('compare' if multiple else 'risk')+'_start')
     end=b.date_input('分析结束日期',hi,min_value=lo,max_value=hi,key=('compare' if multiple else 'risk')+'_end')
     benchmark=c.selectbox('比较基准',list(benchmarks),index=1,key=('compare' if multiple else 'risk')+'_benchmark')
+    risk_free=st.number_input('年化无风险利率假设（%）',min_value=-5.,max_value=20.,value=0.,step=.1,
+        key=('compare' if multiple else 'risk')+'_risk_free',help='用于夏普及下行风险评估；不是通胀率，不修改净值，也不改变现金利息。')/100
     if start>end:
         st.error('开始日期不能晚于结束日期。');return None
     from .analytics import compare_strategies
     try:
         result=compare_strategies({labels[i]:ledgers[i] for i in chosen},
-            {benchmark:benchmarks[benchmark]},start=str(start),end=str(end),window=60)
+            {benchmark:benchmarks[benchmark]},start=str(start),end=str(end),window=60,risk_free_annual=risk_free)
     except ValueError as exc:
         st.error(str(exc));return None
     return result,benchmark,chosen,labels,ledgers
@@ -113,6 +131,7 @@ def comparison(root):
     if data is None:return
     result,bm,chosen,labels,_=data
     wealth=result['wealth']
+    _sharpe_method(result['assumptions']['risk_free_annual'])
     st.caption(f'共同区间：{wealth.index.min().date()} — {wealth.index.max().date()} · {len(wealth)} 个交易日 · 区间开始前归一为1')
     tab1,tab2,tab3=st.tabs(['净值与收益','风险与相关性','数据与口径'])
     with tab1:
@@ -123,10 +142,10 @@ def comparison(root):
         chart(fig,440)
         summary=result['summary'].copy()
         cols=[c for c in ['total_return','annualized_return','max_drawdown','annualized_volatility','sharpe','total_cost','mean_cash_weight'] if c in summary]
-        names={'total_return':'累计净收益','annualized_return':'年化收益','max_drawdown':'最大回撤','annualized_volatility':'年化波动','sharpe':'Sharpe','total_cost':'费用（元）','mean_cash_weight':'平均现金'}
+        names={'total_return':'累计净收益','annualized_return':'年化收益','max_drawdown':'最大回撤','annualized_volatility':'年化波动','sharpe':'年化夏普比率','total_cost':'费用（元）','mean_cash_weight':'平均现金'}
         table=summary[cols].rename(columns=names)
         table.index.name='策略'
-        formats={names[c]:('{:,.2f}' if c=='total_cost' else '{:.2f}' if c=='sharpe' else '{:.2%}') for c in cols}
+        formats={names[c]:('{:,.2f}' if c=='total_cost' else '{:.3f}' if c=='sharpe' else '{:.2%}') for c in cols}
         st.dataframe(table.style.format(formats,na_rep='—'),width='stretch')
     with tab2:
         chart(px.line(-result['drawdowns'],labels={'value':'回撤','index':'日期','date':'日期','variable':'策略'}).update_yaxes(tickformat='.0%'),340)
@@ -147,13 +166,16 @@ def risk(root):
     result,bm,chosen,labels,ledgers=data
     name=labels[chosen[0]]
     r=result['returns'][name];nav=result['wealth'][name]
-    loss=r[r<0]
-    cols=st.columns(4)
-    cols[0].metric('区间最大回撤',f"{result['drawdowns'][name].max():.2%}")
-    cols[1].metric('最差单日',f'{r.min():.2%}')
-    cols[2].metric('亏损交易日占比',f'{(r<0).mean():.1%}')
+    cols=st.columns(5)
+    cols[0].metric('年化夏普比率',_ratio(result['summary'].loc[name,'sharpe']),
+        help=f"同区间基准（{bm}）夏普：{_ratio(result['summary'].loc[bm,'sharpe'])}")
+    cols[1].metric('区间最大回撤',f"{result['drawdowns'][name].max():.2%}")
+    cols[2].metric('最差单日',f'{r.min():.2%}')
+    cols[3].metric('亏损交易日占比',f'{(r<0).mean():.1%}')
     cutoff=r.quantile(.05);tail=r[r<=cutoff]
-    cols[3].metric('最差5%日平均收益',f'{tail.mean():.2%}',help='经验尾部均值，不是对未来损失的保证。')
+    cols[4].metric('最差5%日平均收益',f'{tail.mean():.2%}',help='经验尾部均值，不是对未来损失的保证。')
+    st.caption(f"同区间基准：{bm} · 年化夏普比率 {_ratio(result['summary'].loc[bm,'sharpe'])}")
+    _sharpe_method(result['assumptions']['risk_free_annual'])
     tabs=st.tabs(['月度表现','回撤与恢复','滚动风险','仓位与费用','现金配置实验'])
     with tabs[0]:
         monthly=result['monthly'][name].reset_index().pivot(index='year',columns='month',values=name).reindex(columns=range(1,13))
@@ -179,9 +201,12 @@ def risk(root):
         st.caption('以区间开始前净值作为初始高水位；未恢复回撤计至区间末尾，不能将其记为已恢复。')
     with tabs[2]:
         rolling=result['rolling'];view=rolling[rolling.series==name]
+        sharpe=rolling.pivot(index='date',columns='series',values='sharpe')
+        fig=px.line(sharpe,labels={'value':'60日滚动年化夏普','date':'日期','series':'策略 / 基准'})
+        fig.add_hline(y=0,line_dash='dot',line_color='#9daaba');chart(fig,330)
         chart(px.line(view,x='date',y=['annualized_volatility','downside_deviation'],labels={'value':'年化波动','date':'日期'}).update_yaxes(tickformat='.0%'),350)
         chart(px.line(view,x='date',y='rolling_return',labels={'rolling_return':'60日累计收益','date':'日期'}).update_yaxes(tickformat='.0%'),300)
-        st.caption('滚动窗口为60个交易日；不足窗口不显示。波动使用252日年化，下行偏差目标为日收益0。')
+        st.caption(f"滚动窗口为60个交易日；不足窗口不显示。波动使用252日年化，下行偏差目标为当前 {result['assumptions']['risk_free_annual']:.2%} 年化无风险利率换算的日收益。")
     with tabs[3]:
         d=ledgers[chosen[0]];d=d[d.date.isin(nav.index)].copy()
         d['现金比例']=d.cash/d.nav
