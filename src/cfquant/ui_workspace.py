@@ -85,6 +85,12 @@ def overview(root):
         st.caption('按实验、资产与日期检索订单，保存研究笔记。')
         st.button('打开实验档案 →',on_click=navigate,args=('实验档案',),width='stretch')
     note('研究边界：V3 是观察历史结果后选出的开发候选，尚未通过独立盲测。2024 年曾落后指数，风险控制也不能保证未来回撤上限。')
+    if (root/'evidence/research_v4/decision.json').exists():
+        st.subheader('辅助研究与策略验证')
+        st.caption('V4因子挖掘、白箱/Ridge与主线组合已加入统一对照。原主线保留，前向成绩独立记录。')
+        left,right=st.columns(2)
+        left.button('进入因子研发 →',on_click=navigate,args=('因子研发',),key='home_factor_lab',width='stretch')
+        right.button('检查成交与前向观察 →',on_click=navigate,args=('策略验证',),key='home_validation',width='stretch')
     st.subheader('研究路径')
     for col,step,title,body,page in zip(st.columns(4),['01 / DATA','02 / SIGNAL','03 / PORTFOLIO','04 / EVIDENCE'],
             ['观察行情','检验因子','回放策略','准备展示'],

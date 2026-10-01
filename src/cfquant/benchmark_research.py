@@ -43,6 +43,9 @@ def training_mask(frame, eligible, cutoff):
 
 def benchmark_metrics(daily, benchmark, initial_cash=1e6, opening_base=None):
     """Exact same dates, explicit initial price, no interpolation of benchmark gaps."""
+    if benchmark.index.has_duplicates:
+        raise ValueError('Benchmark dates must be unique')
+    benchmark=benchmark.sort_index()
     dates = pd.DatetimeIndex(daily.date)
     before = benchmark.index[benchmark.index < dates[0]]
     if not len(before):
@@ -101,7 +104,7 @@ def load_inputs(root):
     if cache['output'] != digest(extra / 'features.parquet'):
         raise ValueError('Feature cache hash mismatch; rebuild v2 features first')
     for name, expected in cache['inputs'].items():
-        if digest(root / name) != expected:
+        if digest(root / name) != expected and not version_only_cache_match(root/name,expected,name):
             raise ValueError(f'Feature input changed: {name}')
     features = pd.read_parquet(extra / 'features.parquet')
     market = load_market(market_path)
@@ -109,6 +112,25 @@ def load_inputs(root):
     b = pd.read_csv(extra / 'benchmark.csv')
     b['date'] = pd.to_datetime(b.trade_date.astype(str))
     return features, market, calendar, b.set_index('date').sort_index(), pd.read_csv(extra / 'cpi.csv')
+
+
+def version_only_cache_match(path, expected, relative_name):
+    """Recognize a release-number-only edit to the legacy package initializer.
+
+    Feature cache identities remain byte-strict for data/calculation code.
+    A known prior release number and CRLF/LF encoding are reconstructed and
+    must match the recorded hash; numerical-policy changes still invalidate.
+    """
+    if relative_name!='src/cfquant/__init__.py':return False
+    import hashlib,re
+    content=Path(path).read_bytes()
+    normalized=content.replace(b'\r\n',b'\n')
+    for version in (b'2.0.0',b'2.1.0',b'2.2.0',b'2.2.1',b'2.2.2'):
+        candidate,count=re.subn(rb'(?m)^__version__ = "[0-9]+\.[0-9]+\.[0-9]+"$',b'__version__ = "'+version+b'"',normalized)
+        if count!=1:return False
+        for encoded in (candidate,candidate.replace(b'\n',b'\r\n')):
+            if hashlib.sha256(encoded).hexdigest()==expected:return True
+    return False
 
 
 def rolling_scores(frame, calendar, output):

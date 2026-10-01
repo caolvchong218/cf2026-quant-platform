@@ -51,6 +51,14 @@ def catalogue(root: Path):
             result.append(StrategyVersion('v2/'+name, 'V2 · '+label+' · 原风险组合', 'v2', name, RiskPolicy(),
                 'data/private/research_v2/scores.parquet', 'evidence/research_v2',
                 '旧版CPI目标预选' if name=='multifactor_raw' else '旧版模型对照'))
+    v4=root/'evidence/research_v4/test.csv'
+    if v4.exists():
+        from .research_lab import LABELS,POLICY
+        decision=json.loads((v4.parent/'decision.json').read_text(encoding='utf-8'))
+        for name in ('fixed_whitebox','mined_rank','mined_ridge','blend'):
+            result.append(StrategyVersion('v4/'+name,'V4辅助 · '+LABELS[name],'v4',name,POLICY,
+                           'runs/research_v4/scores.parquet','evidence/research_v4',
+                           '验证期预选 · 待前向观察' if name==decision['whitebox_preselected'] else '辅助路线 · 历史开发对照'))
     return result
 
 
@@ -67,11 +75,30 @@ def outcome_status(metrics, max_drawdown=.25):
 
 def replay(root, strategy, start, end, holdings=50, rebalance_every=20,
            buy_cost=.001, sell_cost=.0015, initial_cash=1e6):
+    root=Path(root)
     if pd.Timestamp(start) < pd.Timestamp('2023-01-03'):
         raise ValueError('模型版本只支持2023-01-03以后的逐年/样本外分数；不能对训练期套用未来模型')
-    frame, market, calendar, benchmark, _ = load_inputs(root)
+    if strategy.version=='v4':
+        # Validate the published score identity before loading any private data.
+        # Upgrading only the UI/evidence must never silently reuse older scores.
+        try:
+            manifest=json.loads((root/strategy.evidence_path/'manifest.json').read_text(encoding='utf-8'))
+            expected=manifest.get('output_hashes',{}).get('scores')
+        except (OSError,ValueError,AttributeError):
+            raise ValueError('V4 回放缺少有效发布 manifest，无法核验模型分数') from None
+        if (not isinstance(expected,str) or len(expected)!=64
+                or any(char not in '0123456789abcdef' for char in expected)):
+            raise ValueError('V4 发布 manifest 缺少有效 scores 输出哈希')
+        score_path=root/strategy.scores_path
+        if not score_path.is_file():
+            raise ValueError('V4 回放缺少发布模型分数 scores.parquet')
+        if digest(score_path)!=expected:
+            raise ValueError('V4 模型分数与发布 manifest 哈希不一致；请升级对应 scores.parquet 后再回放')
+    from .research_lab import source_root,blend_target_weights
+    data_root=source_root(root) if strategy.version=='v4' else root
+    frame, market, calendar, benchmark, _ = load_inputs(data_root)
     raw = pd.read_parquet(root/strategy.scores_path)
-    column = strategy.signal.split('__')[0]
+    column = 'mainline' if strategy.signal=='blend' else strategy.signal.split('__')[0]
     scores = raw.pivot(index='date', columns='asset', values=column).reindex(index=calendar,
         columns=pd.Index(sorted(market.asset.unique()), name='asset'))
     formation = calendar[calendar < pd.Timestamp(start)][-1]
@@ -84,6 +111,10 @@ def replay(root, strategy, start, end, holdings=50, rebalance_every=20,
                  data_path='data/private/mainboard1000_20260918/data/processed/market.csv',
                  calendar_path='data/private/mainboard1000_20260918/data/processed/calendar.csv')
     targets, risk = build_targets(scores, frame, panel(market, calendar, 'close'), benchmark.close, start, policy)
+    if strategy.version=='v4' and strategy.signal=='blend':
+        whitebox=raw.pivot(index='date',columns='asset',values='mined_rank').reindex(index=calendar,columns=scores.columns)
+        other,_=build_targets(whitebox,frame,panel(market,calendar,'close'),benchmark.close,start,policy)
+        targets=blend_target_weights(targets,other)
     result = run_backtest(market, calendar, scores, cfg, target_weights=targets, participation_limit=.01)
     checks = reconcile(result, initial_cash, buy_cost, sell_cost)
     if not checks['passed']:

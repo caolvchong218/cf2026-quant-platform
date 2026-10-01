@@ -1,5 +1,5 @@
 """Small, auditable, extensible quantitative research platform."""
-__version__ = "2.0.0"
+__version__ = "2.3.0"
 
 # Optional NumExpr 2.14.1 in the local Anaconda environment intermittently
 # returned all-zero/-one results for large DataFrame division. Use pandas'

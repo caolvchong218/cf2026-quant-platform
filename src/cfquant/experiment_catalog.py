@@ -91,18 +91,45 @@ def _identity(relative_path: str) -> str:
 
 def _kind(path: str, name: str, config: dict) -> tuple[str, str, str]:
     strategy = str(config.get("strategy_id", ""))
-    version = "V3" if "research_v3" in path or strategy.startswith("v3/") else (
-        "V2" if "research_v2" in path or strategy.startswith("v2/") else "V1 / 其他")
+    version = next((value.upper() for value in ("v4", "v3", "v2")
+                    if f"research_{value}" in path or strategy.startswith(value + "/")), "V1 / 其他")
     stage = "交互重跑" if "interactive" in path else (
         "验证区间" if name.startswith("validation_") else (
             "连续区间" if "continuous" in name else (
-                "压力测试" if any(x in name for x in ("stress", "double_cost", "delay_one_day")) else (
-                    "最终历史区间" if name.startswith("test_") else "基础实验"))))
+                "压力测试" if name.startswith("strict_") or any(x in name for x in ("stress", "double_cost", "delay_one_day")) else (
+                    "历史开发区间" if name.startswith("historical_") else (
+                        "最终历史区间" if name.startswith("test_") else "基础实验")))))
     if not strategy:
-        strategy = re.sub(r"^(test_|validation_)", "", name)
+        strategy = re.sub(r"^(test_|validation_|historical_|strict_)", "", name)
         if stage == "基础实验":
             strategy = str(config.get("factor", strategy))
     return version, stage, strategy
+
+
+def _safe_directory(root: Path, path: Path) -> bool:
+    """Windows junctions may be walked despite followlinks=False."""
+    try:
+        return path.resolve().is_relative_to(root)
+    except (OSError, RuntimeError, ValueError):
+        return False
+
+
+def _strict_metadata(root: Path, folder: Path) -> tuple[dict, dict]:
+    """Strict runs retain their metrics in the parent's small aggregate table."""
+    path = _inside(root, folder.parent / "stress.csv")
+    if not path.is_file() or path.stat().st_size > 1_000_000:
+        return {}, {}
+    rows = pd.read_csv(path)
+    if not {"candidate", "scenario"}.issubset(rows.columns):
+        return {}, {}
+    candidate = folder.name.removeprefix("strict_")
+    matched = rows[(rows.candidate == candidate) & (rows.scenario == "lot_min_fee_tax_slippage")]
+    if len(matched) != 1:
+        return {}, {}
+    original = _small_json(_inside(root, folder.parent / ("historical_" + candidate) / "config.json"))
+    config = {"backtest": original.get("backtest", {}), "candidate": candidate,
+              "execution_policy": _small_json(_inside(root, folder / "policy.json"))}
+    return matched.iloc[0].to_dict(), config
 
 
 def discover_experiments(root: Path, include_archives: bool = False) -> list[Experiment]:
@@ -112,9 +139,14 @@ def discover_experiments(root: Path, include_archives: bool = False) -> list[Exp
     runs = root / "runs"
     if runs.exists():
         for current, directories, files in os.walk(runs, followlinks=False):
+            if not _safe_directory(root, Path(current)):
+                directories[:] = []
+                continue
             directories[:] = [name for name in directories if name != "notes"
-                              and (include_archives or "archive" not in name)]
-            if "metrics.json" not in files or "daily.csv" not in files:
+                              and (include_archives or not ("archive" in name or name.endswith(("_previous", "_failed"))))
+                              and _safe_directory(root, Path(current) / name)]
+            strict_aggregate = Path(current).name.startswith("strict_") and "checks.json" in files
+            if "daily.csv" not in files or ("metrics.json" not in files and not strict_aggregate):
                 continue
             folder = _inside(root, Path(current))
             relative = folder.relative_to(root).as_posix()
@@ -123,6 +155,11 @@ def discover_experiments(root: Path, include_archives: bool = False) -> list[Exp
                 metrics = _small_json(_inside(root, folder / "metrics.json"))
                 checks = _small_json(_inside(root, folder / "checks.json"))
                 config = _small_json(_inside(root, folder / "config.json"))
+                if "metrics.json" not in files and strict_aggregate:
+                    metrics, derived_config = _strict_metadata(root, folder)
+                    if not metrics:
+                        continue
+                    config = config or derived_config
                 if not config and (folder / "config.yaml").exists():
                     cfg_path = _inside(root, folder / "config.yaml")
                     if cfg_path.stat().st_size > 1_000_000:
@@ -143,47 +180,53 @@ def discover_experiments(root: Path, include_archives: bool = False) -> list[Exp
             records.append(Experiment(
                 _identity(relative), relative, label, strategy, version, stage,
                 start, end, "本地完整实验",
-                datetime.fromtimestamp((folder / "metrics.json").stat().st_mtime, timezone.utc).isoformat(),
+                datetime.fromtimestamp((folder / ("metrics.json" if "metrics.json" in files else "checks.json")).stat().st_mtime, timezone.utc).isoformat(),
                 _clean(config), _clean(metrics), _clean(checks), warning))
 
     local_paths = {x.relative_path for x in records}
-    for version in ("v3", "v2"):
+    for version in ("v4", "v3", "v2"):
         evidence = root / "evidence" / f"research_{version}"
-        table_path = evidence / "test.csv"
-        if not table_path.exists():
-            continue
-        try:
-            table = pd.read_csv(_inside(root, table_path))
-            decision = _small_json(_inside(root, evidence / "decision.json"))
-            for row in table.to_dict("records"):
-                name = str(row.get("candidate", row.get("model", "")))
-                if not re.fullmatch(r"[a-zA-Z0-9_\-]+", name):
-                    continue
-                if f"runs/research_{version}/test_{name}" in local_paths:
-                    continue
-                daily = _inside(root, evidence / "daily" / f"{name}.csv")
-                if not daily.exists():
-                    continue
-                # Public aggregate ledgers are small; private ledgers are never read here.
-                dates = pd.read_csv(daily, usecols=["date"])["date"]
-                if dates.empty:
-                    continue
-                first = pd.read_csv(daily, nrows=1)
-                capital = float(first.iloc[0].get("opening_nav", 1_000_000))
-                relative = daily.relative_to(root).as_posix()
-                checks = (_small_json(_inside(root, evidence / "checks.json"))
-                          if name == decision.get("selected") else {})
-                records.append(Experiment(
-                    _identity(relative), relative, f"{version.upper()} · {name}", name,
-                    version.upper(), "最终历史区间", _date(dates.iloc[0]), _date(dates.iloc[-1]),
-                    "公开聚合快照", datetime.fromtimestamp(daily.stat().st_mtime, timezone.utc).isoformat(),
-                    {"initial_cash": capital, "start": _date(dates.iloc[0]), "end": _date(dates.iloc[-1])},
-                    _clean(row), _clean(checks)))
-        except (ValueError, OSError, pd.errors.ParserError):
-            continue
+        tables = [("test.csv", "历史开发区间" if version == "v4" else "最终历史区间", "historical_" if version == "v4" else "test_", "")]
+        if version == "v4":
+            tables.append(("stress.csv", "压力测试", "strict_", "strict_"))
+        for filename, stage, local_prefix, daily_prefix in tables:
+            table_path = evidence / filename
+            if not table_path.exists():
+                continue
+            try:
+                table = pd.read_csv(_inside(root, table_path))
+                decision = _small_json(_inside(root, evidence / "decision.json"))
+                for row in table.to_dict("records"):
+                    if filename == "stress.csv" and row.get("scenario") != "lot_min_fee_tax_slippage":
+                        continue
+                    name = str(row.get("candidate", row.get("model", "")))
+                    if not re.fullmatch(r"[a-zA-Z0-9_\-]+", name):
+                        continue
+                    if f"runs/research_{version}/{local_prefix}{name}" in local_paths:
+                        continue
+                    daily = _inside(root, evidence / "daily" / f"{daily_prefix}{name}.csv")
+                    if not daily.exists():
+                        continue
+                    # Public aggregate ledgers are small; private ledgers are never read here.
+                    dates = pd.read_csv(daily, usecols=["date"])["date"]
+                    if dates.empty:
+                        continue
+                    first = pd.read_csv(daily, nrows=1)
+                    capital = float(first.iloc[0].get("opening_nav", 1_000_000))
+                    relative = daily.relative_to(root).as_posix()
+                    checks = (_small_json(_inside(root, evidence / "checks.json"))
+                              if filename == "test.csv" and name == decision.get("selected", decision.get("whitebox_preselected")) else {})
+                    records.append(Experiment(
+                        _identity(relative), relative, f"{version.upper()} · {row.get('label', name)}", name,
+                        version.upper(), stage, _date(dates.iloc[0]), _date(dates.iloc[-1]),
+                        "公开聚合快照", datetime.fromtimestamp(daily.stat().st_mtime, timezone.utc).isoformat(),
+                        {"initial_cash": capital, "start": _date(dates.iloc[0]), "end": _date(dates.iloc[-1])},
+                        _clean(row), _clean(checks)))
+            except (ValueError, OSError, pd.errors.ParserError):
+                continue
     return sorted(records, key=lambda x: (
         not (x.version == "V3" and x.strategy.endswith("rolling_lightgbm__managed")
-             and x.stage == "最终历史区间"), -int(x.version[1]) if x.version[:2] in ("V2", "V3") else 0,
+             and x.stage == "最终历史区间"), -int(x.version[1]) if x.version[:2] in ("V2", "V3", "V4") else 0,
         x.stage != "交互重跑", x.relative_path))
 
 

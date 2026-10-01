@@ -9,8 +9,28 @@ import streamlit as st
 from .strategies import replay, outcome_status
 
 
+def _replay_data_root(root, spec):
+    if spec.version == 'v4':
+        from .research_lab import source_root
+        return source_root(root)
+    return Path(root)
+
+
+def _replay_available(root, spec):
+    """Use exactly the data location consumed by this strategy's replay."""
+    data_root = _replay_data_root(root, spec)
+    required = [Path(root) / spec.scores_path,
+                data_root / 'data/private/research_v2/features.parquet',
+                data_root / 'data/private/research_v2/features_cache.json',
+                data_root / 'data/private/research_v2/benchmark.csv',
+                data_root / 'data/private/research_v2/cpi.csv',
+                data_root / 'data/private/mainboard1000_20260918/data/processed/market.csv',
+                data_root / 'data/private/mainboard1000_20260918/data/processed/calendar.csv']
+    return all(path.is_file() for path in required)
+
+
 def _stored(root, spec):
-    folder=root/f'runs/research_{spec.version}'/('test_'+spec.signal)
+    folder=root/f'runs/research_{spec.version}'/(('historical_' if spec.version=='v4' else 'test_')+spec.signal)
     public=root/spec.evidence_path
     metrics_file=folder/'metrics.json'
     if metrics_file.exists():
@@ -18,7 +38,7 @@ def _stored(root, spec):
         daily=pd.read_csv(folder/'daily.csv',parse_dates=['date'])
         config=json.loads((folder/'config.json').read_text(encoding='utf-8'))['backtest']
         return daily,metrics,folder,config
-    table=pd.read_csv(public/'test.csv');key='candidate' if spec.version=='v3' else 'model'
+    table=pd.read_csv(public/'test.csv');key='candidate' if spec.version in {'v3','v4'} else 'model'
     metrics=table[table[key]==spec.signal].iloc[0].to_dict()
     daily_path=public/'daily'/f'{spec.signal}.csv'
     daily=pd.read_csv(daily_path,parse_dates=['date']) if daily_path.exists() else pd.DataFrame()
@@ -29,12 +49,13 @@ def _stored(root, spec):
 def render(root:Path,spec):
     st.subheader(spec.label)
     st.caption(spec.status+' · 固定1000股历史池 · 下一开盘执行 · 所有费用按实际成交扣除')
-    if spec.version=='v3':
+    if spec.version in {'v3','v4'}:
         st.info('本轮候选在已观察的历史区间内研究和筛选，包含逐年滚动训练；不是未知盲测，也不保证未来收益。')
+        if spec.version=='v4':st.caption('辅助研究候选；原主线仍是 V3 年度 LightGBM。')
     else:
         st.warning('历史版本：用于对照。V2原预选针对CPI和回撤，不是当前战胜指数的默认策略。')
     daily,metrics,folder,used=_stored(root,spec)
-    local=(root/spec.scores_path).exists() and (root/'data/private/research_v2/features.parquet').exists()
+    local=_replay_available(root,spec)
     with st.expander('修改参数并重新回测',expanded=False):
         st.caption('以下参数用于新的实验；下方结果始终标明实际使用的日期。更换策略会清除上一策略的结果。')
         with st.form('version_form_'+spec.id):
@@ -79,7 +100,7 @@ def render(root:Path,spec):
     st.caption(f"本次结果的夏普口径：扣费日收益 · 年化无风险利率 {used.get('risk_free_annual',0.):.2%} · 每年 {used.get('annualization',252)} 个交易日 · 样本标准差。样本不足或波动接近零时显示“—”。")
     if not daily.empty:
         plots=daily[['date']].assign(nav=daily.nav/used['initial_cash'],series=spec.label+' · 扣费')
-        bp=root/'data/private/research_v2/benchmark.csv'
+        bp=_replay_data_root(root,spec)/'data/private/research_v2/benchmark.csv'
         if bp.exists():
             b=pd.read_csv(bp);b['date']=pd.to_datetime(b.trade_date.astype(str));b=b.set_index('date').close.sort_index()
             bn=b.reindex(daily.date).to_numpy()/b.loc[b.index<daily.date.iloc[0]].iloc[-1]
