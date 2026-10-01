@@ -41,7 +41,7 @@ def available_port(preferred):
     raise RuntimeError('No available loopback port in requested range')
 
 
-def _windows_native_listener_owns(port,pid):
+def _windows_native_listener_pids(port):
     """Read the native owner table without requiring CIM/WMI permissions."""
     try:
         import ctypes
@@ -72,9 +72,80 @@ def _windows_native_listener_owns(port,pid):
                 if (row.state==2 and row.local_addr==0x0100007F and
                     socket.ntohs(row.local_port & 0xffff)==port):
                     owners.append(int(row.pid))
-            return bool(owners) and all(owner==pid for owner in owners)
+            return set(owners)
         return None
     except (AttributeError,OSError,ValueError,OverflowError):return None
+
+
+def _windows_native_listener_owns(port,pid):
+    owners=_windows_native_listener_pids(port)
+    return None if owners is None else owners=={pid}
+
+
+def _windows_parent_pids():
+    """Snapshot live parent links without depending on CIM/WMI."""
+    try:
+        import ctypes
+        from ctypes import wintypes
+        class ProcessEntry(ctypes.Structure):
+            _fields_=[('size',wintypes.DWORD),('usage',wintypes.DWORD),
+                ('pid',wintypes.DWORD),('heap',ctypes.c_size_t),
+                ('module',wintypes.DWORD),('threads',wintypes.DWORD),
+                ('parent',wintypes.DWORD),('priority',wintypes.LONG),
+                ('flags',wintypes.DWORD),('name',wintypes.WCHAR*260)]
+        api=ctypes.WinDLL('kernel32',use_last_error=True)
+        snapshot=api.CreateToolhelp32Snapshot
+        snapshot.argtypes=[wintypes.DWORD,wintypes.DWORD];snapshot.restype=wintypes.HANDLE
+        first=api.Process32FirstW;next_entry=api.Process32NextW
+        for query in (first,next_entry):
+            query.argtypes=[wintypes.HANDLE,ctypes.POINTER(ProcessEntry)];query.restype=wintypes.BOOL
+        close=api.CloseHandle;close.argtypes=[wintypes.HANDLE];close.restype=wintypes.BOOL
+        handle=snapshot(2,0)  # TH32CS_SNAPPROCESS
+        if handle in (None,ctypes.c_void_p(-1).value):return None
+        try:
+            row=ProcessEntry();row.size=ctypes.sizeof(row);parents={}
+            found=first(handle,ctypes.byref(row))
+            for _ in range(65536):
+                if not found:
+                    return parents if ctypes.get_last_error()==18 else None
+                parents[int(row.pid)]=int(row.parent)
+                found=next_entry(handle,ctypes.byref(row))
+            return None
+        finally:close(handle)
+    except (AttributeError,OSError,ValueError,OverflowError):return None
+
+
+def _windows_process_started(pid):
+    """Creation time also rules out stale parent links to a recycled PID."""
+    try:
+        import ctypes
+        from ctypes import wintypes
+        api=ctypes.WinDLL('kernel32',use_last_error=True)
+        open_process=api.OpenProcess
+        open_process.argtypes=[wintypes.DWORD,wintypes.BOOL,wintypes.DWORD]
+        open_process.restype=wintypes.HANDLE
+        times=api.GetProcessTimes
+        times.argtypes=[wintypes.HANDLE,*([ctypes.POINTER(wintypes.FILETIME)]*4)]
+        times.restype=wintypes.BOOL
+        close=api.CloseHandle;close.argtypes=[wintypes.HANDLE];close.restype=wintypes.BOOL
+        handle=open_process(0x1000,False,pid)  # PROCESS_QUERY_LIMITED_INFORMATION
+        if not handle:return None
+        try:
+            created,exited,kernel,user=(wintypes.FILETIME() for _ in range(4))
+            if not times(handle,*(ctypes.byref(t) for t in (created,exited,kernel,user))):return None
+            return (created.dwHighDateTime<<32)|created.dwLowDateTime
+        finally:close(handle)
+    except (AttributeError,OSError,ValueError,OverflowError):return None
+
+
+def _descendant_chain(pid,ancestor,parents):
+    chain=[];seen=set()
+    for _ in range(64):
+        if pid not in parents or pid in seen:return None
+        chain.append(pid);seen.add(pid)
+        if pid==ancestor:return chain
+        pid=parents[pid]
+    return None
 
 
 def _windows_listener_owns(port,pid):
@@ -121,6 +192,25 @@ def listener_belongs_to(port,pid):
     if os.name=='nt':return _windows_listener_owns(port,pid)
     if sys.platform.startswith('linux'):return _linux_listener_owns(port,pid)
     return False
+
+
+def started_listener_pid(port,child_pid):
+    """Accept only the live Popen process or its proven live descendants."""
+    if type(port) is not int or not 1024<=port<=65535 or type(child_pid) is not int or child_pid<=0:
+        return None
+    if listener_belongs_to(port,child_pid):return child_pid
+    if os.name!='nt':return None
+    owners=_windows_native_listener_pids(port)
+    if owners is None or len(owners)!=1:return None
+    listener_pid=next(iter(owners))
+    parents=_windows_parent_pids()
+    if parents is None:return None
+    chain=_descendant_chain(listener_pid,child_pid,parents)
+    if chain is None:return None
+    starts=[_windows_process_started(pid) for pid in chain]
+    if any(value is None for value in starts):return None
+    if any(child<parent for child,parent in zip(starts,starts[1:])):return None
+    return listener_pid if listener_belongs_to(port,listener_pid) else None
 
 
 def reusable_receipt(root, identity):
@@ -170,9 +260,11 @@ def main(argv=None):
         for _ in range(120):
             # A healthy port alone may belong to a process racing our bind.
             if child.poll() is not None:break
-            if healthy(port) and listener_belongs_to(port,child.pid) and child.poll() is None:
+            listener_pid=started_listener_pid(port,child.pid) if healthy(port) else None
+            if listener_pid is not None and child.poll() is None:
                 receipt={'checkout':str(root.resolve()),'version':version,'identity':identity,
-                         'port':port,'pid':child.pid,'started_at':datetime.now(timezone.utc).isoformat(),
+                         'port':port,'pid':listener_pid,'launcher_child_pid':child.pid,
+                         'started_at':datetime.now(timezone.utc).isoformat(),
                          'log':str(path)}
                 (root/'runs/platform_server.json').write_text(json.dumps(receipt,indent=2),encoding='utf-8')
                 url=f'http://127.0.0.1:{port}'

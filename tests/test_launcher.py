@@ -102,17 +102,17 @@ def test_fresh_launch_waits_for_child_listener_ownership_before_ready(tmp_path,m
     child=Mock(pid=4321)
     child.poll.return_value=None
     popen=Mock(return_value=child)
-    owner=Mock(side_effect=[False,True])
+    owner=Mock(side_effect=[None,4322])
     browser=Mock()
     monkeypatch.setattr(launcher,'available_port',lambda preferred:8502)
     monkeypatch.setattr(launcher.subprocess,'Popen',popen)
-    monkeypatch.setattr(launcher,'listener_belongs_to',owner)
+    monkeypatch.setattr(launcher,'started_listener_pid',owner)
     monkeypatch.setattr(launcher.webbrowser,'open',browser)
     assert launcher.main(['--port','8501'])==0
     assert owner.call_count==2
     browser.assert_called_once_with('http://127.0.0.1:8502')
     receipt=json.loads((tmp_path/'runs/platform_server.json').read_text())
-    assert receipt['pid']==4321 and receipt['port']==8502
+    assert receipt['pid']==4322 and receipt['launcher_child_pid']==4321 and receipt['port']==8502
     assert '127.0.0.1' in popen.call_args.args[0]
 
 
@@ -127,13 +127,58 @@ def test_racing_unknown_listener_is_not_ready_and_next_port_retries(tmp_path,mon
     def popen(command,**kwargs):
         kwargs['stdout'].write(b'Port is already in use\n')
         return children.pop(0)
-    owner=Mock(side_effect=lambda port,pid:pid==1002)
+    owner=Mock(side_effect=lambda port,pid:1002 if pid==1002 else None)
     browser=Mock()
     monkeypatch.setattr(launcher,'available_port',lambda preferred:preferred)
     monkeypatch.setattr(launcher.subprocess,'Popen',popen)
-    monkeypatch.setattr(launcher,'listener_belongs_to',owner)
+    monkeypatch.setattr(launcher,'started_listener_pid',owner)
     monkeypatch.setattr(launcher.webbrowser,'open',browser)
     assert launcher.main(['--port','8501'])==0
     browser.assert_called_once_with('http://127.0.0.1:8502')
     receipt=json.loads((tmp_path/'runs/platform_server.json').read_text())
     assert receipt['pid']==1002
+
+
+@pytest.mark.parametrize('parents,expected',[
+    ({4322:4321,4321:99},[4322,4321]),
+    ({4322:4323,4323:4321,4321:99},[4322,4323,4321]),
+    ({4322:99,99:0,4321:98},None),
+    ({4322:4323,4321:99},None),
+    ({4322:4323,4323:4322,4321:99},None),
+])
+def test_only_complete_acyclic_descendant_chain_is_proof(parents,expected):
+    assert launcher._descendant_chain(4322,4321,parents)==expected
+
+
+@pytest.mark.skipif(launcher.os.name!='nt',reason='Windows descendant verification')
+@pytest.mark.parametrize('owners,parents,starts,expected',[
+    ({4322},{4322:4321,4321:99},{4322:20,4321:10},4322),
+    ({4322},{4322:4321,4321:99},{4322:5,4321:10},None),
+    ({4322},{4322:4321,4321:99},{4322:20,4321:None},None),
+    ({4322},{4322:99,4321:98},{4322:20,4321:10},None),
+    ({4322,4323},{4322:4321,4323:99,4321:98},{4322:20,4321:10},None),
+])
+def test_windows_descendant_needs_unique_current_owner_and_valid_creation_order(monkeypatch,owners,parents,starts,expected):
+    monkeypatch.setattr(launcher,'listener_belongs_to',lambda port,pid:pid in owners)
+    monkeypatch.setattr(launcher,'_windows_native_listener_pids',lambda port:owners)
+    monkeypatch.setattr(launcher,'_windows_parent_pids',lambda:parents)
+    monkeypatch.setattr(launcher,'_windows_process_started',lambda pid:starts[pid])
+    assert launcher.started_listener_pid(8501,4321)==expected
+
+
+@pytest.mark.skipif(launcher.os.name!='nt',reason='Windows venv redirector regression')
+def test_real_python_listener_from_popen_runtime_descendant_is_verified():
+    code=("import os,socket,json,sys; s=socket.socket(); s.bind(('127.0.0.1',0)); s.listen(); "
+          "print(json.dumps({'pid':os.getpid(),'port':s.getsockname()[1]}),flush=True); sys.stdin.buffer.read(1)")
+    child=subprocess.Popen([launcher.sys.executable,'-u','-c',code],stdin=subprocess.PIPE,
+        stdout=subprocess.PIPE,text=True,creationflags=subprocess.CREATE_NO_WINDOW)
+    try:
+        runtime=json.loads(child.stdout.readline())
+        assert child.poll() is None
+        assert launcher.started_listener_pid(runtime['port'],child.pid)==runtime['pid']
+        assert launcher.listener_belongs_to(runtime['port'],runtime['pid'])
+    finally:
+        child.stdin.close()
+        try:child.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            child.terminate();child.wait(timeout=5)

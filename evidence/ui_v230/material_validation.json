@@ -1,0 +1,42 @@
+{
+  "documents": {
+    "CF2026_V230_Final_Report.pdf": {
+      "pages": 10,
+      "expected_pages": 10,
+      "team_ids_present": true,
+      "passed": true,
+      "sha256": "1670cd1d99e4654a0a7b5642fd18e3965ece2022dd3ba66fa898538c00fcac48"
+    },
+    "CF2026_V230_Beamer.pdf": {
+      "pages": 20,
+      "expected_pages": 20,
+      "team_ids_present": true,
+      "passed": true,
+      "sha256": "14486e8ff93af36875185351e1cecd785f780c4046f7cff702aef4aff9afdcf0"
+    },
+    "CF2026_V230_Speaker_Script.pdf": {
+      "pages": 10,
+      "expected_pages": 10,
+      "team_ids_present": true,
+      "passed": true,
+      "sha256": "ecd692dee4189c2b165e709a53be41b1afbae70e7f1279f6515241b7cd26997e"
+    },
+    "CF2026_V230_Presentation.pptx": {
+      "slides": 20,
+      "notes": 20,
+      "sha256": "a5ebf91cda3b336c2b61a8f8e1d1d3227553ba631403cfb489a63ed3c9393d85",
+      "passed": true
+    }
+  },
+  "tests": {
+    "passed": 269,
+    "skipped": 1,
+    "failures_or_errors": 0
+  },
+  "structural_checks_passed": true,
+  "visual_acceptance": {
+    "pdf": "All 10 report, 20 Beamer and 10 script pages inspected; repaired report pages 3/6 and script page 8 re-rendered and checked.",
+    "pptx": "All 20 runtime-rendered slides inspected; final slide 17 rechecked after validation count update.",
+    "native_powerpoint_application_checked": false
+  }
+}

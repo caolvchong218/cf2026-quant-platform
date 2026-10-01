@@ -24,7 +24,7 @@ def validate(root):
             'unique_factor_count':len({c['id'] for c in cards}),'factor_cards_count':len(cards),
             'fold_label_exits_before_cutoff':cutoff_passed,'ledger_checks':ledger_checks,
             'attribution_checks':attribution_checks,'post_run_source_changes':changes,
-            'post_run_change_scope':'UI presentation/index input and legacy version-only cache compatibility; research scores and ledgers unchanged',
+            'post_run_change_scope':'UI presentation/index input, replay/freeze artifact integrity guards and legacy version-only cache compatibility; research scores and ledgers unchanged',
             'historical_development':True,'independent_blind_test':False,
             'real_llm_called':False,'real_index_enhancement_completed':False,
             'real_forward_return_available':False,'default_mainline_retained':True}

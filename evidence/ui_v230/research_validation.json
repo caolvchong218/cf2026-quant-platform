@@ -1,0 +1,64 @@
+{
+  "public_hashes_passed": true,
+  "mismatches": [],
+  "unique_factor_count": 28,
+  "factor_cards_count": 28,
+  "fold_label_exits_before_cutoff": true,
+  "ledger_checks": {
+    "historical_blend": true,
+    "historical_fixed_whitebox": true,
+    "historical_mainline": true,
+    "historical_mined_rank": true,
+    "historical_mined_ridge": true,
+    "strict_blend": true,
+    "strict_mainline": true,
+    "strict_mined_ridge": true,
+    "validation_blend": true,
+    "validation_fixed_whitebox": true,
+    "validation_mainline": true,
+    "validation_mined_rank": true,
+    "validation_mined_ridge": true
+  },
+  "attribution_checks": {
+    "historical_blend": true,
+    "historical_fixed_whitebox": true,
+    "historical_mainline": true,
+    "historical_mined_rank": true,
+    "historical_mined_ridge": true,
+    "validation_blend": true,
+    "validation_fixed_whitebox": true,
+    "validation_mainline": true,
+    "validation_mined_rank": true,
+    "validation_mined_ridge": true
+  },
+  "post_run_source_changes": {
+    "benchmark_research.py": {
+      "experiment": "b147d8b9fbfd31b014b8bb510996f7388fb45a370a4a1e3bfccdc7bfed0b83c7",
+      "release": "28c11060050f50393a20ebd54f3cefd88a86423ba2a9b7f119fd1ad50539dfd4"
+    },
+    "strategies.py": {
+      "experiment": "f77e9fd28248c4201751b58f6e2e1f18d107ece04933bf061ae06713929c2800",
+      "release": "4bab3720bbf6feb5fd82c376fd277ac6c3df462e3bacca7d568913e8e3d672f1"
+    },
+    "ui_factor_lab.py": {
+      "experiment": "adbf9b5905c316ed933752970ebecdc86900ee02aca811d7d143bd4d84ece1c1",
+      "release": "794005f051ae9fc5b8ec26f6cade402dbf7e80f2435c7a6fcf2f66052466072a"
+    },
+    "ui_materials.py": {
+      "experiment": "ff5c1efcc155e1da553a7700e4e2fddd8e0521e8309b612fb3aadc347f4eaf58",
+      "release": "a2b8b382cdaaec0df353ea8620039b69dcdd3e73f0a7b53a8d6359d748eaf426"
+    },
+    "ui_research_validation.py": {
+      "experiment": "b683aa31f889ace24a68c93d8493d3cbbf330260f54fdac5c6708225626681f6",
+      "release": "41dd1956ed7ddcb8175e348d530536451c0653646c378b2a0bb7b21b7385a6d4"
+    }
+  },
+  "post_run_change_scope": "UI presentation/index input, replay/freeze artifact integrity guards and legacy version-only cache compatibility; research scores and ledgers unchanged",
+  "historical_development": true,
+  "independent_blind_test": false,
+  "real_llm_called": false,
+  "real_index_enhancement_completed": false,
+  "real_forward_return_available": false,
+  "default_mainline_retained": true,
+  "passed": true
+}

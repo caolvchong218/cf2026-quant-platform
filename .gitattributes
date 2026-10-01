@@ -3,3 +3,6 @@
 *.png binary
 *.pdf binary
 *.zip binary
+*.pptx binary
+# Research manifests identify exact bytes; keep their original line endings.
+evidence/research_v4/** -text

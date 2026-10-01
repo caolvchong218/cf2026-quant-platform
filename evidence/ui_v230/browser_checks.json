@@ -1,0 +1,35 @@
+{
+  "url": "http://127.0.0.1:8502/",
+  "timestamp": "2026-10-01T14:09:22.449Z",
+  "viewport": {
+    "width": 1600,
+    "height": 1000
+  },
+  "pages": [
+    {
+      "page": "研究总览",
+      "exception": false,
+      "title": "青序 · 量化研究工作台"
+    },
+    {
+      "page": "因子研发",
+      "exception": false,
+      "title": "青序 · 量化研究工作台"
+    },
+    {
+      "page": "策略验证",
+      "exception": false,
+      "title": "青序 · 量化研究工作台"
+    },
+    {
+      "page": "实验档案",
+      "exception": false,
+      "title": "青序 · 量化研究工作台"
+    }
+  ],
+  "offline_model_clicked": true,
+  "missing_weights_index_run_disabled": true,
+  "complete_state_freeze_clicked": true,
+  "v4_ridge_selector_verified": true,
+  "page_errors": []
+}

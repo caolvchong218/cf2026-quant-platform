@@ -17,6 +17,9 @@ tmp/
 *.log
 *.out
 *.toc
+*.nav
+*.snm
+*_compile.txt
 *.synctex.gz
 dist/
 reports/build/

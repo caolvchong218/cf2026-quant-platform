@@ -1,0 +1,23 @@
+{
+  "candidates.csv": "118ee8a0e599ef63050a2fbd6e004b134607b6a88f1d5ffcb514428fd286c8a0",
+  "decision.json": "927cc05da4354d8301ce7150fe914313560999c6314921f57e0f9411bbb79d2a",
+  "factor_cards.json": "d0977fe1358fc94a6f70d0c0371e4fe0642a8a48878fa9f82535f4096a4cbcba",
+  "factor_ic_daily.csv": "72fcec95c0d9d500db61d1cb26a55956054464a474b500fdd938b99f29934abe",
+  "factor_metrics.csv": "940d3d3f114faab9994bd5b23e88fd146a0e903edcdaa30cf3cbf53640b35b66",
+  "folds.json": "ff4f8e89a2b3da0bf3255d2b8c286406b4346d5fabd47e80b2fcd5b38dd6b2ea",
+  "manifest.json": "14c613a304416c6669e898ffbecbab43506e12c3dda7ddcbe6fcc2f759af5251",
+  "protocol.json": "f7eb0f6cd7135fcfad9198f14475937e9a75e9defbceb17cd353c0004339f4cb",
+  "screening.csv": "0304dbaa3a1e276d2bf51091a04f9152961c47998db6f85f6d328bd5d4be5018",
+  "selection.json": "da54746675d81f961a086e39631eeb76196b40b33a7236a978b0209056674718",
+  "stress.csv": "f48a07e0f07a865db1e4e171bd6c4b7f07b255db5889f36960a3c0d156b9e192",
+  "test.csv": "2ffc49028a83d1cab876e6994e9188413a955fd27a8a51eeee041a69f39c031f",
+  "validation.csv": "61057c21c1a7ce7bbe517e699c6c84ee589ab48be8be0128346f7d70edbce87d",
+  "daily/blend.csv": "619729eafd0946f8f0ddb5ef5d1dd6171dea51c8088fe35c719b0edb4bd75cfb",
+  "daily/fixed_whitebox.csv": "6d8930443b526e71f47880c1cb62c48f0c87a33206e9a297034d09daf7875678",
+  "daily/mainline.csv": "497935814de6c63e376cccfc7ce32ec1ec73825357d0110288126386284eba73",
+  "daily/mined_rank.csv": "7734f9d104924d48183f88532f0e52f231477fa91dda3132e4d419fed3d477f3",
+  "daily/mined_ridge.csv": "c6562b61e46dd4d777ed2e439f8928de1ab2cdd7936b0bb61e26df8e4b0ecb7a",
+  "daily/strict_blend.csv": "f4bea8bff0f809e743b7a49ec55b314a9a51ce978530fd32bc465b198a263704",
+  "daily/strict_mainline.csv": "e3b07e31d99362edbfa70c301aec06aa08fd533c15efe7a024ab52a62ed2eeaf",
+  "daily/strict_mined_ridge.csv": "1094df498ca7e4a4797df494100a85b3aea4a4b318bfb1cc628b78720594b43c"
+}

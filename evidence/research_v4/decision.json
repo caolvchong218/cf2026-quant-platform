@@ -1,0 +1,17 @@
+{
+  "mainline_retained": "v3/rolling_lightgbm__managed",
+  "whitebox_preselected": "mined_ridge",
+  "selection_rule": "validation Sharpe descending, candidate ID ties; no historical reranking",
+  "historical_development": true,
+  "independent_blind_test": false,
+  "forward_validation_required": true,
+  "llm_called": false,
+  "selected_factors": [
+    "turnover",
+    "low_volatility_20",
+    "dsl_momentum_60",
+    "dsl_price_volume_corr",
+    "dsl_momentum_20",
+    "book_yield"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "qingxu.research.v4",
+  "data_end": "2026-09-18",
+  "factor_budget": 6,
+  "candidate_budget": 28,
+  "label_horizon_sessions": 20,
+  "initial_cutoff": "2022-12-30",
+  "training": "preceding 3 years; label exits strictly before formation",
+  "rank_direction": "training-only, annual update",
+  "ridge_alpha": 100,
+  "comparison_start": "2025-01-02",
+  "comparison_end": "2026-09-18",
+  "historical_development": true,
+  "independent_blind_test": false,
+  "llm_called": false,
+  "selection_correlation_limit": 0.75,
+  "policy": {
+    "holdings": 50,
+    "rebalance_every": 20,
+    "buffer": 20,
+    "target_volatility": 0.2,
+    "max_exposure": 0.95,
+    "max_stock_weight": 0.04,
+    "max_industry_weight": 0.25,
+    "trend_window": 120,
+    "defensive_scale": 0.75
+  }
+}

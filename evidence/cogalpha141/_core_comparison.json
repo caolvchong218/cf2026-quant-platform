@@ -1,0 +1,130 @@
+{
+  "release_manifest_diff": {
+    "added": [
+      "integration_tests/test_launcher.py",
+      "outputs/TEAM_RELEASE_FIX.md",
+      "outputs/team-release-1.4.1.png",
+      "outputs/team-release-browser.json",
+      "outputs/team-release-package-tests.txt",
+      "outputs/team-release-tests.txt",
+      "unified/launcher.py",
+      "00-先读我.txt",
+      "01-首次安装.bat",
+      "02-启动青序.bat"
+    ],
+    "removed": [],
+    "changed": [
+      "start-unified.sh",
+      "outputs/UNIFIED_GUIDE.md",
+      "scripts/package-unified.py",
+      "README.md",
+      "start-platform.bat",
+      "unified/__init__.py",
+      "unified/__main__.py",
+      "IMPLEMENTATION_PLAN.md",
+      "setup-platform.bat",
+      "setup-platform.ps1",
+      "UNIFIED_GUIDE.md",
+      "start-unified.ps1",
+      "TEAM_GUIDE.md",
+      "start-platform.ps1"
+    ],
+    "unchanged_count": 566
+  },
+  "manifest_hash_mismatches": [],
+  "core_groups": {
+    "factor_engine": {
+      "count": 26,
+      "unchanged": [
+        "cogalpha/__init__.py",
+        "cogalpha/__main__.py",
+        "cogalpha/checks.py",
+        "cogalpha/cli.py",
+        "cogalpha/codex_provider.py",
+        "cogalpha/data.py",
+        "cogalpha/engine.py",
+        "cogalpha/evaluation.py",
+        "cogalpha/factors.py",
+        "cogalpha/metrics.py",
+        "cogalpha/operators.py",
+        "cogalpha/providers.py",
+        "cogalpha/report.py",
+        "cogalpha/sealed.py",
+        "cogalpha/selection.py",
+        "cogalpha/store.py",
+        "cogalpha/util.py",
+        "cogalpha/web/__init__.py",
+        "cogalpha/web/__main__.py",
+        "cogalpha/web/archive.py",
+        "cogalpha/web/models.py",
+        "cogalpha/web/server.py",
+        "cogalpha/web/service.py",
+        "cogalpha/web/transport.py",
+        "cogalpha/web/validation.py",
+        "cogalpha/web/worker.py"
+      ],
+      "changed": [],
+      "added": []
+    },
+    "strategy_formula_model": {
+      "count": 13,
+      "unchanged": [
+        "unified/app.py",
+        "unified/bridge.py",
+        "unified/datahub.py",
+        "unified/factor_details.py",
+        "unified/legacy.py",
+        "unified/service.py",
+        "unified/strategy_builder.py",
+        "unified/strategy_ui.py",
+        "unified/tools_ui.py",
+        "unified/workspace.py"
+      ],
+      "changed": [
+        "unified/__init__.py",
+        "unified/__main__.py"
+      ],
+      "added": [
+        "unified/launcher.py"
+      ]
+    },
+    "original_cfquant": {
+      "count": 29,
+      "unchanged": [
+        "vendor/cf2026/src/cfquant/__init__.py",
+        "vendor/cf2026/src/cfquant/analytics.py",
+        "vendor/cf2026/src/cfquant/benchmark_research.py",
+        "vendor/cf2026/src/cfquant/cli.py",
+        "vendor/cf2026/src/cfquant/config.py",
+        "vendor/cf2026/src/cfquant/data.py",
+        "vendor/cf2026/src/cfquant/engine.py",
+        "vendor/cf2026/src/cfquant/experiment.py",
+        "vendor/cf2026/src/cfquant/experiment_catalog.py",
+        "vendor/cf2026/src/cfquant/factors.py",
+        "vendor/cf2026/src/cfquant/features.py",
+        "vendor/cf2026/src/cfquant/incremental.py",
+        "vendor/cf2026/src/cfquant/models.py",
+        "vendor/cf2026/src/cfquant/portfolio.py",
+        "vendor/cf2026/src/cfquant/qlib_bridge.py",
+        "vendor/cf2026/src/cfquant/research.py",
+        "vendor/cf2026/src/cfquant/risk.py",
+        "vendor/cf2026/src/cfquant/simulation_bridge.py",
+        "vendor/cf2026/src/cfquant/strategies.py",
+        "vendor/cf2026/src/cfquant/ui_benchmark_research.py",
+        "vendor/cf2026/src/cfquant/ui_connections.py",
+        "vendor/cf2026/src/cfquant/ui_design.py",
+        "vendor/cf2026/src/cfquant/ui_experiments.py",
+        "vendor/cf2026/src/cfquant/ui_explorers.py",
+        "vendor/cf2026/src/cfquant/ui_materials.py",
+        "vendor/cf2026/src/cfquant/ui_qlib.py",
+        "vendor/cf2026/src/cfquant/ui_research.py",
+        "vendor/cf2026/src/cfquant/ui_strategy_backtest.py",
+        "vendor/cf2026/src/cfquant/ui_workspace.py"
+      ],
+      "changed": [],
+      "added": []
+    }
+  },
+  "archive_scripts_executed": false,
+  "source": "D:\\Downloads\\MM-LaTeX\\mm_project1-main\\work\\qingxu-v230\\tmp\\review_unified_141"
+}

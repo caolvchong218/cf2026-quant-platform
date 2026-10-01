@@ -1,0 +1,9 @@
+{
+  "archive": "D:\\Desktop\\cogalpha_qingxu_unified_team_1.4.1.zip",
+  "archive_sha256": "ab5633c8513ef0ee856777897c03cbd4a832db0913c703a0a337d0ad7599fd19",
+  "entries": 591,
+  "uncompressed_bytes": 30387395,
+  "target": "D:\\Downloads\\MM-LaTeX\\mm_project1-main\\work\\qingxu-v230\\tmp\\review_unified_141",
+  "archive_scripts_executed": false,
+  "path_traversal_and_link_guards": true
+}

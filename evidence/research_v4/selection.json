@@ -1,0 +1,7 @@
+{
+  "whitebox_preselected": "mined_ridge",
+  "selection_rule": "validation Sharpe descending, candidate ID ties",
+  "written_before_historical_comparison": true,
+  "previous_historical_results_already_observed": true,
+  "independent_blind_test": false
+}

@@ -1,0 +1,32 @@
+{
+  "release": "v2.3.0",
+  "materials": "V230",
+  "members": "12412408 胡博文；12410819 谢明飞；12410436 王天希",
+  "source_only": true,
+  "pdf_compiled": false,
+  "visual_acceptance": "pending",
+  "report_sections": 10,
+  "slides": 20,
+  "main_slides": 18,
+  "backup_slides": 2,
+  "main_talk_seconds": 1200,
+  "spoken_chinese_characters": 4080,
+  "tests_passed_injected": 269,
+  "tests_skipped_injected": 1,
+  "ui_status_injected": "新页AppTest与独立浏览器交互通过；范围见evidence/ui_v230",
+  "llm_called": false,
+  "whitebox_preselected": "mined_ridge",
+  "source_hashes": {
+    "test.csv": "2ffc49028a83d1cab876e6994e9188413a955fd27a8a51eeee041a69f39c031f",
+    "validation.csv": "61057c21c1a7ce7bbe517e699c6c84ee589ab48be8be0128346f7d70edbce87d",
+    "stress.csv": "f48a07e0f07a865db1e4e171bd6c4b7f07b255db5889f36960a3c0d156b9e192",
+    "protocol.json": "f7eb0f6cd7135fcfad9198f14475937e9a75e9defbceb17cd353c0004339f4cb",
+    "decision.json": "927cc05da4354d8301ce7150fe914313560999c6314921f57e0f9411bbb79d2a",
+    "factor_cards.json": "d0977fe1358fc94a6f70d0c0371e4fe0642a8a48878fa9f82535f4096a4cbcba"
+  },
+  "expected_pdf_names": {
+    "final_report.tex": "CF2026_V230_Final_Report.pdf",
+    "beamer.tex": "CF2026_V230_Beamer.pdf",
+    "speaker_script.tex": "CF2026_V230_Speaker_Script.pdf"
+  }
+}

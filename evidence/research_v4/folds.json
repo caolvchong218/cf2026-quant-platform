@@ -1,0 +1,158 @@
+[
+  {
+    "year": 2023,
+    "cutoff": "2022-12-30",
+    "selected": [
+      "turnover",
+      "low_volatility_20",
+      "dsl_momentum_60",
+      "dsl_price_volume_corr",
+      "dsl_momentum_20",
+      "book_yield"
+    ],
+    "directions": {
+      "turnover": 1,
+      "low_volatility_20": 1,
+      "dsl_momentum_60": -1,
+      "dsl_price_volume_corr": -1,
+      "dsl_momentum_20": -1,
+      "book_yield": 1
+    },
+    "weights": {
+      "turnover": 0.16666666666666666,
+      "low_volatility_20": 0.16666666666666666,
+      "dsl_momentum_60": -0.16666666666666666,
+      "dsl_price_volume_corr": -0.16666666666666666,
+      "dsl_momentum_20": -0.16666666666666666,
+      "book_yield": 0.16666666666666666
+    },
+    "ridge_coefficients": {
+      "turnover": 0.03523709526982654,
+      "low_volatility_20": 0.025127544287200272,
+      "dsl_momentum_60": -0.015028501291470672,
+      "dsl_price_volume_corr": -0.022497347172508418,
+      "dsl_momentum_20": 0.0023644663053586767,
+      "book_yield": 0.011939698462305975
+    },
+    "ridge_intercept": 0.0005865730000425519,
+    "train_rows": 646349,
+    "max_label_exit": "2022-12-29"
+  },
+  {
+    "year": 2024,
+    "cutoff": "2023-12-29",
+    "selected": [
+      "turnover",
+      "low_volatility_20",
+      "dsl_momentum_60",
+      "dsl_price_volume_corr",
+      "dsl_momentum_20",
+      "book_yield"
+    ],
+    "directions": {
+      "turnover": 1,
+      "low_volatility_20": 1,
+      "dsl_momentum_60": -1,
+      "dsl_price_volume_corr": -1,
+      "dsl_momentum_20": -1,
+      "book_yield": 1
+    },
+    "weights": {
+      "turnover": 0.16666666666666666,
+      "low_volatility_20": 0.16666666666666666,
+      "dsl_momentum_60": -0.16666666666666666,
+      "dsl_price_volume_corr": -0.16666666666666666,
+      "dsl_momentum_20": -0.16666666666666666,
+      "book_yield": 0.16666666666666666
+    },
+    "ridge_coefficients": {
+      "turnover": 0.0417908174314468,
+      "low_volatility_20": 0.033907044338198265,
+      "dsl_momentum_60": -0.01167373957696455,
+      "dsl_price_volume_corr": -0.000846655225904717,
+      "dsl_momentum_20": -0.006812095020741935,
+      "book_yield": 0.0390140529682599
+    },
+    "ridge_intercept": 0.00047371396446575315,
+    "train_rows": 641124,
+    "max_label_exit": "2023-12-28"
+  },
+  {
+    "year": 2025,
+    "cutoff": "2024-12-31",
+    "selected": [
+      "turnover",
+      "low_volatility_20",
+      "dsl_momentum_60",
+      "dsl_price_volume_corr",
+      "dsl_momentum_20",
+      "book_yield"
+    ],
+    "directions": {
+      "turnover": 1,
+      "low_volatility_20": 1,
+      "dsl_momentum_60": -1,
+      "dsl_price_volume_corr": -1,
+      "dsl_momentum_20": -1,
+      "book_yield": 1
+    },
+    "weights": {
+      "turnover": 0.16666666666666666,
+      "low_volatility_20": 0.16666666666666666,
+      "dsl_momentum_60": -0.16666666666666666,
+      "dsl_price_volume_corr": -0.16666666666666666,
+      "dsl_momentum_20": -0.16666666666666666,
+      "book_yield": 0.16666666666666666
+    },
+    "ridge_coefficients": {
+      "turnover": 0.026066055825237567,
+      "low_volatility_20": 0.043740274908461406,
+      "dsl_momentum_60": -0.00432742345054906,
+      "dsl_price_volume_corr": -0.0021317452767405593,
+      "dsl_momentum_20": -0.015401966986196391,
+      "book_yield": 0.039064393554756674
+    },
+    "ridge_intercept": 0.0004981414910257378,
+    "train_rows": 633845,
+    "max_label_exit": "2024-12-30"
+  },
+  {
+    "year": 2026,
+    "cutoff": "2025-12-31",
+    "selected": [
+      "turnover",
+      "low_volatility_20",
+      "dsl_momentum_60",
+      "dsl_price_volume_corr",
+      "dsl_momentum_20",
+      "book_yield"
+    ],
+    "directions": {
+      "turnover": 1,
+      "low_volatility_20": 1,
+      "dsl_momentum_60": -1,
+      "dsl_price_volume_corr": -1,
+      "dsl_momentum_20": -1,
+      "book_yield": 1
+    },
+    "weights": {
+      "turnover": 0.16666666666666666,
+      "low_volatility_20": 0.16666666666666666,
+      "dsl_momentum_60": -0.16666666666666666,
+      "dsl_price_volume_corr": -0.16666666666666666,
+      "dsl_momentum_20": -0.16666666666666666,
+      "book_yield": 0.16666666666666666
+    },
+    "ridge_coefficients": {
+      "turnover": 0.03581970134984292,
+      "low_volatility_20": 0.04200497260021077,
+      "dsl_momentum_60": -0.005780286033220771,
+      "dsl_price_volume_corr": 0.0017559694426143235,
+      "dsl_momentum_20": -0.016112682544094117,
+      "book_yield": 0.03193184257245442
+    },
+    "ridge_intercept": 0.0004463802509083255,
+    "train_rows": 631856,
+    "max_label_exit": "2025-12-30"
+  }
+]

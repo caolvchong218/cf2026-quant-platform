@@ -1,0 +1,214 @@
+[
+  {
+    "id": "momentum_60_20",
+    "label": "中期动量",
+    "expression": "C(t-20)/C(t-60)-1",
+    "hypothesis": "排除最近一个月的中期趋势",
+    "source": "existing_economic_factor"
+  },
+  {
+    "id": "reversal_5",
+    "label": "短期反转",
+    "expression": "-(C(t)/C(t-5)-1)",
+    "hypothesis": "短期超调后可能反弹",
+    "source": "existing_economic_factor"
+  },
+  {
+    "id": "low_volatility_20",
+    "label": "低波动",
+    "expression": "-std(r,20)",
+    "hypothesis": "低风险股票的风险收益特征",
+    "source": "existing_economic_factor"
+  },
+  {
+    "id": "range_20",
+    "label": "低振幅",
+    "expression": "-mean((H-L)/C,20)",
+    "hypothesis": "日内振幅及交易拥挤程度",
+    "source": "existing_economic_factor"
+  },
+  {
+    "id": "trend_20",
+    "label": "均线趋势",
+    "expression": "C/mean(C,20)-1",
+    "hypothesis": "偏离均线的趋势延续",
+    "source": "existing_economic_factor"
+  },
+  {
+    "id": "volume_trend",
+    "label": "成交量变化",
+    "expression": "log(mean(V,5)/mean(V,20))",
+    "hypothesis": "量能变化与价格发现",
+    "source": "existing_economic_factor"
+  },
+  {
+    "id": "liquidity_20",
+    "label": "流动性",
+    "expression": "-mean(abs(r)/(rawC*V/1e6),20)",
+    "hypothesis": "单位成交额价格冲击",
+    "source": "existing_economic_factor"
+  },
+  {
+    "id": "turnover",
+    "label": "低换手",
+    "expression": "-turnover_rate",
+    "hypothesis": "换手拥挤与交易成本",
+    "source": "existing_economic_factor"
+  },
+  {
+    "id": "earnings_yield",
+    "label": "盈利收益率",
+    "expression": "1/PE_TTM (PE>0)",
+    "hypothesis": "价格相对盈利的便宜程度",
+    "source": "existing_economic_factor"
+  },
+  {
+    "id": "book_yield",
+    "label": "账面市值比",
+    "expression": "1/PB (PB>0)",
+    "hypothesis": "价格相对净资产的便宜程度",
+    "source": "existing_economic_factor"
+  },
+  {
+    "id": "dividend_yield",
+    "label": "股息率",
+    "expression": "dv_ttm/100",
+    "hypothesis": "现金分红相对价格",
+    "source": "existing_economic_factor"
+  },
+  {
+    "id": "quality_roe",
+    "label": "盈利质量",
+    "expression": "latest announced annual ROE/100",
+    "hypothesis": "历史年度盈利能力",
+    "source": "existing_economic_factor"
+  },
+  {
+    "id": "dsl_momentum_20",
+    "label": "20日动量",
+    "expression": "returns(close, 20)",
+    "hypothesis": "中期相对强势可能延续。",
+    "expected_direction": "unvalidated",
+    "source": "offline_formula_catalogue"
+  },
+  {
+    "id": "dsl_momentum_60",
+    "label": "60日动量",
+    "expression": "returns(close, 60)",
+    "hypothesis": "较长趋势可能具有持续性。",
+    "expected_direction": "unvalidated",
+    "source": "offline_formula_catalogue"
+  },
+  {
+    "id": "dsl_reversal_5",
+    "label": "5日反转",
+    "expression": "-returns(close, 5)",
+    "hypothesis": "短期下跌可能伴随价格修复。",
+    "expected_direction": "unvalidated",
+    "source": "offline_formula_catalogue"
+  },
+  {
+    "id": "dsl_mean_reversion_10",
+    "label": "10日均价偏离反转",
+    "expression": "1 - safe_divide(close, rolling_mean(close, 10))",
+    "hypothesis": "偏离近期均价可能回归。",
+    "expected_direction": "unvalidated",
+    "source": "offline_formula_catalogue"
+  },
+  {
+    "id": "dsl_low_volatility_20",
+    "label": "20日低波动",
+    "expression": "-rolling_std(returns(close), 20)",
+    "hypothesis": "较低历史波动可能带来不同的风险收益结构。",
+    "expected_direction": "unvalidated",
+    "source": "offline_formula_catalogue"
+  },
+  {
+    "id": "dsl_volatility_change",
+    "label": "波动状态变化",
+    "expression": "rolling_std(returns(close), 5) - rolling_std(returns(close), 20)",
+    "hypothesis": "短期波动相对长期波动的变化可能包含状态信息。",
+    "expected_direction": "unvalidated",
+    "source": "offline_formula_catalogue"
+  },
+  {
+    "id": "dsl_range_20",
+    "label": "20日振幅",
+    "expression": "rolling_mean(safe_divide(high - low, close), 20)",
+    "hypothesis": "历史振幅可能反映交易分歧，方向需要验证。",
+    "expected_direction": "unvalidated",
+    "source": "offline_formula_catalogue"
+  },
+  {
+    "id": "dsl_volume_surprise",
+    "label": "相对成交量",
+    "expression": "safe_divide(volume, rolling_mean(volume, 20)) - 1",
+    "hypothesis": "相对成交量可能反映关注度变化，方向需要验证。",
+    "expected_direction": "unvalidated",
+    "source": "offline_formula_catalogue"
+  },
+  {
+    "id": "dsl_volume_trend",
+    "label": "成交量趋势",
+    "expression": "safe_divide(rolling_mean(volume, 5), rolling_mean(volume, 20)) - 1",
+    "hypothesis": "持续放量可能与价格趋势状态相关。",
+    "expected_direction": "unvalidated",
+    "source": "offline_formula_catalogue"
+  },
+  {
+    "id": "dsl_bar_pressure_5",
+    "label": "5日实体压力",
+    "expression": "rolling_mean(safe_divide(close - open, high - low), 5)",
+    "hypothesis": "收盘相对开盘的实体位置可能反映持续买卖压力。",
+    "expected_direction": "unvalidated",
+    "source": "offline_formula_catalogue"
+  },
+  {
+    "id": "dsl_close_position_10",
+    "label": "10日收盘区间位置",
+    "expression": "rolling_mean(safe_divide(close - low, high - low), 10)",
+    "hypothesis": "收盘靠近日内高点的状态可能持续。",
+    "expected_direction": "unvalidated",
+    "source": "offline_formula_catalogue"
+  },
+  {
+    "id": "dsl_price_volume_corr",
+    "label": "20日价量相关",
+    "expression": "rolling_corr(returns(close), returns(volume), 20)",
+    "hypothesis": "收益与成交量变化的关系可能刻画趋势可靠性。",
+    "expected_direction": "unvalidated",
+    "source": "offline_formula_catalogue"
+  },
+  {
+    "id": "dsl_trend_volume",
+    "label": "趋势与成交量组合",
+    "expression": "rank(returns(close, 20)) * rank(safe_divide(volume, rolling_mean(volume, 20)))",
+    "hypothesis": "趋势和成交量同时较强可能提供不同于单因子的信号。",
+    "expected_direction": "unvalidated",
+    "source": "offline_formula_catalogue"
+  },
+  {
+    "id": "dsl_risk_adjusted_trend",
+    "label": "波动调整趋势",
+    "expression": "safe_divide(returns(close, 20), rolling_std(returns(close), 20))",
+    "hypothesis": "同等波动下的趋势强度可能具有比较价值。",
+    "expected_direction": "unvalidated",
+    "source": "offline_formula_catalogue"
+  },
+  {
+    "id": "dsl_distance_high_20",
+    "label": "距20日高点",
+    "expression": "safe_divide(close, rolling_max(high, 20)) - 1",
+    "hypothesis": "接近历史高点的价格可能具有趋势或阻力信息。",
+    "expected_direction": "unvalidated",
+    "source": "offline_formula_catalogue"
+  },
+  {
+    "id": "dsl_distance_low_20",
+    "label": "距20日低点",
+    "expression": "safe_divide(close, rolling_min(low, 20)) - 1",
+    "hypothesis": "脱离历史低点的幅度可能刻画恢复状态。",
+    "expected_direction": "unvalidated",
+    "source": "offline_formula_catalogue"
+  }
+]
