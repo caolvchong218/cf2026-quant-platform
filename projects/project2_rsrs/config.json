@@ -1,0 +1,22 @@
+{
+  "study": "Everbright 2017 RSRS replication and post-publication check",
+  "status": "Research prepared; Project 2 rubric not visible on Blackboard as of 2026-10-16",
+  "symbols": ["sh000300", "sh000016", "sh000905"],
+  "download_start": "2004-01-01",
+  "download_end": "2026-10-15",
+  "periods": {
+    "historical_overlap": ["2007-08-01", "2017-03-31"],
+    "post_publication": ["2017-05-02", "2026-10-15"],
+    "recent": ["2020-01-02", "2026-10-15"]
+  },
+  "annual_sessions": 252,
+  "cash_interest": 0.0,
+  "risk_free_rate": 0.0,
+  "cost_bps_each_side": 10,
+  "strict_warmup": true,
+  "standardization": "previous M valid slopes, excluding current slope, ddof=0",
+  "execution": "close t signal, next session open execution, daily close mark",
+  "prespecified_main": "right_ma",
+  "grid_is_sensitivity_only": true,
+  "source_report": "https://github.com/hugo2046/QuantsPlaybook/tree/3f83a77f4c7996ed8185b8979a42c4372c1d811f/C-%E6%8B%A9%E6%97%B6%E7%B1%BB/RSRS%E6%8B%A9%E6%97%B6%E6%8C%87%E6%A0%87"
+}
