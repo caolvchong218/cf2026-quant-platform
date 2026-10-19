@@ -23,7 +23,7 @@ DEFAULT_FIELDS = ("open", "high", "low", "close", "volume")
 OPERATORS = {
     "delay": 2, "returns": (1, 2), "rolling_mean": 2, "rolling_std": 2,
     "rolling_min": 2, "rolling_max": 2, "rolling_corr": 3,
-    "rank": 1, "zscore": 1, "clip": 3, "safe_divide": 2, "abs": 1,
+    "rank": 1, "zscore": 1, "clip": 3, "safe_divide": 2, "abs": 1, "tanh": 1,
 }
 
 
@@ -211,6 +211,8 @@ def evaluate_expression(expression: str, fields: dict[str, pd.DataFrame]) -> pd.
             return value.clip(lower=values[1], upper=values[2])
         if name == "abs":
             return value.abs()
+        if name == "tanh":
+            return np.tanh(value)
         return _divide(value, values[1])
 
     return _clean(run(tree.body)).copy()

@@ -67,6 +67,18 @@ def test_rolling_statistics_cross_section_and_clip_have_explicit_conventions():
     assert evaluate_expression("zscore(close)", {"close": constant}).isna().all().all()
 
 
+def test_tanh_is_a_bounded_causal_unary_panel_operator():
+    close = frame([[-1000., 0., 1000.], [-1., np.nan, 1.]])
+    result = evaluate_expression("tanh(close)", {"close": close})
+    pd.testing.assert_frame_equal(result, np.tanh(close))
+    assert result.iloc[0].tolist() == [-1., 0., 1.]
+    assert np.isnan(result.iloc[1].B)
+    pd.testing.assert_frame_equal(evaluate_expression("tanh(close)", {"close": close.iloc[:1]}), result.iloc[:1])
+    for expression in ["tanh(1)", "tanh(close, 2)", "close.tanh()", "tanh(delay(close, -1))"]:
+        with pytest.raises(ValueError):
+            validate_expression(expression)
+
+
 @pytest.mark.parametrize("expression", [
     "__import__('os').system('whoami')", "close.shift(-1)", "close.iloc[0]",
     "close['A']", "[x for x in close]", "lambda: close", "close if True else volume",
