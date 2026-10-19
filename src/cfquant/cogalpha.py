@@ -346,13 +346,13 @@ def select_diverse(metrics, rank_ic_daily=None, *, id_column="id", max_factors=2
 def paper_literal_candidates():
     """Three translated Listing expressions; callers must provide volume in shares."""
     definitions = [
-        ("paper_listing1", "原文 Listing 1 · 高点至收盘距离", "safe_divide(high-close,volume+1e-8)"),
-        ("paper_listing2", "原文 Listing 2 · 振幅/成交量", "safe_divide(high-low,volume+1e-8)"),
-        ("paper_listing3", "原文 Listing 3 · 实体金额比", "tanh(safe_divide(abs(close-open),volume*close+1e-8))"),
+        ("paper_listing1", "原文 Listing 1 · 高点至收盘距离", "safe_divide(high-close,volume+1e-9)"),
+        ("paper_listing2", "原文 Listing 2 · 振幅/成交量", "safe_divide(high-low,volume+1e-9)"),
+        ("paper_listing3", "原文 Listing 3 · 实体金额比", "tanh(safe_divide(abs(close-open),volume*close+1e-9))"),
     ]
     return [{"id": name, "label": label, "expression": expression,
              "source": "arXiv:2511.18850v4 literal Listing translation",
-             "volume_unit": "shares", "denominator_epsilon": 1e-8,
+             "volume_unit": "shares", "denominator_epsilon": 1e-9,
              "direction": "positive; no retrospective sign reversal",
              "hypothesis": "保留原文公式与正向定义，其实测有效性须由独立评价确定。"}
             for name, label, expression in definitions]

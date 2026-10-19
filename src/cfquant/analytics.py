@@ -84,8 +84,12 @@ def performance(daily, initial_cash, annualization=252, risk_free_annual=0.0, tr
     }
 
 
-def reconcile(result, initial_cash, buy_cost, sell_cost):
+def reconcile(result, initial_cash, buy_cost, sell_cost, minimum_commission=0.0):
     """Rebuild cash and unit balances from fills, without calling engine logic."""
+    if (isinstance(minimum_commission, bool)
+            or not isinstance(minimum_commission, (int, float, np.integer, np.floating))
+            or not np.isfinite(minimum_commission) or minimum_commission < 0):
+        raise ValueError("minimum_commission must be finite and nonnegative")
     errors, cash = [], initial_cash
     balances = {}
     for _, day in result.daily.iterrows():
@@ -95,7 +99,8 @@ def reconcile(result, initial_cash, buy_cost, sell_cost):
             cash -= sign * fill.notional + fill.cost
             balances[fill.asset] = balances.get(fill.asset, 0.0) + sign*fill.units
             rate = buy_cost if sign == 1 else sell_cost
-            if not np.isclose(fill.cost, rate * fill.notional, atol=1e-8):
+            expected_cost = max(rate * fill.notional, minimum_commission) if fill.notional > 0 else 0.
+            if not np.isclose(fill.cost, expected_cost, atol=1e-8):
                 errors.append("fee")
             if not fill.signal_date < fill.date:
                 errors.append("signal timing")

@@ -252,10 +252,10 @@ def test_paper_literal_formulas_preserve_epsilon_and_use_share_volume():
     fields["volume"].iloc[0, 0] = 0.
     cards = paper_literal_candidates()
     assert len(cards) == 3 and len({card["id"] for card in cards}) == 3
-    expected = [(fields["high"] - fields["close"]) / (fields["volume"] + 1e-8),
-                (fields["high"] - fields["low"]) / (fields["volume"] + 1e-8),
-                np.tanh(abs(fields["close"] - fields["open"]) / (fields["volume"] * fields["close"] + 1e-8))]
+    expected = [(fields["high"] - fields["close"]) / (fields["volume"] + 1e-9),
+                (fields["high"] - fields["low"]) / (fields["volume"] + 1e-9),
+                np.tanh(abs(fields["close"] - fields["open"]) / (fields["volume"] * fields["close"] + 1e-9))]
     for card, calculation in zip(cards, expected):
         validate_expression(card["expression"])
         pd.testing.assert_frame_equal(evaluate_expression(card["expression"], fields), calculation)
-        assert card["denominator_epsilon"] == 1e-8 and card["volume_unit"] == "shares"
+        assert card["denominator_epsilon"] == 1e-9 and card["volume_unit"] == "shares"
