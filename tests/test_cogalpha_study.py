@@ -347,3 +347,16 @@ def test_evaluate_cli_fails_closed_on_changed_or_incomplete_mining_without_api(o
     with pytest.raises(ValueError, match=message):
         run(corrupt)
     assert not calls["registered"] and not calls["pools"] and not calls["finalized"]
+
+
+def test_public_metadata_excludes_fitted_coefficients(study_factory):
+    study = study_factory()
+    study.model_metadata = [{"status": "fit", "training_rows": 400,
+                             "coefficients": {"factor": 0.123}, "intercept": 0.2,
+                             "parameters": {"ridge": {"alpha": 100.0}}}]
+    study.flush()
+    public = json.loads((study.output / "model_metadata.json").read_text(encoding="utf-8"))[0]
+    assert "coefficients" not in public and "intercept" not in public
+    assert public["training_rows"] == 400 and public["parameters"]["ridge"]["alpha"] == 100.0
+    assert study.model_metadata[0]["coefficients"]["factor"] == 0.123
+    assert not json.loads((study.output / "validation.json").read_text(encoding="utf-8"))["all_ledgers_passed"]

@@ -337,8 +337,10 @@ class Study:
             pd.concat(self.qualifications, ignore_index=True).to_csv(self.output / "qualification.csv", index=False)
         write_json(self.output / "selection.json", self.selection)
         write_json(self.output / "proposals.json", list(self.cards.values()))
-        write_json(self.output / "model_metadata.json", self.model_metadata)
-        write_json(self.output / "validation.json", {"all_ledgers_passed": all(x["passed"] for x in self.validations),
+        public_models = [{key: value for key, value in record.items()
+                          if key not in {"coefficients", "intercept"}} for record in self.model_metadata]
+        write_json(self.output / "model_metadata.json", public_models)
+        write_json(self.output / "validation.json", {"all_ledgers_passed": bool(self.validations) and all(x["passed"] for x in self.validations),
                    "portfolio_runs": len(self.validations), "checks": self.validations,
                    "no_test_feedback": True, "models_frozen_before_validation": True})
 
