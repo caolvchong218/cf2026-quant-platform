@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="12.524" timestamp="2026-10-19T21:44:08.684473+08:00" hostname="hu"><testcase classname="tests.test_qlib_bridge" name="test_actual_qlib_expression_engine_matches_independent_reference" time="9.369" /></testsuite></testsuites>

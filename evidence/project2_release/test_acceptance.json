@@ -1,13 +1,12 @@
 {
   "schema": "qingxu.project2.test_acceptance.v1",
   "created_utc": "2026-10-19T13:04:43.603450+00:00",
-  "passed_with_optional_skip": true,
   "unique_tests": 462,
   "effective_counts": {
-    "passed": 461,
+    "passed": 462,
     "failed": 0,
     "error": 0,
-    "skipped": 1
+    "skipped": 0
   },
   "counting_rule": "Union of test node IDs; later successful reruns replace original environment failures, never double count.",
   "suite_receipts": [
@@ -62,6 +61,20 @@
       },
       "seconds": 11.537,
       "published_file": "test_receipts/project2_pytest_study_release_v2.xml"
+    },
+    {
+      "file": "tmp/project2_pytest_qlib_isolated.xml",
+      "sha256": "ed59afe8785f794ed0cdce111cb2ff90a272af5825ebb5095bf87619305c9136",
+      "tests": 1,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "error": 0,
+        "skipped": 0
+      },
+      "seconds": 9.369,
+      "published_file": "test_receipts/project2_pytest_qlib_isolated.xml",
+      "environment": "isolated .venv-qlib"
     }
   ],
   "windows_permission_resolution": {
@@ -83,15 +96,6 @@
     },
     "code_changes_to_make_permission_tests_pass": false
   },
-  "optional_skips": [
-    {
-      "node_id": "tests.test_qlib_bridge::test_actual_qlib_expression_engine_matches_independent_reference",
-      "status": "skipped",
-      "seconds": 0.021,
-      "last_receipt": "tmp/project2_pytest_full.xml",
-      "skip_reason": "Optional isolated .venv-qlib engine integration"
-    }
-  ],
   "targeted_cogalpha_suite_before_full_run": {
     "passed": 125,
     "seconds": 42.95,
@@ -158,9 +162,9 @@
   "paid_api_calls_by_this_audit": 0,
   "formal_rsrs_outputs_modified_by_this_audit": false,
   "scope_limitations": [
-    "The optional Qlib isolated-environment engine test remains skipped in .venv-clean.",
     "This receipt covers tests and RSRS equality, not completion of live CogAlpha mining/model experiments.",
-    "No claim of live brokerage execution or guaranteed coursework grade."
+    "No claim of live brokerage execution or guaranteed coursework grade.",
+    "The Qlib test runs in its existing isolated environment; all-pass is the deduplicated union of recorded runs."
   ],
   "post_test_source_byte_normalization": {
     "path": "src/cfquant/cogalpha.py",
@@ -180,5 +184,34 @@
       "tests/test_cogalpha_study.py": "682d89df5d8fdb000b6602c24db5ab7a8032d11d93d55220134fc9c4a0172900"
     }
   },
-  "updated_utc": "2026-10-19T13:18:45.139961+00:00"
+  "updated_utc": "2026-10-19T13:45:21.796290+00:00",
+  "all_unique_tests_passed": true,
+  "optional_skip_history": [
+    {
+      "node_id": "tests.test_qlib_bridge::test_actual_qlib_expression_engine_matches_independent_reference",
+      "status": "skipped",
+      "seconds": 0.021,
+      "last_receipt": "tmp/project2_pytest_full.xml",
+      "skip_reason": "Optional isolated .venv-qlib engine integration"
+    }
+  ],
+  "unresolved_skips": [],
+  "optional_skip_resolution": {
+    "passed": true,
+    "receipt": "test_receipts/project2_pytest_qlib_isolated.xml",
+    "scope": "Actual Qlib expression engine compared against independent pandas reference on synthetic provider data",
+    "environment": {
+      "python": "3.12.14",
+      "pyqlib": "0.9.7",
+      "numpy": "2.3.5",
+      "pandas": "2.3.3",
+      "scipy": "1.16.3",
+      "pytest": "9.1.1"
+    },
+    "new_api_calls": 0,
+    "shared_research_environment_modified": false,
+    "interpretation": "All 462 unique tests pass across documented environments and reruns; not a single uninterrupted full-suite run."
+  },
+  "passed": true,
+  "status": "all_unique_tests_passed_across_documented_environments"
 }
