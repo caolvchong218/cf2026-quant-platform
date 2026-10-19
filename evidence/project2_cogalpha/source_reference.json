@@ -1,0 +1,150 @@
+{
+  "paper": "Cognitive Alpha Mining via LLM-Driven Code-Based Evolution",
+  "authors": "Fengyuan Liu et al.",
+  "arxiv": "https://arxiv.org/abs/2511.18850v4",
+  "pdf_sha256": "20c6c76a0e9ea5fdf869ee0a20a3594ab61181fee9913b1ec9361b3669ecea45",
+  "source_identity_erratum": "configs/project2_cogalpha_source_erratum.json",
+  "frozen_config_sha256": "052887b05d9ce859114412bfbe68ac99408d806f938414f77cbf388e41ec2352",
+  "page_count": 35,
+  "render": "Poppler pdftoppm 150dpi",
+  "use": "Attributed excerpts for critical comparison; no third-party runtime or private data copied",
+  "excerpts": [
+    {
+      "file": "source_figure1.png",
+      "pdf_page_1based": 5,
+      "dpi": 150,
+      "crop_xyxy": [
+        140,
+        145,
+        1100,
+        757
+      ],
+      "sha256": "7338a3907b7441a1a5da908b791011417ce9a3b0a74a656ecfe8c9a9949ee11c",
+      "caption_retained": true
+    },
+    {
+      "file": "source_figure2.png",
+      "pdf_page_1based": 12,
+      "dpi": 150,
+      "crop_xyxy": [
+        140,
+        140,
+        1100,
+        679
+      ],
+      "sha256": "7dae76e8cf01f26079c0c260095951101131f3b9c27c9de5af2b83481074820d",
+      "caption_retained": true
+    },
+    {
+      "file": "source_table1.png",
+      "pdf_page_1based": 7,
+      "dpi": 150,
+      "crop_xyxy": [
+        140,
+        140,
+        1100,
+        735
+      ],
+      "sha256": "25ac460e856dc51da7c1845c0800f793fde53554471f71d7fd772931df711b3b",
+      "caption_retained": true
+    },
+    {
+      "file": "source_table3.png",
+      "pdf_page_1based": 16,
+      "dpi": 150,
+      "crop_xyxy": [
+        140,
+        140,
+        1100,
+        431
+      ],
+      "sha256": "44682e1a870b633af3a53c812b33bd3aec4a5bb2835aae6e1bd69147587d7369",
+      "caption_retained": true
+    },
+    {
+      "file": "source_table5.png",
+      "pdf_page_1based": 19,
+      "dpi": 150,
+      "crop_xyxy": [
+        140,
+        140,
+        1100,
+        982
+      ],
+      "sha256": "2d605e9835cc893d6dd2cecc2825f3d60fdc2b1529ab9a03b4d3e9215b9193f1",
+      "caption_retained": true
+    },
+    {
+      "file": "source_listing1.png",
+      "pdf_page_1based": 8,
+      "dpi": 150,
+      "crop_xyxy": [
+        114,
+        451,
+        607,
+        697
+      ],
+      "sha256": "6d9cedc1d0f408341d94ef141b610628e1a04a0f272775f69ea91f49ea45bae5",
+      "caption_retained": true
+    },
+    {
+      "file": "source_listing2.png",
+      "pdf_page_1based": 17,
+      "dpi": 150,
+      "crop_xyxy": [
+        608,
+        665,
+        1099,
+        859
+      ],
+      "sha256": "15e95b90ff5c586a2304893361811737dd009030134b44aa99083d143aaa14ae",
+      "caption_retained": true
+    },
+    {
+      "file": "source_listing3.png",
+      "pdf_page_1based": 17,
+      "dpi": 150,
+      "crop_xyxy": [
+        608,
+        1208,
+        1099,
+        1550
+      ],
+      "sha256": "6033d1f0f8606dff9756ad5aba4fcbadc8ece9e5f1422e450b73b34e87ae9928",
+      "caption_retained": true
+    },
+    {
+      "file": "source_table1_focus.png",
+      "pdf_page_1based": 7,
+      "dpi": 150,
+      "crop_regions_xyxy": [
+        [
+          140,
+          140,
+          1100,
+          212
+        ],
+        [
+          140,
+          516,
+          1100,
+          735
+        ]
+      ],
+      "gap_pixels": 15,
+      "description": "Noncontiguous excerpt: original column headings + all LLM and CogAlpha rows + original caption; middle rows omitted, full table supplied separately.",
+      "sha256": "8e75399162190333f9eeb621463ddcfbf26033e500ec210f7862e887ae53854b",
+      "caption_retained": true
+    }
+  ],
+  "model_identity_source": {
+    "url": "https://api-docs.deepseek.com/quick_start/pricing",
+    "page_title": "Your First API Call",
+    "verified_date": "2026-10-19",
+    "requested_alias": "deepseek-flash",
+    "official_same_day_mapping": "DeepSeek-V4.1-Flash-1017",
+    "evidence_location": "Model table footnote (1); live page verified on 2026-10-19",
+    "meaning": "The configured observed_version comes from the official alias mapping, not an immutable checkpoint independently attested by the API response.",
+    "limitation": "Server weights and API sampling seed cannot be pinned; preserve original responses and frozen formulas for offline reevaluation."
+  }
+}

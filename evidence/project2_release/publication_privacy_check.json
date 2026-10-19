@@ -1,0 +1,11 @@
+{
+  "schema": "qingxu.project2.publication_privacy_check.v1",
+  "checked_utc": "2026-10-19T14:39:17.655100+00:00",
+  "public_candidate_files_checked": 970,
+  "exact_authorized_temporary_key_match_found": false,
+  "forbidden_private_paths_found": [],
+  "credential_literal_findings": [],
+  "public_fitted_model_payload_findings": [],
+  "scope": "tracked and untracked non-ignored candidate files before final staging; no credential value or hash is recorded",
+  "passed": true
+}

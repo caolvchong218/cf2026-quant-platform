@@ -1,0 +1,30 @@
+{
+  "evidence_identity": "5e65b434777e451910a2395c81a9adbd22f5a5db1b44a0a400d54fce61010dc6",
+  "evidence_manifest_sha256": "984f69de1f6a42fbab0dcf34484b23d975360d5465ce11e6fe719c4947a13a1e",
+  "seed_count": 3,
+  "main_slides": 14,
+  "backup_slides": 2,
+  "seconds": 900,
+  "main_notes_chinese_characters": 3393,
+  "test_claim": "462项去重自动测试跨已记录环境全部通过；另附独立审计器合成自检",
+  "ui_claim": "5项界面自动测试通过；最终浏览器操作验收另附记录",
+  "formula_handchecks_passed": true,
+  "pdf_compiled": true,
+  "visual_reviewed": true,
+  "claims_from_real_evidence": true,
+  "pdf_pages": {
+    "report": 16,
+    "beamer": 16,
+    "speaker": 8
+  },
+  "pdf_sha256": {
+    "report": "af321aa076f44b2b141764820205fe946021ac93dbdcdf119e1ae5774d280038",
+    "beamer": "e439b57c3aa15e971c9c0afd22624ca310b8b0d5a721684c332c81850d6d25fd",
+    "speaker": "f3efb3acc659739c577aef10c6b4de3d6f4f2c06df7efdedc0d20be890b5a0aa"
+  },
+  "pptx_validated": true,
+  "pptx_visual_reviewed": true,
+  "pptx_sha256": "deac473080851c2632d065c1b0019a0f3adf2baa6520c75f02cb3fa595764298",
+  "pptx_review_source": "reports/project2_cogalpha/pptx_validation.json; reviewed by parent agent",
+  "deck_content_sha256": "f03e986f9ac80b6e93b6648244972d75f9fe814e58934279a737ee5bec503251"
+}

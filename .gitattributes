@@ -14,3 +14,6 @@ evidence/project2_release/** -text whitespace=cr-at-eol
 evidence/project2_release/test_receipts/*.xml -whitespace
 evidence/project2_*/** linguist-generated=true
 reports/project2_*/** linguist-generated=true
+
+# Generated material QA receipts retain the bytes reviewed before publication.
+reports/project2_*/*.json -text whitespace=cr-at-eol

@@ -1,0 +1,17 @@
+replicate,arm,proposal_slots,valid_candidates,qualified_candidates,elite_candidates,selected_count
+0,fixed16,16,16,1,0,6
+0,literal_1,1,1,0,0,1
+0,literal_2,1,1,0,0,1
+0,literal_3,1,1,1,0,1
+731,llm_initial21,21,21,1,0,8
+731,llm_fresh49,49,48,2,0,20
+731,llm_evolved49,49,33,6,0,20
+731,llm_evolved_diverse,49,33,6,0,9
+732,llm_initial21,21,21,1,1,7
+732,llm_fresh49,49,49,2,0,20
+732,llm_evolved49,49,38,8,0,20
+732,llm_evolved_diverse,49,38,8,0,8
+733,llm_initial21,21,20,0,0,11
+733,llm_fresh49,49,47,0,0,20
+733,llm_evolved49,49,44,0,0,20
+733,llm_evolved_diverse,49,44,0,0,14

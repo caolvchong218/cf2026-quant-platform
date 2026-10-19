@@ -226,7 +226,7 @@ def _experiments(folder, performance, filtered):
         choice = st.radio("补充风险视图", ["回撤", "仓位"], horizontal=True, key="ca_risk")
         field = "drawdown" if choice == "回撤" else "exposure"
         if field in curves:
-            chart(px.line(curves, x="date", y=field, color="路线", labels={"date": "日期", field: choice}).update_yaxes(tickformat=".0%"), 260, key="ca_risk_chart")
+            chart(px.line(curves, x="date", y=field, color="路线", labels={"date": "日期", field: choice}).update_yaxes(tickformat=".1%" if choice == "仓位" else ".0%"), 260, key="ca_risk_chart")
     elif chosen:
         st.caption("所选日线曲线尚未发布，汇总指标仍可查看。")
     st.markdown("**同模型、时期和成本下的全部路线**")

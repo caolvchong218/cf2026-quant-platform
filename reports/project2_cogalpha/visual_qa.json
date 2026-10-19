@@ -1,0 +1,260 @@
+{
+  "schema": "qingxu.pdf_visual_review.v1",
+  "created_utc": "2026-10-19T14:31:33.687003+00:00",
+  "all_pdf_pages_visually_reviewed": true,
+  "artifacts": {
+    "report": {
+      "path": "reports/project2_cogalpha/CF2026_Project2_CogAlpha_Report.pdf",
+      "sha256": "af321aa076f44b2b141764820205fe946021ac93dbdcdf119e1ae5774d280038",
+      "pages": 16,
+      "visually_reviewed_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "render_dpi": 100,
+      "render_images": [
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/report/page-01.png",
+          "sha256": "7ae878fb8e4099f769c23b963be86757c313a79c0535853033cde329abc04af6"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/report/page-02.png",
+          "sha256": "0586317481f084a22ed663130739cdb6aa46e642a30866bb1cd826a3e5b40768"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/report/page-03.png",
+          "sha256": "aa252458cbc5eb23f13ee2fb195b47c53b757e94287ecb5c31c889b7a319afca"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/report/page-04.png",
+          "sha256": "09a2ccb442a4eb3fa9281ceacff046f9fac06263f63076690bb38e8c5cffd12e"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/report/page-05.png",
+          "sha256": "ad6cf8dd392f3db4e8591fc1862727c8f22f4ef1ffef59f8cda201800e734249"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/report/page-06.png",
+          "sha256": "2c41917237bbc922c1540183d61963f7a4ca8930e524846eb1141703779b2834"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/report/page-07.png",
+          "sha256": "21778deaaed9130ec182e36836a6601478d3ca13acc49a35e6ea3e77b790d204"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/report/page-08.png",
+          "sha256": "c3bf5035bfcdd06323362942bcd1263db4a9d4b44334e176c2ac1d5adc88a2bd"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/report/page-09.png",
+          "sha256": "856c770c562dce36e95581e2b4f68acf87cdb59c9cd7ec3deca25f35f8244ad8"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/report/page-10.png",
+          "sha256": "82ce02595fc5b756687c7141bd530be9fd3d8407772de731341420e7315ada5b"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/report/page-11.png",
+          "sha256": "ab4e4df068cce848abac3bc66203af099355ad2b53796137fe8fb69603626215"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/report/page-12.png",
+          "sha256": "dbafc6c69535b506f6d4f8e889266de3e041df1a3109cd2c34a36f663fdf069e"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/report/page-13.png",
+          "sha256": "4ec64da801ad0c331cb67db1844f55a8f61ec4da3fdf37d919dbdc6a0d44be9f"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/report/page-14.png",
+          "sha256": "2e8816928bb9ac4812b4341b292685a1707e35ecc00e7285a8a92723ec44a407"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/report/page-15.png",
+          "sha256": "08af6d8d99b963953f7c56534b7dd9da3a5f27c92951255a2511a4fda226647d"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/report/page-16.png",
+          "sha256": "6bf25dc01f8365b3d38055f4d64c4916d73f633326069d9e514af4ce8c282cf6"
+        }
+      ],
+      "compilation_passes_at_least": 2,
+      "overfull_or_missing_glyphs": false
+    },
+    "beamer": {
+      "path": "reports/project2_cogalpha/CF2026_Project2_CogAlpha_Beamer.pdf",
+      "sha256": "e439b57c3aa15e971c9c0afd22624ca310b8b0d5a721684c332c81850d6d25fd",
+      "pages": 16,
+      "visually_reviewed_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "render_dpi": 100,
+      "render_images": [
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/beamer/page-01.png",
+          "sha256": "ec5bb72ab2bec7750b36bbbcbaaabaee9b0ecbfcf7e286e6a8f5eea08440ea96"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/beamer/page-02.png",
+          "sha256": "4fb176069c8f433ef5964e0535907554d97fb74c5fc31450e55fe58105cc18b9"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/beamer/page-03.png",
+          "sha256": "6804ab3fb5fae6862597c2fcbd987c4dfea2dd325a4a1ec90c670777a3ec2781"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/beamer/page-04.png",
+          "sha256": "30e540d01a163dab07ba06c47d8e5520b259a1a087909cdd6f610965199e897b"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/beamer/page-05.png",
+          "sha256": "d5a5515c5f6f0a3fbbdc709d87216571aa82314c3ec9bbeafd6b496ffc897fd7"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/beamer/page-06.png",
+          "sha256": "0e3b18dcacdcc34c6b966edc7ffe735f1424bd70f24ba03508eea36ba1770063"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/beamer/page-07.png",
+          "sha256": "c1a9806f874fd82861636d68a7cb968f6c83eac2c349a683d04b46919a836f94"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/beamer/page-08.png",
+          "sha256": "a4687540af4abbef29b987844c5ee4ee508e20fe23797fa3ac2945910781cc15"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/beamer/page-09.png",
+          "sha256": "67a8300e260fce861e810ccf422ae6d92775ae893308685f73f56943dee62264"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/beamer/page-10.png",
+          "sha256": "54ef0aa53a7c66ec52ee6247d3c7309b15d97d46c5d5a152a1e01ec79d369b7c"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/beamer/page-11.png",
+          "sha256": "8769a3d329e75eb4081c8aa130ab2aa0e0bc92303690ddb73fd5a9a5f6e20ed1"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/beamer/page-12.png",
+          "sha256": "cf5945bdbbc19999bd334112064cf41030443c18483b844fe9084c2186b2f699"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/beamer/page-13.png",
+          "sha256": "1eeccf6e4e693ce36f2f29216c6332a95f1f0a690146588ed00ad4f4e6c5b71b"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/beamer/page-14.png",
+          "sha256": "8fe4b8d3de6f4e9a957bac880bfaa82b326e623803097fb3b8b698514406c1b4"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/beamer/page-15.png",
+          "sha256": "341ab52103474bde02821a1b0e4b34748d7f93ea3ad65456b3e513677f4849a9"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/beamer/page-16.png",
+          "sha256": "84fcc60775fd113ca9edb99f5720326a994e83f0de7d77d33f8188df7ad5b50c"
+        }
+      ],
+      "compilation_passes_at_least": 2,
+      "overfull_or_missing_glyphs": false
+    },
+    "speaker": {
+      "path": "reports/project2_cogalpha/CF2026_Project2_CogAlpha_Speaker_Script.pdf",
+      "sha256": "f3efb3acc659739c577aef10c6b4de3d6f4f2c06df7efdedc0d20be890b5a0aa",
+      "pages": 8,
+      "visually_reviewed_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "render_dpi": 100,
+      "render_images": [
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/speaker/page-1.png",
+          "sha256": "c3fc68b6e92a744dd415beee57d88242ccac09e87d7d49329fde779d5de9bf9e"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/speaker/page-2.png",
+          "sha256": "086b10a4097c9850cbb3f7032499f185ad40e306f4d8429598b800dc3594db9e"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/speaker/page-3.png",
+          "sha256": "15a3b9be0c411c996698a97406d3edce55b8a79f02675e73cd4959b55d0f5888"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/speaker/page-4.png",
+          "sha256": "317fff36a76ed0be0942045dc2df74e756b897a6d4a658ecbe8e54643561178b"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/speaker/page-5.png",
+          "sha256": "499987f8fc8189680888e5b61a4ca722983919c112ae4098c8187f53f6b6d38d"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/speaker/page-6.png",
+          "sha256": "9e7c40eddbe6a6f9b811626161fc9239428f064cf5539fb44161083319726f86"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/speaker/page-7.png",
+          "sha256": "2f223d03ee4d41b9cc036e30800da4f8bcc7e901215e416f8696b022745ac3b2"
+        },
+        {
+          "path": "tmp/project2_cogalpha_pdf_qa/speaker/page-8.png",
+          "sha256": "beb2f69a2cbf0db2f90f48cf6685eb43844249915a4069bef08be57e219b0782"
+        }
+      ],
+      "compilation_passes_at_least": 2,
+      "overfull_or_missing_glyphs": false
+    }
+  },
+  "findings": [],
+  "resolved_findings": [
+    "Escaped two literal percent signs to restore the ends of report paragraphs on pages 5 and 8.",
+    "Added fixed16 and all-three initial-pool LightGBM baseline rows; report page 13 rechecked.",
+    "Expressed return and drawdown differences in percentage points.",
+    "Marked shortened original candidate hypotheses as excerpts."
+  ],
+  "changed_report_pages_rechecked": [
+    5,
+    8,
+    9,
+    12,
+    13,
+    14
+  ],
+  "scope": "All report 16 pages, all Beamer 16 slides and all speaker-script 8 pages rendered with Poppler and visually inspected. Report changed pages re-rendered and inspected. PPTX is covered by the separate parent-agent receipt. No native PowerPoint application execution claimed.",
+  "final_manifest_sha256": "984f69de1f6a42fbab0dcf34484b23d975360d5465ce11e6fe719c4947a13a1e"
+}

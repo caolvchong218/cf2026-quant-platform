@@ -213,5 +213,16 @@
     "interpretation": "All 462 unique tests pass across documented environments and reruns; not a single uninterrupted full-suite run."
   },
   "passed": true,
-  "status": "all_unique_tests_passed_across_documented_environments"
+  "status": "all_unique_tests_passed_across_documented_environments",
+  "supplementary_reruns": [
+    {
+      "file": "evidence/project2_release/test_receipts/project2_cogalpha_ui_final.xml",
+      "sha256": "8d257b196b94b2610a56a225c114c585ebf894816a32084af11d6293851f18f2",
+      "tests": 5,
+      "passed": 5,
+      "seconds": 4.698,
+      "reason": "Display-only exposure axis tick precision change; all existing CogAlpha UI cases rerun; no new unique tests."
+    }
+  ],
+  "final_ui_source_sha256": "2b6c4e9475f96573b154cb54fe7f3a67f1435ac56a62e2ce97d5e571646d2327"
 }

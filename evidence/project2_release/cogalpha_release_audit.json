@@ -1,0 +1,917 @@
+{
+  "schema": "qingxu.project2.cogalpha.release_audit.v1",
+  "status": "passed",
+  "passed": true,
+  "audit_executed": true,
+  "created_utc": "2026-10-19T14:35:48.304886+00:00",
+  "checks": [
+    {
+      "section": "identities_and_release_hashes",
+      "passed": true,
+      "seconds": 1.5065812999964692
+    },
+    {
+      "section": "proposal_slots_and_failures",
+      "passed": true,
+      "seconds": 3.35913920000894
+    },
+    {
+      "section": "training_selection_and_models",
+      "passed": true,
+      "seconds": 2.9081943999626674
+    },
+    {
+      "section": "api_budget_and_receipts",
+      "passed": true,
+      "seconds": 0.07829599996330217
+    },
+    {
+      "section": "ninety_stored_portfolios",
+      "passed": true,
+      "seconds": 280.8063190000248
+    },
+    {
+      "section": "eighteen_comparisons",
+      "passed": true,
+      "seconds": 0.016769200039561838
+    }
+  ],
+  "details": {
+    "identities_and_release_hashes": {
+      "manifest_sha256_checked": true,
+      "files_hashed": 8,
+      "git_comparison_executed": true,
+      "frozen_commit": "bde19ff33917edcb0fd24f85d215f666d32d08cc",
+      "git_skip_reason": null,
+      "source_comparison": "Git bytes normalized only for CRLF/LF; manifest SHA256 remains byte-exact.",
+      "public_files_hashed": 113,
+      "input_files_hashed": 3,
+      "study_identity": "5e65b434777e451910a2395c81a9adbd22f5a5db1b44a0a400d54fce61010dc6"
+    },
+    "proposal_slots_and_failures": {
+      "slots": 231,
+      "replicates": 3,
+      "proposal_attempts": 236,
+      "rejected_slots": 34,
+      "rejections_by_reason": {
+        "duplicate_expression_in_arm": 32,
+        "training_quality_check_failed": 1,
+        "window must be an integer in [1, 2520]": 1
+      },
+      "config_hash": "ffefbca52e039c781d3e87cee14f0b7f9e304e86448916f2df29f480db687970"
+    },
+    "training_selection_and_models": {
+      "pools": 16,
+      "prediction_matrices": 42,
+      "training_only_selection_recomputed": true,
+      "limitation": "Verifies released selection rules/artifacts, not unrecorded human decisions."
+    },
+    "api_budget_and_receipts": {
+      "calls": 237,
+      "successful_calls": 237,
+      "spent_cny": 1.312712,
+      "uncertain_reserved_cny": 0.0,
+      "unattributed_preflight_calls": 1,
+      "journal_sha256": "9e1c4bcd7069d1d4c5013ad527f3d83d093f983c18e17b6c4a16e9d3db5c418d",
+      "journal_final_hash": "fdd11af4ce405cdfc9450cd56de568bb18cf007e348841a99d9bc03548e4b356"
+    },
+    "ninety_stored_portfolios": {
+      "runs": 90,
+      "sessions": 40344,
+      "fills": 402170,
+      "max_cash_error_cny": 9.74978320300579e-10,
+      "max_units_error": 0.0,
+      "method": "Independent vectorized cash/units reconstruction and prior-score order audit; no engine rerun",
+      "runs_checked": [
+        {
+          "key": "s0__fixed16__rank__validation__paper",
+          "sessions": 484,
+          "fills": 4834,
+          "cash_error_cny": 2.546585164964199e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s0__fixed16__rank__test__paper",
+          "sessions": 417,
+          "fills": 4184,
+          "cash_error_cny": 2.546585164964199e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s0__fixed16__ridge__validation__paper",
+          "sessions": 484,
+          "fills": 4846,
+          "cash_error_cny": 2.546585164964199e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s0__fixed16__ridge__test__paper",
+          "sessions": 417,
+          "fills": 4198,
+          "cash_error_cny": 2.546585164964199e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s0__fixed16__lightgbm__validation__paper",
+          "sessions": 484,
+          "fills": 4804,
+          "cash_error_cny": 2.6921043172478676e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s0__fixed16__lightgbm__test__paper",
+          "sessions": 417,
+          "fills": 4182,
+          "cash_error_cny": 2.473825588822365e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s0__literal_1__rank__validation__paper",
+          "sessions": 484,
+          "fills": 4848,
+          "cash_error_cny": 2.473825588822365e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s0__literal_1__rank__test__paper",
+          "sessions": 417,
+          "fills": 4168,
+          "cash_error_cny": 2.582964953035116e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s0__literal_2__rank__validation__paper",
+          "sessions": 484,
+          "fills": 4622,
+          "cash_error_cny": 4.802132025361061e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s0__literal_2__rank__test__paper",
+          "sessions": 417,
+          "fills": 3816,
+          "cash_error_cny": 2.874003257602453e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s0__literal_3__rank__validation__paper",
+          "sessions": 484,
+          "fills": 4834,
+          "cash_error_cny": 4.874891601502895e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s0__literal_3__rank__test__paper",
+          "sessions": 417,
+          "fills": 4142,
+          "cash_error_cny": 3.5652192309498787e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_initial21__rank__validation__paper",
+          "sessions": 484,
+          "fills": 4760,
+          "cash_error_cny": 2.801243681460619e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_initial21__rank__test__paper",
+          "sessions": 417,
+          "fills": 4070,
+          "cash_error_cny": 2.546585164964199e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_initial21__ridge__validation__paper",
+          "sessions": 484,
+          "fills": 4830,
+          "cash_error_cny": 2.473825588822365e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_initial21__ridge__test__paper",
+          "sessions": 417,
+          "fills": 4154,
+          "cash_error_cny": 2.473825588822365e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_initial21__lightgbm__validation__paper",
+          "sessions": 484,
+          "fills": 4860,
+          "cash_error_cny": 2.874003257602453e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_initial21__lightgbm__test__paper",
+          "sessions": 417,
+          "fills": 4170,
+          "cash_error_cny": 2.6557245291769505e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_fresh49__rank__validation__paper",
+          "sessions": 484,
+          "fills": 4838,
+          "cash_error_cny": 2.582964953035116e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_fresh49__rank__test__paper",
+          "sessions": 417,
+          "fills": 4164,
+          "cash_error_cny": 4.874891601502895e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_fresh49__ridge__validation__paper",
+          "sessions": 484,
+          "fills": 4842,
+          "cash_error_cny": 2.6193447411060333e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_fresh49__ridge__test__paper",
+          "sessions": 417,
+          "fills": 4158,
+          "cash_error_cny": 2.6193447411060333e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_fresh49__lightgbm__validation__paper",
+          "sessions": 484,
+          "fills": 4870,
+          "cash_error_cny": 3.637978807091713e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_fresh49__lightgbm__test__paper",
+          "sessions": 417,
+          "fills": 4154,
+          "cash_error_cny": 2.4374458007514477e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_fresh49__lightgbm__test__zero",
+          "sessions": 417,
+          "fills": 4154,
+          "cash_error_cny": 2.1827872842550278e-11,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_evolved49__rank__validation__paper",
+          "sessions": 484,
+          "fills": 4862,
+          "cash_error_cny": 2.473825588822365e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_evolved49__rank__test__paper",
+          "sessions": 417,
+          "fills": 4190,
+          "cash_error_cny": 2.546585164964199e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_evolved49__ridge__validation__paper",
+          "sessions": 484,
+          "fills": 4806,
+          "cash_error_cny": 2.6557245291769505e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_evolved49__ridge__test__paper",
+          "sessions": 417,
+          "fills": 4188,
+          "cash_error_cny": 2.546585164964199e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_evolved49__lightgbm__validation__paper",
+          "sessions": 484,
+          "fills": 4826,
+          "cash_error_cny": 2.837623469531536e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_evolved49__lightgbm__test__paper",
+          "sessions": 417,
+          "fills": 4170,
+          "cash_error_cny": 4.874891601502895e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_evolved49__lightgbm__test__zero",
+          "sessions": 417,
+          "fills": 4170,
+          "cash_error_cny": 5.4569682106375694e-11,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_evolved_diverse__rank__validation__paper",
+          "sessions": 484,
+          "fills": 4854,
+          "cash_error_cny": 2.4374458007514477e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_evolved_diverse__rank__test__paper",
+          "sessions": 417,
+          "fills": 4158,
+          "cash_error_cny": 2.473825588822365e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_evolved_diverse__ridge__validation__paper",
+          "sessions": 484,
+          "fills": 4860,
+          "cash_error_cny": 2.473825588822365e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_evolved_diverse__ridge__test__paper",
+          "sessions": 417,
+          "fills": 4174,
+          "cash_error_cny": 2.4010660126805305e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_evolved_diverse__lightgbm__validation__paper",
+          "sessions": 484,
+          "fills": 4848,
+          "cash_error_cny": 2.546585164964199e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s731__llm_evolved_diverse__lightgbm__test__paper",
+          "sessions": 417,
+          "fills": 4172,
+          "cash_error_cny": 2.546585164964199e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_initial21__rank__validation__paper",
+          "sessions": 484,
+          "fills": 4848,
+          "cash_error_cny": 2.6193447411060333e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_initial21__rank__test__paper",
+          "sessions": 417,
+          "fills": 4178,
+          "cash_error_cny": 3.710738383233547e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_initial21__ridge__validation__paper",
+          "sessions": 484,
+          "fills": 4868,
+          "cash_error_cny": 4.802132025361061e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_initial21__ridge__test__paper",
+          "sessions": 417,
+          "fills": 4202,
+          "cash_error_cny": 2.473825588822365e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_initial21__lightgbm__validation__paper",
+          "sessions": 484,
+          "fills": 4848,
+          "cash_error_cny": 3.601599019020796e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_initial21__lightgbm__test__paper",
+          "sessions": 417,
+          "fills": 4168,
+          "cash_error_cny": 2.546585164964199e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_fresh49__rank__validation__paper",
+          "sessions": 484,
+          "fills": 4792,
+          "cash_error_cny": 2.4374458007514477e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_fresh49__rank__test__paper",
+          "sessions": 417,
+          "fills": 4192,
+          "cash_error_cny": 2.6193447411060333e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_fresh49__ridge__validation__paper",
+          "sessions": 484,
+          "fills": 4838,
+          "cash_error_cny": 2.4374458007514477e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_fresh49__ridge__test__paper",
+          "sessions": 417,
+          "fills": 4200,
+          "cash_error_cny": 3.637978807091713e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_fresh49__lightgbm__validation__paper",
+          "sessions": 484,
+          "fills": 4808,
+          "cash_error_cny": 2.546585164964199e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_fresh49__lightgbm__test__paper",
+          "sessions": 417,
+          "fills": 4200,
+          "cash_error_cny": 2.582964953035116e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_fresh49__lightgbm__test__zero",
+          "sessions": 417,
+          "fills": 4200,
+          "cash_error_cny": 2.546585164964199e-11,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_evolved49__rank__validation__paper",
+          "sessions": 484,
+          "fills": 4852,
+          "cash_error_cny": 2.4374458007514477e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_evolved49__rank__test__paper",
+          "sessions": 417,
+          "fills": 4152,
+          "cash_error_cny": 2.874003257602453e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_evolved49__ridge__validation__paper",
+          "sessions": 484,
+          "fills": 4844,
+          "cash_error_cny": 2.837623469531536e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_evolved49__ridge__test__paper",
+          "sessions": 417,
+          "fills": 4174,
+          "cash_error_cny": 2.473825588822365e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_evolved49__lightgbm__validation__paper",
+          "sessions": 484,
+          "fills": 4832,
+          "cash_error_cny": 3.710738383233547e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_evolved49__lightgbm__test__paper",
+          "sessions": 417,
+          "fills": 3672,
+          "cash_error_cny": 3.637978807091713e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_evolved49__lightgbm__test__zero",
+          "sessions": 417,
+          "fills": 3672,
+          "cash_error_cny": 2.9103830456733704e-11,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_evolved_diverse__rank__validation__paper",
+          "sessions": 484,
+          "fills": 4870,
+          "cash_error_cny": 1.382431946694851e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_evolved_diverse__rank__test__paper",
+          "sessions": 417,
+          "fills": 4170,
+          "cash_error_cny": 2.546585164964199e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_evolved_diverse__ridge__validation__paper",
+          "sessions": 484,
+          "fills": 4864,
+          "cash_error_cny": 2.510205376893282e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_evolved_diverse__ridge__test__paper",
+          "sessions": 417,
+          "fills": 4202,
+          "cash_error_cny": 2.6193447411060333e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_evolved_diverse__lightgbm__validation__paper",
+          "sessions": 484,
+          "fills": 4862,
+          "cash_error_cny": 2.546585164964199e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s732__llm_evolved_diverse__lightgbm__test__paper",
+          "sessions": 417,
+          "fills": 4172,
+          "cash_error_cny": 2.473825588822365e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_initial21__rank__validation__paper",
+          "sessions": 484,
+          "fills": 4836,
+          "cash_error_cny": 5.893525667488575e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_initial21__rank__test__paper",
+          "sessions": 417,
+          "fills": 4194,
+          "cash_error_cny": 7.34871719032526e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_initial21__ridge__validation__paper",
+          "sessions": 484,
+          "fills": 4868,
+          "cash_error_cny": 2.837623469531536e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_initial21__ridge__test__paper",
+          "sessions": 417,
+          "fills": 4152,
+          "cash_error_cny": 2.546585164964199e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_initial21__lightgbm__validation__paper",
+          "sessions": 484,
+          "fills": 4832,
+          "cash_error_cny": 2.473825588822365e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_initial21__lightgbm__test__paper",
+          "sessions": 417,
+          "fills": 4204,
+          "cash_error_cny": 2.6193447411060333e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_fresh49__rank__validation__paper",
+          "sessions": 484,
+          "fills": 4850,
+          "cash_error_cny": 3.5652192309498787e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_fresh49__rank__test__paper",
+          "sessions": 417,
+          "fills": 4182,
+          "cash_error_cny": 2.546585164964199e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_fresh49__ridge__validation__paper",
+          "sessions": 484,
+          "fills": 4870,
+          "cash_error_cny": 2.473825588822365e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_fresh49__ridge__test__paper",
+          "sessions": 417,
+          "fills": 4174,
+          "cash_error_cny": 2.473825588822365e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_fresh49__lightgbm__validation__paper",
+          "sessions": 484,
+          "fills": 4870,
+          "cash_error_cny": 2.546585164964199e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_fresh49__lightgbm__test__paper",
+          "sessions": 417,
+          "fills": 4190,
+          "cash_error_cny": 2.801243681460619e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_fresh49__lightgbm__test__zero",
+          "sessions": 417,
+          "fills": 4190,
+          "cash_error_cny": 2.546585164964199e-11,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_evolved49__rank__validation__paper",
+          "sessions": 484,
+          "fills": 4836,
+          "cash_error_cny": 2.7284841053187847e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_evolved49__rank__test__paper",
+          "sessions": 417,
+          "fills": 4150,
+          "cash_error_cny": 4.984030965715647e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_evolved49__ridge__validation__paper",
+          "sessions": 484,
+          "fills": 4856,
+          "cash_error_cny": 4.802132025361061e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_evolved49__ridge__test__paper",
+          "sessions": 417,
+          "fills": 4202,
+          "cash_error_cny": 2.510205376893282e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_evolved49__lightgbm__validation__paper",
+          "sessions": 484,
+          "fills": 4812,
+          "cash_error_cny": 2.473825588822365e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_evolved49__lightgbm__test__paper",
+          "sessions": 417,
+          "fills": 4210,
+          "cash_error_cny": 2.473825588822365e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_evolved49__lightgbm__test__zero",
+          "sessions": 417,
+          "fills": 4210,
+          "cash_error_cny": 2.1827872842550278e-11,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_evolved_diverse__rank__validation__paper",
+          "sessions": 484,
+          "fills": 4834,
+          "cash_error_cny": 3.5288394428789616e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_evolved_diverse__rank__test__paper",
+          "sessions": 417,
+          "fills": 4186,
+          "cash_error_cny": 9.74978320300579e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_evolved_diverse__ridge__validation__paper",
+          "sessions": 484,
+          "fills": 4834,
+          "cash_error_cny": 4.0381564758718014e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_evolved_diverse__ridge__test__paper",
+          "sessions": 417,
+          "fills": 4136,
+          "cash_error_cny": 5.929905455559492e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_evolved_diverse__lightgbm__validation__paper",
+          "sessions": 484,
+          "fills": 4836,
+          "cash_error_cny": 2.473825588822365e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        },
+        {
+          "key": "s733__llm_evolved_diverse__lightgbm__test__paper",
+          "sessions": 417,
+          "fills": 4196,
+          "cash_error_cny": 2.6557245291769505e-10,
+          "units_error": 0.0,
+          "ranking_and_timing_checked": true,
+          "fill_and_mark_prices_checked_against_frozen_market": true
+        }
+      ]
+    },
+    "eighteen_comparisons": {
+      "rows": 18,
+      "all_models_and_replicates_retained": true,
+      "negative_returns_retained": 14,
+      "negative_evolution_rank_ic_deltas_retained": 7
+    }
+  },
+  "audit_script_sha256": "a2cdf527559c756239077202f493e7482c31de8c0fd0517dc3ea71dec2cf83ab",
+  "network_calls": 0,
+  "credentials_read": false,
+  "backtests_rerun": 0,
+  "models_refit": 0,
+  "source_artifacts_modified": false,
+  "limits": [
+    "Audits stored evidence and its declared lineage, not future investment performance.",
+    "Prediction IC summaries are reconciled to saved daily metrics; price-label correlations are not recomputed.",
+    "Saved predictions are linked to orders via prior-session ranking without model retraining.",
+    "Frozen rules and retained results cannot prove absence of unrecorded human decisions."
+  ]
+}

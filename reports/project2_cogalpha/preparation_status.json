@@ -1,0 +1,10 @@
+{
+  "stage": "final_materials_compiled_and_reviewed",
+  "sources_prepared": true,
+  "method_figures_prepared": true,
+  "final_results_filled": true,
+  "final_pdfs_compiled": true,
+  "all_pdf_pages_visually_reviewed": true,
+  "final_manifest_sha256": "984f69de1f6a42fbab0dcf34484b23d975360d5465ce11e6fe719c4947a13a1e",
+  "message": "Formal materials use finalized real results; all three PDFs compiled at least twice and all pages visually checked. See authoring_checks.json, visual_qa.json and separate pptx_validation.json."
+}

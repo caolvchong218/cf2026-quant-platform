@@ -1,0 +1,38 @@
+{
+  "toy_only_not_market_data": true,
+  "inputs": {
+    "open": 10.0,
+    "high": 12.0,
+    "low": 9.0,
+    "close": 11.0,
+    "volume": 100000.0
+  },
+  "paper_epsilon": 1e-09,
+  "implementation_epsilon": 1e-09,
+  "checks": [
+    {
+      "id": "paper_listing1",
+      "expression": "safe_divide(high-close,volume+1e-9)",
+      "epsilon": 1e-09,
+      "expected": 9.9999999999999e-06,
+      "actual": 9.9999999999999e-06,
+      "passed": true
+    },
+    {
+      "id": "paper_listing2",
+      "expression": "safe_divide(high-low,volume+1e-9)",
+      "epsilon": 1e-09,
+      "expected": 2.99999999999997e-05,
+      "actual": 2.99999999999997e-05,
+      "passed": true
+    },
+    {
+      "id": "paper_listing3",
+      "expression": "tanh(safe_divide(abs(close-open),volume*close+1e-9))",
+      "epsilon": 1e-09,
+      "expected": 9.090909090906579e-07,
+      "actual": 9.090909090906579e-07,
+      "passed": true
+    }
+  ]
+}

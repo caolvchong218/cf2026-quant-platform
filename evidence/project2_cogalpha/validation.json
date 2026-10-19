@@ -1,0 +1,728 @@
+{
+  "all_ledgers_passed": true,
+  "portfolio_runs": 90,
+  "checks": [
+    {
+      "key": "s0__fixed16__rank__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s0__fixed16__rank__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s0__fixed16__ridge__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s0__fixed16__ridge__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s0__fixed16__lightgbm__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s0__fixed16__lightgbm__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s0__literal_1__rank__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s0__literal_1__rank__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s0__literal_2__rank__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s0__literal_2__rank__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s0__literal_3__rank__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s0__literal_3__rank__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_initial21__rank__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_initial21__rank__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_initial21__ridge__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_initial21__ridge__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_initial21__lightgbm__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_initial21__lightgbm__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_fresh49__rank__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_fresh49__rank__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_fresh49__ridge__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_fresh49__ridge__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_fresh49__lightgbm__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_fresh49__lightgbm__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_fresh49__lightgbm__test__zero",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_evolved49__rank__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_evolved49__rank__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_evolved49__ridge__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_evolved49__ridge__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_evolved49__lightgbm__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_evolved49__lightgbm__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_evolved49__lightgbm__test__zero",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_evolved_diverse__rank__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_evolved_diverse__rank__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_evolved_diverse__ridge__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_evolved_diverse__ridge__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_evolved_diverse__lightgbm__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s731__llm_evolved_diverse__lightgbm__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_initial21__rank__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_initial21__rank__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_initial21__ridge__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_initial21__ridge__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_initial21__lightgbm__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_initial21__lightgbm__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_fresh49__rank__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_fresh49__rank__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_fresh49__ridge__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_fresh49__ridge__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_fresh49__lightgbm__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_fresh49__lightgbm__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_fresh49__lightgbm__test__zero",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_evolved49__rank__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_evolved49__rank__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_evolved49__ridge__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_evolved49__ridge__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_evolved49__lightgbm__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_evolved49__lightgbm__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_evolved49__lightgbm__test__zero",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_evolved_diverse__rank__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_evolved_diverse__rank__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_evolved_diverse__ridge__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_evolved_diverse__ridge__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_evolved_diverse__lightgbm__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s732__llm_evolved_diverse__lightgbm__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_initial21__rank__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_initial21__rank__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_initial21__ridge__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_initial21__ridge__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_initial21__lightgbm__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_initial21__lightgbm__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_fresh49__rank__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_fresh49__rank__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_fresh49__ridge__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_fresh49__ridge__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_fresh49__lightgbm__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_fresh49__lightgbm__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_fresh49__lightgbm__test__zero",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_evolved49__rank__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_evolved49__rank__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_evolved49__ridge__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_evolved49__ridge__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_evolved49__lightgbm__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_evolved49__lightgbm__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_evolved49__lightgbm__test__zero",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_evolved_diverse__rank__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_evolved_diverse__rank__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_evolved_diverse__ridge__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_evolved_diverse__ridge__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_evolved_diverse__lightgbm__validation__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 484,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    },
+    {
+      "key": "s733__llm_evolved_diverse__lightgbm__test__paper",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 417,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10
+    }
+  ],
+  "no_test_feedback": true,
+  "models_frozen_before_validation": true
+}

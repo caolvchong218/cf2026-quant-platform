@@ -4,6 +4,14 @@
 >
 > 审计日期：2026-10-19。本文只记录来源核验、论文数值、可复现边界和接入建议；不把论文附件中的实验设置自动当作课程硬性要求。
 
+## 当前正式实现说明
+
+本文保留前期来源审计与方案建议，因此下文的“离线、无密钥路线”“可选LLM”及论文模型超参数建议属于当时的备选思路，不代表最终执行。正式实验以已冻结的 `configs/project2_cogalpha.json` 为准：通过现有受预算约束的研究接口，实际请求 `deepseek-flash` 生成七层21角色候选，执行有限变异/交叉，并与相同49提案槽位的新提案对照比较；两个分支共享21个初代候选，失败槽不补位。新提案对照也获得自身的训练指标反馈，只是不接收父公式。三次重复全部保留。
+
+本地组合使用一次训练并冻结的秩平均、Ridge和LightGBM模型，参数见正式配置；不复现原文的120B模型训练或126日滚动拟合。因子研发与筛选只接收清理标签边界后的训练统计，后续评价不反馈到提案或选择。质量通过、五指标qualified/elite、正训练RankIC和最终入模分别记录，不能互相替代。实际实验结果、费用和验收状态以最终证据清单为准，本文的文献数值不作为本地结果。
+
+正式报告与原文截图记录另见 `reports/project2_cogalpha/` 和 `evidence/project2_cogalpha/source_reference.json`。冻结配置保留原字节；论文文件身份的单独勘误见第2.1节。`deepseek-flash` 是请求别名，官网当日映射不能独立证明服务端不可变权重；缓存响应与冻结公式支持离线重评，三个本地抽样种子不等于三个可完全重现的LLM采样种子。
+
 ## 1. 结论先行
 
 这篇论文是 **Cognitive Alpha Mining via LLM-Driven Code-Based Evolution**，提出 CogAlpha：由 OHLCV 数据出发，让多层 LLM agent 生成可执行 alpha 代码，用质量检查和信息泄漏检查筛选，再用 mutation/crossover 迭代演化，最后用 Ridge 或 LightGBM 组合多个 alpha。论文的主实验以 CSI300、10 日预测期为主，报告了 CogAlpha + LightGBM 的 IC=0.0591、RankIC=0.0814、ICIR=0.3410、RankICIR=0.4350（PDF 第 7 页 Table 1；跨数据集的完整结果见第 19 页 Table 5）。
@@ -19,12 +27,14 @@
 | 项目 | 核验结果 |
 |---|---|
 | 文件 | `D:/Desktop/2511.18850v4.pdf` |
-| SHA-256 | `20C6C76A0E9EA5FDF869EEA0A20A3594AB61181FEE9913B1EC9361B3669ECEA45` |
+| SHA-256 | `20C6C76A0E9EA5FDF869EE0A20A3594AB61181FEE9913B1EC9361B3669ECEA45` |
 | PDF 页数 | 35 |
 | PDF 标题元数据 | Cognitive Alpha Mining via LLM-Driven Code-Based Evolution |
 | 作者元数据 | Fengyuan Liu; Yi Huang; Sichun Luo; Yuqi Wang; Yazheng Yang; Xinye Li; Zefa Hu; Junlan Feng; Qi Liu |
 | arXiv | [arXiv:2511.18850v4](https://arxiv.org/abs/2511.18850v4) |
 | DOI（预印本元数据） | [10.48550/arXiv.2511.18850](https://doi.org/10.48550/arXiv.2511.18850) |
+
+来源身份勘误（2026-10-19）：初版审计及冻结配置把摘要中的 `f869ee0a20` 误录为 `f869eea0a20`。已重新对两个本地副本计算真实64字符SHA-256，上表已修正。冻结研究配置保留原字节和运行身份，独立勘误记录见 `configs/project2_cogalpha_source_erratum.json`；这只纠正论文文件身份，不改变计算、提示词、样本、阈值或模型，也不触发新的付费实验。
 
 使用 bundled Python `pdfplumber` 逐页抽取文本，并用 Poppler `pdftoppm -r 150` 渲染关键页。第 5、7、12、16、17、18、19、20 页渲染图已在临时审计目录中视觉检查；表格和图形清晰可读。
 
@@ -70,7 +80,7 @@ Adaptive Generation 每代抽取两个有效因子和两个最差无效因子，
   \mathrm{Alpha} = \frac{day\_high-day\_close}{day\_volume+\varepsilon}.
 \]
 
-初始示例报告 IC=0.0090、RankIC=0.0061。Listing 2 的一个演化版本报告 IC=0.0073、RankIC=0.0021，并被丢弃。第 8 页 Listing 3 的演化示例用绝对的 `close-open` 变化除以 dollar volume（`volume*close+eps`），再用 `tanh` 限制极端值，报告 IC=0.0141、RankIC=0.0087。论文声称完整进化后有不少单因子达到 `|IC|>0.05`、`|RankIC|>0.07`，这是论文自己的汇总性描述，不能当成本地实验保证。
+初始示例报告 IC=0.0090、RankIC=0.0061。第17页Listing 2 的一个演化版本报告 IC=0.0073、RankIC=0.0021，并被丢弃。同页Listing 3 的演化示例用绝对的 `close-open` 变化除以 dollar volume（`volume*close+eps`），再用 `tanh` 限制极端值，报告 IC=0.0141、RankIC=0.0087。论文声称完整进化后有不少单因子达到 `|IC|>0.05`、`|RankIC|>0.07`，这是论文自己的汇总性描述，不能当成本地实验保证。
 
 ## 4. 原论文实验设定和原表数值
 
@@ -274,7 +284,7 @@ C:/Users/14108/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/p
 C:/Users/14108/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/poppler/Library/bin/pdftoppm.exe
   + -r 150：渲染第 5、7、12、16、17、18、19、20 页
 Get-FileHash -Algorithm SHA256 D:/Desktop/2511.18850v4.pdf
-  -> 20C6C76A0E9EA5FDF869EEA0A20A3594AB61181FEE9913B1EC9361B3669ECEA45
+  -> 20C6C76A0E9EA5FDF869EE0A20A3594AB61181FEE9913B1EC9361B3669ECEA45
 git ls-remote https://github.com/uwFengyuan/CogAlpha_Prompt.git refs/heads/main
   -> e6f422ddd8250f03b6c887bcf3a82ce8507c46e4
 ```
@@ -417,7 +427,11 @@ Qlib 官方仓库曾在 issue/文档中使用过约 196.5 MB 的 `v2/qlib_data_c
 
 若只使用“七层组织、五项指标、候选进化”这些方法概念而不复制文本，则仍应引用论文；MIT 的代码/文本归属要求主要针对复制到项目中的 prompt 内容。
 
-## 16. 可直接实施的最小严谨复现设计（第二条轨道）
+## 16. 早期最小设计草案（已由正式配置替代）
+
+**历史说明，2026-10-19 更新：本节保留审原文时的初步建议，不是当前执行协议。** 后续明确采用真实且受全局预算约束的模型提案、三次重复、21初代和49槽位同预算对照；Ridge/LGB规模、最终选择、互信息替代估计及冻结训练方式均已重新固定。当前唯一执行依据为 [`configs/project2_cogalpha.json`](../configs/project2_cogalpha.json)，运行说明见 [PROJECT2_REPRODUCIBILITY.md](PROJECT2_REPRODUCIBILITY.md)。本节的17候选、可选LLM、Ridge(alpha=10)、论文规模LightGBM以及“验证集选择参数”等建议没有作为本轮主实验执行，不能用于解释当前输出或声称原表精确复现。
+
+正式研究的两条主要对照为 `llm_evolved49` 对 `llm_fresh49`（相同候选槽位预算），以及独立改进 `llm_evolved_diverse` 对 `llm_evolved49`（同候选池增加训练日IC去冗余）。模型在验证期前一次训练；验证/历史留出结果不反馈给提案或用于更换方案。所有历史已被观察，预训练知识污染可能性单列。完整结果尚待运行结束后验收；以下文字是设计建议的历史原文。
 
 这是在不调用付费模型、不借用 API key 的情况下，最小而可审计的实施方案。它的目标是复现机制和验证工程管线，不能承诺复现论文主结论。
 

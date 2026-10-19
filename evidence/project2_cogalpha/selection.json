@@ -1,0 +1,332 @@
+[
+  {
+    "replicate": 0,
+    "arm": "fixed16",
+    "selected": [
+      "fixed_low_volatility_20",
+      "fixed_distance_high_20",
+      "fixed_reversal_5",
+      "fixed_mean_reversion_10",
+      "fixed_close_position_10",
+      "fixed_bar_pressure_5"
+    ],
+    "training_only": true,
+    "paper_qualification_applied_separately": true,
+    "final_selection_rule": "positive train RankIC; optional training IC redundancy filter"
+  },
+  {
+    "replicate": 0,
+    "arm": "literal_1",
+    "selected": [
+      "paper_listing1"
+    ],
+    "training_only": true,
+    "paper_qualification_applied_separately": true,
+    "final_selection_rule": "literal"
+  },
+  {
+    "replicate": 0,
+    "arm": "literal_2",
+    "selected": [
+      "paper_listing2"
+    ],
+    "training_only": true,
+    "paper_qualification_applied_separately": true,
+    "final_selection_rule": "literal"
+  },
+  {
+    "replicate": 0,
+    "arm": "literal_3",
+    "selected": [
+      "paper_listing3"
+    ],
+    "training_only": true,
+    "paper_qualification_applied_separately": true,
+    "final_selection_rule": "literal"
+  },
+  {
+    "replicate": 731,
+    "arm": "llm_initial21",
+    "selected": [
+      "s731_shared_g0_initial_12",
+      "s731_shared_g0_initial_20",
+      "s731_shared_g0_initial_13",
+      "s731_shared_g0_initial_07",
+      "s731_shared_g0_initial_11",
+      "s731_shared_g0_initial_06",
+      "s731_shared_g0_initial_09",
+      "s731_shared_g0_initial_08"
+    ],
+    "training_only": true,
+    "paper_qualification_applied_separately": true,
+    "final_selection_rule": "positive train RankIC; optional training IC redundancy filter"
+  },
+  {
+    "replicate": 731,
+    "arm": "llm_fresh49",
+    "selected": [
+      "s731_shared_g0_initial_12",
+      "s731_shared_g0_initial_20",
+      "s731_fresh_g2_fresh_09",
+      "s731_shared_g0_initial_13",
+      "s731_fresh_g2_fresh_04",
+      "s731_fresh_g1_fresh_09",
+      "s731_fresh_g2_fresh_01",
+      "s731_shared_g0_initial_07",
+      "s731_shared_g0_initial_11",
+      "s731_fresh_g1_fresh_12",
+      "s731_fresh_g1_fresh_11",
+      "s731_fresh_g1_fresh_03",
+      "s731_fresh_g1_fresh_13",
+      "s731_shared_g0_initial_06",
+      "s731_fresh_g2_fresh_12",
+      "s731_fresh_g2_fresh_06",
+      "s731_shared_g0_initial_09",
+      "s731_fresh_g1_fresh_00",
+      "s731_shared_g0_initial_08",
+      "s731_fresh_g2_fresh_11"
+    ],
+    "training_only": true,
+    "paper_qualification_applied_separately": true,
+    "final_selection_rule": "positive train RankIC; optional training IC redundancy filter"
+  },
+  {
+    "replicate": 731,
+    "arm": "llm_evolved49",
+    "selected": [
+      "s731_shared_g0_initial_12",
+      "s731_evolved_g2_crossover_06",
+      "s731_shared_g0_initial_20",
+      "s731_evolved_g1_mutation_04",
+      "s731_evolved_g2_mutation_01",
+      "s731_evolved_g1_mutation_03",
+      "s731_evolved_g1_crossover_01",
+      "s731_shared_g0_initial_13",
+      "s731_evolved_g1_mutation_05",
+      "s731_evolved_g1_mutation_01",
+      "s731_evolved_g1_crossover_04",
+      "s731_evolved_g2_crossover_01",
+      "s731_evolved_g2_mutation_02",
+      "s731_evolved_g2_mutation_03",
+      "s731_evolved_g1_mutation_00",
+      "s731_shared_g0_initial_07",
+      "s731_shared_g0_initial_11",
+      "s731_shared_g0_initial_06",
+      "s731_shared_g0_initial_09",
+      "s731_shared_g0_initial_08"
+    ],
+    "training_only": true,
+    "paper_qualification_applied_separately": true,
+    "final_selection_rule": "positive train RankIC; optional training IC redundancy filter"
+  },
+  {
+    "replicate": 731,
+    "arm": "llm_evolved_diverse",
+    "selected": [
+      "s731_shared_g0_initial_12",
+      "s731_evolved_g2_crossover_06",
+      "s731_shared_g0_initial_13",
+      "s731_evolved_g2_mutation_03",
+      "s731_shared_g0_initial_07",
+      "s731_shared_g0_initial_11",
+      "s731_shared_g0_initial_06",
+      "s731_shared_g0_initial_09",
+      "s731_shared_g0_initial_08"
+    ],
+    "training_only": true,
+    "paper_qualification_applied_separately": true,
+    "final_selection_rule": "positive train RankIC; optional training IC redundancy filter"
+  },
+  {
+    "replicate": 732,
+    "arm": "llm_initial21",
+    "selected": [
+      "s732_shared_g0_initial_19",
+      "s732_shared_g0_initial_00",
+      "s732_shared_g0_initial_13",
+      "s732_shared_g0_initial_18",
+      "s732_shared_g0_initial_16",
+      "s732_shared_g0_initial_01",
+      "s732_shared_g0_initial_15"
+    ],
+    "training_only": true,
+    "paper_qualification_applied_separately": true,
+    "final_selection_rule": "positive train RankIC; optional training IC redundancy filter"
+  },
+  {
+    "replicate": 732,
+    "arm": "llm_fresh49",
+    "selected": [
+      "s732_shared_g0_initial_19",
+      "s732_shared_g0_initial_00",
+      "s732_shared_g0_initial_13",
+      "s732_fresh_g1_fresh_02",
+      "s732_fresh_g2_fresh_03",
+      "s732_shared_g0_initial_18",
+      "s732_fresh_g2_fresh_11",
+      "s732_fresh_g1_fresh_12",
+      "s732_fresh_g2_fresh_13",
+      "s732_fresh_g2_fresh_05",
+      "s732_fresh_g1_fresh_00",
+      "s732_fresh_g2_fresh_01",
+      "s732_fresh_g1_fresh_09",
+      "s732_fresh_g1_fresh_13",
+      "s732_fresh_g2_fresh_07",
+      "s732_fresh_g2_fresh_04",
+      "s732_shared_g0_initial_16",
+      "s732_fresh_g1_fresh_01",
+      "s732_shared_g0_initial_01",
+      "s732_shared_g0_initial_15"
+    ],
+    "training_only": true,
+    "paper_qualification_applied_separately": true,
+    "final_selection_rule": "positive train RankIC; optional training IC redundancy filter"
+  },
+  {
+    "replicate": 732,
+    "arm": "llm_evolved49",
+    "selected": [
+      "s732_shared_g0_initial_19",
+      "s732_shared_g0_initial_00",
+      "s732_evolved_g2_crossover_04",
+      "s732_evolved_g2_mutation_05",
+      "s732_evolved_g2_crossover_01",
+      "s732_evolved_g2_crossover_02",
+      "s732_evolved_g2_crossover_05",
+      "s732_evolved_g2_mutation_06",
+      "s732_evolved_g1_mutation_03",
+      "s732_shared_g0_initial_13",
+      "s732_evolved_g1_crossover_02",
+      "s732_evolved_g1_mutation_02",
+      "s732_evolved_g2_mutation_04",
+      "s732_evolved_g2_mutation_00",
+      "s732_evolved_g1_mutation_01",
+      "s732_evolved_g1_mutation_06",
+      "s732_shared_g0_initial_18",
+      "s732_evolved_g2_mutation_01",
+      "s732_evolved_g1_mutation_00",
+      "s732_evolved_g2_mutation_03"
+    ],
+    "training_only": true,
+    "paper_qualification_applied_separately": true,
+    "final_selection_rule": "positive train RankIC; optional training IC redundancy filter"
+  },
+  {
+    "replicate": 732,
+    "arm": "llm_evolved_diverse",
+    "selected": [
+      "s732_shared_g0_initial_19",
+      "s732_shared_g0_initial_00",
+      "s732_evolved_g2_crossover_04",
+      "s732_evolved_g2_mutation_00",
+      "s732_shared_g0_initial_18",
+      "s732_evolved_g1_mutation_05",
+      "s732_shared_g0_initial_16",
+      "s732_shared_g0_initial_01"
+    ],
+    "training_only": true,
+    "paper_qualification_applied_separately": true,
+    "final_selection_rule": "positive train RankIC; optional training IC redundancy filter"
+  },
+  {
+    "replicate": 733,
+    "arm": "llm_initial21",
+    "selected": [
+      "s733_shared_g0_initial_18",
+      "s733_shared_g0_initial_07",
+      "s733_shared_g0_initial_13",
+      "s733_shared_g0_initial_02",
+      "s733_shared_g0_initial_10",
+      "s733_shared_g0_initial_11",
+      "s733_shared_g0_initial_08",
+      "s733_shared_g0_initial_15",
+      "s733_shared_g0_initial_09",
+      "s733_shared_g0_initial_05",
+      "s733_shared_g0_initial_04"
+    ],
+    "training_only": true,
+    "paper_qualification_applied_separately": true,
+    "final_selection_rule": "positive train RankIC; optional training IC redundancy filter"
+  },
+  {
+    "replicate": 733,
+    "arm": "llm_fresh49",
+    "selected": [
+      "s733_shared_g0_initial_18",
+      "s733_shared_g0_initial_07",
+      "s733_shared_g0_initial_13",
+      "s733_fresh_g1_fresh_04",
+      "s733_shared_g0_initial_02",
+      "s733_fresh_g1_fresh_07",
+      "s733_shared_g0_initial_10",
+      "s733_fresh_g2_fresh_00",
+      "s733_shared_g0_initial_11",
+      "s733_shared_g0_initial_08",
+      "s733_fresh_g1_fresh_03",
+      "s733_shared_g0_initial_15",
+      "s733_fresh_g2_fresh_04",
+      "s733_fresh_g1_fresh_09",
+      "s733_fresh_g1_fresh_11",
+      "s733_shared_g0_initial_09",
+      "s733_fresh_g1_fresh_02",
+      "s733_shared_g0_initial_05",
+      "s733_fresh_g2_fresh_11",
+      "s733_shared_g0_initial_04"
+    ],
+    "training_only": true,
+    "paper_qualification_applied_separately": true,
+    "final_selection_rule": "positive train RankIC; optional training IC redundancy filter"
+  },
+  {
+    "replicate": 733,
+    "arm": "llm_evolved49",
+    "selected": [
+      "s733_shared_g0_initial_18",
+      "s733_evolved_g2_crossover_05",
+      "s733_evolved_g2_mutation_04",
+      "s733_shared_g0_initial_07",
+      "s733_evolved_g1_mutation_00",
+      "s733_evolved_g1_mutation_05",
+      "s733_evolved_g1_crossover_01",
+      "s733_evolved_g1_crossover_02",
+      "s733_evolved_g2_mutation_00",
+      "s733_shared_g0_initial_13",
+      "s733_evolved_g2_crossover_06",
+      "s733_shared_g0_initial_02",
+      "s733_evolved_g1_mutation_04",
+      "s733_evolved_g2_mutation_01",
+      "s733_evolved_g1_crossover_03",
+      "s733_evolved_g2_crossover_03",
+      "s733_shared_g0_initial_10",
+      "s733_shared_g0_initial_11",
+      "s733_shared_g0_initial_08",
+      "s733_evolved_g2_mutation_02"
+    ],
+    "training_only": true,
+    "paper_qualification_applied_separately": true,
+    "final_selection_rule": "positive train RankIC; optional training IC redundancy filter"
+  },
+  {
+    "replicate": 733,
+    "arm": "llm_evolved_diverse",
+    "selected": [
+      "s733_shared_g0_initial_18",
+      "s733_evolved_g2_crossover_05",
+      "s733_evolved_g2_mutation_04",
+      "s733_shared_g0_initial_07",
+      "s733_evolved_g1_crossover_01",
+      "s733_evolved_g1_crossover_02",
+      "s733_evolved_g2_mutation_00",
+      "s733_shared_g0_initial_13",
+      "s733_evolved_g2_crossover_06",
+      "s733_shared_g0_initial_02",
+      "s733_shared_g0_initial_10",
+      "s733_shared_g0_initial_11",
+      "s733_evolved_g1_crossover_06",
+      "s733_shared_g0_initial_05"
+    ],
+    "training_only": true,
+    "paper_qualification_applied_separately": true,
+    "final_selection_rule": "positive train RankIC; optional training IC redundancy filter"
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "schema": "qingxu.project2.cogalpha_ui_acceptance.v1",
+  "created_utc": "2026-10-19T14:35:16.231901+00:00",
+  "passed": true,
+  "checks": {
+    "errors": [],
+    "defaultMetrics": [
+      " 0.0630 ",
+      " 0.372 ",
+      " 11.05% ",
+      " 0.527 ",
+      " 17.02% ",
+      " 237 ",
+      " 237 ",
+      " 1.312712 ",
+      " 48.6873 "
+    ],
+    "replicateSwitch": true,
+    "modelSwitch": true,
+    "costSwitch": true,
+    "riskSwitch": true,
+    "exposureTickFormat": ".1%",
+    "retainedRejection": "s731_evolved_g1_crossover_00",
+    "materialDownloads": 4,
+    "actualReportDownload": true,
+    "screenshots": 8
+  },
+  "screenshots_visually_reviewed": true,
+  "ui_source_sha256": "2b6c4e9475f96573b154cb54fe7f3a67f1435ac56a62e2ce97d5e571646d2327",
+  "evidence_manifest_sha256": "984f69de1f6a42fbab0dcf34484b23d975360d5465ce11e6fe719c4947a13a1e",
+  "browser_engine": "Chromium / headless Chrome",
+  "base_url": "http://127.0.0.1:8522",
+  "report_download_sha256": "af321aa076f44b2b141764820205fe946021ac93dbdcdf119e1ae5774d280038",
+  "screenshots": {
+    "budget.png": "6b8cdb830c17d2c5c855bb1660ad36fbdbfb1837469ba8f6f00dca64d6b5e9c0",
+    "materials.png": "90c5187259dd2ac7bfaed35e9330555fe89697435144c73054106cf5d8935327",
+    "primary_comparison.png": "49efdebd8cbd041c44188018fb53316c782933681964cf882c6bc2e77e803577",
+    "primary_curves.png": "f9d4877ad05b24d785e5eab64b877c7abd93a93554fc88bb4e644e5f5008a812",
+    "protocol.png": "5d651a27b1bca7107199499e6539fd009c6460c5efa72f33e5ae44cc80c684e0",
+    "rejected_proposal.png": "f7bd6d789a3d8f385637209946edefa4e1fac1d2b027f31e2ddebc7bb54f8a46",
+    "replicate_ridge.png": "b884eeea2001ac28492b3918dda80afb011fd70560fa16a2985f3c8bc71c588e",
+    "zero_cost.png": "cc1f591bc01c3f87623395bbf6fcf1e08ed9063980a69c6f969ffdec36346069"
+  },
+  "source_service_restarted_before_final_check": true,
+  "notes": [
+    "5 existing UI tests passed after display-only tick precision change.",
+    "Browser download required normal Windows permission; the canceled restricted-environment attempt was not counted as success.",
+    "Screenshots reviewed for protocol, metrics, comparison curves, risk, rejection, costs, budget and material download controls.",
+    "Line endings normalized to LF for Git archive identity; executed UI code semantics unchanged."
+  ]
+}

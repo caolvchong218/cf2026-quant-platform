@@ -70,6 +70,20 @@ def read_json(path):
     return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
+def training_prompt_payload(body):
+    # ResearchAPI prepends its own JSON-only system message. Locate the first
+    # user message by role; repair requests append a second user instruction.
+    first_user = next((message for message in body.get("messages", []) if message.get("role") == "user"), None)
+    require(first_user is not None, "LLM prompt missing initial user payload")
+    try:
+        payload = json.loads(first_user["content"])
+    except (KeyError, TypeError, ValueError):
+        raise AuditError("LLM initial user payload is not valid JSON") from None
+    require(isinstance(payload, dict) and "train_dates" in payload and "training_feedback" in payload,
+            "LLM initial user payload missing training contract")
+    return payload
+
+
 def verify_calculation_sources(root, manifest_hashes, frozen_commit):
     """Byte-exact manifest checks are mandatory even in a .git-free source zip."""
     require(set(manifest_hashes) == set(SOURCE_FILES), "calculation manifest file set changed")
@@ -381,7 +395,7 @@ class ReleaseAudit:
                 body = event["prompt"]
                 require(body["model"] == "deepseek-flash" and body["thinking"] == {"type": "disabled"}, "unregistered model/thinking mode")
                 if str(event["cache_namespace"]).startswith("cogalpha."):
-                    payload = json.loads(body["messages"][1]["content"])
+                    payload = training_prompt_payload(body)
                     _train_only(payload)
                     require(payload["train_dates"] == self.protocol["split"]["train"], "LLM prompt training window changed")
             elif kind == "completed":
@@ -721,6 +735,22 @@ def self_test(root):
         else:
             raise AuditError("source zip accepted changed source hash")
         checks.append({"case": "source_zip_reject_changed_calculation_hash", "passed": True})
+    expected = {"train_dates": ["2020-01-02", "2022-12-31"], "training_feedback": [], "slot": "synthetic"}
+    body = {"messages": [{"role": "system", "content": "Provider JSON-only instruction"},
+                         {"role": "system", "content": "Research system instruction"},
+                         {"role": "user", "content": json.dumps(expected)},
+                         {"role": "assistant", "content": "{}"},
+                         {"role": "user", "content": "Repair this rejected candidate."}]}
+    require(training_prompt_payload(body) == expected, "provider prefix/repair prompt not parsed by role")
+    checks.append({"case": "provider_system_prefix_and_repair_preserve_training_payload", "passed": True})
+    body["messages"][2]["content"] = "invalid initial JSON"
+    try:
+        training_prompt_payload(body)
+    except AuditError:
+        pass
+    else:
+        raise AuditError("malformed initial user JSON was accepted")
+    checks.append({"case": "reject_malformed_initial_user_payload", "passed": True})
     return {"schema": "qingxu.project2.cogalpha.audit_self_test.v1", "mode": "synthetic_self_test",
             "passed": True, "created_utc": datetime.now(timezone.utc).isoformat(), "checks": checks,
             "release_audit_executed": False, "research_data_read": False, "credentials_read": False,

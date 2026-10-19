@@ -1,3 +1,30 @@
+ARCHIVED PREPARATION IMPLEMENTATION — NOT THE CURRENT FORMAL ENTRY POINT
+
+This directory preserves the 2026-10-16 preparation implementation and its
+original notes below. The supplied eight-page Project 2 assignment has since
+been received. The statement below about Blackboard visibility describes only
+the earlier check; it is not the current assignment status.
+
+Current formal study, run from the repository root:
+  python scripts/run_project2_rsrs.py --help
+  python scripts/run_project2_rsrs.py --data data/private/project2_rsrs
+
+Current protocol: configs/project2_rsrs.json
+Current public evidence: evidence/project2_rsrs/
+Current materials: reports/project2_rsrs/
+Current instructions: docs/PROJECT2_REPRODUCIBILITY.md
+Course requirements: docs/PROJECT2_REQUIREMENTS_MATRIX.md
+
+The formal matrix has 198 main runs (3 indices x 3 periods x 2 fee cases x
+11 variants), including a 15% volatility target and fixed 75% sizing control.
+This older module remains an independent oracle for 162 baseline comparisons.
+Its old headline numbers, 162-run matrix and report builder are historical;
+do not substitute them for the formal evidence or change them to hide history.
+CogAlpha is a separate paper study with its own data, evidence and materials.
+Neither package alone proves a Blackboard submission or a particular grade.
+
+--- ORIGINAL PREPARATION README FOLLOWS ---
+
 RSRS brokerage-report reproduction (research preparation for CF2026 Project 2)
 
 Status: The authenticated Blackboard Project folder and grade columns checked

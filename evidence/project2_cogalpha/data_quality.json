@@ -1,0 +1,19 @@
+{
+  "rows": 1656599,
+  "assets": 1000,
+  "sessions": 1690,
+  "first": "2019-10-08 00:00:00",
+  "last": "2026-09-18 00:00:00",
+  "input_sha256": {
+    "market": "7feecc242fe6450c3aeb0a4024621c6b6fa3f230540eacb5dc9b4c006af7adf4",
+    "features": "d33617783704255209e0fc6dd667cba5f53bcf68c3b950bc68bcabdfd4604514",
+    "benchmark": "3feb9f40aa8dd5601ac07196e52d93e0a2479538fec4ee4801af5174de47fd55"
+  },
+  "label_horizon": 10,
+  "training_dates": 717,
+  "last_training_label_exit": "2022-12-30 00:00:00",
+  "training_cutoff": "2023-01-01 00:00:00",
+  "missing_ohlcv_not_forward_filled": true,
+  "volume_is_adjusted_shares_preserving_turnover": true,
+  "survivorship_and_static_universe": true
+}

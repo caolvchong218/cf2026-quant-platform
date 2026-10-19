@@ -2,7 +2,7 @@
   "schema": "qingxu.project2.cogalpha.audit_self_test.v1",
   "mode": "synthetic_self_test",
   "passed": true,
-  "created_utc": "2026-10-19T13:41:40.993416+00:00",
+  "created_utc": "2026-10-19T14:30:26.131160+00:00",
   "checks": [
     {
       "case": "normal_top50_drop5",
@@ -35,6 +35,14 @@
     {
       "case": "source_zip_reject_changed_calculation_hash",
       "passed": true
+    },
+    {
+      "case": "provider_system_prefix_and_repair_preserve_training_payload",
+      "passed": true
+    },
+    {
+      "case": "reject_malformed_initial_user_payload",
+      "passed": true
     }
   ],
   "release_audit_executed": false,
@@ -44,6 +52,6 @@
   "synthetic_executions": 2,
   "formal_backtests_rerun": 0,
   "models_refit": 0,
-  "audit_script_sha256": "43b248f84e93b980c860ff88feffaead92ae3d77eea147e7f5301a73c38d6367",
+  "audit_script_sha256": "a2cdf527559c756239077202f493e7482c31de8c0fd0517dc3ea71dec2cf83ab",
   "meaning": "Synthetic audit self-test only; this does not certify any formal research results."
 }

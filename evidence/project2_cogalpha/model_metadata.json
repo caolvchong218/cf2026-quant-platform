@@ -1,0 +1,1227 @@
+[
+  {
+    "replicate": 0,
+    "arm": "fixed16",
+    "status": "complete",
+    "selected": [
+      "fixed_low_volatility_20",
+      "fixed_distance_high_20",
+      "fixed_reversal_5",
+      "fixed_mean_reversion_10",
+      "fixed_close_position_10",
+      "fixed_bar_pressure_5"
+    ],
+    "seed": 20261019,
+    "cutoff": "2023-01-01T00:00:00",
+    "training": {
+      "start": "2020-01-02T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 717
+    },
+    "prediction": {
+      "start": "2023-01-03T00:00:00",
+      "end": "2026-09-18T00:00:00",
+      "sessions": 901
+    },
+    "training_rows": 653329,
+    "prediction_rows": 806775,
+    "last_label_exit": "2022-12-30T00:00:00",
+    "preprocessing": "mask ineligible assets, then same-day average percentile rank minus 0.5",
+    "complete_factor_rows_required": true,
+    "rank_direction": "positive, never flipped from prediction results",
+    "label_definition": "caller-supplied returns; local study assumption open[t+11]/open[t+1]-1",
+    "label_horizon_sessions_assumption": 10,
+    "label_construction_verified_here": false,
+    "training_fit_count_per_model": 1,
+    "annual_retraining": false,
+    "validation_tuning": false,
+    "historical_dates_already_observed": true,
+    "parameters": {
+      "rank": {
+        "weighting": "equal",
+        "direction": "positive"
+      },
+      "ridge": {
+        "alpha": 100.0
+      },
+      "lightgbm": {
+        "n_estimators": 200,
+        "num_leaves": 15,
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "min_child_samples": 100,
+        "reg_lambda": 1.0,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "objective": "regression",
+        "verbosity": -1,
+        "random_state": 20261019
+      }
+    },
+    "importances": {
+      "fixed_low_volatility_20": 633,
+      "fixed_distance_high_20": 536,
+      "fixed_reversal_5": 372,
+      "fixed_mean_reversion_10": 388,
+      "fixed_close_position_10": 459,
+      "fixed_bar_pressure_5": 412
+    },
+    "training_sha256": "204d4d658c70dd259f497a9250cac22eb715dfbb7c2d6a6008d8743d807c4e10",
+    "used_training_dates": {
+      "start": "2020-01-02T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 717
+    },
+    "last_used_label_exit": "2022-12-30T00:00:00"
+  },
+  {
+    "replicate": 0,
+    "arm": "literal_1",
+    "status": "literal_untrained_formula",
+    "selected": [
+      "paper_listing1"
+    ],
+    "training_rows": 0
+  },
+  {
+    "replicate": 0,
+    "arm": "literal_2",
+    "status": "literal_untrained_formula",
+    "selected": [
+      "paper_listing2"
+    ],
+    "training_rows": 0
+  },
+  {
+    "replicate": 0,
+    "arm": "literal_3",
+    "status": "literal_untrained_formula",
+    "selected": [
+      "paper_listing3"
+    ],
+    "training_rows": 0
+  },
+  {
+    "replicate": 731,
+    "arm": "llm_initial21",
+    "status": "complete",
+    "selected": [
+      "s731_shared_g0_initial_12",
+      "s731_shared_g0_initial_20",
+      "s731_shared_g0_initial_13",
+      "s731_shared_g0_initial_07",
+      "s731_shared_g0_initial_11",
+      "s731_shared_g0_initial_06",
+      "s731_shared_g0_initial_09",
+      "s731_shared_g0_initial_08"
+    ],
+    "seed": 20261750,
+    "cutoff": "2023-01-01T00:00:00",
+    "training": {
+      "start": "2020-01-02T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 717
+    },
+    "prediction": {
+      "start": "2023-01-03T00:00:00",
+      "end": "2026-09-18T00:00:00",
+      "sessions": 901
+    },
+    "training_rows": 646018,
+    "prediction_rows": 807227,
+    "last_label_exit": "2022-12-30T00:00:00",
+    "preprocessing": "mask ineligible assets, then same-day average percentile rank minus 0.5",
+    "complete_factor_rows_required": true,
+    "rank_direction": "positive, never flipped from prediction results",
+    "label_definition": "caller-supplied returns; local study assumption open[t+11]/open[t+1]-1",
+    "label_horizon_sessions_assumption": 10,
+    "label_construction_verified_here": false,
+    "training_fit_count_per_model": 1,
+    "annual_retraining": false,
+    "validation_tuning": false,
+    "historical_dates_already_observed": true,
+    "parameters": {
+      "rank": {
+        "weighting": "equal",
+        "direction": "positive"
+      },
+      "ridge": {
+        "alpha": 100.0
+      },
+      "lightgbm": {
+        "n_estimators": 200,
+        "num_leaves": 15,
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "min_child_samples": 100,
+        "reg_lambda": 1.0,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "objective": "regression",
+        "verbosity": -1,
+        "random_state": 20261750
+      }
+    },
+    "importances": {
+      "s731_shared_g0_initial_12": 364,
+      "s731_shared_g0_initial_20": 406,
+      "s731_shared_g0_initial_13": 450,
+      "s731_shared_g0_initial_07": 356,
+      "s731_shared_g0_initial_11": 349,
+      "s731_shared_g0_initial_06": 272,
+      "s731_shared_g0_initial_09": 249,
+      "s731_shared_g0_initial_08": 354
+    },
+    "training_sha256": "d0368e512a5c9c3bc947f99763a1298e149435fef2bc14fbaa912eebd177bb51",
+    "used_training_dates": {
+      "start": "2020-01-14T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 709
+    },
+    "last_used_label_exit": "2022-12-30T00:00:00"
+  },
+  {
+    "replicate": 731,
+    "arm": "llm_fresh49",
+    "status": "complete",
+    "selected": [
+      "s731_shared_g0_initial_12",
+      "s731_shared_g0_initial_20",
+      "s731_fresh_g2_fresh_09",
+      "s731_shared_g0_initial_13",
+      "s731_fresh_g2_fresh_04",
+      "s731_fresh_g1_fresh_09",
+      "s731_fresh_g2_fresh_01",
+      "s731_shared_g0_initial_07",
+      "s731_shared_g0_initial_11",
+      "s731_fresh_g1_fresh_12",
+      "s731_fresh_g1_fresh_11",
+      "s731_fresh_g1_fresh_03",
+      "s731_fresh_g1_fresh_13",
+      "s731_shared_g0_initial_06",
+      "s731_fresh_g2_fresh_12",
+      "s731_fresh_g2_fresh_06",
+      "s731_shared_g0_initial_09",
+      "s731_fresh_g1_fresh_00",
+      "s731_shared_g0_initial_08",
+      "s731_fresh_g2_fresh_11"
+    ],
+    "seed": 20261750,
+    "cutoff": "2023-01-01T00:00:00",
+    "training": {
+      "start": "2020-01-02T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 717
+    },
+    "prediction": {
+      "start": "2023-01-03T00:00:00",
+      "end": "2026-09-18T00:00:00",
+      "sessions": 901
+    },
+    "training_rows": 646016,
+    "prediction_rows": 807226,
+    "last_label_exit": "2022-12-30T00:00:00",
+    "preprocessing": "mask ineligible assets, then same-day average percentile rank minus 0.5",
+    "complete_factor_rows_required": true,
+    "rank_direction": "positive, never flipped from prediction results",
+    "label_definition": "caller-supplied returns; local study assumption open[t+11]/open[t+1]-1",
+    "label_horizon_sessions_assumption": 10,
+    "label_construction_verified_here": false,
+    "training_fit_count_per_model": 1,
+    "annual_retraining": false,
+    "validation_tuning": false,
+    "historical_dates_already_observed": true,
+    "parameters": {
+      "rank": {
+        "weighting": "equal",
+        "direction": "positive"
+      },
+      "ridge": {
+        "alpha": 100.0
+      },
+      "lightgbm": {
+        "n_estimators": 200,
+        "num_leaves": 15,
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "min_child_samples": 100,
+        "reg_lambda": 1.0,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "objective": "regression",
+        "verbosity": -1,
+        "random_state": 20261750
+      }
+    },
+    "importances": {
+      "s731_shared_g0_initial_12": 196,
+      "s731_shared_g0_initial_20": 177,
+      "s731_fresh_g2_fresh_09": 177,
+      "s731_shared_g0_initial_13": 294,
+      "s731_fresh_g2_fresh_04": 71,
+      "s731_fresh_g1_fresh_09": 72,
+      "s731_fresh_g2_fresh_01": 136,
+      "s731_shared_g0_initial_07": 160,
+      "s731_shared_g0_initial_11": 132,
+      "s731_fresh_g1_fresh_12": 223,
+      "s731_fresh_g1_fresh_11": 106,
+      "s731_fresh_g1_fresh_03": 133,
+      "s731_fresh_g1_fresh_13": 97,
+      "s731_shared_g0_initial_06": 130,
+      "s731_fresh_g2_fresh_12": 95,
+      "s731_fresh_g2_fresh_06": 88,
+      "s731_shared_g0_initial_09": 123,
+      "s731_fresh_g1_fresh_00": 76,
+      "s731_shared_g0_initial_08": 150,
+      "s731_fresh_g2_fresh_11": 164
+    },
+    "training_sha256": "ad82c9f87a22d2277fbbc77f9f78bd9bb620c1943969941d7acb1ad99ab8e088",
+    "used_training_dates": {
+      "start": "2020-01-14T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 709
+    },
+    "last_used_label_exit": "2022-12-30T00:00:00"
+  },
+  {
+    "replicate": 731,
+    "arm": "llm_evolved49",
+    "status": "complete",
+    "selected": [
+      "s731_shared_g0_initial_12",
+      "s731_evolved_g2_crossover_06",
+      "s731_shared_g0_initial_20",
+      "s731_evolved_g1_mutation_04",
+      "s731_evolved_g2_mutation_01",
+      "s731_evolved_g1_mutation_03",
+      "s731_evolved_g1_crossover_01",
+      "s731_shared_g0_initial_13",
+      "s731_evolved_g1_mutation_05",
+      "s731_evolved_g1_mutation_01",
+      "s731_evolved_g1_crossover_04",
+      "s731_evolved_g2_crossover_01",
+      "s731_evolved_g2_mutation_02",
+      "s731_evolved_g2_mutation_03",
+      "s731_evolved_g1_mutation_00",
+      "s731_shared_g0_initial_07",
+      "s731_shared_g0_initial_11",
+      "s731_shared_g0_initial_06",
+      "s731_shared_g0_initial_09",
+      "s731_shared_g0_initial_08"
+    ],
+    "seed": 20261750,
+    "cutoff": "2023-01-01T00:00:00",
+    "training": {
+      "start": "2020-01-02T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 717
+    },
+    "prediction": {
+      "start": "2023-01-03T00:00:00",
+      "end": "2026-09-18T00:00:00",
+      "sessions": 901
+    },
+    "training_rows": 646018,
+    "prediction_rows": 807227,
+    "last_label_exit": "2022-12-30T00:00:00",
+    "preprocessing": "mask ineligible assets, then same-day average percentile rank minus 0.5",
+    "complete_factor_rows_required": true,
+    "rank_direction": "positive, never flipped from prediction results",
+    "label_definition": "caller-supplied returns; local study assumption open[t+11]/open[t+1]-1",
+    "label_horizon_sessions_assumption": 10,
+    "label_construction_verified_here": false,
+    "training_fit_count_per_model": 1,
+    "annual_retraining": false,
+    "validation_tuning": false,
+    "historical_dates_already_observed": true,
+    "parameters": {
+      "rank": {
+        "weighting": "equal",
+        "direction": "positive"
+      },
+      "ridge": {
+        "alpha": 100.0
+      },
+      "lightgbm": {
+        "n_estimators": 200,
+        "num_leaves": 15,
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "min_child_samples": 100,
+        "reg_lambda": 1.0,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "objective": "regression",
+        "verbosity": -1,
+        "random_state": 20261750
+      }
+    },
+    "importances": {
+      "s731_shared_g0_initial_12": 271,
+      "s731_evolved_g2_crossover_06": 37,
+      "s731_shared_g0_initial_20": 137,
+      "s731_evolved_g1_mutation_04": 77,
+      "s731_evolved_g2_mutation_01": 157,
+      "s731_evolved_g1_mutation_03": 37,
+      "s731_evolved_g1_crossover_01": 40,
+      "s731_shared_g0_initial_13": 393,
+      "s731_evolved_g1_mutation_05": 25,
+      "s731_evolved_g1_mutation_01": 28,
+      "s731_evolved_g1_crossover_04": 16,
+      "s731_evolved_g2_crossover_01": 4,
+      "s731_evolved_g2_mutation_02": 117,
+      "s731_evolved_g2_mutation_03": 82,
+      "s731_evolved_g1_mutation_00": 209,
+      "s731_shared_g0_initial_07": 289,
+      "s731_shared_g0_initial_11": 182,
+      "s731_shared_g0_initial_06": 192,
+      "s731_shared_g0_initial_09": 245,
+      "s731_shared_g0_initial_08": 262
+    },
+    "training_sha256": "940d21b70362149c902c3e07faa60cd7fa686d4985ce9a5b42797900d4930722",
+    "used_training_dates": {
+      "start": "2020-01-14T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 709
+    },
+    "last_used_label_exit": "2022-12-30T00:00:00"
+  },
+  {
+    "replicate": 731,
+    "arm": "llm_evolved_diverse",
+    "status": "complete",
+    "selected": [
+      "s731_shared_g0_initial_12",
+      "s731_evolved_g2_crossover_06",
+      "s731_shared_g0_initial_13",
+      "s731_evolved_g2_mutation_03",
+      "s731_shared_g0_initial_07",
+      "s731_shared_g0_initial_11",
+      "s731_shared_g0_initial_06",
+      "s731_shared_g0_initial_09",
+      "s731_shared_g0_initial_08"
+    ],
+    "seed": 20261750,
+    "cutoff": "2023-01-01T00:00:00",
+    "training": {
+      "start": "2020-01-02T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 717
+    },
+    "prediction": {
+      "start": "2023-01-03T00:00:00",
+      "end": "2026-09-18T00:00:00",
+      "sessions": 901
+    },
+    "training_rows": 646018,
+    "prediction_rows": 807227,
+    "last_label_exit": "2022-12-30T00:00:00",
+    "preprocessing": "mask ineligible assets, then same-day average percentile rank minus 0.5",
+    "complete_factor_rows_required": true,
+    "rank_direction": "positive, never flipped from prediction results",
+    "label_definition": "caller-supplied returns; local study assumption open[t+11]/open[t+1]-1",
+    "label_horizon_sessions_assumption": 10,
+    "label_construction_verified_here": false,
+    "training_fit_count_per_model": 1,
+    "annual_retraining": false,
+    "validation_tuning": false,
+    "historical_dates_already_observed": true,
+    "parameters": {
+      "rank": {
+        "weighting": "equal",
+        "direction": "positive"
+      },
+      "ridge": {
+        "alpha": 100.0
+      },
+      "lightgbm": {
+        "n_estimators": 200,
+        "num_leaves": 15,
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "min_child_samples": 100,
+        "reg_lambda": 1.0,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "objective": "regression",
+        "verbosity": -1,
+        "random_state": 20261750
+      }
+    },
+    "importances": {
+      "s731_shared_g0_initial_12": 315,
+      "s731_evolved_g2_crossover_06": 363,
+      "s731_shared_g0_initial_13": 456,
+      "s731_evolved_g2_mutation_03": 272,
+      "s731_shared_g0_initial_07": 337,
+      "s731_shared_g0_initial_11": 215,
+      "s731_shared_g0_initial_06": 247,
+      "s731_shared_g0_initial_09": 261,
+      "s731_shared_g0_initial_08": 334
+    },
+    "training_sha256": "c3e540f4196b814930a531ca7c3de36211478fa1335b6d13f46d241ad9cc322d",
+    "used_training_dates": {
+      "start": "2020-01-14T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 709
+    },
+    "last_used_label_exit": "2022-12-30T00:00:00"
+  },
+  {
+    "replicate": 732,
+    "arm": "llm_initial21",
+    "status": "complete",
+    "selected": [
+      "s732_shared_g0_initial_19",
+      "s732_shared_g0_initial_00",
+      "s732_shared_g0_initial_13",
+      "s732_shared_g0_initial_18",
+      "s732_shared_g0_initial_16",
+      "s732_shared_g0_initial_01",
+      "s732_shared_g0_initial_15"
+    ],
+    "seed": 20261751,
+    "cutoff": "2023-01-01T00:00:00",
+    "training": {
+      "start": "2020-01-02T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 717
+    },
+    "prediction": {
+      "start": "2023-01-03T00:00:00",
+      "end": "2026-09-18T00:00:00",
+      "sessions": 901
+    },
+    "training_rows": 655489,
+    "prediction_rows": 808473,
+    "last_label_exit": "2022-12-30T00:00:00",
+    "preprocessing": "mask ineligible assets, then same-day average percentile rank minus 0.5",
+    "complete_factor_rows_required": true,
+    "rank_direction": "positive, never flipped from prediction results",
+    "label_definition": "caller-supplied returns; local study assumption open[t+11]/open[t+1]-1",
+    "label_horizon_sessions_assumption": 10,
+    "label_construction_verified_here": false,
+    "training_fit_count_per_model": 1,
+    "annual_retraining": false,
+    "validation_tuning": false,
+    "historical_dates_already_observed": true,
+    "parameters": {
+      "rank": {
+        "weighting": "equal",
+        "direction": "positive"
+      },
+      "ridge": {
+        "alpha": 100.0
+      },
+      "lightgbm": {
+        "n_estimators": 200,
+        "num_leaves": 15,
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "min_child_samples": 100,
+        "reg_lambda": 1.0,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "objective": "regression",
+        "verbosity": -1,
+        "random_state": 20261751
+      }
+    },
+    "importances": {
+      "s732_shared_g0_initial_19": 414,
+      "s732_shared_g0_initial_00": 465,
+      "s732_shared_g0_initial_13": 472,
+      "s732_shared_g0_initial_18": 424,
+      "s732_shared_g0_initial_16": 338,
+      "s732_shared_g0_initial_01": 355,
+      "s732_shared_g0_initial_15": 332
+    },
+    "training_sha256": "da1befa33ae7939af89a9ea39a77fee4be7028107911357691a3833d674c40b1",
+    "used_training_dates": {
+      "start": "2020-01-02T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 717
+    },
+    "last_used_label_exit": "2022-12-30T00:00:00"
+  },
+  {
+    "replicate": 732,
+    "arm": "llm_fresh49",
+    "status": "complete",
+    "selected": [
+      "s732_shared_g0_initial_19",
+      "s732_shared_g0_initial_00",
+      "s732_shared_g0_initial_13",
+      "s732_fresh_g1_fresh_02",
+      "s732_fresh_g2_fresh_03",
+      "s732_shared_g0_initial_18",
+      "s732_fresh_g2_fresh_11",
+      "s732_fresh_g1_fresh_12",
+      "s732_fresh_g2_fresh_13",
+      "s732_fresh_g2_fresh_05",
+      "s732_fresh_g1_fresh_00",
+      "s732_fresh_g2_fresh_01",
+      "s732_fresh_g1_fresh_09",
+      "s732_fresh_g1_fresh_13",
+      "s732_fresh_g2_fresh_07",
+      "s732_fresh_g2_fresh_04",
+      "s732_shared_g0_initial_16",
+      "s732_fresh_g1_fresh_01",
+      "s732_shared_g0_initial_01",
+      "s732_shared_g0_initial_15"
+    ],
+    "seed": 20261751,
+    "cutoff": "2023-01-01T00:00:00",
+    "training": {
+      "start": "2020-01-02T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 717
+    },
+    "prediction": {
+      "start": "2023-01-03T00:00:00",
+      "end": "2026-09-18T00:00:00",
+      "sessions": 901
+    },
+    "training_rows": 634558,
+    "prediction_rows": 805808,
+    "last_label_exit": "2022-12-30T00:00:00",
+    "preprocessing": "mask ineligible assets, then same-day average percentile rank minus 0.5",
+    "complete_factor_rows_required": true,
+    "rank_direction": "positive, never flipped from prediction results",
+    "label_definition": "caller-supplied returns; local study assumption open[t+11]/open[t+1]-1",
+    "label_horizon_sessions_assumption": 10,
+    "label_construction_verified_here": false,
+    "training_fit_count_per_model": 1,
+    "annual_retraining": false,
+    "validation_tuning": false,
+    "historical_dates_already_observed": true,
+    "parameters": {
+      "rank": {
+        "weighting": "equal",
+        "direction": "positive"
+      },
+      "ridge": {
+        "alpha": 100.0
+      },
+      "lightgbm": {
+        "n_estimators": 200,
+        "num_leaves": 15,
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "min_child_samples": 100,
+        "reg_lambda": 1.0,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "objective": "regression",
+        "verbosity": -1,
+        "random_state": 20261751
+      }
+    },
+    "importances": {
+      "s732_shared_g0_initial_19": 209,
+      "s732_shared_g0_initial_00": 244,
+      "s732_shared_g0_initial_13": 226,
+      "s732_fresh_g1_fresh_02": 360,
+      "s732_fresh_g2_fresh_03": 51,
+      "s732_shared_g0_initial_18": 149,
+      "s732_fresh_g2_fresh_11": 251,
+      "s732_fresh_g1_fresh_12": 104,
+      "s732_fresh_g2_fresh_13": 89,
+      "s732_fresh_g2_fresh_05": 33,
+      "s732_fresh_g1_fresh_00": 186,
+      "s732_fresh_g2_fresh_01": 55,
+      "s732_fresh_g1_fresh_09": 35,
+      "s732_fresh_g1_fresh_13": 93,
+      "s732_fresh_g2_fresh_07": 120,
+      "s732_fresh_g2_fresh_04": 112,
+      "s732_shared_g0_initial_16": 41,
+      "s732_fresh_g1_fresh_01": 180,
+      "s732_shared_g0_initial_01": 138,
+      "s732_shared_g0_initial_15": 124
+    },
+    "training_sha256": "bfb825f6c8ee72d836ef17a1735e4767904daa444b8b18ee9ec00975ac45fad0",
+    "used_training_dates": {
+      "start": "2020-02-05T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 699
+    },
+    "last_used_label_exit": "2022-12-30T00:00:00"
+  },
+  {
+    "replicate": 732,
+    "arm": "llm_evolved49",
+    "status": "complete",
+    "selected": [
+      "s732_shared_g0_initial_19",
+      "s732_shared_g0_initial_00",
+      "s732_evolved_g2_crossover_04",
+      "s732_evolved_g2_mutation_05",
+      "s732_evolved_g2_crossover_01",
+      "s732_evolved_g2_crossover_02",
+      "s732_evolved_g2_crossover_05",
+      "s732_evolved_g2_mutation_06",
+      "s732_evolved_g1_mutation_03",
+      "s732_shared_g0_initial_13",
+      "s732_evolved_g1_crossover_02",
+      "s732_evolved_g1_mutation_02",
+      "s732_evolved_g2_mutation_04",
+      "s732_evolved_g2_mutation_00",
+      "s732_evolved_g1_mutation_01",
+      "s732_evolved_g1_mutation_06",
+      "s732_shared_g0_initial_18",
+      "s732_evolved_g2_mutation_01",
+      "s732_evolved_g1_mutation_00",
+      "s732_evolved_g2_mutation_03"
+    ],
+    "seed": 20261751,
+    "cutoff": "2023-01-01T00:00:00",
+    "training": {
+      "start": "2020-01-02T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 717
+    },
+    "prediction": {
+      "start": "2023-01-03T00:00:00",
+      "end": "2026-09-18T00:00:00",
+      "sessions": 901
+    },
+    "training_rows": 655489,
+    "prediction_rows": 808473,
+    "last_label_exit": "2022-12-30T00:00:00",
+    "preprocessing": "mask ineligible assets, then same-day average percentile rank minus 0.5",
+    "complete_factor_rows_required": true,
+    "rank_direction": "positive, never flipped from prediction results",
+    "label_definition": "caller-supplied returns; local study assumption open[t+11]/open[t+1]-1",
+    "label_horizon_sessions_assumption": 10,
+    "label_construction_verified_here": false,
+    "training_fit_count_per_model": 1,
+    "annual_retraining": false,
+    "validation_tuning": false,
+    "historical_dates_already_observed": true,
+    "parameters": {
+      "rank": {
+        "weighting": "equal",
+        "direction": "positive"
+      },
+      "ridge": {
+        "alpha": 100.0
+      },
+      "lightgbm": {
+        "n_estimators": 200,
+        "num_leaves": 15,
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "min_child_samples": 100,
+        "reg_lambda": 1.0,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "objective": "regression",
+        "verbosity": -1,
+        "random_state": 20261751
+      }
+    },
+    "importances": {
+      "s732_shared_g0_initial_19": 332,
+      "s732_shared_g0_initial_00": 363,
+      "s732_evolved_g2_crossover_04": 111,
+      "s732_evolved_g2_mutation_05": 80,
+      "s732_evolved_g2_crossover_01": 95,
+      "s732_evolved_g2_crossover_02": 0,
+      "s732_evolved_g2_crossover_05": 17,
+      "s732_evolved_g2_mutation_06": 59,
+      "s732_evolved_g1_mutation_03": 182,
+      "s732_shared_g0_initial_13": 125,
+      "s732_evolved_g1_crossover_02": 216,
+      "s732_evolved_g1_mutation_02": 88,
+      "s732_evolved_g2_mutation_04": 72,
+      "s732_evolved_g2_mutation_00": 94,
+      "s732_evolved_g1_mutation_01": 101,
+      "s732_evolved_g1_mutation_06": 77,
+      "s732_shared_g0_initial_18": 267,
+      "s732_evolved_g2_mutation_01": 97,
+      "s732_evolved_g1_mutation_00": 276,
+      "s732_evolved_g2_mutation_03": 148
+    },
+    "training_sha256": "a363cdad6abf7f9122d8fd46c73b2035d19b5d9551a861bb5ad26fa4d309a509",
+    "used_training_dates": {
+      "start": "2020-01-02T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 717
+    },
+    "last_used_label_exit": "2022-12-30T00:00:00"
+  },
+  {
+    "replicate": 732,
+    "arm": "llm_evolved_diverse",
+    "status": "complete",
+    "selected": [
+      "s732_shared_g0_initial_19",
+      "s732_shared_g0_initial_00",
+      "s732_evolved_g2_crossover_04",
+      "s732_evolved_g2_mutation_00",
+      "s732_shared_g0_initial_18",
+      "s732_evolved_g1_mutation_05",
+      "s732_shared_g0_initial_16",
+      "s732_shared_g0_initial_01"
+    ],
+    "seed": 20261751,
+    "cutoff": "2023-01-01T00:00:00",
+    "training": {
+      "start": "2020-01-02T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 717
+    },
+    "prediction": {
+      "start": "2023-01-03T00:00:00",
+      "end": "2026-09-18T00:00:00",
+      "sessions": 901
+    },
+    "training_rows": 655489,
+    "prediction_rows": 808473,
+    "last_label_exit": "2022-12-30T00:00:00",
+    "preprocessing": "mask ineligible assets, then same-day average percentile rank minus 0.5",
+    "complete_factor_rows_required": true,
+    "rank_direction": "positive, never flipped from prediction results",
+    "label_definition": "caller-supplied returns; local study assumption open[t+11]/open[t+1]-1",
+    "label_horizon_sessions_assumption": 10,
+    "label_construction_verified_here": false,
+    "training_fit_count_per_model": 1,
+    "annual_retraining": false,
+    "validation_tuning": false,
+    "historical_dates_already_observed": true,
+    "parameters": {
+      "rank": {
+        "weighting": "equal",
+        "direction": "positive"
+      },
+      "ridge": {
+        "alpha": 100.0
+      },
+      "lightgbm": {
+        "n_estimators": 200,
+        "num_leaves": 15,
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "min_child_samples": 100,
+        "reg_lambda": 1.0,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "objective": "regression",
+        "verbosity": -1,
+        "random_state": 20261751
+      }
+    },
+    "importances": {
+      "s732_shared_g0_initial_19": 389,
+      "s732_shared_g0_initial_00": 405,
+      "s732_evolved_g2_crossover_04": 407,
+      "s732_evolved_g2_mutation_00": 282,
+      "s732_shared_g0_initial_18": 322,
+      "s732_evolved_g1_mutation_05": 373,
+      "s732_shared_g0_initial_16": 309,
+      "s732_shared_g0_initial_01": 313
+    },
+    "training_sha256": "c00a103b36f64da52db794b98454b45f5d7890dc05c1c01485b43a1386003880",
+    "used_training_dates": {
+      "start": "2020-01-02T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 717
+    },
+    "last_used_label_exit": "2022-12-30T00:00:00"
+  },
+  {
+    "replicate": 733,
+    "arm": "llm_initial21",
+    "status": "complete",
+    "selected": [
+      "s733_shared_g0_initial_18",
+      "s733_shared_g0_initial_07",
+      "s733_shared_g0_initial_13",
+      "s733_shared_g0_initial_02",
+      "s733_shared_g0_initial_10",
+      "s733_shared_g0_initial_11",
+      "s733_shared_g0_initial_08",
+      "s733_shared_g0_initial_15",
+      "s733_shared_g0_initial_09",
+      "s733_shared_g0_initial_05",
+      "s733_shared_g0_initial_04"
+    ],
+    "seed": 20261752,
+    "cutoff": "2023-01-01T00:00:00",
+    "training": {
+      "start": "2020-01-02T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 717
+    },
+    "prediction": {
+      "start": "2023-01-03T00:00:00",
+      "end": "2026-09-18T00:00:00",
+      "sessions": 901
+    },
+    "training_rows": 590752,
+    "prediction_rows": 800559,
+    "last_label_exit": "2022-12-30T00:00:00",
+    "preprocessing": "mask ineligible assets, then same-day average percentile rank minus 0.5",
+    "complete_factor_rows_required": true,
+    "rank_direction": "positive, never flipped from prediction results",
+    "label_definition": "caller-supplied returns; local study assumption open[t+11]/open[t+1]-1",
+    "label_horizon_sessions_assumption": 10,
+    "label_construction_verified_here": false,
+    "training_fit_count_per_model": 1,
+    "annual_retraining": false,
+    "validation_tuning": false,
+    "historical_dates_already_observed": true,
+    "parameters": {
+      "rank": {
+        "weighting": "equal",
+        "direction": "positive"
+      },
+      "ridge": {
+        "alpha": 100.0
+      },
+      "lightgbm": {
+        "n_estimators": 200,
+        "num_leaves": 15,
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "min_child_samples": 100,
+        "reg_lambda": 1.0,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "objective": "regression",
+        "verbosity": -1,
+        "random_state": 20261752
+      }
+    },
+    "importances": {
+      "s733_shared_g0_initial_18": 247,
+      "s733_shared_g0_initial_07": 427,
+      "s733_shared_g0_initial_13": 465,
+      "s733_shared_g0_initial_02": 358,
+      "s733_shared_g0_initial_10": 245,
+      "s733_shared_g0_initial_11": 113,
+      "s733_shared_g0_initial_08": 130,
+      "s733_shared_g0_initial_15": 153,
+      "s733_shared_g0_initial_09": 102,
+      "s733_shared_g0_initial_05": 237,
+      "s733_shared_g0_initial_04": 323
+    },
+    "training_sha256": "da91717c13c724aebc48f888a80752d5c589b2d2883ae8a6bb9423d81e58826c",
+    "used_training_dates": {
+      "start": "2020-03-31T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 660
+    },
+    "last_used_label_exit": "2022-12-30T00:00:00"
+  },
+  {
+    "replicate": 733,
+    "arm": "llm_fresh49",
+    "status": "complete",
+    "selected": [
+      "s733_shared_g0_initial_18",
+      "s733_shared_g0_initial_07",
+      "s733_shared_g0_initial_13",
+      "s733_fresh_g1_fresh_04",
+      "s733_shared_g0_initial_02",
+      "s733_fresh_g1_fresh_07",
+      "s733_shared_g0_initial_10",
+      "s733_fresh_g2_fresh_00",
+      "s733_shared_g0_initial_11",
+      "s733_shared_g0_initial_08",
+      "s733_fresh_g1_fresh_03",
+      "s733_shared_g0_initial_15",
+      "s733_fresh_g2_fresh_04",
+      "s733_fresh_g1_fresh_09",
+      "s733_fresh_g1_fresh_11",
+      "s733_shared_g0_initial_09",
+      "s733_fresh_g1_fresh_02",
+      "s733_shared_g0_initial_05",
+      "s733_fresh_g2_fresh_11",
+      "s733_shared_g0_initial_04"
+    ],
+    "seed": 20261752,
+    "cutoff": "2023-01-01T00:00:00",
+    "training": {
+      "start": "2020-01-02T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 717
+    },
+    "prediction": {
+      "start": "2023-01-03T00:00:00",
+      "end": "2026-09-18T00:00:00",
+      "sessions": 901
+    },
+    "training_rows": 577277,
+    "prediction_rows": 781025,
+    "last_label_exit": "2022-12-30T00:00:00",
+    "preprocessing": "mask ineligible assets, then same-day average percentile rank minus 0.5",
+    "complete_factor_rows_required": true,
+    "rank_direction": "positive, never flipped from prediction results",
+    "label_definition": "caller-supplied returns; local study assumption open[t+11]/open[t+1]-1",
+    "label_horizon_sessions_assumption": 10,
+    "label_construction_verified_here": false,
+    "training_fit_count_per_model": 1,
+    "annual_retraining": false,
+    "validation_tuning": false,
+    "historical_dates_already_observed": true,
+    "parameters": {
+      "rank": {
+        "weighting": "equal",
+        "direction": "positive"
+      },
+      "ridge": {
+        "alpha": 100.0
+      },
+      "lightgbm": {
+        "n_estimators": 200,
+        "num_leaves": 15,
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "min_child_samples": 100,
+        "reg_lambda": 1.0,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "objective": "regression",
+        "verbosity": -1,
+        "random_state": 20261752
+      }
+    },
+    "importances": {
+      "s733_shared_g0_initial_18": 217,
+      "s733_shared_g0_initial_07": 289,
+      "s733_shared_g0_initial_13": 373,
+      "s733_fresh_g1_fresh_04": 163,
+      "s733_shared_g0_initial_02": 262,
+      "s733_fresh_g1_fresh_07": 152,
+      "s733_shared_g0_initial_10": 189,
+      "s733_fresh_g2_fresh_00": 129,
+      "s733_shared_g0_initial_11": 56,
+      "s733_shared_g0_initial_08": 69,
+      "s733_fresh_g1_fresh_03": 115,
+      "s733_shared_g0_initial_15": 70,
+      "s733_fresh_g2_fresh_04": 50,
+      "s733_fresh_g1_fresh_09": 46,
+      "s733_fresh_g1_fresh_11": 0,
+      "s733_shared_g0_initial_09": 0,
+      "s733_fresh_g1_fresh_02": 154,
+      "s733_shared_g0_initial_05": 113,
+      "s733_fresh_g2_fresh_11": 121,
+      "s733_shared_g0_initial_04": 232
+    },
+    "training_sha256": "16847dbc04de111f832c4f91375bbd2c844f56a53d327149227403961a617aa4",
+    "used_training_dates": {
+      "start": "2020-03-31T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 660
+    },
+    "last_used_label_exit": "2022-12-30T00:00:00"
+  },
+  {
+    "replicate": 733,
+    "arm": "llm_evolved49",
+    "status": "complete",
+    "selected": [
+      "s733_shared_g0_initial_18",
+      "s733_evolved_g2_crossover_05",
+      "s733_evolved_g2_mutation_04",
+      "s733_shared_g0_initial_07",
+      "s733_evolved_g1_mutation_00",
+      "s733_evolved_g1_mutation_05",
+      "s733_evolved_g1_crossover_01",
+      "s733_evolved_g1_crossover_02",
+      "s733_evolved_g2_mutation_00",
+      "s733_shared_g0_initial_13",
+      "s733_evolved_g2_crossover_06",
+      "s733_shared_g0_initial_02",
+      "s733_evolved_g1_mutation_04",
+      "s733_evolved_g2_mutation_01",
+      "s733_evolved_g1_crossover_03",
+      "s733_evolved_g2_crossover_03",
+      "s733_shared_g0_initial_10",
+      "s733_shared_g0_initial_11",
+      "s733_shared_g0_initial_08",
+      "s733_evolved_g2_mutation_02"
+    ],
+    "seed": 20261752,
+    "cutoff": "2023-01-01T00:00:00",
+    "training": {
+      "start": "2020-01-02T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 717
+    },
+    "prediction": {
+      "start": "2023-01-03T00:00:00",
+      "end": "2026-09-18T00:00:00",
+      "sessions": 901
+    },
+    "training_rows": 590752,
+    "prediction_rows": 800559,
+    "last_label_exit": "2022-12-30T00:00:00",
+    "preprocessing": "mask ineligible assets, then same-day average percentile rank minus 0.5",
+    "complete_factor_rows_required": true,
+    "rank_direction": "positive, never flipped from prediction results",
+    "label_definition": "caller-supplied returns; local study assumption open[t+11]/open[t+1]-1",
+    "label_horizon_sessions_assumption": 10,
+    "label_construction_verified_here": false,
+    "training_fit_count_per_model": 1,
+    "annual_retraining": false,
+    "validation_tuning": false,
+    "historical_dates_already_observed": true,
+    "parameters": {
+      "rank": {
+        "weighting": "equal",
+        "direction": "positive"
+      },
+      "ridge": {
+        "alpha": 100.0
+      },
+      "lightgbm": {
+        "n_estimators": 200,
+        "num_leaves": 15,
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "min_child_samples": 100,
+        "reg_lambda": 1.0,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "objective": "regression",
+        "verbosity": -1,
+        "random_state": 20261752
+      }
+    },
+    "importances": {
+      "s733_shared_g0_initial_18": 167,
+      "s733_evolved_g2_crossover_05": 195,
+      "s733_evolved_g2_mutation_04": 93,
+      "s733_shared_g0_initial_07": 133,
+      "s733_evolved_g1_mutation_00": 232,
+      "s733_evolved_g1_mutation_05": 89,
+      "s733_evolved_g1_crossover_01": 182,
+      "s733_evolved_g1_crossover_02": 33,
+      "s733_evolved_g2_mutation_00": 164,
+      "s733_shared_g0_initial_13": 385,
+      "s733_evolved_g2_crossover_06": 70,
+      "s733_shared_g0_initial_02": 220,
+      "s733_evolved_g1_mutation_04": 139,
+      "s733_evolved_g2_mutation_01": 113,
+      "s733_evolved_g1_crossover_03": 81,
+      "s733_evolved_g2_crossover_03": 87,
+      "s733_shared_g0_initial_10": 127,
+      "s733_shared_g0_initial_11": 85,
+      "s733_shared_g0_initial_08": 87,
+      "s733_evolved_g2_mutation_02": 118
+    },
+    "training_sha256": "301fb2cc254e1c865c3523a7e6800077d163345e2a0042235d7a33f0893470e6",
+    "used_training_dates": {
+      "start": "2020-03-31T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 660
+    },
+    "last_used_label_exit": "2022-12-30T00:00:00"
+  },
+  {
+    "replicate": 733,
+    "arm": "llm_evolved_diverse",
+    "status": "complete",
+    "selected": [
+      "s733_shared_g0_initial_18",
+      "s733_evolved_g2_crossover_05",
+      "s733_evolved_g2_mutation_04",
+      "s733_shared_g0_initial_07",
+      "s733_evolved_g1_crossover_01",
+      "s733_evolved_g1_crossover_02",
+      "s733_evolved_g2_mutation_00",
+      "s733_shared_g0_initial_13",
+      "s733_evolved_g2_crossover_06",
+      "s733_shared_g0_initial_02",
+      "s733_shared_g0_initial_10",
+      "s733_shared_g0_initial_11",
+      "s733_evolved_g1_crossover_06",
+      "s733_shared_g0_initial_05"
+    ],
+    "seed": 20261752,
+    "cutoff": "2023-01-01T00:00:00",
+    "training": {
+      "start": "2020-01-02T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 717
+    },
+    "prediction": {
+      "start": "2023-01-03T00:00:00",
+      "end": "2026-09-18T00:00:00",
+      "sessions": 901
+    },
+    "training_rows": 590754,
+    "prediction_rows": 800560,
+    "last_label_exit": "2022-12-30T00:00:00",
+    "preprocessing": "mask ineligible assets, then same-day average percentile rank minus 0.5",
+    "complete_factor_rows_required": true,
+    "rank_direction": "positive, never flipped from prediction results",
+    "label_definition": "caller-supplied returns; local study assumption open[t+11]/open[t+1]-1",
+    "label_horizon_sessions_assumption": 10,
+    "label_construction_verified_here": false,
+    "training_fit_count_per_model": 1,
+    "annual_retraining": false,
+    "validation_tuning": false,
+    "historical_dates_already_observed": true,
+    "parameters": {
+      "rank": {
+        "weighting": "equal",
+        "direction": "positive"
+      },
+      "ridge": {
+        "alpha": 100.0
+      },
+      "lightgbm": {
+        "n_estimators": 200,
+        "num_leaves": 15,
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "min_child_samples": 100,
+        "reg_lambda": 1.0,
+        "deterministic": true,
+        "force_col_wise": true,
+        "n_jobs": 4,
+        "objective": "regression",
+        "verbosity": -1,
+        "random_state": 20261752
+      }
+    },
+    "importances": {
+      "s733_shared_g0_initial_18": 209,
+      "s733_evolved_g2_crossover_05": 239,
+      "s733_evolved_g2_mutation_04": 154,
+      "s733_shared_g0_initial_07": 293,
+      "s733_evolved_g1_crossover_01": 239,
+      "s733_evolved_g1_crossover_02": 57,
+      "s733_evolved_g2_mutation_00": 199,
+      "s733_shared_g0_initial_13": 416,
+      "s733_evolved_g2_crossover_06": 132,
+      "s733_shared_g0_initial_02": 257,
+      "s733_shared_g0_initial_10": 157,
+      "s733_shared_g0_initial_11": 84,
+      "s733_evolved_g1_crossover_06": 130,
+      "s733_shared_g0_initial_05": 234
+    },
+    "training_sha256": "5b99af33cbec47ff6f33ff7e34fba4c9e39800d18464be50d6cfc95aa4f7c296",
+    "used_training_dates": {
+      "start": "2020-03-31T00:00:00",
+      "end": "2022-12-15T00:00:00",
+      "sessions": 660
+    },
+    "last_used_label_exit": "2022-12-30T00:00:00"
+  }
+]

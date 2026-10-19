@@ -1,0 +1,13 @@
+{
+  "budget_cny": 50.0,
+  "calls": 237,
+  "max_calls": 400,
+  "successful_calls": 237,
+  "successful_cost_cny": 1.312712,
+  "uncertain_reserved_cny": 0.0,
+  "reserved_or_spent_cny": 1.312712,
+  "remaining_cny": 48.687288,
+  "remaining_calls": 163,
+  "halted": false,
+  "pricing_basis": "peak cache-miss input 2; output 8 CNY per million tokens"
+}
