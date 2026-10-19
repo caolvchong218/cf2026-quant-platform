@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "absolute_tolerance": 1e-08,
+  "requested_execution_date": "2017-05-02",
+  "formation_date": "2017-04-28",
+  "regression_first_date": "2017-04-07",
+  "regression_last_date": "2017-04-28",
+  "prior_slope_first_date": "2016-02-01",
+  "prior_slope_last_date": "2017-04-27",
+  "N": 16,
+  "M": 300,
+  "regression_intercept": 607.8166729551249,
+  "independent_method": "numpy.linalg.lstsq with explicit intercept, repeated for all 300 prior OLS windows",
+  "manual": {
+    "beta": 0.8332009423559336,
+    "r2": 0.8918540145108937,
+    "prior_mean": 0.8556980686370939,
+    "prior_std_ddof0": 0.1403772316034766,
+    "z": -0.16026193154106289,
+    "corrected": -0.14293024701816695,
+    "right": -0.11908961650670306
+  },
+  "vectorized": {
+    "beta": 0.8332009423559325,
+    "r2": 0.891854014510895,
+    "z": -0.16026193154107077,
+    "corrected": -0.1429302470181742,
+    "right": -0.11908961650670895,
+    "prior_mean": 0.8556980686370941,
+    "prior_std_ddof0": 0.14037723160347654
+  },
+  "absolute_errors": {
+    "beta": 1.1102230246251565e-15,
+    "r2": 1.2212453270876722e-15,
+    "prior_mean": 2.220446049250313e-16,
+    "prior_std_ddof0": 5.551115123125783e-17,
+    "z": 7.882583474838611e-15,
+    "corrected": 7.244205235679146e-15,
+    "right": 5.88418203051333e-15
+  },
+  "prior_slope_count": 300,
+  "prior_contains_current": false,
+  "signal_date_precedes_execution": true
+}

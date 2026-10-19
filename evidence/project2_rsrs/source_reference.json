@@ -1,0 +1,15 @@
+{
+  "title": "基于阻力支撑相对强度（RSRS）的市场择时——技术择时系列报告之一",
+  "authors": ["刘均伟", "周萧潇"],
+  "institution": "光大证券",
+  "published": "2017-05-01",
+  "sha256": "34597264ed6682d8edafb94c0c540bb60ce407ee00552310acf424a39031d9a",
+  "url": "https://github.com/hugo2046/QuantsPlaybook/tree/3f83a77f4c7996ed8185b8979a42c4372c1d811f/C-%E6%8B%A9%E6%97%B6%E7%B1%BB/RSRS%E6%8B%A9%E6%97%B6%E6%8C%87%E6%A0%87",
+  "original_pages": [19, 20, 22],
+  "target": "Figure 25, Table 5, Figure 26; page 22 partial-history warmup statement",
+  "reproduction_levels": ["Original published claims", "Source-compatible partial-history approximation with explicit assumptions", "Common-window strict-history controlled comparisons"],
+  "direct_numeric_error_comparable": false,
+  "unresolved": ["Exact Wind daily snapshot", "Exact first and last execution dates", "Original table fees and Sharpe risk-free/annualization definitions", "Signal versus fill timing", "Whether standardization includes current slope and sample/population standard deviation"],
+  "known_source_disagreement": "Abstract: 1971.05% cumulative and March end; body: 1826.13% and April end; cost figure gross final NAV 19.71. Do not silently reconcile these claims.",
+  "image_use": "Cropped excerpts retain original title/legend and source for scholarly comparison; the full PDF is not redistributed in the public repository."
+}

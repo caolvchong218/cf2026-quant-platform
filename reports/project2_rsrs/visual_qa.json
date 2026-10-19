@@ -1,0 +1,93 @@
+{
+  "schema": "qingxu.project2.visual_qa.v1",
+  "date": "2026-10-19",
+  "reviewer": "project2_materials agent",
+  "pdf_files": {
+    "CF2026_Project2_Report.pdf": {
+      "sha256": "4bf39edc2f6e23ed8f6b2f6a1a4a639def9ec75d0ed649df5913c2a2568ee467",
+      "pages": 14,
+      "compiled_twice": true,
+      "all_pages_rendered_and_visually_reviewed": true,
+      "visual_defects_remaining": []
+    },
+    "CF2026_Project2_Beamer.pdf": {
+      "sha256": "b169230e0fbd91bc044fe7824c9b1119507766a71170ce224f277282e331c735",
+      "pages": 16,
+      "compiled_twice": true,
+      "all_pages_rendered_and_visually_reviewed": true,
+      "visual_defects_remaining": []
+    },
+    "CF2026_Project2_Speaker_Script.pdf": {
+      "sha256": "abf65d810ca8232db398d5f00bbda13e0cd4dcf20fed3efde42e575d8b5b37ae",
+      "pages": 8,
+      "compiled_twice": true,
+      "all_pages_rendered_and_visually_reviewed": true,
+      "visual_defects_remaining": []
+    }
+  },
+  "renderer": "Poppler pdftoppm at 100 dpi",
+  "render_directory": "tmp/project2_pdf_qa",
+  "reviewed_pdf_pages": 38,
+  "rechecked_after_final_changes": {
+    "Report": [
+      1,
+      7,
+      13,
+      14
+    ],
+    "Beamer": [
+      16
+    ],
+    "Speaker_Script": [
+      1,
+      6,
+      7
+    ]
+  },
+  "corrections": [
+    "Greek and inequality symbols rendered as math commands",
+    "Full source Table 5 enlarged and three original/new metrics compared side by side",
+    "Reference hashes placed on separate readable lines",
+    "Speaker team and operation prompts separated into paragraphs",
+    "Matched notes avoid color-specific references across slide formats"
+  ],
+  "presentation": {
+    "path": "CF2026_Project2_Presentation.pptx",
+    "reviewed_render_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "visual_defects_in_reviewed_renders": [],
+    "open_content_consistency_item": null,
+    "final_rebuild_accepted": true,
+    "sha256": "60c6e80edd9597aaa9afb311842e0a5a24a4ebb1c4771beaa887077ca97cc391",
+    "final_rechecked_slides": [
+      7,
+      16
+    ],
+    "finalizer_receipt_sha256": "9f37f60047bd0b1fcfdaf0132b5be98778ea8e0cdfb44574042c51732f42724c"
+  },
+  "authoring": {
+    "main_slides": 14,
+    "backup_slides": 2,
+    "main_seconds": 900,
+    "notes_chinese_characters": 3333,
+    "test_claim_scope": "56 RSRS-related tests, not a whole-repository total",
+    "ui_claim_scope": "6 automated UI checks; browser published main/improvement selectors, charts and material download controls; 57-session independent replay ledger"
+  },
+  "scope_note": "Visual acceptance covers layout, legibility, correct symbol rendering, original/new comparison identity and matched speaking narrative. Research validation is separately documented in evidence/project2_rsrs."
+}

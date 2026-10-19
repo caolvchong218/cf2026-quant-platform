@@ -1,0 +1,12 @@
+{
+  "purpose": "Controlled implementation diagnostics, not parameter selection or a change to the main study.",
+  "source_partial_warmup": "Original report p.22 permits an insufficient M history; partial_prior_M uses at least two available prior slopes, never zero-fill.",
+  "source_ambiguities": "The original report does not uniquely identify population/sample standard deviation or whether the current slope enters M; these are explicit assumptions.",
+  "strict_warmup": "The main study retains a full, strictly prior M window with ddof=0.",
+  "end_assumptions": "2017-03-31 and 2017-04-28 are displayed as alternative end-date assumptions, not asserted as the report's exact sample end.",
+  "next_close_control": "Signal remains based on close t. Only execution is changed to close t+1 by replacing the execution-open field with the original close. All price returns and fees are recomputed.",
+  "benchmark": "Buy and hold, same evaluation window, fee rate and execution convention; newly funded at the first evaluation fill with no terminal liquidation.",
+  "exposure": "Formation-date target shifted by one observed session; realized_close_exposure is reported separately.",
+  "index_proxy": "CSI 300 price index is a non-executable research proxy; no ETF tracking, financing, market impact or exchange-lot claims.",
+  "no_blind_test": "The post-publication interval is historical and already observable; it is not a prospectively blinded test."
+}

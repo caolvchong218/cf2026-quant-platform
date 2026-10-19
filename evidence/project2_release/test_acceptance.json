@@ -1,0 +1,184 @@
+{
+  "schema": "qingxu.project2.test_acceptance.v1",
+  "created_utc": "2026-10-19T13:04:43.603450+00:00",
+  "passed_with_optional_skip": true,
+  "unique_tests": 462,
+  "effective_counts": {
+    "passed": 461,
+    "failed": 0,
+    "error": 0,
+    "skipped": 1
+  },
+  "counting_rule": "Union of test node IDs; later successful reruns replace original environment failures, never double count.",
+  "suite_receipts": [
+    {
+      "file": "tmp/project2_pytest_full.xml",
+      "sha256": "ed1c8a03e1a9d3faf4e16031fa4cc111df34b5d858364ae0a26c0c8886ace60f",
+      "tests": 457,
+      "counts": {
+        "passed": 448,
+        "failed": 8,
+        "error": 0,
+        "skipped": 1
+      },
+      "seconds": 272.018,
+      "published_file": "test_receipts/project2_pytest_full.xml"
+    },
+    {
+      "file": "tmp/project2_pytest_permissions.xml",
+      "sha256": "32b8f7ef36d2bebe0babd56900f6f3d359d887ecde64bad696202c333aba1e28",
+      "tests": 8,
+      "counts": {
+        "passed": 8,
+        "failed": 0,
+        "error": 0,
+        "skipped": 0
+      },
+      "seconds": 24.03,
+      "published_file": "test_receipts/project2_pytest_permissions.xml"
+    },
+    {
+      "file": "tmp/project2_pytest_study_final.xml",
+      "sha256": "8c716e64b58953081e7ba7e55ad471125a8441159b712e5937ce942840fc2ac4",
+      "tests": 17,
+      "counts": {
+        "passed": 17,
+        "failed": 0,
+        "error": 0,
+        "skipped": 0
+      },
+      "seconds": 20.661,
+      "published_file": "test_receipts/project2_pytest_study_final.xml"
+    },
+    {
+      "file": "tmp/project2_pytest_study_release_v2.xml",
+      "sha256": "7ead091b260b8e400595fb4315ee42db73db5665b142e7690d4ad181db1f0184",
+      "tests": 18,
+      "counts": {
+        "passed": 18,
+        "failed": 0,
+        "error": 0,
+        "skipped": 0
+      },
+      "seconds": 11.537,
+      "published_file": "test_receipts/project2_pytest_study_release_v2.xml"
+    }
+  ],
+  "windows_permission_resolution": {
+    "normal_permission_rerun_passed": true,
+    "initial_failed_nodes": [
+      "tests.test_experiment_catalog::test_archive_ui_can_filter_and_save_note",
+      "tests.test_experiment_catalog::test_discovery_prunes_external_windows_junction_or_symlink",
+      "tests.test_launcher::test_native_windows_owner_table_verifies_real_loopback_listener",
+      "tests.test_launcher::test_real_python_listener_from_popen_runtime_descendant_is_verified",
+      "tests.test_simulation_bridge::test_offline_ui_demonstrates_and_saves_synthetic_receipt",
+      "tests.test_validation_ui::test_empty_validation_page_has_clear_readiness_and_no_fake_performance",
+      "tests.test_validation_ui::test_mainline_freeze_uses_actual_markdown_protocol_and_configuration",
+      "tests.test_validation_ui::test_index_run_uses_actual_engine_reconciles_and_saves_independent_evidence"
+    ],
+    "causes": {
+      "streamlit_tempfile_permission_denied": 5,
+      "windows_test_junction_creation_denied": 1,
+      "sandbox_native_listener_ownership_unavailable": 2
+    },
+    "code_changes_to_make_permission_tests_pass": false
+  },
+  "optional_skips": [
+    {
+      "node_id": "tests.test_qlib_bridge::test_actual_qlib_expression_engine_matches_independent_reference",
+      "status": "skipped",
+      "seconds": 0.021,
+      "last_receipt": "tmp/project2_pytest_full.xml",
+      "skip_reason": "Optional isolated .venv-qlib engine integration"
+    }
+  ],
+  "targeted_cogalpha_suite_before_full_run": {
+    "passed": 125,
+    "seconds": 42.95,
+    "scope": [
+      "test_cogalpha_study",
+      "test_cogalpha",
+      "test_cogalpha_models",
+      "test_cogalpha_mining",
+      "test_research_api",
+      "test_dropout_execution"
+    ],
+    "included_in_union_not_added_again": true
+  },
+  "last_offline_cli_checks": {
+    "new_cases_after_full_collection": 4,
+    "api_constructor_and_mining_forbidden": true,
+    "checks": [
+      "completed offline replay",
+      "protocol hash mismatch rejection",
+      "accepted training metric mismatch rejection",
+      "unfinished mining slot rejection"
+    ],
+    "latest_study_file_all_tests_passed": 18
+  },
+  "rsrs_registered_engine_equivalence": {
+    "passed": true,
+    "replayed_runs": 198,
+    "checked_sessions": 415140,
+    "reference_commit": "2f31d22f453ddee89a378087074e71a95cde796e",
+    "reference_run_id": "ac2b95ded77d2daccbcb84dcde18889fed8cd3672af37cd6db6fbfe6e9d5fd47",
+    "worst_ledger_normalized_absolute_error": 1.7763568394002505e-15,
+    "worst_metric_absolute_error": 5.820766091346741e-11
+  },
+  "rsrs_equivalence_receipt": {
+    "file": "tmp/rsrs_engine_equivalence.json",
+    "sha256": "26391d774e46db5982cd98ac48ecd0499d7bcef8c1b04129f0bf1fd728295bc2",
+    "published_file": "../project2_rsrs/release_engine_equivalence.json"
+  },
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "numpy": "2.3.5",
+      "pandas": "2.3.3",
+      "scipy": "1.16.3",
+      "scikit-learn": "1.7.2",
+      "lightgbm": "4.7.0",
+      "pyarrow": "21.0.0",
+      "streamlit": "1.51.0",
+      "pytest": "8.4.2"
+    }
+  },
+  "source_hashes_at_acceptance": {
+    "src/cfquant/cogalpha.py": "4b5f4c2454657749b889aa994cf6e672b98e27350acce755764dc641a2f85613",
+    "src/cfquant/cogalpha_study.py": "4761a7c0d56cfb745d0a7da2297d3e8d3e62740f63c35986090956635567b207",
+    "src/cfquant/cogalpha_models.py": "67530dfa3701ee0b6bf274e300f884259f6cb0cd92cee1dc82300b80d2218532",
+    "src/cfquant/cogalpha_mining.py": "77c7651001dfa67b2a0de6daa4cf8450237b5d3f2f4ca88a17a28717c5021b28",
+    "src/cfquant/research_api.py": "071b8db50bee4b92691d4eac1a72eef8bc01fb7b7540218137fa8a9d0df3e9ae",
+    "src/cfquant/engine.py": "7d83d76d91822a9236e95ea9bb9fc56822ec810ae2a109f6fc1c0258b1a5de32",
+    "src/cfquant/analytics.py": "d8976c6311658c0648624118e652e4d7a2751ec23fc6a0a0c88e852ef38b57a3",
+    "src/cfquant/rsrs.py": "66cba59ad8eef37a45f7fd2613b425cdc65d50b91219ff95684fda5202201fb2",
+    "tests/test_cogalpha_study.py": "9064764940d1a3856c3cc89943a87df548b4295a7b59be64c46f2b1e7945dc96"
+  },
+  "paid_api_calls_by_this_audit": 0,
+  "formal_rsrs_outputs_modified_by_this_audit": false,
+  "scope_limitations": [
+    "The optional Qlib isolated-environment engine test remains skipped in .venv-clean.",
+    "This receipt covers tests and RSRS equality, not completion of live CogAlpha mining/model experiments.",
+    "No claim of live brokerage execution or guaranteed coursework grade."
+  ],
+  "post_test_source_byte_normalization": {
+    "path": "src/cfquant/cogalpha.py",
+    "previous_sha256": "4b5f4c2454657749b889aa994cf6e672b98e27350acce755764dc641a2f85613",
+    "release_sha256": "532e097bd59e4704ce5f8c3e7b8d8d2278929c82d0c9dbc5c7351fcf8e432841",
+    "change": "CRLF to LF only; matches committed Git bytes",
+    "python_ast_identical": true
+  },
+  "latest_targeted_release_checks": {
+    "receipt": "test_receipts/project2_pytest_study_release_v2.xml",
+    "changes_covered": [
+      "public model metadata excludes fitted coefficients and intercept",
+      "zero portfolio runs cannot report ledger validation success"
+    ],
+    "source_sha256": {
+      "src/cfquant/cogalpha_study.py": "91a1e8dbfd4ac73d060d7062b1ed1e174557413ea66d49eea3172b1fec5294eb",
+      "tests/test_cogalpha_study.py": "682d89df5d8fdb000b6602c24db5ab7a8032d11d93d55220134fc9c4a0172900"
+    }
+  },
+  "updated_utc": "2026-10-19T13:18:45.139961+00:00"
+}

@@ -1,0 +1,12 @@
+{
+  "run_id": "ac2b95ded77d2daccbcb84dcde18889fed8cd3672af37cd6db6fbfe6e9d5fd47",
+  "config_sha256": "e2191a79359f105bbe7793997d0a56cb070b1908f7c8fdcd428c786086adba8d",
+  "source_sha256": {
+    "src/cfquant/rsrs.py": "66cba59ad8eef37a45f7fd2613b425cdc65d50b91219ff95684fda5202201fb2",
+    "src/cfquant/rsrs_study.py": "2b6a3bd31554555cef5c174185cd6f2b9281c44032a2f3b320a4d76884bb4c73",
+    "src/cfquant/rsrs_diagnostics.py": "37250f99c44a0ac4361ad9e8d5fdcd821598fad545cd83bb8cdf25b9e34fb0cb",
+    "src/cfquant/engine.py": "7b5c754de3ce1dca7f18c011bc427a96e34e093b1dfba7ef7ed4cfc250ba3af5",
+    "src/cfquant/analytics.py": "cb21d6b551848f930bd2917da330f9c687c441d54e34618648818e835e38d39b",
+    "projects/project2_rsrs/rsrs.py": "9c80a0cfd19a14c1abdf7d555ff9152645e85d5279d6f3eadb7f27ddfb1c83ec"
+  }
+}

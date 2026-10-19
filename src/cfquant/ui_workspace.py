@@ -85,6 +85,11 @@ def overview(root):
         st.caption('按实验、资产与日期检索订单，保存研究笔记。')
         st.button('打开实验档案 →',on_click=navigate,args=('实验档案',),width='stretch')
     note('研究边界：V3 是观察历史结果后选出的开发候选，尚未通过独立盲测。2024 年曾落后指数，风险控制也不能保证未来回撤上限。')
+    st.subheader('Project 2 · 研报复现')
+    st.caption('RSRS 原文对照、执行差异诊断与固定波动目标改进；在独立研究页保留有效和失效的结果。')
+    st.button('进入 RSRS 研报复现 →',on_click=navigate,args=('研报复现 · P2',),key='home_rsrs',width='stretch')
+    st.caption('CogAlpha 独立路线：比较大模型初代、同预算新提案与进化候选，查看谱系、预测效果和实际调用预算。')
+    st.button('进入 CogAlpha 论文复现 →',on_click=navigate,args=('论文复现 · CogAlpha',),key='home_cogalpha',width='stretch')
     if (root/'evidence/research_v4/decision.json').exists():
         st.subheader('辅助研究与策略验证')
         st.caption('V4因子挖掘、白箱/Ridge与主线组合已加入统一对照。原主线保留，前向成绩独立记录。')

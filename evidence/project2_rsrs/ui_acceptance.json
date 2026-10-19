@@ -1,0 +1,14 @@
+{
+  "errors": [],
+  "baseline_cagr": "1.50%",
+  "improved_cagr": "1.83%",
+  "downloads": true,
+  "screenshots": 4,
+  "browser": "fresh headless Chrome, local test server",
+  "page": "RSRS",
+  "default_index": "CSI300",
+  "default_period": "post_publication",
+  "default_cost_bps": 10,
+  "visual_reviewed": true,
+  "trade_account_connected": false
+}

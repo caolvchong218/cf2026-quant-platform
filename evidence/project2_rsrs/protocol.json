@@ -1,0 +1,109 @@
+{
+  "schema": "qingxu.project2.rsrs.v1",
+  "study": "RSRS report replication, controlled differences and volatility sizing",
+  "source_report": "Everbright Securities 2017-05-01",
+  "source_target": "Figures 25-26 and Table 5: right-skew RSRS with MA20 entry filter",
+  "data_end": "2026-10-15",
+  "symbols": [
+    "sh000300",
+    "sh000016",
+    "sh000905"
+  ],
+  "periods": {
+    "historical_overlap": [
+      "2007-08-01",
+      "2017-03-31"
+    ],
+    "post_publication": [
+      "2017-05-02",
+      "2026-10-15"
+    ],
+    "recent": [
+      "2020-01-02",
+      "2026-10-15"
+    ]
+  },
+  "cost_bps_each_side": [
+    0,
+    10
+  ],
+  "initial_cash": 1000000,
+  "annualization": 252,
+  "risk_free_annual": 0,
+  "cash_interest": 0,
+  "main_baseline": "right_ma",
+  "main_improvement": "right_ma_vol15",
+  "volatility_control": {
+    "target": 0.15,
+    "window": 20,
+    "ddof": 1,
+    "max_exposure": 1.0,
+    "rebalance": "daily"
+  },
+  "cash_control": {
+    "exposure_scale": 0.75,
+    "rebalance": "daily"
+  },
+  "main_endpoint": "post_publication, sh000300, 10 bps each side",
+  "primary_comparison": "max_drawdown reduction with annualized return, Sharpe and turnover reported together",
+  "secondary_comparisons": [
+    "two other indices",
+    "two other periods",
+    "zero and doubled fees",
+    "fixed 75 percent sizing",
+    "10 and 20 percent volatility targets"
+  ],
+  "execution": "decision at close t, trade at open t+1, mark at close t+1",
+  "standardization": "previous M valid slopes excluding current; population standard deviation; strict full warmup",
+  "ma_filter": "entry only; MA20[t] > MA20[t-2]; no forced exit on MA decline",
+  "new_strategy_parameters_selected_before_formal_runs": true,
+  "historical_results_already_observed": true,
+  "independent_blind_test": false,
+  "selection_rule": "no final-period winner replacement; report every registered candidate",
+  "bootstrap": {
+    "seed": 20261019,
+    "repetitions": 1000,
+    "block_sessions": 20,
+    "paired": true
+  },
+  "source_snapshot_sha256": {
+    "sh000300.csv": "3d432bc0baab98857fb52053418e880d34d623a64341bbb467402c8dac34e5b9",
+    "sh000016.csv": "7ccb853cd5c9464683a92bbb0975d8002c00e5f41f18faafd80667768537c451",
+    "sh000905.csv": "545bae9f221cfc2d828e3e71ae724a01da61649ebdf74921647c199bc57d77a6"
+  },
+  "source_compatible_supplement": {
+    "start": "2005-03-01",
+    "end_assumptions": [
+      "2017-03-31",
+      "2017-04-28"
+    ],
+    "warmup": [
+      "strict",
+      "partial"
+    ],
+    "partial_minimum_prior_slopes": 2,
+    "strategies": [
+      "standard_ma",
+      "corrected_ma",
+      "right_ma"
+    ],
+    "cost_bps_each_side": [
+      0,
+      10
+    ],
+    "basis": "Source p22 explicitly permits partial early history; minimum observations, ddof and exact endpoints remain assumptions"
+  },
+  "controlled_differences": [
+    "include current slope in standardization",
+    "sample ddof1",
+    "MA lag3",
+    "causal next-day close execution",
+    "cost 0/20/30bps"
+  ],
+  "limitations": [
+    "The exact original Wind sample and minimum early warmup are unavailable",
+    "Price indices are research proxies, not executable securities",
+    "Source headline numbers are not directly comparable to the common-window study",
+    "No leverage, financing, dividends or live brokerage execution"
+  ]
+}

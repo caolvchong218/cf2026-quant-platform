@@ -1,0 +1,32 @@
+[
+  {
+    "index_id": "sh000300",
+    "rows": 5288,
+    "first": "2005-01-04",
+    "last": "2026-10-15",
+    "missing_ohlc": 0,
+    "duplicate_dates": 0,
+    "ohlc_ordering_passed": true,
+    "sha256": "3d432bc0baab98857fb52053418e880d34d623a64341bbb467402c8dac34e5b9"
+  },
+  {
+    "index_id": "sh000016",
+    "rows": 5531,
+    "first": "2004-01-02",
+    "last": "2026-10-15",
+    "missing_ohlc": 0,
+    "duplicate_dates": 0,
+    "ohlc_ordering_passed": true,
+    "sha256": "7ccb853cd5c9464683a92bbb0975d8002c00e5f41f18faafd80667768537c451"
+  },
+  {
+    "index_id": "sh000905",
+    "rows": 5288,
+    "first": "2005-01-04",
+    "last": "2026-10-15",
+    "missing_ohlc": 0,
+    "duplicate_dates": 0,
+    "ohlc_ordering_passed": true,
+    "sha256": "545bae9f221cfc2d828e3e71ae724a01da61649ebdf74921647c199bc57d77a6"
+  }
+]

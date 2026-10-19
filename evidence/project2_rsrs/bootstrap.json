@@ -1,0 +1,27 @@
+{
+  "seed": 20261019,
+  "repetitions": 1000,
+  "block_sessions": 20,
+  "paired": true,
+  "method": "paired non-circular moving-block bootstrap, percentile 95% interval",
+  "metric": "252 times arithmetic mean of paired daily return differences; NOT CAGR difference",
+  "limitations": "Dependent overlapping histories and previously observed sample; not independent confirmation or a multiple-testing-adjusted significance claim",
+  "comparisons": [
+    {
+      "improvement": "right_ma_vol15",
+      "baseline": "right_ma",
+      "annualized_mean_daily_return_difference": -0.0002465816290145568,
+      "ci_low": -0.018025539011912072,
+      "ci_high": 0.017197783483473682,
+      "sessions": 2296
+    },
+    {
+      "improvement": "right_ma_vol15",
+      "baseline": "right_ma_cash75",
+      "annualized_mean_daily_return_difference": 0.005556206578504675,
+      "ci_low": -0.010180174348817711,
+      "ci_high": 0.022045027538058017,
+      "sessions": 2296
+    }
+  ]
+}

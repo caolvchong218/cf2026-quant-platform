@@ -12,6 +12,7 @@ from cfquant.data import load_market, load_calendar, digest
 from cfquant.factors import REGISTRY, compute
 from cfquant.analytics import diagnostics, forward_returns
 from cfquant.experiment import execute
+from cfquant import __version__
 
 ROOT = Path(__file__).resolve().parent
 st.set_page_config(page_title="青序 · 量化研究工作台", page_icon="📈", layout="wide")
@@ -29,16 +30,22 @@ if expanded_config.exists():
     status_path = (ROOT/expanded.data_path).parent/"progress.json"
     if status_path.exists() and json.loads(status_path.read_text(encoding="utf-8")).get("status") == "complete":
         datasets["扩展快照 · 1000只 · 2020–2026"] = "configs/expanded.yaml"
-page = st.sidebar.radio("研究空间", ["研究总览", "策略对比", "风险透镜", "回测实验", "因子诊断", "因子研发", "策略验证", "实验档案", "行情探索", "Qlib 接入", "模拟交易连接", "策略研究", "材料与答辩", "数据与复现", "扩展指南"], key="workspace_page")
+page = st.sidebar.radio("研究空间", ["研究总览", "研报复现 · P2", "论文复现 · CogAlpha", "策略对比", "风险透镜", "回测实验", "因子诊断", "因子研发", "策略验证", "实验档案", "行情探索", "Qlib 接入", "模拟交易连接", "策略研究", "材料与答辩", "数据与复现", "扩展指南"], key="workspace_page")
 # Aggregate research pages do not load 1.65 million price rows on every cold start.
-fast_pages = {"研究总览", "策略对比", "风险透镜", "因子研发", "策略验证", "实验档案", "Qlib 接入", "模拟交易连接", "材料与答辩"}
+fast_pages = {"研究总览", "研报复现 · P2", "论文复现 · CogAlpha", "策略对比", "风险透镜", "因子研发", "策略验证", "实验档案", "Qlib 接入", "模拟交易连接", "材料与答辩"}
 if page in fast_pages:
-    st.sidebar.caption("平台 v2.3.0 · 主线 V3 / 辅助 V4")
-    st.sidebar.caption("历史数据截至 2026-09-18")
+    st.sidebar.caption(f"平台 v{__version__} · V3 / V4 / RSRS / CogAlpha")
+    st.sidebar.caption("P1 股票快照截至 2026-09-18；P2 指数时期见研究协议。")
     st.sidebar.caption("聚合研究可离线查看；逐股明细需本地快照。")
     if page in {"研究总览", "策略对比", "风险透镜"}:
         from cfquant.ui_workspace import overview, comparison, risk
         {"研究总览":overview,"策略对比":comparison,"风险透镜":risk}[page](ROOT)
+    elif page == "研报复现 · P2":
+        from cfquant.ui_rsrs import render
+        render(ROOT)
+    elif page == "论文复现 · CogAlpha":
+        from cfquant.ui_cogalpha import render
+        render(ROOT)
     elif page == "实验档案":
         from cfquant.ui_experiments import render
         render(ROOT)

@@ -1,0 +1,3253 @@
+{
+  "all_ledgers_passed": true,
+  "main_runs": 198,
+  "legacy_oracle_runs": 162,
+  "main_checked_sessions": 415140,
+  "legacy_worst_absolute_error": 4.529709940470639e-14,
+  "diagnostics": {
+    "passed": true,
+    "index_id": "sh000300",
+    "diagnostic_runs": 16,
+    "source_compatible_runs": 24,
+    "benchmark_runs": 14,
+    "reconciliation": [
+      {
+        "run": "benchmark_2007-08-01_2017-03-31_10.0_next_open",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2352,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_historical_overlap_prior_M_ddof0_lag2_next_open_10bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2352,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_historical_overlap_include_current_M",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2352,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_historical_overlap_sample_std_ddof1",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2352,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_historical_overlap_trend_lag3",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2352,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "benchmark_2007-08-01_2017-03-31_10.0_next_close",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2352,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_historical_overlap_next_close_execution",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2352,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "benchmark_2007-08-01_2017-03-31_0.0_next_open",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2352,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_historical_overlap_cost_0bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2352,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "benchmark_2007-08-01_2017-03-31_20.0_next_open",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2352,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_historical_overlap_cost_20bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2352,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "benchmark_2007-08-01_2017-03-31_30.0_next_open",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2352,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_historical_overlap_cost_30bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2352,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "benchmark_2017-05-02_2026-10-15_10.0_next_open",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2296,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_post_publication_prior_M_ddof0_lag2_next_open_10bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2296,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_post_publication_include_current_M",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2296,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_post_publication_sample_std_ddof1",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2296,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_post_publication_trend_lag3",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2296,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "benchmark_2017-05-02_2026-10-15_10.0_next_close",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2296,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_post_publication_next_close_execution",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2296,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "benchmark_2017-05-02_2026-10-15_0.0_next_open",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2296,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_post_publication_cost_0bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2296,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "benchmark_2017-05-02_2026-10-15_20.0_next_open",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2296,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_post_publication_cost_20bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2296,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "benchmark_2017-05-02_2026-10-15_30.0_next_open",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2296,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_post_publication_cost_30bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2296,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "benchmark_2005-03-01_2017-03-31_0.0_next_open",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2941,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_standard_ma_strict_prior_M_march_end_0bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2941,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "benchmark_2005-03-01_2017-03-31_10.0_next_open",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2941,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_standard_ma_strict_prior_M_march_end_10bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2941,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "benchmark_2005-03-01_2017-04-28_0.0_next_open",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2959,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_standard_ma_strict_prior_M_last_session_before_publication_0bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2959,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "benchmark_2005-03-01_2017-04-28_10.0_next_open",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2959,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_standard_ma_strict_prior_M_last_session_before_publication_10bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2959,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_standard_ma_partial_prior_M_min2_march_end_0bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2941,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_standard_ma_partial_prior_M_min2_march_end_10bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2941,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_standard_ma_partial_prior_M_min2_last_session_before_publication_0bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2959,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_standard_ma_partial_prior_M_min2_last_session_before_publication_10bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2959,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_corrected_ma_strict_prior_M_march_end_0bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2941,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_corrected_ma_strict_prior_M_march_end_10bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2941,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_corrected_ma_strict_prior_M_last_session_before_publication_0bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2959,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_corrected_ma_strict_prior_M_last_session_before_publication_10bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2959,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_corrected_ma_partial_prior_M_min2_march_end_0bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2941,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_corrected_ma_partial_prior_M_min2_march_end_10bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2941,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_corrected_ma_partial_prior_M_min2_last_session_before_publication_0bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2959,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_corrected_ma_partial_prior_M_min2_last_session_before_publication_10bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2959,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_right_ma_strict_prior_M_march_end_0bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2941,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_right_ma_strict_prior_M_march_end_10bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2941,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_right_ma_strict_prior_M_last_session_before_publication_0bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2959,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_right_ma_strict_prior_M_last_session_before_publication_10bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2959,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_right_ma_partial_prior_M_min2_march_end_0bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2941,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_right_ma_partial_prior_M_min2_march_end_10bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2941,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_right_ma_partial_prior_M_min2_last_session_before_publication_0bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2959,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      },
+      {
+        "run": "sh000300_right_ma_partial_prior_M_min2_last_session_before_publication_10bps",
+        "passed": true,
+        "errors": [],
+        "checked_sessions": 2959,
+        "cash_tolerance": 1e-06,
+        "relative_tolerance": 1e-10
+      }
+    ],
+    "formula_check_passed": true,
+    "assumptions_file": "diagnostic_assumptions.json",
+    "written_files": [
+      "diagnostics.csv",
+      "source_compatible.csv",
+      "formula_checks.json",
+      "formula_ols_points.csv",
+      "diagnostic_assumptions.json",
+      "diagnostic_daily/sh000300_historical_overlap_prior_M_ddof0_lag2_next_open_10bps.csv",
+      "diagnostic_daily/sh000300_historical_overlap_include_current_M.csv",
+      "diagnostic_daily/sh000300_historical_overlap_sample_std_ddof1.csv",
+      "diagnostic_daily/sh000300_historical_overlap_trend_lag3.csv",
+      "diagnostic_daily/sh000300_historical_overlap_next_close_execution.csv",
+      "diagnostic_daily/sh000300_historical_overlap_cost_0bps.csv",
+      "diagnostic_daily/sh000300_historical_overlap_cost_20bps.csv",
+      "diagnostic_daily/sh000300_historical_overlap_cost_30bps.csv",
+      "diagnostic_daily/sh000300_post_publication_prior_M_ddof0_lag2_next_open_10bps.csv",
+      "diagnostic_daily/sh000300_post_publication_include_current_M.csv",
+      "diagnostic_daily/sh000300_post_publication_sample_std_ddof1.csv",
+      "diagnostic_daily/sh000300_post_publication_trend_lag3.csv",
+      "diagnostic_daily/sh000300_post_publication_next_close_execution.csv",
+      "diagnostic_daily/sh000300_post_publication_cost_0bps.csv",
+      "diagnostic_daily/sh000300_post_publication_cost_20bps.csv",
+      "diagnostic_daily/sh000300_post_publication_cost_30bps.csv",
+      "diagnostic_daily/sh000300_standard_ma_strict_prior_M_march_end_0bps.csv",
+      "diagnostic_daily/sh000300_standard_ma_strict_prior_M_march_end_10bps.csv",
+      "diagnostic_daily/sh000300_standard_ma_strict_prior_M_last_session_before_publication_0bps.csv",
+      "diagnostic_daily/sh000300_standard_ma_strict_prior_M_last_session_before_publication_10bps.csv",
+      "diagnostic_daily/sh000300_standard_ma_partial_prior_M_min2_march_end_0bps.csv",
+      "diagnostic_daily/sh000300_standard_ma_partial_prior_M_min2_march_end_10bps.csv",
+      "diagnostic_daily/sh000300_standard_ma_partial_prior_M_min2_last_session_before_publication_0bps.csv",
+      "diagnostic_daily/sh000300_standard_ma_partial_prior_M_min2_last_session_before_publication_10bps.csv",
+      "diagnostic_daily/sh000300_corrected_ma_strict_prior_M_march_end_0bps.csv",
+      "diagnostic_daily/sh000300_corrected_ma_strict_prior_M_march_end_10bps.csv",
+      "diagnostic_daily/sh000300_corrected_ma_strict_prior_M_last_session_before_publication_0bps.csv",
+      "diagnostic_daily/sh000300_corrected_ma_strict_prior_M_last_session_before_publication_10bps.csv",
+      "diagnostic_daily/sh000300_corrected_ma_partial_prior_M_min2_march_end_0bps.csv",
+      "diagnostic_daily/sh000300_corrected_ma_partial_prior_M_min2_march_end_10bps.csv",
+      "diagnostic_daily/sh000300_corrected_ma_partial_prior_M_min2_last_session_before_publication_0bps.csv",
+      "diagnostic_daily/sh000300_corrected_ma_partial_prior_M_min2_last_session_before_publication_10bps.csv",
+      "diagnostic_daily/sh000300_right_ma_strict_prior_M_march_end_0bps.csv",
+      "diagnostic_daily/sh000300_right_ma_strict_prior_M_march_end_10bps.csv",
+      "diagnostic_daily/sh000300_right_ma_strict_prior_M_last_session_before_publication_0bps.csv",
+      "diagnostic_daily/sh000300_right_ma_strict_prior_M_last_session_before_publication_10bps.csv",
+      "diagnostic_daily/sh000300_right_ma_partial_prior_M_min2_march_end_0bps.csv",
+      "diagnostic_daily/sh000300_right_ma_partial_prior_M_min2_march_end_10bps.csv",
+      "diagnostic_daily/sh000300_right_ma_partial_prior_M_min2_last_session_before_publication_0bps.csv",
+      "diagnostic_daily/sh000300_right_ma_partial_prior_M_min2_last_session_before_publication_10bps.csv"
+    ]
+  },
+  "runs": [
+    {
+      "key": "sh000300__historical_overlap__buy_hold__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.220446049250313e-16,
+        "cash": 0.0,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__historical_overlap__ma20__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 3.9968028886505635e-15,
+        "cash": 3.9968028886505635e-15,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__historical_overlap__slope__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.220446049250313e-15,
+        "cash": 1.7763568394002505e-15,
+        "cost": 0.0,
+        "returns": 3.3306690738754696e-16
+      }
+    },
+    {
+      "key": "sh000300__historical_overlap__standard__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.6645352591003757e-15,
+        "cash": 2.220446049250313e-15,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__historical_overlap__corrected__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 8.881784197001252e-16,
+        "cash": 8.881784197001252e-16,
+        "cost": 0.0,
+        "returns": 2.220446049250313e-16
+      }
+    },
+    {
+      "key": "sh000300__historical_overlap__right__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.3322676295501878e-15,
+        "cash": 8.881784197001252e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__historical_overlap__standard_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.6645352591003757e-15,
+        "cash": 2.6645352591003757e-15,
+        "cost": 0.0,
+        "returns": 3.3306690738754696e-16
+      }
+    },
+    {
+      "key": "sh000300__historical_overlap__corrected_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.7763568394002505e-15,
+        "cash": 1.7763568394002505e-15,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__historical_overlap__right_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.7763568394002505e-15,
+        "cash": 8.881784197001252e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__historical_overlap__right_ma_vol15__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000300__historical_overlap__right_ma_cash75__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000300__historical_overlap__buy_hold__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 2.220446049250313e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__historical_overlap__ma20__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 3.064215547965432e-14,
+        "cash": 2.886579864025407e-14,
+        "cost": 2.905661822261152e-17,
+        "returns": 5.551115123125783e-16
+      }
+    },
+    {
+      "key": "sh000300__historical_overlap__slope__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.199040866595169e-14,
+        "cash": 1.1546319456101628e-14,
+        "cost": 1.1275702593849246e-17,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__historical_overlap__standard__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.865174681370263e-14,
+        "cash": 1.7763568394002505e-14,
+        "cost": 1.8214596497756474e-17,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__historical_overlap__corrected__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.5987211554602254e-14,
+        "cash": 1.4654943925052066e-14,
+        "cost": 1.5178830414797062e-17,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__historical_overlap__right__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.5987211554602254e-14,
+        "cash": 1.509903313490213e-14,
+        "cost": 1.474514954580286e-17,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__historical_overlap__standard_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.2434497875801753e-14,
+        "cash": 1.1546319456101628e-14,
+        "cost": 1.214306433183765e-17,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__historical_overlap__corrected_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.509903313490213e-14,
+        "cash": 1.3322676295501878e-14,
+        "cost": 1.3877787807814457e-17,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__historical_overlap__right_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 9.769962616701378e-15,
+        "cash": 7.993605777301127e-15,
+        "cost": 7.806255641895632e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__historical_overlap__right_ma_vol15__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000300__historical_overlap__right_ma_cash75__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000300__post_publication__buy_hold__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 1.164153218269348e-16,
+        "cost": 0.0,
+        "returns": 6.661338147750939e-16
+      }
+    },
+    {
+      "key": "sh000300__post_publication__ma20__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.3322676295501878e-15,
+        "cash": 1.1102230246251565e-15,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__post_publication__slope__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 6.661338147750939e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__post_publication__standard__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 8.881784197001252e-16,
+        "cash": 6.661338147750939e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__post_publication__corrected__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.5543122344752192e-15,
+        "cash": 1.3322676295501878e-15,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__post_publication__right__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.1102230246251565e-15,
+        "cash": 8.881784197001252e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__post_publication__standard_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.1102230246251565e-15,
+        "cash": 8.881784197001252e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__post_publication__corrected_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.1102230246251565e-15,
+        "cash": 8.881784197001252e-16,
+        "cost": 0.0,
+        "returns": 3.3306690738754696e-16
+      }
+    },
+    {
+      "key": "sh000300__post_publication__right_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 6.661338147750939e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__post_publication__right_ma_vol15__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000300__post_publication__right_ma_cash75__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000300__post_publication__buy_hold__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 6.661338147750939e-16,
+        "cash": 2.220446049250313e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__post_publication__ma20__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.3877787807814457e-14,
+        "cash": 1.3322676295501878e-14,
+        "cost": 1.3227266504323154e-17,
+        "returns": 5.551115123125783e-16
+      }
+    },
+    {
+      "key": "sh000300__post_publication__slope__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 6.661338147750939e-15,
+        "cash": 5.995204332975845e-15,
+        "cost": 6.071532165918825e-18,
+        "returns": 5.551115123125783e-16
+      }
+    },
+    {
+      "key": "sh000300__post_publication__standard__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 5.551115123125783e-15,
+        "cash": 5.10702591327572e-15,
+        "cost": 5.421010862427522e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__post_publication__corrected__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.884981308350689e-15,
+        "cash": 4.440892098500626e-15,
+        "cost": 4.553649124439119e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__post_publication__right__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.884981308350689e-15,
+        "cash": 4.440892098500626e-15,
+        "cost": 4.336808689942018e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__post_publication__standard_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 5.10702591327572e-15,
+        "cash": 4.884981308350689e-15,
+        "cost": 4.9873299934333204e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__post_publication__corrected_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.6629367034256575e-15,
+        "cash": 4.218847493575595e-15,
+        "cost": 4.336808689942018e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__post_publication__right_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 3.774758283725532e-15,
+        "cash": 3.3306690738754696e-15,
+        "cost": 3.469446951953614e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__post_publication__right_ma_vol15__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000300__post_publication__right_ma_cash75__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000300__recent__buy_hold__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.220446049250313e-16,
+        "cash": 0.0,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__recent__ma20__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.2212453270876722e-15,
+        "cash": 9.992007221626409e-16,
+        "cost": 0.0,
+        "returns": 3.3306690738754696e-16
+      }
+    },
+    {
+      "key": "sh000300__recent__slope__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 6.661338147750939e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 3.3306690738754696e-16
+      }
+    },
+    {
+      "key": "sh000300__recent__standard__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 6.661338147750939e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 3.3306690738754696e-16
+      }
+    },
+    {
+      "key": "sh000300__recent__corrected__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 5.551115123125783e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__recent__right__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 2.220446049250313e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__recent__standard_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 3.3306690738754696e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__recent__corrected_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 5.551115123125783e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__recent__right_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 2.220446049250313e-16,
+        "cost": 0.0,
+        "returns": 3.3306690738754696e-16
+      }
+    },
+    {
+      "key": "sh000300__recent__right_ma_vol15__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000300__recent__right_ma_cash75__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000300__recent__buy_hold__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 2.220446049250313e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__recent__ma20__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 7.882583474838611e-15,
+        "cash": 7.549516567451064e-15,
+        "cost": 7.48099499014998e-18,
+        "returns": 6.661338147750939e-16
+      }
+    },
+    {
+      "key": "sh000300__recent__slope__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 3.1086244689504383e-15,
+        "cash": 2.6645352591003757e-15,
+        "cost": 2.8189256484623115e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__recent__standard__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 3.3306690738754696e-15,
+        "cash": 3.1086244689504383e-15,
+        "cost": 3.0357660829594124e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__recent__corrected__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.887379141862766e-15,
+        "cash": 1.7763568394002505e-15,
+        "cost": 1.734723475976807e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__recent__right__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.3322676295501878e-15,
+        "cash": 1.2212453270876722e-15,
+        "cost": 1.3010426069826053e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__recent__standard_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.6645352591003757e-15,
+        "cash": 2.4424906541753444e-15,
+        "cost": 2.3852447794681098e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__recent__corrected_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.220446049250313e-15,
+        "cash": 1.9984014443252818e-15,
+        "cost": 2.168404344971009e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__recent__right_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.220446049250313e-15,
+        "cash": 1.887379141862766e-15,
+        "cost": 1.734723475976807e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000300__recent__right_ma_vol15__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000300__recent__right_ma_cash75__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000905__historical_overlap__buy_hold__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 0.0,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__historical_overlap__ma20__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.6645352591003757e-15,
+        "cash": 1.7763568394002505e-15,
+        "cost": 0.0,
+        "returns": 6.661338147750939e-16
+      }
+    },
+    {
+      "key": "sh000905__historical_overlap__slope__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.7763568394002505e-15,
+        "cash": 9.313225746154785e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__historical_overlap__standard__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.6645352591003757e-15,
+        "cash": 2.220446049250313e-15,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__historical_overlap__corrected__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.6645352591003757e-15,
+        "cash": 1.7763568394002505e-15,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__historical_overlap__right__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.7763568394002505e-15,
+        "cash": 1.3322676295501878e-15,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__historical_overlap__standard_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.6645352591003757e-15,
+        "cash": 2.6645352591003757e-15,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__historical_overlap__corrected_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.6645352591003757e-15,
+        "cash": 2.220446049250313e-15,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__historical_overlap__right_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.7763568394002505e-15,
+        "cash": 8.881784197001252e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__historical_overlap__right_ma_vol15__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000905__historical_overlap__right_ma_cash75__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000905__historical_overlap__buy_hold__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 8.881784197001252e-16,
+        "cash": 0.0,
+        "cost": 2.168404344971009e-19,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__historical_overlap__ma20__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.529709940470639e-14,
+        "cash": 4.085620730620576e-14,
+        "cost": 4.163336342344337e-17,
+        "returns": 6.661338147750939e-16
+      }
+    },
+    {
+      "key": "sh000905__historical_overlap__slope__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.865174681370263e-14,
+        "cash": 1.7763568394002505e-14,
+        "cost": 1.9081958235744878e-17,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__historical_overlap__standard__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.5987211554602254e-14,
+        "cash": 1.509903313490213e-14,
+        "cost": 1.5612511283791264e-17,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__historical_overlap__corrected__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.398081733190338e-14,
+        "cash": 2.3092638912203256e-14,
+        "cost": 2.2551405187698492e-17,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__historical_overlap__right__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.4210854715202004e-14,
+        "cash": 1.1102230246251565e-14,
+        "cost": 1.1275702593849246e-17,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__historical_overlap__standard_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.4868995751603507e-14,
+        "cash": 2.398081733190338e-14,
+        "cost": 2.3418766925686896e-17,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__historical_overlap__corrected_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.687538997430238e-14,
+        "cash": 1.4210854715202004e-14,
+        "cost": 1.3877787807814457e-17,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__historical_overlap__right_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.1546319456101628e-14,
+        "cash": 9.769962616701378e-15,
+        "cost": 9.540979117872439e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__historical_overlap__right_ma_vol15__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000905__historical_overlap__right_ma_cash75__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000905__post_publication__buy_hold__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.220446049250313e-16,
+        "cash": 0.0,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__post_publication__ma20__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.886579864025407e-15,
+        "cash": 2.886579864025407e-15,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__post_publication__slope__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 8.881784197001252e-16,
+        "cash": 8.881784197001252e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__post_publication__standard__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 2.220446049250313e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__post_publication__corrected__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 6.661338147750939e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 6.661338147750939e-16
+      }
+    },
+    {
+      "key": "sh000905__post_publication__right__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 8.881784197001252e-16,
+        "cash": 7.771561172376096e-16,
+        "cost": 0.0,
+        "returns": 3.3306690738754696e-16
+      }
+    },
+    {
+      "key": "sh000905__post_publication__standard_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.1102230246251565e-15,
+        "cash": 1.1102230246251565e-15,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__post_publication__corrected_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__post_publication__right_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 8.881784197001252e-16,
+        "cash": 7.771561172376096e-16,
+        "cost": 0.0,
+        "returns": 3.3306690738754696e-16
+      }
+    },
+    {
+      "key": "sh000905__post_publication__right_ma_vol15__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000905__post_publication__right_ma_cash75__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000905__post_publication__buy_hold__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 2.220446049250313e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__post_publication__ma20__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.2434497875801753e-14,
+        "cash": 1.1657341758564144e-14,
+        "cost": 1.1600963245594897e-17,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__post_publication__slope__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 3.9968028886505635e-15,
+        "cash": 3.774758283725532e-15,
+        "cost": 3.686287386450715e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__post_publication__standard__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 6.217248937900877e-15,
+        "cash": 5.329070518200751e-15,
+        "cost": 4.9873299934333204e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__post_publication__corrected__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.6629367034256575e-15,
+        "cash": 4.218847493575595e-15,
+        "cost": 4.336808689942018e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__post_publication__right__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.5543122344752192e-15,
+        "cash": 1.3322676295501878e-15,
+        "cost": 1.4094628242311558e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__post_publication__standard_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 3.9968028886505635e-15,
+        "cash": 3.774758283725532e-15,
+        "cost": 3.686287386450715e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__post_publication__corrected_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.7763568394002505e-15,
+        "cash": 1.5543122344752192e-15,
+        "cost": 1.5178830414797062e-18,
+        "returns": 5.551115123125783e-16
+      }
+    },
+    {
+      "key": "sh000905__post_publication__right_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.9984014443252818e-15,
+        "cash": 1.7763568394002505e-15,
+        "cost": 1.734723475976807e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__post_publication__right_ma_vol15__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000905__post_publication__right_ma_cash75__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000905__recent__buy_hold__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.220446049250313e-16,
+        "cash": 0.0,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__recent__ma20__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.3322676295501878e-15,
+        "cash": 1.3322676295501878e-15,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__recent__slope__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 6.661338147750939e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__recent__standard__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 6.661338147750939e-16
+      }
+    },
+    {
+      "key": "sh000905__recent__corrected__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 8.881784197001252e-16,
+        "cash": 8.881784197001252e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__recent__right__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 6.661338147750939e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__recent__standard_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__recent__corrected_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 6.661338147750939e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__recent__right_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 2.2743762428945044e-16,
+        "cost": 0.0,
+        "returns": 3.3306690738754696e-16
+      }
+    },
+    {
+      "key": "sh000905__recent__right_ma_vol15__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000905__recent__right_ma_cash75__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000905__recent__buy_hold__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 2.220446049250313e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__recent__ma20__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.27675647831893e-14,
+        "cash": 1.199040866595169e-14,
+        "cost": 1.2034644114589099e-17,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__recent__slope__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-15,
+        "cash": 3.9968028886505635e-15,
+        "cost": 4.119968255444917e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__recent__standard__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.218847493575595e-15,
+        "cash": 3.552713678800501e-15,
+        "cost": 3.469446951953614e-18,
+        "returns": 5.551115123125783e-16
+      }
+    },
+    {
+      "key": "sh000905__recent__corrected__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 3.3306690738754696e-15,
+        "cash": 3.1086244689504383e-15,
+        "cost": 3.0357660829594124e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__recent__right__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.4424906541753444e-15,
+        "cash": 2.220446049250313e-15,
+        "cost": 1.951563910473908e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__recent__standard_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.4424906541753444e-15,
+        "cash": 1.9984014443252818e-15,
+        "cost": 1.951563910473908e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__recent__corrected_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-15,
+        "cash": 4.218847493575595e-15,
+        "cost": 4.336808689942018e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000905__recent__right_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 3.3306690738754696e-15,
+        "cash": 2.7755575615628914e-15,
+        "cost": 2.6020852139652106e-18,
+        "returns": 3.3306690738754696e-16
+      }
+    },
+    {
+      "key": "sh000905__recent__right_ma_vol15__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000905__recent__right_ma_cash75__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000016__historical_overlap__buy_hold__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 1.164153218269348e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__historical_overlap__ma20__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.6645352591003757e-15,
+        "cash": 2.6645352591003757e-15,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__historical_overlap__slope__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__historical_overlap__standard__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 8.881784197001252e-16,
+        "cash": 6.661338147750939e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__historical_overlap__corrected__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 8.881784197001252e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__historical_overlap__right__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 6.661338147750939e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__historical_overlap__standard_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 8.881784197001252e-16,
+        "cash": 8.881784197001252e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__historical_overlap__corrected_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.3322676295501878e-15,
+        "cash": 1.1102230246251565e-15,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__historical_overlap__right_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 2.220446049250313e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__historical_overlap__right_ma_vol15__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000016__historical_overlap__right_ma_cash75__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000016__historical_overlap__buy_hold__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 2.220446049250313e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__historical_overlap__ma20__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.5987211554602254e-14,
+        "cash": 1.509903313490213e-14,
+        "cost": 1.5178830414797062e-17,
+        "returns": 6.661338147750939e-16
+      }
+    },
+    {
+      "key": "sh000016__historical_overlap__slope__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 7.993605777301127e-15,
+        "cash": 7.549516567451064e-15,
+        "cost": 7.37257477290143e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__historical_overlap__standard__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 9.547918011776346e-15,
+        "cash": 9.103828801926284e-15,
+        "cost": 9.107298248878237e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__historical_overlap__corrected__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.1102230246251565e-14,
+        "cash": 1.021405182655144e-14,
+        "cost": 9.974659986866641e-18,
+        "returns": 6.661338147750939e-16
+      }
+    },
+    {
+      "key": "sh000016__historical_overlap__right__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 5.329070518200751e-15,
+        "cash": 4.440892098500626e-15,
+        "cost": 4.553649124439119e-18,
+        "returns": 6.661338147750939e-16
+      }
+    },
+    {
+      "key": "sh000016__historical_overlap__standard_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 7.105427357601002e-15,
+        "cash": 6.661338147750939e-15,
+        "cost": 6.071532165918825e-18,
+        "returns": 6.661338147750939e-16
+      }
+    },
+    {
+      "key": "sh000016__historical_overlap__corrected_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 6.661338147750939e-15,
+        "cash": 6.217248937900877e-15,
+        "cost": 6.071532165918825e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__historical_overlap__right_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.7763568394002505e-15,
+        "cash": 1.5543122344752192e-15,
+        "cost": 1.5178830414797062e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__historical_overlap__right_ma_vol15__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000016__historical_overlap__right_ma_cash75__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2352,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000016__post_publication__buy_hold__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 1.164153218269348e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__post_publication__ma20__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.4424906541753444e-15,
+        "cash": 2.220446049250313e-15,
+        "cost": 0.0,
+        "returns": 6.661338147750939e-16
+      }
+    },
+    {
+      "key": "sh000016__post_publication__slope__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__post_publication__standard__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 6.661338147750939e-16,
+        "cash": 2.220446049250313e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__post_publication__corrected__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 8.881784197001252e-16,
+        "cash": 6.661338147750939e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__post_publication__right__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 8.881784197001252e-16,
+        "cash": 6.661338147750939e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__post_publication__standard_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 6.661338147750939e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__post_publication__corrected_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 6.661338147750939e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__post_publication__right_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 6.661338147750939e-16,
+        "cash": 6.661338147750939e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__post_publication__right_ma_vol15__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000016__post_publication__right_ma_cash75__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000016__post_publication__buy_hold__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 2.220446049250313e-16,
+        "cost": 2.168404344971009e-19,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__post_publication__ma20__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.2878587085651816e-14,
+        "cash": 1.2434497875801753e-14,
+        "cost": 1.2468324983583301e-17,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__post_publication__slope__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.6629367034256575e-15,
+        "cash": 4.440892098500626e-15,
+        "cost": 4.553649124439119e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__post_publication__standard__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.6629367034256575e-15,
+        "cash": 4.440892098500626e-15,
+        "cost": 4.553649124439119e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__post_publication__corrected__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 3.9968028886505635e-15,
+        "cash": 3.552713678800501e-15,
+        "cost": 3.469446951953614e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__post_publication__right__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.886579864025407e-15,
+        "cash": 2.4424906541753444e-15,
+        "cost": 2.6020852139652106e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__post_publication__standard_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.4424906541753444e-15,
+        "cash": 2.4424906541753444e-15,
+        "cost": 1.951563910473908e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__post_publication__corrected_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 3.9968028886505635e-15,
+        "cash": 3.774758283725532e-15,
+        "cost": 3.903127820947816e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__post_publication__right_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.7763568394002505e-15,
+        "cash": 1.5543122344752192e-15,
+        "cost": 1.734723475976807e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__post_publication__right_ma_vol15__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000016__post_publication__right_ma_cash75__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 2296,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000016__recent__buy_hold__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.220446049250313e-16,
+        "cash": 0.0,
+        "cost": 0.0,
+        "returns": 3.3306690738754696e-16
+      }
+    },
+    {
+      "key": "sh000016__recent__ma20__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 1.5543122344752192e-15,
+        "cash": 1.4432899320127035e-15,
+        "cost": 0.0,
+        "returns": 3.3306690738754696e-16
+      }
+    },
+    {
+      "key": "sh000016__recent__slope__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 8.881784197001252e-16,
+        "cash": 6.661338147750939e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__recent__standard__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 3.3306690738754696e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__recent__corrected__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 3.3306690738754696e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__recent__right__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 2.2743762428945044e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__recent__standard_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 2.220446049250313e-16,
+        "cost": 0.0,
+        "returns": 3.3306690738754696e-16
+      }
+    },
+    {
+      "key": "sh000016__recent__corrected_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__recent__right_ma__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 6.661338147750939e-16,
+        "cash": 4.440892098500626e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__recent__right_ma_vol15__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000016__recent__right_ma_cash75__0bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000016__recent__buy_hold__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 4.440892098500626e-16,
+        "cash": 2.220446049250313e-16,
+        "cost": 0.0,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__recent__ma20__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 8.104628079763643e-15,
+        "cash": 7.993605777301127e-15,
+        "cost": 8.131516293641283e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__recent__slope__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.3314683517128287e-15,
+        "cash": 2.3314683517128287e-15,
+        "cost": 2.168404344971009e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__recent__standard__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.220446049250313e-15,
+        "cash": 2.1094237467877974e-15,
+        "cost": 2.0599841277224584e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__recent__corrected__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.1094237467877974e-15,
+        "cash": 1.9984014443252818e-15,
+        "cost": 2.0599841277224584e-18,
+        "returns": 2.220446049250313e-16
+      }
+    },
+    {
+      "key": "sh000016__recent__right__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.6645352591003757e-15,
+        "cash": 2.4424906541753444e-15,
+        "cost": 2.8189256484623115e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__recent__standard_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.1094237467877974e-15,
+        "cash": 1.9984014443252818e-15,
+        "cost": 1.951563910473908e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__recent__corrected_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.886579864025407e-15,
+        "cash": 2.6645352591003757e-15,
+        "cost": 2.710505431213761e-18,
+        "returns": 3.3306690738754696e-16
+      }
+    },
+    {
+      "key": "sh000016__recent__right_ma__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": true,
+      "legacy_max_absolute_errors": {
+        "nav": 2.6645352591003757e-15,
+        "cash": 2.220446049250313e-15,
+        "cost": 2.3852447794681098e-18,
+        "returns": 4.440892098500626e-16
+      }
+    },
+    {
+      "key": "sh000016__recent__right_ma_vol15__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    },
+    {
+      "key": "sh000016__recent__right_ma_cash75__10bps",
+      "passed": true,
+      "errors": [],
+      "checked_sessions": 1642,
+      "cash_tolerance": 1e-06,
+      "relative_tolerance": 1e-10,
+      "legacy_checked": false
+    }
+  ]
+}
