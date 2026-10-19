@@ -6,3 +6,4 @@
 *.pptx binary
 # Research manifests identify exact bytes; keep their original line endings.
 evidence/research_v4/** -text whitespace=cr-at-eol
+evidence/project2_rsrs/** -text whitespace=cr-at-eol

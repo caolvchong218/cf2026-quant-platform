@@ -35,5 +35,7 @@
     "sh000016.csv": "7ccb853cd5c9464683a92bbb0975d8002c00e5f41f18faafd80667768537c451",
     "sh000905.csv": "545bae9f221cfc2d828e3e71ae724a01da61649ebdf74921647c199bc57d77a6"
   },
-  "limitations": ["The exact original Wind sample and early warmup are unavailable", "Price indices are research proxies, not executable securities", "Source headline numbers are not directly comparable to the common-window study", "No leverage, financing, dividends or live brokerage execution"]
+  "source_compatible_supplement": {"start": "2005-03-01", "end_assumptions": ["2017-03-31", "2017-04-28"], "warmup": ["strict", "partial"], "partial_minimum_prior_slopes": 2, "strategies": ["standard_ma", "corrected_ma", "right_ma"], "cost_bps_each_side": [0, 10], "basis": "Source p22 explicitly permits partial early history; minimum observations, ddof and exact endpoints remain assumptions"},
+  "controlled_differences": ["include current slope in standardization", "sample ddof1", "MA lag3", "causal next-day close execution", "cost 0/20/30bps"],
+  "limitations": ["The exact original Wind sample and minimum early warmup are unavailable", "Price indices are research proxies, not executable securities", "Source headline numbers are not directly comparable to the common-window study", "No leverage, financing, dividends or live brokerage execution"]
 }

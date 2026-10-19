@@ -23,7 +23,18 @@ class BacktestResult:
 def run_backtest(market: pd.DataFrame, calendar: pd.DatetimeIndex,
                  scores: pd.DataFrame, config: Config,
                  target_weights: pd.DataFrame | None = None,
-                 participation_limit: float | None = None) -> BacktestResult:
+                 participation_limit: float | None = None,
+                 rebalance_mask: pd.Series | None = None,
+                 reserve_cost_buffer: bool = True) -> BacktestResult:
+    """Execute close-formed targets at the following open.
+
+    An optional Boolean mask is indexed by *formation* session, like scores and
+    targets. Its value at t therefore controls execution at t+1. The first
+    evaluation open always establishes the supplied prior-close target. Without
+    a mask the existing periodic schedule is unchanged. Disabling the optional
+    cost reserve sizes targets from opening NAV; the cash-scaled buy mechanism
+    still pays actual fees and prevents borrowing.
+    """
     assets = scores.columns
     if len(assets) == 0 or not scores.index.equals(calendar):
         raise ValueError("Scores must use the complete supplied calendar")
@@ -35,6 +46,15 @@ def run_backtest(market: pd.DataFrame, calendar: pd.DatetimeIndex,
             raise ValueError("Weights must be finite, long-only, and sum to at most one")
     if participation_limit is not None and not 0<participation_limit<=1:
         raise ValueError("Participation limit must lie in (0,1]")
+    if rebalance_mask is not None:
+        if (not isinstance(rebalance_mask, pd.Series)
+                or not rebalance_mask.index.equals(calendar)
+                or not pd.api.types.is_bool_dtype(rebalance_mask.dtype)
+                or rebalance_mask.isna().any()):
+            raise ValueError("Rebalance mask must be a Boolean Series on the complete supplied calendar")
+        mask_array = rebalance_mask.to_numpy(dtype=bool)
+    if not isinstance(reserve_cost_buffer, bool):
+        raise ValueError("reserve_cost_buffer must be Boolean")
     fields = ["open", "close", "raw_open", "up_limit", "down_limit"]
     matrices = {f: panel(market, calendar, f).reindex(columns=assets).to_numpy() for f in fields}
     # Budget based on prior-session rolling turnover, available before execution.
@@ -78,12 +98,14 @@ def run_backtest(market: pd.DataFrame, calendar: pd.DatetimeIndex,
             raise ValueError("Nonpositive portfolio NAV")
         bought = sold = fee = 0.0
         blocked = 0
-        rebalance = trade_session % config.rebalance_every == 0
+        rebalance = ((trade_session == 0 or bool(mask_array[j-1])) if rebalance_mask is not None
+                     else trade_session % config.rebalance_every == 0)
         if rebalance:
             weights = (weights_array[j-1] if target_weights is not None else
                        top_equal_weights(pd.Series(signals[j-1], index=assets), config.holdings).to_numpy())
             # Reserve an explicit cost buffer. No implicit borrowing when all weights sum to one.
-            budget = opening_nav / (1 + config.buy_cost + config.sell_cost)
+            budget = (opening_nav / (1 + config.buy_cost + config.sell_cost)
+                      if reserve_cost_buffer else opening_nav)
             target_value = budget * weights
             desired = np.divide(target_value, opening_mark, out=np.zeros_like(units),
                                 where=np.isfinite(opening_mark) & (opening_mark > 0))
