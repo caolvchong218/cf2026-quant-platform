@@ -10,6 +10,7 @@ import argparse
 from datetime import datetime, timezone
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import sys
@@ -47,7 +48,12 @@ def clean(value):
 def write_json(path, value):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(clean(value), ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    pending = path.with_suffix(path.suffix + ".pending")
+    with pending.open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(json.dumps(clean(value), ensure_ascii=False, indent=2, allow_nan=False) + "\n")
+        handle.flush()
+        os.fsync(handle.fileno())
+    os.replace(pending, path)
 
 
 def digest(path):
@@ -64,6 +70,8 @@ class Study:
         self.output, self.private = Path(output), Path(private)
         self.config_path = Path(config_path)
         self.protocol = json.loads(self.config_path.read_text(encoding="utf-8"))
+        self.evaluator_sha256 = {name: digest(self.root / "src/cfquant" / name)
+                                 for name in ("cogalpha.py", "factor_lab.py", "factors.py", "cogalpha_study.py")}
         self.output.mkdir(parents=True, exist_ok=True)
         self.private.mkdir(parents=True, exist_ok=True)
         self.inputs = {n: digest(self.data_root / self.protocol["data"][n]) for n in ("market", "features", "benchmark")}
@@ -125,17 +133,21 @@ class Study:
         factor_id = card["id"]
         _, alias = self._factor_paths(factor_id)
         expression_hash = hashlib.sha256(card["expression"].encode()).hexdigest()
-        path, receipt = self._factor_paths(factor_id, expression_hash)
+        cache_hash = hashlib.sha256(json.dumps([expression_hash, self.evaluator_sha256], sort_keys=True).encode()).hexdigest()
+        path, receipt = self._factor_paths(factor_id, cache_hash)
         # A repaired proposal keeps its slot ID, but every expression has its own
         # immutable value/metric checkpoint. The short alias selects the attempt.
         if alias.exists():
             previous = json.loads(alias.read_text(encoding="utf-8"))
             if previous["identity"] != self.identity:
                 raise ValueError("Factor checkpoint study identity mismatch")
-            if previous["expression_sha256"] == expression_hash:
+            if (previous["expression_sha256"] == expression_hash
+                    and previous.get("evaluator_sha256") == self.evaluator_sha256):
                 old_path, _ = self._factor_paths(factor_id)
                 if digest(old_path) != previous["factor_sha256"]:
                     raise ValueError("Factor checkpoint content changed")
+                if digest(old_path.with_suffix(".ic.csv")) != previous["daily_ic_sha256"]:
+                    raise ValueError("Training IC checkpoint content changed")
                 self.cards[factor_id] = card
                 return previous["evaluation"]
         if receipt.exists():
@@ -144,11 +156,18 @@ class Study:
                 raise ValueError("Factor checkpoint identity mismatch")
             if digest(path) != record["factor_sha256"]:
                 raise ValueError("Factor checkpoint content changed")
+            if digest(path.with_suffix(".ic.csv")) != record["daily_ic_sha256"]:
+                raise ValueError("Training IC checkpoint content changed")
             write_json(alias, record)
             self.cards[factor_id] = card
             return record["evaluation"]
         quality = causal_quality_check(card["expression"], self.panels, self.eligible, self.train_dates)
-        values = evaluate_expression(card["expression"], self.panels).astype("float32")
+        try:
+            values = evaluate_expression(card["expression"], self.panels).astype("float32")
+        except (ValueError, TypeError, KeyError, ArithmeticError, RuntimeError) as exc:
+            if quality["passed"]:
+                raise RuntimeError("Factor evaluation contradicted its quality check") from exc
+            values = pd.DataFrame(np.nan, index=self.calendar, columns=self.assets, dtype="float32")
         values.to_parquet(path)
         # Evaluate the persisted dtype, so a replay uses identical factor values.
         metrics = factor_metrics(values, self.labels, self.eligible,
@@ -160,6 +179,8 @@ class Study:
                   "quality": clean(quality), "evaluation_scope": "training_only"}
         record = {"identity": self.identity, "expression_sha256": expression_hash,
                             "factor_sha256": digest(path), "storage_dtype": "float32",
+                            "evaluator_sha256": self.evaluator_sha256,
+                            "daily_ic_sha256": digest(path.with_suffix(".ic.csv")),
                             "data_file": path.name, "evaluation": result, "card": card}
         write_json(receipt, record)
         write_json(alias, record)
@@ -172,6 +193,8 @@ class Study:
         metadata = json.loads(receipt.read_text(encoding="utf-8"))
         if digest(path) != metadata["factor_sha256"]:
             raise ValueError("Factor cache changed")
+        if metadata.get("evaluator_sha256") != self.evaluator_sha256:
+            raise ValueError("Factor evaluator source changed; replay the accepted proposals offline")
         return pd.read_parquet(path).reindex(index=self.calendar, columns=self.assets)
 
     def register_cards(self, cards):
@@ -203,6 +226,11 @@ class Study:
         qualified, thresholds = qualify_factors(metrics)
         rank_daily = None
         if arm == "llm_evolved_diverse" and len(metrics):
+            for factor_id in metrics.id:
+                path, receipt = self._factor_paths(factor_id)
+                expected = json.loads(receipt.read_text(encoding="utf-8"))["daily_ic_sha256"]
+                if digest(path.with_suffix(".ic.csv")) != expected:
+                    raise ValueError("Training IC checkpoint content changed")
             rank_daily = pd.concat({factor_id: pd.read_csv(self._factor_paths(factor_id)[0].with_suffix(".ic.csv"), parse_dates=["date"]).set_index("date").rank_ic
                                     for factor_id in metrics.id}, axis=1)
         selected = list(metrics.id) if literal else select_diverse(metrics, rank_daily, max_factors=20, max_abs_correlation=.8)
@@ -246,7 +274,8 @@ class Study:
             # Single literal examples are ranks, not newly trained combinations.
             if literal and model != "rank":
                 continue
-            score.astype("float32").to_parquet(model_folder / f"{model}_scores.parquet")
+            # Preserve exact ranking precision used by the execution engine.
+            score.to_parquet(model_folder / f"{model}_scores.parquet")
             for phase in ("validation", "test"):
                 self.backtest(score, replicate, arm, model, phase, "paper")
                 # Zero-fee sensitivity on the primary same-budget pair only.
@@ -338,6 +367,8 @@ class Study:
         write_json(self.output / "manifest.json", {"schema": "qingxu.project2.cogalpha.evidence.v1", "identity": self.identity,
                    "created_utc": datetime.now(timezone.utc).isoformat(), "data_end": self.protocol["data"]["end"],
                    "input_sha256": self.inputs, "protocol_sha256": digest(self.config_path),
+                   "source_metadata_erratum_sha256": digest(self.root / "configs/project2_cogalpha_source_erratum.json")
+                       if (self.root / "configs/project2_cogalpha_source_erratum.json").exists() else None,
                    "calculation_sha256": {f"src/cfquant/{f}": digest(self.root / "src/cfquant" / f) for f in calculation_files},
                    "llm_called": api_summary.get("successful_calls", 0) > 1, "model": self.protocol["model"],
                    "portfolio_runs": len(self.performance_rows), "files": files,
@@ -375,6 +406,9 @@ def main():
         mining_dir = study.private / "mining" / str(rep)
         if args.stage == "evaluate":
             result = json.loads((mining_dir / "mining_result.json").read_text(encoding="utf-8"))
+            expected_config = hashlib.sha256(json.dumps(study.protocol, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()).hexdigest()
+            if result["config_hash"] != expected_config:
+                raise ValueError("Offline mining protocol changed")
             if not all(slot.get("completed") for slot in result["cards"].values()):
                 raise ValueError("Offline evaluation requires completed mining slots")
             for slot in result["cards"].values():
@@ -382,6 +416,11 @@ def main():
                     evaluation = study.evaluate(slot["card"])
                     if not evaluation["quality_passed"]:
                         raise ValueError("Previously accepted proposal failed offline quality replay")
+                    for metric, observed in slot["train_metrics"].items():
+                        if metric not in evaluation["metrics"] or observed is None:
+                            continue
+                        if not np.isclose(evaluation["metrics"][metric], observed, rtol=1e-10, atol=1e-12):
+                            raise ValueError(f"Offline training metric changed: {slot['id']}/{metric}")
         else:
             result = mine(api, study.evaluate, mining_dir, replicate_seed=rep, config=study.protocol)
         results.append(result)

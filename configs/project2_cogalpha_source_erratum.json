@@ -1,0 +1,13 @@
+{
+  "schema": "qingxu.project2.cogalpha.source_erratum.v1",
+  "date": "2026-10-19",
+  "field": "paper_sha256",
+  "frozen_config": "configs/project2_cogalpha.json",
+  "frozen_config_sha256": "052887b05d9ce859114412bfbe68ac99408d806f938414f77cbf388e41ec2352",
+  "incorrect_frozen_value": "20c6c76a0e9ea5fdf869eea0a20a3594ab61181fee9913b1ec9361b3669ecea45",
+  "correct_pdf_sha256": "20c6c76a0e9ea5fdf869ee0a20a3594ab61181fee9913b1ec9361b3669ecea45",
+  "verification": "SHA-256 computed independently from both local copies of 2511.18850v4.pdf; both have 942932 bytes and the same 64-character digest.",
+  "scope": "Correction of a transcription error in the paper file identity only; the frozen study configuration bytes and run identity remain unchanged.",
+  "unchanged": ["calculation", "prompts", "sample", "thresholds", "models", "search_slots", "budget", "study_identity"],
+  "requires_new_paid_run": false
+}
