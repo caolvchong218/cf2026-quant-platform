@@ -72,7 +72,9 @@ Get-ScheduledTask -TaskName QingxuContinuousSimulation
 Get-ScheduledTaskInfo -TaskName QingxuContinuousSimulation
 ```
 
-安装器注册**当前用户登录、每天08:55及17:10**三个触发器，并立即启动工作进程。任务支持`StartWhenAvailable`补启动、异常退出后一分钟间隔最多3次重启；独占锁避免多次触发形成重复工作进程。重复安装只接受同一程序和参数，不覆盖同名的其他任务。
+安装器注册**当前用户登录、每天08:55及17:10**触发器，另加**每分钟一次、无到期日期**的启动检查，并立即启动工作进程。`IgnoreNew`使正在运行的任务忽略重复触发，工作进程另有独占锁。任务支持`StartWhenAvailable`补启动；重复安装只接受同一程序和参数，不覆盖同名的其他任务。
+
+本机实际测试中，仅设置`RestartOnFailure`未能在180秒内恢复退出码为1的工作进程，因此不能把该设置当作已经验证的进程守护。每分钟触发用于恢复缺席的服务；原失败重启设置仍保留为附加措施。重复间隔不设`Duration`即持续有效，依据[微软任务计划文档](https://learn.microsoft.com/en-us/windows/win32/taskschd/taskschedulerschema-duration-repetitiontype-element)；实际恢复结果另见本版验收记录。
 
 安装后，平台启动器优先交由与当前目录匹配的计划任务启动后台服务，避免另起未受计划任务管理的工作进程。
 

@@ -346,7 +346,9 @@ def _signal_panel(root: Path, strategy_id: str) -> None:
         st.caption("有效分数覆盖：" + (f"{int(count)} 只股票" if count is not None and count >= 0 else "待核对"))
         if status.get("continuous"):
             model_year = status.get("model_year", "待核对")
-            st.caption(f"V3 执行年度模型：{model_year} · 财务 / 行业版本按 {reference} 的可用信息选取。")
+            strategy_note = (f"V3 执行年度模型：{model_year}" if strategy_id == "v3_managed"
+                             else "CogAlpha：沿用已选公式")
+            st.caption(f"{strategy_note} · 财务 / 行业版本按 {reference} 的可用信息选取。")
             st.info("财务公告、行业变更和首次观测时间共同约束数据使用；已冻结的历史特征不会被后来修订覆盖。"
                     "策略公式仍按各自版本保存，前向收益从实际模拟成交之后开始积累。")
         else:

@@ -89,7 +89,7 @@ py -3.12 -m venv .venv
 
 无Token可看真实公开聚合结果、12因子诊断、Qlib核验结果，运行合成样本与模拟成交文件校验。真实模型重跑、行情与逐股成交需要本地私有快照。Qlib重跑另需独立环境；不修改已验证的主环境依赖。
 
-首次安装默认暂停，需要在页面明确开启。平台启动器会按已保存的“允许”状态恢复隐藏工作进程，独占锁阻止重复实例；也可安装 `scripts/install_simulation_autostart.ps1`，在当前用户登录、08:55 和17:10启动服务，错过触发时机可补启动，进程异常退出最多自动重启3次。安装器不开户、不改变执行开关；环境路径和安装命令见[持续运行说明](docs/CONTINUOUS_SIMULATION_V260.md)。页面开关本身不启动进程，运行状态以心跳为准。手动运行可用 `python scripts/run_simulation_service.py --root . --watch`。Tushare凭据仅在本机 `D:/CodexData/private/qingxu/tushare_token.txt` 读取。服务、账户和订单保存在忽略目录 `runs/simulation_auto/`，不进入公开仓库；界面的“刷新账户”只查询，不发送委托。
+首次安装默认暂停，需要在页面明确开启。平台启动器会按已保存的“允许”状态恢复隐藏工作进程，独占锁阻止重复实例；也可安装 `scripts/install_simulation_autostart.ps1`，在当前用户登录、08:55 和17:10启动服务，并每分钟检查服务是否缺席，运行中忽略重复触发。错过触发时机可补启动。安装器不开户、不改变执行开关；环境路径和安装命令见[持续运行说明](docs/CONTINUOUS_SIMULATION_V260.md)。页面开关本身不启动进程，运行状态以心跳为准。手动运行可用 `python scripts/run_simulation_service.py --root . --watch`。Tushare凭据仅在本机 `D:/CodexData/private/qingxu/tushare_token.txt` 读取。服务、账户和订单保存在忽略目录 `runs/simulation_auto/`，不进入公开仓库；界面的“刷新账户”只查询，不发送委托。
 
 P2两个页面同样可无Token浏览已发布证据；RSRS本地重放需要`data/private/project2_rsrs`，CogAlpha完整离线评价需要原私有快照和完整提案记录，因子缓存可由保存公式重建。公开仓库不含原始授权行情与密钥。P2正式CLI是`scripts/run_project2_rsrs.py`、`scripts/run_project2_cogalpha.py`；历史`projects/project2_rsrs/`保留作旧实现核对，不能把其中预研说明当成本轮正式协议。
 

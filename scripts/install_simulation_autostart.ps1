@@ -36,11 +36,16 @@ $action = New-ScheduledTaskAction -Execute $resolvedPython -Argument $arguments 
 $logon = New-ScheduledTaskTrigger -AtLogOn -User $identity
 $morning = New-ScheduledTaskTrigger -Daily -At "08:55"
 $evening = New-ScheduledTaskTrigger -Daily -At "17:10"
+# A repeating trigger also recovers failures for which RestartCount is not
+# honored by Task Scheduler. Omit RepetitionDuration/EndBoundary deliberately:
+# the pattern must not expire; IgnoreNew keeps an active worker undisturbed.
+$recovery = New-ScheduledTaskTrigger -Once -At ((Get-Date).AddMinutes(1)) `
+    -RepetitionInterval (New-TimeSpan -Minutes 1)
 $settings = New-ScheduledTaskSettingsSet -StartWhenAvailable -MultipleInstances IgnoreNew `
     -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 1) `
     -ExecutionTimeLimit ([TimeSpan]::Zero) -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
 $principal = New-ScheduledTaskPrincipal -UserId $identity -LogonType Interactive -RunLevel Limited
-$task = New-ScheduledTask -Action $action -Trigger @($logon, $morning, $evening) `
+$task = New-ScheduledTask -Action $action -Trigger @($logon, $morning, $evening, $recovery) `
     -Settings $settings -Principal $principal `
     -Description "Qingxu dedicated simulation only: durable data catch-up and guarded automatic paper orders."
 Register-ScheduledTask -TaskName $TaskName -InputObject $task -Force | Out-Null
