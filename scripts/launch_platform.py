@@ -227,6 +227,69 @@ def reusable_receipt(root, identity):
     except (OSError,ValueError,KeyError):return None
 
 
+def _start_registered_simulation_task(root):
+    """Prefer our installed supervisor; never run an unrelated same-named task.
+
+    Only proven absence or an action mismatch allows the legacy process
+    fallback. An unavailable task query or failed matching task start must not
+    create an unsupervised process that can win the worker lock.
+    """
+    if os.name!='nt':return 'fallback'
+    root=Path(root).resolve()
+    if not (root/'scripts/run_simulation_service.py').is_file():return 'fallback'
+    executable=Path(sys.executable).resolve()
+    allowed={str(executable),str(executable.with_name('python.exe')),
+             str(executable.with_name('pythonw.exe'))}
+    def literal(value):
+        return "'"+str(value).replace("'","''")+"'"
+    # Query, validate and start the same task object within one bounded process.
+    # No user path is evaluated as PowerShell source.
+    command="\n".join([
+        "$ErrorActionPreference='Stop'",
+        f"$expectedRoot={literal(root)}",
+        f"$expectedWorker={literal(root/'scripts/run_simulation_service.py')}",
+        "$allowedPython=@("+",".join(literal(value) for value in sorted(allowed))+")",
+        "function Same-Path([string]$left,[string]$right) {",
+        "  if(-not [IO.Path]::IsPathRooted($left) -or -not [IO.Path]::IsPathRooted($right)){return $false}",
+        "  return [string]::Equals([IO.Path]::GetFullPath($left),[IO.Path]::GetFullPath($right),",
+        "    [StringComparison]::OrdinalIgnoreCase)",
+        "}",
+        "try {",
+        "  $tasks=@(Get-ScheduledTask -TaskPath '\\' -ErrorAction Stop |",
+        "    Where-Object {$_.TaskName -eq 'QingxuContinuousSimulation'})",
+        "  if($tasks.Count -ne 1){Write-Output 'FALLBACK';return}",
+        "  $task=$tasks[0]",
+        "  $actions=@($task.Actions)",
+        "  if($actions.Count -ne 1){Write-Output 'FALLBACK';return}",
+        "  $action=$actions[0]",
+        "  $pythonMatches=@($allowedPython | Where-Object {Same-Path $_ $action.Execute}).Count -gt 0",
+        # Match the installer's exact quoting/flag grammar, while comparing
+        # individual absolute paths using Windows case-insensitive semantics.
+        r"""  $parts=[regex]::Match([string]$action.Arguments,'^"([^"\r\n]+)" --root "([^"\r\n]+)" --watch$')""",
+        "  if(-not $pythonMatches -or -not $parts.Success -or",
+        "     -not (Same-Path $action.WorkingDirectory $expectedRoot) -or",
+        "     -not (Same-Path $parts.Groups[1].Value $expectedWorker) -or",
+        "     -not (Same-Path $parts.Groups[2].Value $expectedRoot)){",
+        "    Write-Output 'FALLBACK';return",
+        "  }",
+        "  try {",
+        "    Start-ScheduledTask -InputObject $task -ErrorAction Stop",
+        "    Write-Output 'STARTED'",
+        "  } catch {Write-Output 'MATCHED_FAILED'}",
+        "} catch {Write-Output 'UNAVAILABLE'}",
+    ])
+    try:
+        result=subprocess.run(
+            ['powershell.exe','-NoProfile','-NonInteractive','-Command',command],
+            capture_output=True,text=True,timeout=8,
+            creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
+        if result.returncode!=0:return 'unavailable'
+        return {'STARTED':'started','FALLBACK':'fallback',
+                'MATCHED_FAILED':'failed'}.get(result.stdout.strip(),'unavailable')
+    except (OSError,subprocess.TimeoutExpired,UnicodeError):
+        return 'unavailable'
+
+
 def start_simulation_worker(root):
     """Resume the explicitly enabled local simulated worker on app startup.
 
@@ -236,6 +299,13 @@ def start_simulation_worker(root):
     settings=Path(root)/'runs/simulation_auto/settings.json'
     try:
         if not settings.is_file() or json.loads(settings.read_text(encoding='utf-8')).get('enabled') is not True:
+            return None
+        supervision=_start_registered_simulation_task(root)
+        if supervision=='started':
+            return None
+        if supervision!='fallback':
+            print('Simulation task could not be verified or started; no standalone worker was launched. '
+                  'Inspect the task and connection page.',flush=True)
             return None
         logs=Path(root)/'runs/simulation_auto/logs'
         logs.mkdir(parents=True,exist_ok=True)

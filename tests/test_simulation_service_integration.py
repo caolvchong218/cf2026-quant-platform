@@ -214,3 +214,22 @@ def test_equity_status_without_market_calendar_is_a_readiness_error(tmp_path, mo
     monkeypatch.setattr(service, "market_calendar", lambda root: None)
     with pytest.raises(ValueError):
         service.latest_equity_status(tmp_path)
+
+
+@pytest.mark.parametrize("execution_date, model_year", [
+    ("2026-12-31", 2026), ("2027-01-04", 2026),
+])
+def test_equity_execution_rejects_old_cross_year_scores_before_account_or_quote_access(
+        tmp_path, monkeypatch, execution_date, model_year):
+    days = pd.date_range("2026-12-30", "2027-01-05")
+    revised = pd.DataFrame({"cal_date": days, "is_open": [1, 0, 0, 0, 0, 1, 1]})
+    receipt = {"schema": 2, "signal_date": "2026-12-30", "execution_date": execution_date,
+               "model": {"model_year": model_year}, "ready_for_auto_orders": True}
+    monkeypatch.setattr(service, "_equity_bundle", lambda root: (tmp_path, receipt))
+    client = SimpleNamespace(inspect=lambda: pytest.fail("Invalidated scores reached account access"))
+    with pytest.raises(service.EquityExecutionMismatch):
+        service._equity_cycle(
+            tmp_path, "v3_managed", client, None, revised, {}, {},
+            now=datetime(2027, 1, 4, 9, 36, tzinfo=SHANGHAI),
+            quote_fetcher=lambda *a, **kw: pytest.fail("Invalidated scores reached quotes"),
+        )

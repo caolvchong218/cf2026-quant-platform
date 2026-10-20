@@ -496,14 +496,13 @@ class MarketSnapshot:
 
 def refresh_market_data(output_root: str | Path, *, token_file: str | None = None,
                         now: datetime | None = None,
-                        preload_path: str | Path | None =
-                        "D:/Desktop/cf2026-quant-platform/data/private/project2_rsrs/sh000300.csv",
+                        preload_path: str | Path | None = None,
                         provider_factory=TushareProvider) -> MarketSnapshot:
-    """Three bounded read-only Tushare queries, with retained acquisition evidence.
+    """Incremental Tushare history, or an explicitly requested legacy preload.
 
     Existing Tencent index history is only used after an overlapping Tushare bar
     agrees within 0.02 index points for every OHLC field.  It is never rewritten.
-    With no preload, request a homogeneous Tushare series from the 2019 anchor.
+    With no preload, use checkpointed calendar and homogeneous index updates.
     Each invocation has its own cache so an earlier empty successful response
     cannot mask a later daily publication.
     """
@@ -511,6 +510,11 @@ def refresh_market_data(output_root: str | Path, *, token_file: str | None = Non
     folder = Path(output_root) / local.astimezone(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     folder.mkdir(parents=True, exist_ok=False)
     provider = provider_factory(folder / "raw", token_file, delay=0.4)
+    if preload_path is None:
+        from .simulation_calendar import refresh_calendar
+        from .simulation_market import refresh_incremental_market
+        calendar = refresh_calendar(Path(output_root).parent / "calendar_store", provider, now=local)
+        return refresh_incremental_market(output_root, provider=provider, calendar=calendar, now=local)
     end_calendar = local.date() + timedelta(days=21)
     if (end_calendar - HISTORY_START).days >= 8000:
         raise ValueError("Calendar range exceeds the bounded acquisition budget.")

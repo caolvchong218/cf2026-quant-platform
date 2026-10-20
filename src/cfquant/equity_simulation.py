@@ -1,8 +1,8 @@
 """Pure executable-lot adapters for explicitly dated V3 and CogAlpha experiments.
 
-These are forward simulation adaptations. Frozen financial/industry references,
-lot sizes, live quote limits and actual-cash execution differ from the historical
-research ledgers. There are no broker calls or state writes in this module.
+These are forward simulation adaptations. The dated preparation receipt records
+the financial/industry reference policy. Lot sizes, live quote limits and actual
+cash differ from historical research ledgers. No broker calls or state writes.
 """
 from __future__ import annotations
 
@@ -33,7 +33,7 @@ SCORE_COLUMNS = {V3_ID: "v3_lightgbm_frozen_reference",
 _ASSET = re.compile(r"(?:(?:600|601|603|605)\d{3}\.SH|(?:000|001|002|003)\d{3}\.SZ)\Z")
 _ID = re.compile(r"[A-Za-z0-9_.:-]{1,128}\Z")
 ADAPTATION = (
-    "Forward simulation adaptation; financial/industry reference frozen at 2026-09-18. "
+    "Forward simulation adaptation; financial/industry policy follows the dated preparation receipt. "
     "Integer lots, current quote limits, actual cash and broker fills differ from research ledgers."
 )
 

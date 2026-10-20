@@ -5,18 +5,22 @@ import argparse
 from datetime import datetime, timezone
 import json
 from pathlib import Path
+import sys
+from dataclasses import replace
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from cfquant.simulation_signals import (
     STRATEGY_IDS, prepare_signal_bundle, refresh_market_data, save_signal_bundle,
 )
+from cfquant.simulation_market import signal_clock
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=Path("runs/simulation_auto"))
     parser.add_argument("--token-file", default="D:/CodexData/private/qingxu/tushare_token.txt")
-    parser.add_argument("--preload", default=
-                        "D:/Desktop/cf2026-quant-platform/data/private/project2_rsrs/sh000300.csv")
+    parser.add_argument("--preload", default=None,
+                        help="Optional explicitly selected historical preload; default is continuous Tushare data")
     args = parser.parse_args()
     now = datetime.now(timezone.utc)
     try:
@@ -25,7 +29,9 @@ def main() -> None:
         bundles = []
         for strategy_id in STRATEGY_IDS:
             bundle = prepare_signal_bundle(strategy_id, market.index_prices, market.calendar,
-                                            now=now, etf_daily=market.etf_daily)
+                                            now=signal_clock(now) if not args.preload else now,
+                                            etf_daily=market.etf_daily)
+            bundle = replace(bundle, created_at=now)
             path = save_signal_bundle(bundle, args.output / "signals")
             bundles.append({"strategy_id": strategy_id, "signal_asof": str(bundle.signal_asof),
                             "execution_date": str(bundle.execution_date),

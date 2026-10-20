@@ -2,14 +2,18 @@
 from __future__ import annotations
 
 import argparse
-from datetime import datetime, time, timezone
+from datetime import datetime, timezone
 import json
 import os
 from pathlib import Path
+import sys
 import time as clock
-from zoneinfo import ZoneInfo
 
+# Scheduled tasks do not inherit the launcher's PYTHONPATH. Bind code to this
+# script's checkout even when the interpreter has another editable install.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from cfquant.simulation_service import directory, run_cycle, write_json
+from cfquant.simulation_refresh import ContinuousRefresh
 
 
 def main():
@@ -43,29 +47,31 @@ def main():
         except OSError:
             print("An existing simulation worker holds the lock.")
             return 2
-    refreshed = None
-    refresh_on_start = args.refresh
+    controller = ContinuousRefresh(root) if args.watch or args.refresh else None
+    if args.refresh and not args.watch:
+        # A bounded one-shot can refresh the calendar then one data batch.
+        for _ in range(2):
+            state = controller.tick()
+            if not state["running"]:
+                break
+            controller.wait_for_current()
+            controller.tick(start_jobs=False)
     while True:
         now = datetime.now(timezone.utc)
-        local = now.astimezone(ZoneInfo("Asia/Shanghai"))
-        # One bounded daily refresh after published daily data. A failed fetch
-        # is visible; do not hammer the data vendor indefinitely.
-        due = (time(17, 5) <= local.time().replace(tzinfo=None) < time(17, 30)
-               and refreshed != local.date())
         try:
-            status = run_cycle(root, now=now, refresh=refresh_on_start or due)
+            state = controller.tick(now=now, start_jobs=args.watch) if controller else None
+            status = run_cycle(root, now=now, refresh_status=state)
         except Exception:
             status = {"asof": now.isoformat(), "pid": os.getpid(),
                       "enabled": False, "mode": "error",
                       "detail": "模拟服务遇到本地错误，未重试下单。", "strategies": []}
             write_json(folder / "service_status.json", status)
-        if refresh_on_start or due:
-            refreshed = local.date()
-        refresh_on_start = False
         if not args.watch:
             print(json.dumps(status, ensure_ascii=False, indent=2))
+            if controller:
+                controller.close()
             return 0
-        clock.sleep(60)
+        clock.sleep(30)
 
 
 if __name__ == "__main__":

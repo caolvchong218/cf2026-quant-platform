@@ -269,6 +269,37 @@ def _service_panel(root: Path, accounts: dict[str, dict]) -> None:
         st.warning("开关已允许，但没有近期服务心跳；不能据此判断自动下单正在运行。")
     if heartbeat.get("data_error"):
         st.warning("服务尚未取得通过核验的最新行情或信号，自动委托保持拦截。")
+    refresh = heartbeat.get("data_refresh") or _json(root / "runs/simulation_auto/refresh_status.json")
+    if isinstance(refresh, dict) and refresh:
+        decision = refresh.get("decision", {})
+        result = refresh.get("last_result", {})
+        target = refresh.get("target_date") or decision.get("target_date") or "待核对"
+        if refresh.get("running"):
+            job = "官方交易日历" if refresh.get("job") == "calendar" else "行情、财务、行业与策略分数"
+            st.info(f"后台正在更新{job} · 目标日期 {target}。账户查询和暂停开关仍可使用。")
+        elif result.get("success") is False:
+            if result.get("progress"):
+                st.info("本批补数已保存，仍有历史数据或参考资料待补；服务会从检查点继续。")
+            else:
+                st.warning("最近一次数据更新未完成，服务会按重试间隔补跑；旧信号不能用于今天下单。")
+        else:
+            st.caption(f"自动更新目标：{target} · 交易日 17:05 后补齐，启动或恢复联网后也会检查漏更。")
+        retry = _timestamp(decision.get("next_attempt_at"))
+        if retry:
+            st.caption("下次更新检查点：" + retry.astimezone(SHANGHAI).strftime("%m-%d %H:%M:%S"))
+        with st.expander("持续运行与补数状态"):
+            st.write("行情按交易日增量保存，财报按披露记录触发并定期回扫，行业数据定期刷新。"
+                     "V3 在新执行年度使用新的滚动三年模型；当年模型缓存复用。"
+                     "补跑只准备最新可执行信号，不补发错过交易日的订单。")
+            reference = result.get("references", {})
+            if isinstance(reference, dict) and reference:
+                pending = reference.get("backlog_tasks", reference.get("pending_tasks"))
+                if pending is not None:
+                    st.caption(f"财务 / 行业待完成任务：{pending}")
+            missing = result.get("remaining_sessions")
+            if missing is not None:
+                st.caption(f"行情待补交易日：{missing}")
+            st.caption("需要电脑开机、登录 Windows 并保持联网。休眠或关机时不执行，恢复后按官方日历补数据。")
     a, b = st.columns(2)
     if a.button("允许后续自动模拟委托", key="auto_sim_enable", disabled=not accounts):
         if _set_enabled(root, True):
@@ -313,8 +344,15 @@ def _signal_panel(root: Path, strategy_id: str) -> None:
         count = _number(coverage.get(equity_columns[strategy_id])) if isinstance(coverage, dict) else None
         st.caption(f"股票分数截面：{signal} · 计划执行日：{execution}")
         st.caption("有效分数覆盖：" + (f"{int(count)} 只股票" if count is not None and count >= 0 else "待核对"))
-        st.warning(f"前向适配：财务与行业参考冻结截至 {reference}。价格已按当前分数截面更新，"
-                   "这不是原历史策略在所有数据口径上的等价延伸。分数准备完成不等于委托或收益已经验证。")
+        if status.get("continuous"):
+            model_year = status.get("model_year", "待核对")
+            st.caption(f"V3 执行年度模型：{model_year} · 财务 / 行业版本按 {reference} 的可用信息选取。")
+            st.info("财务公告、行业变更和首次观测时间共同约束数据使用；已冻结的历史特征不会被后来修订覆盖。"
+                    "策略公式仍按各自版本保存，前向收益从实际模拟成交之后开始积累。")
+        else:
+            st.warning(f"旧版前向适配：财务与行业参考冻结截至 {reference}。"
+                       "这不是原历史策略在所有数据口径上的等价延伸。"
+                       "持续更新版本尚未完成准备，分数准备完成不等于委托或收益已经验证。")
         return
     try:
         from .simulation_service import latest_signals

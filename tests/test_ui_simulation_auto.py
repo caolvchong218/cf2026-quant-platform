@@ -241,6 +241,23 @@ def test_equity_signal_panel_marks_frozen_reference_adaptation(tmp_path, monkeyp
     assert "不是原历史策略" in text and "不等于委托或收益已经验证" in text
 
 
+def test_continuous_equity_panel_reports_execution_year_and_observed_versions(tmp_path, monkeypatch):
+    from cfquant import simulation_service
+    account(tmp_path, "v3_managed")
+    monkeypatch.setattr(simulation_service, "latest_equity_status", lambda _: {
+        "signal_asof": "2026-12-31", "execution_date": "2027-01-04", "continuous": True,
+        "reference_snapshot_date": "2026-12-31", "model_year": 2027,
+        "score_coverage": {"v3_lightgbm_frozen_reference": 850},
+        "reference_status": {"ready": True, "backlog_tasks": 0},
+    })
+    view = app(tmp_path)
+    assert not view.exception
+    text = visible_text(view)
+    assert "执行年度模型：2027" in text
+    assert "首次观测时间" in text and "850 只股票" in text
+    assert "参考冻结截至" not in text
+
+
 def test_calendar_uses_service_verified_manifest(tmp_path):
     directory = tmp_path / "runs/simulation_auto/market/20260105"
     directory.mkdir(parents=True)

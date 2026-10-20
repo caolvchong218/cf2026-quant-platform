@@ -16,7 +16,7 @@ def test_current_daily_bar_waits_until_the_data_safety_cutoff():
     assert completed_session(dates, "2026-10-20",
         now=datetime(2026, 10, 20, 10, tzinfo=SHANGHAI)) == pd.Timestamp("2026-10-19")
     assert completed_session(dates, "2026-10-20",
-        now=datetime(2026, 10, 20, 17, tzinfo=SHANGHAI)) == pd.Timestamp("2026-10-20")
+        now=datetime(2026, 10, 20, 17, 5, tzinfo=SHANGHAI)) == pd.Timestamp("2026-10-20")
     with pytest.raises(ValueError, match="Future"):
         completed_session(dates, "2026-10-21", now=datetime(2026, 10, 20, 18, tzinfo=SHANGHAI))
 

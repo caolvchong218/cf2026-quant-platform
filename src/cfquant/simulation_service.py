@@ -5,7 +5,7 @@ artifacts. A worker never replays a historical backtest order as a current one.
 """
 from __future__ import annotations
 
-from dataclasses import asdict
+from dataclasses import asdict, replace
 from datetime import date, datetime, time, timezone
 import hashlib
 import json
@@ -15,10 +15,11 @@ from zoneinfo import ZoneInfo
 
 import pandas as pd
 
+from . import __version__
 from .simulation_execution import ExecutionConfig, SimulationExecutor, SubmitReceipt
 from .simulation_signals import (
     EXECUTION_ASSET, STRATEGY_IDS, fetch_raw_quote, load_signal_bundle,
-    plan_order, prepare_signal_bundle, refresh_market_data, save_signal_bundle,
+    normalize_calendar, plan_order, prepare_signal_bundle, refresh_market_data, save_signal_bundle,
 )
 from .ths_simulation import THSSimulationBroker, THSSimulationClient, ProviderError
 from .equity_simulation import (
@@ -89,8 +90,13 @@ def latest_signals(root: Path) -> dict:
     return found
 
 
-def market_calendar(root: Path) -> pd.DataFrame | None:
+def market_calendar(root: Path, *, prefer_store=True) -> pd.DataFrame | None:
     """Read the most recent successfully validated market acquisition."""
+    if prefer_store:
+        from .simulation_calendar import load_calendar_cache
+        cached = load_calendar_cache(directory(root) / "calendar_store")
+        if cached is not None:
+            return cached
     manifests = sorted((directory(root) / "market").glob("*/manifest.json"))
     if not manifests:
         return None
@@ -104,15 +110,25 @@ def market_calendar(root: Path) -> pd.DataFrame | None:
     return calendar
 
 
-def refresh_signals(root: Path, *, now: datetime | None = None) -> dict:
+def refresh_signals(root: Path, *, now: datetime | None = None, provider=None) -> dict:
     now = now or datetime.now(timezone.utc)
     settings = load_settings(root)
-    market = refresh_market_data(directory(root) / "market", token_file=settings["token_file"],
-                                 now=now, preload_path=None)
+    from .data import TushareProvider
+    from .simulation_calendar import refresh_calendar
+    from .simulation_market import refresh_incremental_market, signal_clock
+    provider = provider or TushareProvider(
+        directory(root) / "refresh_raw" / datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ"),
+        settings["token_file"], delay=1.3)
+    calendar = market_calendar(root)
+    if calendar is None:
+        calendar = refresh_calendar(directory(root) / "calendar_store", provider, now=now)
+    market = refresh_incremental_market(directory(root) / "market", provider=provider,
+                                        calendar=calendar, now=now)
     result = {}
     for name in STRATEGY_IDS:
         bundle = prepare_signal_bundle(name, market.index_prices, market.calendar,
-                                       now=now, etf_daily=market.etf_daily)
+                                       now=signal_clock(now), etf_daily=market.etf_daily)
+        bundle = replace(bundle, created_at=now)
         save_signal_bundle(bundle, directory(root) / "signals")
         result[name] = bundle
     return result
@@ -131,35 +147,86 @@ def _equity_bundle(root: Path):
     receipt = json.loads(path.read_text(encoding="utf-8"))
     if receipt.get("scores_ready") is not True:
         raise ValueError("Latest equity preparation did not finish")
+    if receipt.get("schema", 1) >= 2 and receipt.get("ready_for_auto_orders") is not True:
+        raise ValueError("Continuous reference inputs are not ready")
     for name in ("current_scores.parquet", "market_tail.parquet"):
         if hashlib.sha256((path.parent / name).read_bytes()).hexdigest() != receipt["files_sha256"][name]:
             raise ValueError("Equity signal identity changed")
     return path.parent, receipt
 
 
+class EquityExecutionMismatch(ValueError):
+    """Prepared scores belong to a different execution session or model year."""
+
+    def __init__(self, expected_execution_date: date):
+        super().__init__("Equity scores require preparation for the verified execution session/model year")
+        self.expected_execution_date = expected_execution_date
+
+
+def validate_equity_execution(receipt: dict, calendar: pd.DataFrame | None) -> date:
+    """Never reinterpret continuous scores after an official session revision."""
+    if calendar is None:
+        raise ValueError("No verified market calendar")
+    days = _open_days(normalize_calendar(calendar))
+    signal = date.fromisoformat(receipt["signal_date"])
+    if signal not in days or days.index(signal) + 1 >= len(days):
+        raise ValueError("No verified next session")
+    execution = days[days.index(signal) + 1]
+    schema = receipt.get("schema", 1)
+    if type(schema) is not int or schema < 1:
+        raise ValueError("Unsupported equity receipt schema")
+    if schema >= 2:
+        model = receipt.get("model")
+        model_year = model.get("model_year") if isinstance(model, dict) else None
+        if (receipt.get("execution_date") != str(execution)
+                or type(model_year) is not int or model_year != execution.year):
+            raise EquityExecutionMismatch(execution)
+    return execution
+
+
+def equity_maintenance_target(root: Path, calendar: pd.DataFrame | None, signal_date: date) -> date | None:
+    """Reprepare only an exact completed target whose execution binding changed.
+
+    File corruption and missing receipts remain blocked by the existing reader.
+    An unrelated extension of the future calendar does not invalidate a model.
+    """
+    try:
+        _, receipt = _equity_bundle(root)
+        if receipt.get("signal_date") != str(signal_date):
+            return None
+        validate_equity_execution(receipt, calendar)
+    except EquityExecutionMismatch as exc:
+        return exc.expected_execution_date
+    except (ValueError, OSError, KeyError, TypeError):
+        return None
+    return None
+
+
 def latest_equity_status(root: Path) -> dict:
     """Small UI summary; score preparation is distinct from permission to trade."""
     folder, receipt = _equity_bundle(root)
     calendar = market_calendar(root)
-    if calendar is None:
-        raise ValueError("No verified market calendar")
-    days = _open_days(calendar)
+    execution = validate_equity_execution(receipt, calendar)
     signal = date.fromisoformat(receipt["signal_date"])
-    if signal not in days or days.index(signal) + 1 >= len(days):
-        raise ValueError("No verified next session")
-    return {"signal_asof": str(signal), "execution_date": str(days[days.index(signal) + 1]),
+    return {"signal_asof": str(signal), "execution_date": str(execution),
             "reference_snapshot_date": receipt["reference_snapshot_date"],
-            "score_coverage": receipt["score_coverage"], "variant_labels": receipt["variant_labels"]}
+            "score_coverage": receipt["score_coverage"], "variant_labels": receipt["variant_labels"],
+            "reference_policy": receipt.get("reference_policy"),
+            "reference_status": receipt.get("reference_status", {}),
+            "model_year": receipt.get("model", {}).get("model_year"),
+            "model_cache_hit": receipt.get("model", {}).get("cache_hit"),
+            "continuous": receipt.get("schema", 1) >= 2}
 
 
-def refresh_equities(root: Path, *, now: datetime | None = None):
+def refresh_equities(root: Path, *, now: datetime | None = None, provider=None):
     from .equity_forward import prepare_equity_forward
     now = now or datetime.now(timezone.utc)
     settings = load_settings(root)
     # The original data, model inputs and factor registry stay under this root.
     return prepare_equity_forward(root, directory(root) / "equities",
                                   now.astimezone(SHANGHAI).date(),
-                                  token_file=settings["token_file"], now=now)
+                                  token_file=settings["token_file"], now=now, provider=provider,
+                                  official_calendar=market_calendar(root))
 
 
 class _QuotedSimulationBroker(THSSimulationBroker):
@@ -259,6 +326,7 @@ def _freeze_equity_decision(root, name, client, folder, receipt, scores, state, 
 def _equity_cycle(root, name, client, executor, calendar, settings, item, *,
                   now, quote_fetcher=fetch_equity_quotes):
     folder, receipt = _equity_bundle(root)
+    validate_equity_execution(receipt, calendar)
     signal_day = date.fromisoformat(receipt["signal_date"])
     execution_day = now.astimezone(SHANGHAI).date()
     days = _open_days(calendar)
@@ -327,7 +395,7 @@ def _equity_cycle(root, name, client, executor, calendar, settings, item, *,
                 sent_this_cycle=len(outcomes), blocked_candidates=len(plan.blocked))
 
 
-def run_cycle(root: Path, *, now: datetime | None = None, refresh=False,
+def run_cycle(root: Path, *, now: datetime | None = None, refresh=False, refresh_status=None,
               client_factory=THSSimulationClient, quote_fetcher=fetch_raw_quote,
               equity_quote_fetcher=fetch_equity_quotes) -> dict:
     """Run bounded work once. No sleep, hidden account creation, or retries."""
@@ -337,7 +405,10 @@ def run_cycle(root: Path, *, now: datetime | None = None, refresh=False,
     active_window = time(9, 35) <= local.time().replace(tzinfo=None) < time(9, 45)
     snapshots_due = (time(9, 30) <= local.time().replace(tzinfo=None) <= time(15, 35))
     status = {"asof": now.isoformat(), "pid": os.getpid(), "enabled": settings["enabled"],
-              "mode": "dedicated_simulation", "mobile_account_linked": False, "strategies": []}
+              "mode": "dedicated_simulation", "code_version": __version__,
+              "mobile_account_linked": False, "strategies": []}
+    if refresh_status is not None:
+        status["data_refresh"] = refresh_status
     try:
         signals = refresh_signals(root, now=now) if refresh else latest_signals(root)
         calendar = market_calendar(root)
@@ -388,7 +459,8 @@ def run_cycle(root: Path, *, now: datetime | None = None, refresh=False,
                 item.update(signal_asof=str(bundle.signal_asof), execution_date=str(bundle.execution_date),
                             target_weight=bundle.target_weight)
             else:
-                item.update(**equity_summary, variant="frozen_reference_forward")
+                item.update(**equity_summary, variant="continuous_forward" if equity_summary.get("continuous")
+                            else "frozen_reference_forward")
             if not settings["enabled"] or name not in settings["strategies"]:
                 item.update(status="paused", detail="自动执行已暂停。")
                 continue
