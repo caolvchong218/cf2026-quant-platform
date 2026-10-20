@@ -1,5 +1,5 @@
 """Synthetic official-calendar responses; no network or credential access."""
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 import json
 
 import pandas as pd
@@ -58,12 +58,12 @@ def test_initial_calendar_is_year_chunked_including_leap_year_and_normalized(tmp
     assert len(list((tmp_path / "checkpoints").glob("*.json"))) == 3
 
 
-def test_incremental_refresh_queries_only_seven_day_tail_and_extension(tmp_path):
+def test_incremental_refresh_queries_recent_week_and_future_without_reloading_old_years(tmp_path):
     seed_calendar(tmp_path, frame("2026-01-01", "2026-10-27"), now=NOW)
     provider = SyntheticProvider()
     result = refresh_calendar(tmp_path, provider, now=NOW, history_start="2026-01-01")
     assert provider.calls == [{
-        "exchange": "SSE", "start_date": "20261020", "end_date": "20261204",
+        "exchange": "SSE", "start_date": "20261013", "end_date": "20261204",
     }]
     assert result.cal_date.iloc[0] == pd.Timestamp("2026-01-01")
     assert result.cal_date.iloc[-1] == pd.Timestamp("2026-12-04")
@@ -85,7 +85,7 @@ def test_failed_initialization_reuses_verified_year_checkpoints_after_restart(tm
 def test_failed_extension_preserves_last_published_manifest(tmp_path):
     seed_calendar(tmp_path, frame("2026-01-01", "2026-10-27"), now=NOW)
     original = (tmp_path / "manifest.json").read_bytes()
-    provider = SyntheticProvider(fail_start="20261020")
+    provider = SyntheticProvider(fail_start="20261013")
     with pytest.raises(CalendarFetchError):
         refresh_calendar(tmp_path, provider, now=NOW, history_start="2026-01-01")
     assert (tmp_path / "manifest.json").read_bytes() == original
@@ -116,7 +116,7 @@ def test_contiguous_partial_future_year_is_saved_but_not_reused_as_complete(tmp_
     assert result.attrs["request_incomplete"] and not result.attrs["coverage_complete"]
     later = SyntheticProvider()
     updated = refresh_calendar(tmp_path, later, now=now, history_start="2026-01-01")
-    assert later.calls[0]["start_date"] == "20270103"
+    assert later.calls[0]["start_date"] == "20261213"
     assert updated.attrs["coverage_complete"]
 
 
@@ -171,6 +171,55 @@ def test_published_future_session_revision_can_be_updated(tmp_path):
 
     result = refresh_calendar(tmp_path, SyntheticProvider(change=change), now=NOW, history_start="2026-01-01")
     assert result.set_index("cal_date").loc[pd.Timestamp("2026-10-22"), "is_open"] == 0
+
+
+def test_far_future_cache_still_rechecks_tomorrows_official_session(tmp_path):
+    seed_calendar(tmp_path, frame("2026-01-01", "2026-12-04"), now=NOW)
+
+    def change(data):
+        data.loc[data.cal_date.eq("20261021"), "is_open"] = 0
+        return data
+
+    provider = SyntheticProvider(change=change)
+    result = refresh_calendar(tmp_path, provider, now=NOW, history_start="2026-01-01")
+    assert provider.calls == [{
+        "exchange": "SSE", "start_date": "20261013", "end_date": "20261204",
+    }]
+    assert result.set_index("cal_date").loc[pd.Timestamp("2026-10-21"), "is_open"] == 0
+    assert load_calendar_cache(tmp_path).cal_date.iloc[-1] == pd.Timestamp("2026-12-04")
+
+
+def test_far_future_cache_rejects_a_recent_past_revision_without_republishing(tmp_path):
+    seed_calendar(tmp_path, frame("2026-01-01", "2026-12-04"), now=NOW)
+    original = (tmp_path / "manifest.json").read_bytes()
+
+    def change(data):
+        data.loc[data.cal_date.eq("20261019"), "is_open"] = 0
+        return data
+
+    with pytest.raises(CalendarDataError, match="changed_existing_past_session"):
+        refresh_calendar(tmp_path, SyntheticProvider(change=change), now=NOW, history_start="2026-01-01")
+    assert (tmp_path / "manifest.json").read_bytes() == original
+
+
+def test_future_year_checkpoints_are_reused_same_day_but_rechecked_on_next_local_date(tmp_path):
+    seed_calendar(tmp_path, frame("2026-01-01", "2027-12-31"), now=NOW)
+    first = SyntheticProvider()
+    refresh_calendar(tmp_path, first, now=NOW, history_start="2026-01-01")
+    assert len(first.calls) == 2
+    same_day = SyntheticProvider()
+    refresh_calendar(tmp_path, same_day, now=NOW + timedelta(hours=1), history_start="2026-01-01")
+    assert not same_day.calls
+
+    def change(data):
+        data.loc[data.cal_date.isin(["20261022", "20270104"]), "is_open"] = 0
+        return data
+
+    later = SyntheticProvider(change=change)
+    updated = refresh_calendar(tmp_path, later, now=NOW + timedelta(days=1), history_start="2026-01-01")
+    assert [item["start_date"] for item in later.calls] == ["20261014", "20270101"]
+    assert updated.set_index("cal_date").loc[pd.Timestamp("2026-10-22"), "is_open"] == 0
+    assert updated.set_index("cal_date").loc[pd.Timestamp("2027-01-04"), "is_open"] == 0
 
 
 def test_current_session_is_also_frozen_to_avoid_rewriting_a_trading_day(tmp_path):

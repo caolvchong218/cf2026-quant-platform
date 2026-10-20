@@ -302,11 +302,13 @@ def _merge(old: pd.DataFrame | None, part: pd.DataFrame, *, today: date) -> pd.D
 
 def refresh_calendar(root: str | Path, provider: CalendarProvider, *, now: datetime,
                      history_start: str = "2019-01-01", horizon_days: int = 45) -> pd.DataFrame:
-    """Refresh the known tail plus seven days, with resumable year checkpoints.
+    """Recheck recent and future dates, with resumable historical year chunks.
 
     Partial future publication is explicit in the returned attrs and manifest.
     Network failure leaves the current manifest unchanged and preserves earlier
-    complete chunks for the next externally scheduled attempt.
+    complete chunks for the next externally scheduled attempt. A long future
+    cache must not hide a revision to tomorrow's session: refresh from the
+    earlier of its tail minus seven days and the current date minus seven days.
     """
     root, now = Path(root), _clock(now)
     start = _date(history_start)
@@ -325,7 +327,8 @@ def refresh_calendar(root: str | Path, provider: CalendarProvider, *, now: datet
             ranges.append((start, old_start - timedelta(days=1)))
         # Preserve any already published farther future; never trim the cache.
         tail_end = max(required_end, old_end)
-        ranges.append((max(start, old_end - timedelta(days=7)), tail_end))
+        tail_start = max(start, min(old_end, now.date()) - timedelta(days=7))
+        ranges.append((tail_start, tail_end))
     combined = old.copy() if old is not None else None
     unpublished = False
     for begin, stop in (chunk for span in ranges for chunk in _year_chunks(*span)):
