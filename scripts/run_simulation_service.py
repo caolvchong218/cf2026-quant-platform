@@ -24,14 +24,16 @@ def main():
     lock = (folder / "worker.lock").open("a+b")
     if os.name == "nt":
         import msvcrt
-        lock.seek(0)
-        if not lock.read(1):
+        # Reading the locked byte also raises PermissionError on Windows.
+        # Inspect metadata without touching that byte before acquiring it.
+        if os.fstat(lock.fileno()).st_size == 0:
             lock.write(b"0")
             lock.flush()
         lock.seek(0)
         try:
             msvcrt.locking(lock.fileno(), msvcrt.LK_NBLCK, 1)
         except OSError:
+            lock.close()
             print("An existing simulation worker holds the lock.")
             return 2
     else:

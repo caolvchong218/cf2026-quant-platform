@@ -2,15 +2,15 @@
   "release": "2.5.0",
   "asof": "2026-10-20",
   "test_results": {
-    "distinct_tests": 215,
-    "passed": 215,
+    "distinct_tests": 216,
+    "passed": 216,
     "unresolved_failures": 0,
     "skipped": 0,
     "note": "Two Windows listener ownership tests require normal OS permissions; native rerun passed. Counts deduplicate test IDs."
   },
-  "browser_preview": {
+  "browser_acceptance": {
     "passed": true,
-    "url": "http://127.0.0.1:8525/",
+    "url": "http://127.0.0.1:8501/",
     "strategy_options": [
       "V3 · 风控前向适配",
       "CogAlpha · 白箱前向适配",
@@ -77,5 +77,21 @@
     "Unidentifiable provider fill IDs block reconciliation; no fill is inferred from price and size.",
     "V3 forward anchor is 2026-10-21 with 20-session rebalance intervals; a missed date stays in cash.",
     "The reviewed stock refresh is limited to 2026 and at most 40 sessions after the reference snapshot."
-  ]
+  ],
+  "desktop_acceptance": {
+    "version": "2.5.0",
+    "url": "http://127.0.0.1:8501",
+    "private_files_verified": 114,
+    "new_accounts_created_during_deployment": 0,
+    "enabled": true,
+    "heartbeat_asof": "2026-10-20T12:03:29.468606+00:00",
+    "strategy_states": {
+      "v3_managed": "waiting_session",
+      "cogalpha_rank": "waiting_session",
+      "rsrs_standard_ma": "waiting_session",
+      "rsrs_right_ma": "waiting_session",
+      "etf_buy_hold": "waiting_session"
+    },
+    "actual_fill_verification": "pending_first_trading_session"
+  }
 }
