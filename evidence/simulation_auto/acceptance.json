@@ -1,0 +1,81 @@
+{
+  "release": "2.5.0",
+  "asof": "2026-10-20",
+  "test_results": {
+    "distinct_tests": 215,
+    "passed": 215,
+    "unresolved_failures": 0,
+    "skipped": 0,
+    "note": "Two Windows listener ownership tests require normal OS permissions; native rerun passed. Counts deduplicate test IDs."
+  },
+  "browser_preview": {
+    "passed": true,
+    "url": "http://127.0.0.1:8525/",
+    "strategy_options": [
+      "V3 · 风控前向适配",
+      "CogAlpha · 白箱前向适配",
+      "RSRS · 标准分 + 趋势",
+      "RSRS · 右偏修正 + 趋势",
+      "沪深 300 ETF 对照"
+    ],
+    "account_refresh_verified": true,
+    "actual_orders_observed": 0,
+    "actual_fills_verified": false,
+    "page_errors": [],
+    "screenshots": 5
+  },
+  "provider_read_only_acceptance": {
+    "dedicated_accounts": 5,
+    "initial_cash_per_account_cny": 200000,
+    "account_positions": 0,
+    "submitted_orders": 0,
+    "observed_fills": 0,
+    "actual_nonempty_position_and_fill_schema_verified": false,
+    "mobile_account_linked": "not_verified"
+  },
+  "data": {
+    "latest_signal_date": "2026-10-20",
+    "next_execution_date": "2026-10-21",
+    "additional_sessions": 16,
+    "additional_stock_bars": 15295,
+    "universe_size": 1000,
+    "v3_scores": 895,
+    "cogalpha_scores": 893,
+    "financial_and_industry_reference_snapshot": "2026-09-18",
+    "historical_20260918_v3_and_cog_score_max_absolute_difference": 0.0,
+    "v3_initial_target_exposure": 0.6568269777692076,
+    "rsrs_standard_ma_target_exposure": 0.0,
+    "rsrs_right_ma_target_exposure": 0.0,
+    "etf_buy_hold_target_exposure": 0.95
+  },
+  "execution": {
+    "mode": "dedicated_simulation_only",
+    "order_window": "09:35–09:45 Asia/Shanghai",
+    "data_refresh_window": "17:05–17:30 Asia/Shanghai",
+    "unknown_submission_policy": "retain reservation, block account, never automatically retry",
+    "pending_order_cancel_api_verified": false,
+    "final_submission_checks": [
+      "saved_opt_in",
+      "strategy_enabled",
+      "session_window",
+      "execution_date",
+      "same_raw_quote",
+      "quote_age_30s",
+      "stock_price_limits"
+    ],
+    "stock_max_order_cny": 20000,
+    "etf_max_order_cny": 200000,
+    "account_daily_gross_order_cap_cny": 400000
+  },
+  "privacy_scan": {
+    "passed": true,
+    "credentials_and_account_identities_in_public_files": 0
+  },
+  "boundaries": [
+    "No live fill or financial performance has been validated before the first trading session.",
+    "Frozen-reference stock variants and integer-lot ETF execution are distinct from old research ledgers.",
+    "Unidentifiable provider fill IDs block reconciliation; no fill is inferred from price and size.",
+    "V3 forward anchor is 2026-10-21 with 20-session rebalance intervals; a missed date stays in cash.",
+    "The reviewed stock refresh is limited to 2026 and at most 40 sessions after the reference snapshot."
+  ]
+}

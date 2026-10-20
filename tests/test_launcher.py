@@ -11,6 +11,31 @@ spec=importlib.util.spec_from_file_location('qingxu_launcher',Path(__file__).res
 launcher=importlib.util.module_from_spec(spec);spec.loader.exec_module(launcher)
 
 
+def test_simulation_worker_requires_saved_opt_in(tmp_path, monkeypatch):
+    launch = Mock()
+    monkeypatch.setattr(launcher.subprocess, "Popen", launch)
+    assert launcher.start_simulation_worker(tmp_path) is None
+    folder = tmp_path / "runs/simulation_auto"
+    folder.mkdir(parents=True)
+    (folder / "settings.json").write_text('{"enabled": false}', encoding="utf-8")
+    assert launcher.start_simulation_worker(tmp_path) is None
+    launch.assert_not_called()
+
+
+def test_simulation_worker_uses_checkout_and_hidden_background_process(tmp_path, monkeypatch):
+    folder = tmp_path / "runs/simulation_auto"
+    folder.mkdir(parents=True)
+    (folder / "settings.json").write_text('{"enabled": true}', encoding="utf-8")
+    launch = Mock(return_value=Mock(pid=789))
+    monkeypatch.setattr(launcher.subprocess, "Popen", launch)
+    assert launcher.start_simulation_worker(tmp_path) == 789
+    args, kw = launch.call_args
+    assert args[0][-3:] == ["--root", str(tmp_path), "--watch"]
+    assert kw["cwd"] == tmp_path and kw["stdin"] == subprocess.DEVNULL
+    if launcher.os.name == "nt":
+        assert kw["creationflags"] & subprocess.CREATE_NO_WINDOW
+
+
 def test_unknown_listener_is_not_adopted_and_source_change_invalidates_receipt(tmp_path,monkeypatch):
     (tmp_path/'src/cfquant').mkdir(parents=True);(tmp_path/'runs').mkdir()
     (tmp_path/'app.py').write_text('first');(tmp_path/'src/cfquant/a.py').write_text('a')

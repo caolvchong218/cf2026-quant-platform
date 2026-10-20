@@ -1,4 +1,4 @@
-"""File-based simulation handoff without claiming a broker connection."""
+"""Dedicated simulation connection plus the preserved historical file bridge."""
 from __future__ import annotations
 
 import json
@@ -138,15 +138,27 @@ def _import_receipt(root: Path):
 
 
 def _guide(root: Path):
-    st.markdown("""1. **准备观察组合。** 在“历史组合导出”选择回测日期，下载权重表或代码清单，用于研究与人工维护观察列表。
-2. **在官方模拟环境操作。** 打开同花顺模拟炒股或 SuperMind。账号登录、权限开通和模拟交易在官方环境中完成。
-3. **导出成交明细。** SuperMind 官方帮助说明：在模拟交易的交易明细中选择日期范围并导出文件。若导出 Excel，可在表格软件中另存为 CSV。
-4. **带回平台核对。** 上传模拟成交 CSV，检查金额与重复提示，导出规范化文件并保存回执。""")
+    st.markdown("**自动模拟盘**")
+    st.markdown("""1. **检查专用账户与信号。** 在“自动模拟盘”选择独立策略账户，查看最新查询、数据日期和执行准备状态。
+2. **确认后台进程与开关。** 电脑保持唤醒、联网，后台工作进程运行后，才可按开关执行。页面开关不会自动启动进程；平台启动器会在已保存“允许”状态时恢复后台进程。
+3. **等待规定时点。** 交易日 09:35–09:45 执行；17:05–17:30 的更新窗口内每日尝试一次收盘行情与信号准备。
+4. **核对真实回报。** 委托受理不等于成交。结果未知时保留资金／持仓预约并暂停相关后续委托，不会自动重发。
+5. **观察共同区间。** 收益只使用接入后的账户快照；至少 20 个完整日度区间后才具备计算 Sharpe 的基本样本条件。""")
+    st.markdown("**保留的历史文件桥**")
+    st.markdown("""在“历史组合导出”选择回测日期，下载权重表或代码清单，用于研究与人工维护观察列表。
+在外部模拟环境导出成交后，可在“模拟回执核对”上传 CSV，检查金额、重复提示并保存回执。
+历史观察清单不是今天的委托文件；CSV 金额核对也不等于账户收益计算。""")
     for title, url in OFFICIAL_SOURCES.items():
         st.markdown(f"[{title}]({url})")
     st.markdown("**当前边界**")
-    st.write("普通同花顺模拟炒股的公开自动交易 API 尚未核实。SuperMind 官方文档介绍 Python 模拟策略，但本项目未登录或开通该环境，未完成接口握手。当前交付的是可使用的文件桥。")
-    st.write("后续账户级验证需要实际模拟回执、初始资金、初始持仓、费用和每日资产记录；本模块不会仅凭买卖差额宣称收益。")
+    st.write("自动页连接官方 SkillHub 专用模拟服务，只处理模拟账户。手机账户互通未验证；SuperMind 用户环境仍未接入。"
+             "开户与查询成功不能代替实际成交验收，V3/CogAlpha 的前向股票适配保留财务与行业参考冻结边界。")
+    st.write("当前取得的官方包没有已确认的挂单查询与撤单接口。暂停只阻止后续委托，不会撤销已发出的订单。"
+             "查看最近心跳、账户查询和执行日志，不能把已保存的开关当作服务正在运行的证明。")
+    research = root / "docs/THS_SIMULATION_RESEARCH.md"
+    if research.exists():
+        st.download_button("下载官方接口核查记录", research.read_bytes(), "THS_SIMULATION_RESEARCH.md",
+                           "text/markdown", key="bridge_research_guide")
     guide = root / "docs/THS_CONNECTION.md"
     if guide.exists():
         st.download_button("下载同花顺衔接说明", guide.read_bytes(), "THS_CONNECTION.md", "text/markdown", key="bridge_guide")
@@ -155,15 +167,29 @@ def _guide(root: Path):
 def render(root: Path):
     root = Path(root).resolve()
     from .ui_design import heading
-    heading("模拟交易衔接", "把研究组合带到模拟环境，再把成交回执带回平台核对。当前采用本地文件方式。")
+    heading("模拟交易连接", "专用同花顺模拟账户、自动执行记录与独立收益观察。历史研究文件桥继续保留。")
     a, b, c = st.columns(3)
     a.metric("本地文件桥", "可用")
-    b.metric("同花顺账号", "未连接")
-    c.metric("本模块提交订单", "0")
+    account_count = len(list((root / "runs/simulation_auto/accounts").glob("*.json")))
+    b.metric("同花顺账号", "查看自动模拟盘" if account_count else "未连接")
+    c.metric("历史文件桥提交订单", "0")
     with st.expander("查看各项连接状态", expanded=False):
-        modes = pd.DataFrame(connection_status()["modes"]).rename(columns={"capability": "能力", "status": "当前状态", "detail": "说明"})
+        file_modes = connection_status()["modes"][:2]
+        modes = pd.DataFrame(file_modes + [
+            {"capability": "官方专用模拟账户", "status": "见自动模拟盘的实际查询",
+             "detail": "独立账户、自动执行与持久账本；查询和成交状态分别验证。"},
+            {"capability": "用户手机原有模拟账户", "status": "互通未验证",
+             "detail": "专用模拟账户已配置不代表手机里的原账户已连接。"},
+            {"capability": "SuperMind 用户环境", "status": "未接入",
+             "detail": "保留外部成交 CSV 核对，不把文件校验当作账户连接。"},
+            {"capability": "真实证券交易", "status": "不支持",
+             "detail": "自动适配器仅允许专用模拟服务。"},
+        ]).rename(columns={"capability": "能力", "status": "当前状态", "detail": "说明"})
         st.dataframe(modes, hide_index=True, width="stretch")
-    exports, imports, guide = st.tabs(["历史组合导出", "模拟回执核对", "官方入口与步骤"])
+    automatic, exports, imports, guide = st.tabs(["自动模拟盘", "历史组合导出", "模拟回执核对", "官方入口与步骤"])
+    with automatic:
+        from .ui_simulation_auto import render as render_auto
+        render_auto(root)
     with exports:
         try:
             _export_history(root)

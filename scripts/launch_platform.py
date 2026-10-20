@@ -227,6 +227,31 @@ def reusable_receipt(root, identity):
     except (OSError,ValueError,KeyError):return None
 
 
+def start_simulation_worker(root):
+    """Resume the explicitly enabled local simulated worker on app startup.
+
+    The worker itself holds an exclusive process lock. Opening the platform
+    twice therefore cannot create two order submitters.
+    """
+    settings=Path(root)/'runs/simulation_auto/settings.json'
+    try:
+        if not settings.is_file() or json.loads(settings.read_text(encoding='utf-8')).get('enabled') is not True:
+            return None
+        logs=Path(root)/'runs/simulation_auto/logs'
+        logs.mkdir(parents=True,exist_ok=True)
+        path=logs/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')+'.log')
+        env=os.environ.copy();env['PYTHONPATH']=str(Path(root)/'src');env['PYTHONIOENCODING']='utf-8'
+        with path.open('wb') as stream:
+            child=subprocess.Popen([sys.executable,str(Path(root)/'scripts/run_simulation_service.py'),
+                 '--root',str(root),'--watch'],cwd=root,env=env,stdin=subprocess.DEVNULL,
+                 stdout=stream,stderr=subprocess.STDOUT,
+                 creationflags=subprocess.CREATE_NO_WINDOW if os.name=='nt' else 0)
+        return child.pid
+    except (OSError,ValueError):
+        print('Simulation worker did not start; inspect the connection page.',flush=True)
+        return None
+
+
 def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--port',type=int,default=8501)
@@ -243,6 +268,7 @@ def main(argv=None):
     if receipt:
         url=f"http://127.0.0.1:{receipt['port']}"
         print('Verified checkout receipt + listener PID + healthy service: '+url,flush=True)
+        start_simulation_worker(root)
         if not args.no_browser:webbrowser.open(url)
         return 0
     logs=root/'runs/launcher_logs';logs.mkdir(parents=True,exist_ok=True)
@@ -269,6 +295,7 @@ def main(argv=None):
                 (root/'runs/platform_server.json').write_text(json.dumps(receipt,indent=2),encoding='utf-8')
                 url=f'http://127.0.0.1:{port}'
                 print('Ready: '+url+'\nLog: '+str(path),flush=True)
+                start_simulation_worker(root)
                 if not args.no_browser:webbrowser.open(url)
                 return 0
             time.sleep(.25)
